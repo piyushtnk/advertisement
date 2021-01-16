@@ -3,7 +3,7 @@ import axios from "../config";
 // State
 const state = {
   layout: {
-    snackbarText: "Welcome to login page"
+    snackbarText: "Welcome!"
   },
   user: {}
 };

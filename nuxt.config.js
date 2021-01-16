@@ -46,7 +46,9 @@ export default {
     // https://go.nuxtjs.dev/content
     "@nuxt/content",
     // https://i18n.nuxtjs.org/setup
-    "nuxt-i18n"
+    "nuxt-i18n",
+    // https://www.npmjs.com/package/nuxt-user-agent
+    "nuxt-user-agent"
   ],
 
   //   Multi language support

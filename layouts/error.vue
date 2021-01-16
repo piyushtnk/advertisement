@@ -1,40 +1,56 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
+    <v-card
+      v-if="error.statusCode === 404"
+      class="mx-auto my-12"
+      max-width="374"
+    >
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
+
+      <v-img height="250" src="404.jpg"></v-img>
+
+      <v-card-actions>
+        <v-btn color="deep-black lighten-2" btn- text to="/" block>
+          Back Home
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+
     <h1 v-else>
       {{ otherError }}
     </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
   </v-app>
 </template>
 
 <script>
 export default {
-  layout: 'empty',
+  layout: "login",
   props: {
     error: {
       type: Object,
       default: null
     }
   },
-  data () {
+  data() {
     return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
+      pageNotFound: "404 Not Found",
+      otherError: "An error occurred"
+    };
   },
-  head () {
+  head() {
     const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
+      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
     return {
       title
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>
