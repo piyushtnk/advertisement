@@ -3,7 +3,7 @@
     <div v-if="$store.state.user">
       <p>
         You are authenticated. You can see the
-        <NuxtLink to="/system"> Home </NuxtLink>!
+        <NuxtLink to="/"> Home </NuxtLink>!
       </p>
       <button @click="logout">
         Logout
