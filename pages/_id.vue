@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$route.params.id">
+    <div v-if="show">
       <v-card class="mx-auto" tile>
         <v-list-item>
           <v-list-item-content>
@@ -11,32 +11,40 @@
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Device Type</v-list-item-title>
-            <v-list-item-subtitle>{{ info.deviceType() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.deviceType()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>OS</v-list-item-title>
-            <v-list-item-subtitle>{{ info.os() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.os()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>OS Version</v-list-item-title>
-            <v-list-item-subtitle>{{ info.osVersion() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.osVersion()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Browser</v-list-item-title>
-            <v-list-item-subtitle>{{ info.browser() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.browser()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Browser Version</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.browserVersion()
+              clientData.info.browserVersion()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -50,7 +58,7 @@
           <v-list-item-content>
             <v-list-item-title>Browser Vendor</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.browserVendor()
+              clientData.info.browserVendor()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -58,33 +66,39 @@
           <v-list-item-content>
             <v-list-item-title>Phone</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromIphone()
+              clientData.info.isFromIphone()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>iPad</v-list-item-title>
-            <v-list-item-subtitle>{{ info.isFromIpad() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.isFromIpad()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>iPod</v-list-item-title>
-            <v-list-item-subtitle>{{ info.isFromIpod() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.isFromIpod()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>iOS</v-list-item-title>
-            <v-list-item-subtitle>{{ info.isFromIos() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.isFromIos()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Android Mobile</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromAndroidMobile()
+              clientData.info.isFromAndroidMobile()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -92,7 +106,7 @@
           <v-list-item-content>
             <v-list-item-title>Android Tablet</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromAndroidTablet()
+              clientData.info.isFromAndroidTablet()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -100,7 +114,7 @@
           <v-list-item-content>
             <v-list-item-title>Android OS</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromAndroidOs()
+              clientData.info.isFromAndroidOs()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -108,21 +122,23 @@
           <v-list-item-content>
             <v-list-item-title>Windows Phone</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromWindowsPhone()
+              clientData.info.isFromWindowsPhone()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>PC</v-list-item-title>
-            <v-list-item-subtitle>{{ info.isFromPc() }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.info.isFromPc()
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Smart Phone</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromSmartphone()
+              clientData.info.isFromSmartphone()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -130,7 +146,7 @@
           <v-list-item-content>
             <v-list-item-title>Mobile Phone</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromMobilephone()
+              clientData.info.isFromMobilephone()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -138,7 +154,7 @@
           <v-list-item-content>
             <v-list-item-title>Tablet</v-list-item-title>
             <v-list-item-subtitle>{{
-              info.isFromTablet()
+              clientData.info.isFromTablet()
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -165,19 +181,82 @@
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>IP Address</v-list-item-title>
-            <v-list-item-subtitle>{{ ipAddress }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.ipAddress
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
-            <v-list-item-title>Location</v-list-item-title>
-            <v-list-item-subtitle>{{ latLong }}</v-list-item-subtitle>
+            <v-list-item-title>City</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.city
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>TimeZone</v-list-item-title>
-            <v-list-item-subtitle>{{ timezone }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{
+              clientData.timezone
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>TimeZone Name</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.timezone
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Country</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.country
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Country Code</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.countryCode
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>ISP</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.isp
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Location</v-list-item-title>
+            <v-list-item-subtitle
+              >{{ clientData.locationDetail.lat }},
+              {{ clientData.locationDetail.lon }}</v-list-item-subtitle
+            >
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Region Name</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.regionName
+            }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title>Region Code</v-list-item-title>
+            <v-list-item-subtitle>{{
+              clientData.locationDetail.region
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-card>
@@ -187,41 +266,42 @@
 </template>
 
 <script>
+import axios from "../store/config";
 export default {
   layout: "login",
   data() {
     return {
-      info: "default-data",
-      ipAddress: "Fetching...",
-      latLong: null,
-      timezone: null
+      show: true,
+      clientData: {
+        info: {},
+        ipAddress: "Fetching...",
+        timezone: null,
+        locationDetail: {}
+      }
     };
   },
-  created() {
+  async created() {
     // Main device detail
     const device = this.$ua;
-    this.info = device;
+    this.clientData.info = device;
 
     // Ip address
-    fetch("https://api.ipify.org?format=json")
+    await fetch("https://api.ipify.org?format=json")
       .then(x => x.json())
       .then(({ ip }) => {
-        this.ipAddress = ip;
+        this.clientData.ipAddress = ip;
+
+        // Location fetch
+        fetch("http://ip-api.com/json/")
+          .then(x => x.json())
+          .then(response => {
+            this.clientData.locationDetail = response;
+            this.finalize();
+          });
       });
 
-    // Location fetch
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        this.latLong =
-          position.coords.latitude + "," + position.coords.longitude;
-      },
-      error => {
-        this.latLong = "Error: " + error.message;
-      }
-    );
-
     // TimeZone
-    this.timezone = new Date().toISOString();
+    this.clientData.timezone = new Date().toISOString();
   },
   computed: {
     screenSize() {
@@ -235,18 +315,85 @@ export default {
     },
     browserVersion() {
       return navigator.appVersion;
-    },
-    location() {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
-        },
-        error => {
-          console.log(error.message);
-        }
-      );
+    }
+  },
+  methods: {
+    finalize() {
+      // Check the banner existence
+      const $this = this;
+      axios
+        .get("/client/banner/" + $this.$route.params.id)
+        .then(function(response) {
+          if (response.data.data) {
+            // Sending data to server
+            let deviceName = null;
+            if ($this.clientData.info.isFromIphone()) {
+              deviceName = "iPhone";
+            } else if ($this.clientData.info.isFromIpad()) {
+              deviceName = "iPad";
+            } else if ($this.clientData.info.isFromIpod()) {
+              deviceName = "iPod";
+            } else if ($this.clientData.info.isFromIos()) {
+              deviceName = "iOS";
+            } else if ($this.clientData.info.isFromAndroidMobile()) {
+              deviceName = "Android Mobile";
+            } else if ($this.clientData.info.isFromAndroidTablet()) {
+              deviceName = "Android Tablet";
+            } else if ($this.clientData.info.isFromAndroidOs()) {
+              deviceName = "Android OS";
+            } else if ($this.clientData.info.isFromWindowsPhone()) {
+              deviceName = "Windows Phone";
+            } else if ($this.clientData.info.isFromPc()) {
+              deviceName = "PC";
+            } else if ($this.clientData.info.isFromSmartphone()) {
+              deviceName = "Smart Phone";
+            } else if ($this.clientData.info.isFromMobilephone()) {
+              deviceName = "Mobile Phone";
+            } else if ($this.clientData.info.isFromTablet()) {
+              deviceName = "Tablet";
+            }
+            axios
+              .post("/clients/" + $this.$route.params.id, {
+                cDeviceType: $this.clientData.info.deviceType(),
+                cBrowser: $this.clientData.info.browser(),
+                cBrowserDetail: $this.clientData.info.browserVersion(),
+                cBrowserVendor: $this.clientData.info.browserVendor(),
+                cDeviceName: deviceName,
+                cScreen: $this.screenSize,
+                cOriginalScreen: $this.screenSizeMax,
+                cLanguage: $this.language,
+                cIp: $this.clientData.ipAddress,
+                cOs: $this.clientData.info.os(),
+                cTimezone: $this.clientData.timezone,
+                cTimezoneName: $this.clientData.locationDetail.timezone,
+                cCountryCode: $this.clientData.locationDetail.countryCode,
+                cCountry: $this.clientData.locationDetail.country,
+                cRegionCode: $this.clientData.locationDetail.region,
+                cRegion: $this.clientData.locationDetail.regionName,
+                cCity: $this.clientData.locationDetail.city,
+                cZip: $this.clientData.locationDetail.zip,
+                cIsp: $this.clientData.locationDetail.isp,
+                cLat: $this.clientData.locationDetail.lat,
+                cLong: $this.clientData.locationDetail.lon
+              })
+              .then(function(response) {
+                console.log("Connected, Waiting for url.");
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          $this.show = false;
+        });
     }
   }
+  /* async updated() {
+    const waiting = await this.$nextTick(function() {
+      return true;
+    });
+  } */
 };
 </script>
