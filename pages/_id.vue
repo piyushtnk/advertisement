@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="this.$route.params.id">
+    <div v-if="$route.params.id">
       <v-card class="mx-auto" tile>
         <v-list-item>
           <v-list-item-content>
