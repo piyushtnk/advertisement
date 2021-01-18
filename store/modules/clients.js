@@ -2,7 +2,7 @@ import axios from "../config";
 
 // State
 const state = {
-  clients: {}
+  clients: []
 };
 
 // Actions
