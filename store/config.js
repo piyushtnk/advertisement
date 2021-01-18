@@ -5,7 +5,8 @@ const config = axios.create({
   withCredentials: false,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.token}`
   }
 });
 export default config;

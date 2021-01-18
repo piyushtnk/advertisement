@@ -13,7 +13,7 @@
         ></v-progress-linear>
       </template>
 
-      <v-img height="250" src="404.jpg"></v-img>
+      <v-img height="250" src="/404.jpg"></v-img>
 
       <v-card-actions>
         <v-btn color="deep-black lighten-2" btn- text to="/" block>

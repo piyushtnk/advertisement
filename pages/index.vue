@@ -1,13 +1,10 @@
 <template>
   <div>
-    <div v-if="$store.state.auth">
+    <div v-if="token">
       <p>
-        You are authenticated. You can see the
-        <NuxtLink to="/secret"> secret page </NuxtLink>!
+        You are authenticated. You can login to system!
+        <NuxtLink to="/system"> Click Here </NuxtLink>
       </p>
-      <button @click="logout">
-        Logout
-      </button>
     </div>
     <p v-else>
       Please
@@ -20,12 +17,12 @@
 const Cookie = process.client ? require("js-cookie") : undefined;
 
 export default {
+  layout: "login",
   middleware: "authenticate",
-  methods: {
-    logout() {
-      Cookie.remove("auth");
-      this.$store.commit("setAuth", null);
-    }
+  data() {
+    return {
+      token: localStorage.token
+    };
   }
 };
 </script>

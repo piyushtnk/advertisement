@@ -24,7 +24,6 @@
 export default {
   data() {
     return {
-      snackbar: true,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -37,6 +36,14 @@ export default {
   computed: {
     snackbarText() {
       return this.$store.state.Login.layout.snackbarText;
+    },
+    snackbar: {
+      get: function() {
+        return this.$store.state.Login.layout.snackbarVisible;
+      },
+      set: function(value) {
+        this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", value);
+      }
     }
   }
 };

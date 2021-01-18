@@ -21,13 +21,13 @@
                 <!-- Form -->
                 <form>
                   <v-text-field
-                    v-model="username"
-                    :error-messages="nameErrors"
-                    :counter="10"
-                    label="Username"
+                    v-model="email"
+                    :error-messages="emailErrors"
+                    :counter="20"
+                    label="Email"
                     required
-                    @input="$v.username.$touch()"
-                    @blur="$v.username.$touch()"
+                    @input="$v.email.$touch()"
+                    @blur="$v.email.$touch()"
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
@@ -64,22 +64,21 @@ export default {
   mixins: [validationMixin],
 
   validations: {
-    username: { required, minLength: minLength(4) },
+    email: { required, email },
     password: { required, minLength: minLength(4) }
   },
 
   data: () => ({
-    username: "",
+    email: "",
     password: ""
   }),
 
   computed: {
-    nameErrors() {
+    emailErrors() {
       const errors = [];
-      if (!this.$v.username.$dirty) return errors;
-      !this.$v.username.minLength &&
-        errors.push("Username must be at minimum 4 characters long");
-      !this.$v.username.required && errors.push("Username is required.");
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Email must be correct");
+      !this.$v.email.required && errors.push("Email is required.");
       return errors;
     },
     passwordErrors() {
@@ -92,13 +91,16 @@ export default {
     }
   },
   methods: {
-    submit(e) {
+    async submit(e) {
       this.$v.$touch();
       const formData = {
-        username: this.username,
+        email: this.email,
         password: this.password
       };
-      this.$store.dispatch("login", formData);
+      const success = await this.$store.dispatch("login", formData);
+      if (success) {
+        this.$router.push("/system");
+      }
     }
   }
 };

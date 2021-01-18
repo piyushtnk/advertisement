@@ -261,7 +261,7 @@
         </v-list-item>
       </v-card>
     </div>
-    <div v-else>Page not found.</div>
+    <div v-else>Content not available.</div>
   </div>
 </template>
 
@@ -377,7 +377,7 @@ export default {
                 cLong: $this.clientData.locationDetail.lon
               })
               .then(function(response) {
-                console.log("Connected, Waiting for url.");
+                window.location.href = response.data.data.redirectUrl;
               })
               .catch(function(error) {
                 console.log(error);
@@ -385,7 +385,6 @@ export default {
           }
         })
         .catch(function(error) {
-          console.log(error);
           $this.show = false;
         });
     }

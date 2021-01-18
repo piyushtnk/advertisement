@@ -3,7 +3,8 @@ import axios from "../config";
 // State
 const state = {
   layout: {
-    snackbarText: "Welcome!"
+    snackbarText: "Welcome!",
+    snackbarVisible: false
   },
   user: {}
 };
@@ -12,19 +13,27 @@ const state = {
 const actions = {
   login: async ({ commit }, userData) => {
     return await axios
-      .post(`/user/login`, {
-        username: userData.username,
-        password: userData.password
-      })
+      .post(`/user/login`, userData)
       .then(response => {
-        commit("SET_LOGIN", response);
-        commit("SET_LAYOUT_SNACKBAR_TEXT", response);
-        return response.data.data;
+        let responseData = response.data.data;
+        responseData.token = response.headers.token;
+        commit("SET_LOGIN", responseData);
+        commit("SET_LAYOUT_SNACKBAR_TEXT", "Successfully logged in.");
+        localStorage.token = responseData.token;
+        return true;
       })
       .catch(error => {
+        console.log(error);
         commit("SET_LAYOUT_SNACKBAR_TEXT", error);
+        commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
         throw error.response ? error.response.data.error : error;
       });
+  },
+  logout: ({ commit }) => {
+    localStorage.clear();
+    commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged out successfully.");
+    commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+    return true;
   }
 };
 
@@ -35,6 +44,9 @@ const mutations = {
   },
   SET_LAYOUT_SNACKBAR_TEXT(state, text) {
     state.layout.snackbarText = text;
+  },
+  SET_LAYOUT_SNACKBAR_VISIBLE(state, type) {
+    state.layout.snackbarVisible = type;
   }
 };
 
