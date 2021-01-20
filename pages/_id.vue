@@ -320,7 +320,7 @@ export default {
     finalize() {
       // Check the banner existence
       const $this = this;
-      this.$axios
+      $this.$axios
         .get("/client/banner/" + $this.$route.params.id)
         .then(function(response) {
           if (response.data.data) {
@@ -351,7 +351,7 @@ export default {
             } else if ($this.clientData.info.isFromTablet()) {
               deviceName = "Tablet";
             }
-            this.$axios
+            $this.$axios
               .post("/client/" + $this.$route.params.id, {
                 cDeviceType: $this.clientData.info.deviceType(),
                 cBrowser: $this.clientData.info.browser(),
@@ -379,11 +379,16 @@ export default {
                 window.location.href = response.data.data.redirectUrl;
               })
               .catch(function(error) {
-                $sentry.captureException(error);
+                $this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
+                $this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+                throw error.response ? error.response.data.error : error;
               });
           }
         })
         .catch(function(error) {
+          $this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
+          $this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+          throw error.response ? error.response.data.error : error;
           $this.show = false;
         });
     }

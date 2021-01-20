@@ -2,6 +2,10 @@ import axios from "../config";
 
 // State
 const state = () => ({
+  layout: {
+    snackbarText: "Welcome!",
+    snackbarVisible: false
+  },
   clients: []
 });
 
@@ -14,13 +18,21 @@ const actions = {
         commit("SET_CLIENTS", response.data.data);
       })
       .catch(error => {
-        $sentry.captureException(error);
+        commit("SET_LAYOUT_SNACKBAR_TEXT", error);
+        commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+        throw error.response ? error.response.data.error : error;
       });
   }
 };
 
 // Mutations
 const mutations = {
+  SET_LAYOUT_SNACKBAR_TEXT(state, text) {
+    state.layout.snackbarText = text;
+  },
+  SET_LAYOUT_SNACKBAR_VISIBLE(state, type) {
+    state.layout.snackbarVisible = type;
+  },
   SET_CLIENTS(state, response) {
     state.clients = response;
   }
