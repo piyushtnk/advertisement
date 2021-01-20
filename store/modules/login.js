@@ -1,5 +1,3 @@
-import axios from "../config";
-
 // State
 const state = {
   layout: {
@@ -11,8 +9,8 @@ const state = {
 
 // Actions
 const actions = {
-  login: async ({ commit }, userData) => {
-    return await axios
+  async login({ commit }, userData) {
+    return await this.$axios
       .post(`/user/login`, userData)
       .then(response => {
         let responseData = response.data.data;

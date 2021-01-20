@@ -1,13 +1,15 @@
 import colors from "vuetify/es5/util/colors";
-
+const API_URL = "http://34.87.169.84/api/";
 export default {
+  dev: process.env.NODE_ENV !== "production",
   env: {
-    API_URL: "http://34.87.169.84/api",
+    API_URL: API_URL,
     CONTACT_DEV: "Something went wrong, contact your developer."
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
+  components: true,
   //   router: {
   //     middleware: ["authenticate", "notAuthenticate"]
   //   },
@@ -27,7 +29,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ["~/plugins/axios.js"],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -73,22 +75,14 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  /* axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    baseURL: "http://okay.com",
-    credentials: true,
-    proxy: false,
-    debug: true,
-    retry: {
-      retries: 3
-    },
-    requestInterceptor: (config, { store }) => {
-      config.headers.common["Authorization"] = "";
-      config.headers.common["Content-Type"] =
-        "application/x-www-form-urlencoded;application/json";
-      return config;
+  axios: {
+    baseURL: API_URL,
+    debug: process.env.NODE_ENV,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
     }
-  }, */
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},

@@ -266,7 +266,6 @@
 </template>
 
 <script>
-import axios from "../store/config";
 export default {
   layout: "login",
   data() {
@@ -321,7 +320,7 @@ export default {
     finalize() {
       // Check the banner existence
       const $this = this;
-      axios
+      this.$axios
         .get("/client/banner/" + $this.$route.params.id)
         .then(function(response) {
           if (response.data.data) {
@@ -352,8 +351,8 @@ export default {
             } else if ($this.clientData.info.isFromTablet()) {
               deviceName = "Tablet";
             }
-            axios
-              .post("/clients/" + $this.$route.params.id, {
+            this.$axios
+              .post("/client/" + $this.$route.params.id, {
                 cDeviceType: $this.clientData.info.deviceType(),
                 cBrowser: $this.clientData.info.browser(),
                 cBrowserDetail: $this.clientData.info.browserVersion(),

@@ -7,8 +7,8 @@ const state = {
 
 // Actions
 const actions = {
-  getClients: ({ commit }) => {
-    axios
+  async getClients({ commit }) {
+    await this.$axios
       .get("/clients")
       .then(response => {
         commit("SET_CLIENTS", response.data.data);

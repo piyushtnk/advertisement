@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <!-- Snackbar -->
-    <v-snackbar v-model="snackbar">
+    <v-snackbar v-model="snackbar" right top>
       {{ snackbarText }}
 
       <template v-slot:action="{ attrs }">
@@ -63,8 +63,6 @@
 export default {
   data() {
     return {
-      snackbar: false,
-      snackbarText: "Default snackbar text",
       clipped: false,
       drawer: false,
       fixed: false,
@@ -91,6 +89,19 @@ export default {
       const success = this.$store.dispatch("logout");
       if (success) {
         this.$router.push("/login");
+      }
+    }
+  },
+  computed: {
+    snackbarText() {
+      return this.$store.state.Default.snackbarText;
+    },
+    snackbar: {
+      get: function() {
+        return this.$store.state.Default.snackbarVisible;
+      },
+      set: function(value) {
+        this.$store.dispatch("setSnackbarVisible", value);
       }
     }
   }
