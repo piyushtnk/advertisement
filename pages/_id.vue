@@ -379,7 +379,7 @@ export default {
                 window.location.href = response.data.data.redirectUrl;
               })
               .catch(function(error) {
-                console.log(error);
+                $sentry.captureException(error);
               });
           }
         })

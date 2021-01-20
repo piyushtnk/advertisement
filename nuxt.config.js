@@ -1,10 +1,16 @@
 import colors from "vuetify/es5/util/colors";
-const API_URL = "http://34.87.169.84/api/";
+
+// Environment variable
+const env = {
+  API_URL: "http://34.87.169.84/api/",
+  CONTACT_DEV: "Something went wrong, contact your developer."
+};
+
 export default {
   dev: process.env.NODE_ENV !== "production",
   env: {
-    API_URL: API_URL,
-    CONTACT_DEV: "Something went wrong, contact your developer."
+    API_URL: env.API_URL,
+    CONTACT_DEV: env.CONTACT_DEV
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -76,8 +82,8 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    baseURL: API_URL,
-    debug: process.env.NODE_ENV,
+    baseURL: env.API_URL,
+    debug: true,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"

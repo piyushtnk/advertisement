@@ -21,7 +21,8 @@ const actions = {
         return true;
       })
       .catch(error => {
-        console.log(error);
+        $sentry.captureException(error);
+
         commit("SET_LAYOUT_SNACKBAR_TEXT", error);
         commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
         throw error.response ? error.response.data.error : error;

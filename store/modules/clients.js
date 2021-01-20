@@ -14,7 +14,7 @@ const actions = {
         commit("SET_CLIENTS", response.data.data);
       })
       .catch(error => {
-        console.log(error);
+        $sentry.captureException(error);
       });
   }
 };
