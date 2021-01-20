@@ -1,9 +1,9 @@
 import axios from "../config";
 
 // State
-const state = {
+const state = () => ({
   clients: []
-};
+});
 
 // Actions
 const actions = {

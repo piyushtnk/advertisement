@@ -1,8 +1,8 @@
 // State
-const state = {
+const state = () => ({
   snackbarText: "Welcome!",
   snackbarVisible: false
-};
+});
 
 // Actions
 const actions = {

@@ -1,11 +1,11 @@
 // State
-const state = {
+const state = () => ({
   layout: {
     snackbarText: "Welcome!",
     snackbarVisible: false
   },
   user: {}
-};
+});
 
 // Actions
 const actions = {
