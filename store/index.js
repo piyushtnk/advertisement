@@ -1,13 +1,17 @@
 import Vuex from "vuex";
-import Clients from "./modules/clients";
-import Login from "./modules/login";
 import Default from "./modules/default";
+import Login from "./modules/login";
+import Dashboard from "./modules/dashboard";
+import Banner from "./modules/banner";
+import Clients from "./modules/clients";
 
 const createStore = () => {
   return new Vuex.Store({
     modules: {
       Default,
       Login,
+      Dashboard,
+      Banner,
       Clients
     }
   });

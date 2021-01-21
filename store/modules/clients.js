@@ -1,5 +1,3 @@
-import axios from "../config";
-
 // State
 const state = () => ({
   layout: {

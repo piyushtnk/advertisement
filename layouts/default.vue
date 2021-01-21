@@ -73,6 +73,11 @@ export default {
           to: "/system"
         },
         {
+          icon: "mdi-image",
+          title: "Banner",
+          to: "/system/banner"
+        },
+        {
           icon: "mdi-account-group",
           title: "Clients",
           to: "/system/clients"

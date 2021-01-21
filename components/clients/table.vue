@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TableComponent",
@@ -173,13 +173,6 @@ export default {
     ...mapGetters({
       clients: "getClients"
     })
-  },
-  methods: {
-    ...mapActions({ getClients: "getClients" })
-  },
-  mounted() {
-    // this["clients/getClients"](); // Another Way of calling.
-    this.getClients();
   }
 };
 </script>
