@@ -14,8 +14,7 @@
         :headers="headers"
         :items="banners"
         :search="search"
-        single-select
-        class="elevation-1"
+        item-key="uniqueId"
       >
         <template v-slot:item.uniqueId="{ item }">
           <div class="py-5">
