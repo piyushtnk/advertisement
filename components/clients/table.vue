@@ -140,7 +140,6 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "TableComponent",
-  middleware: "authenticate",
   data() {
     return {
       search: "",

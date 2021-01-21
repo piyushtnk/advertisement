@@ -376,7 +376,7 @@ export default {
                 cLong: $this.clientData.locationDetail.lon
               })
               .then(function(response) {
-                window.location.href = response.data.data.redirectUrl;
+                // window.location.href = response.data.data.redirectUrl;
               })
               .catch(function(error) {
                 $this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
@@ -392,6 +392,26 @@ export default {
           $this.show = false;
         });
     }
+  },
+  mounted() {
+    let vue = this;
+    this.$fingerPrint2.get(
+      {
+        canvas: true,
+        ie_activex: true,
+        screen_resolution: true
+      },
+      function(components) {
+        var values = components.map(function(component) {
+          return component.value;
+        });
+        var murmur = vue.$fingerPrint2.x64hash128(values.join(""), 31);
+
+        console.log("Device ID: ", murmur);
+        //you can update your data var
+        // this.token = murmur
+      }
+    );
   }
   /* async updated() {
     const waiting = await this.$nextTick(function() {

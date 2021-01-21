@@ -27,10 +27,14 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Counters area -->
+    <CountersComponent />
   </div>
 </template>
 
 <script>
+import CountersComponent from "~/components/index/counters";
 const gradients = [
   ["#222"],
   ["#42b3f4"],
@@ -41,6 +45,9 @@ const gradients = [
 ];
 export default {
   middleware: "authenticate",
+  components: {
+    CountersComponent: CountersComponent
+  },
   data: () => ({
     width: 2,
     radius: 10,

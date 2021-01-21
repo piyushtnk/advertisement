@@ -1,16 +1,14 @@
 import colors from "vuetify/es5/util/colors";
 
-// Environment variable
 const env = {
-  API_URL: "http://34.87.169.84/api/",
-  CONTACT_DEV: "Something went wrong, contact your developer."
+  API_URL: "http://34.87.169.84/api/"
 };
 
 export default {
-  dev: process.env.NODE_ENV !== "production",
+  // Environment variable
   env: {
     API_URL: env.API_URL,
-    CONTACT_DEV: env.CONTACT_DEV
+    CONTACT_DEV: "Something went wrong, contact your developer."
   },
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -35,7 +33,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ["~/plugins/axios.js"],
+  plugins: [
+    { src: "~/plugins/axios.js" },
+    { src: "~/plugins/fingerprint.js", ssr: false }
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -83,7 +84,7 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     baseURL: env.API_URL,
-    debug: true,
+    debug: process.env.NODE_ENV == "development" ? true : false,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
