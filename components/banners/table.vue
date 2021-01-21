@@ -12,17 +12,17 @@
       </v-card-title>
       <v-data-table
         :headers="headers"
-        item-key="id"
         :items="banners"
         :search="search"
         single-select
+        class="elevation-1"
       >
-        <template v-slot:item="{ item }">
-          <div class="p-2">
+        <template v-slot:item.uniqueId="{ item }">
+          <div class="py-5">
             <v-img
-              :src="'/banner/' + item.uniqueId + '.' + item.imageType"
+              :src="`/banner/${item.uniqueId + '.' + item.imageType}`"
               :alt="item.uniqueId"
-              height="10px"
+              width="200px"
             ></v-img>
           </div>
         </template>
