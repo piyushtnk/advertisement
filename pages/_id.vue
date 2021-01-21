@@ -275,32 +275,51 @@ export default {
         info: {},
         ipAddress: "Fetching...",
         timezone: null,
-        locationDetail: {}
+        locationDetail: {},
+        deviceId: null
       }
     };
   },
   async created() {
+    const $this = this;
+
     // Main device detail
     const device = this.$ua;
-    this.clientData.info = device;
+    $this.clientData.info = device;
 
     // Ip address
     await fetch("https://api.ipify.org?format=json")
       .then(x => x.json())
       .then(({ ip }) => {
-        this.clientData.ipAddress = ip;
+        $this.clientData.ipAddress = ip;
 
         // Location fetch
         fetch("http://ip-api.com/json/")
           .then(x => x.json())
           .then(response => {
-            this.clientData.locationDetail = response;
-            this.finalize();
+            $this.clientData.locationDetail = response;
+            $this.finalize();
           });
       });
 
     // TimeZone
-    this.clientData.timezone = new Date().toISOString();
+    $this.clientData.timezone = new Date().toISOString();
+
+    // Device Id
+    $this.$fingerPrint2.get(
+      {
+        canvas: true,
+        ie_activex: true,
+        screen_resolution: true
+      },
+      function(components) {
+        var values = components.map(function(component) {
+          return component.value;
+        });
+        var murmur = $this.$fingerPrint2.x64hash128(values.join(""), 31);
+        $this.clientData.deviceId = murmur;
+      }
+    );
   },
   computed: {
     screenSize() {
@@ -362,6 +381,7 @@ export default {
                 cOriginalScreen: $this.screenSizeMax,
                 cLanguage: $this.language,
                 cIp: $this.clientData.ipAddress,
+                cDeviceId: $this.clientData.deviceId,
                 cOs: $this.clientData.info.os(),
                 cTimezone: $this.clientData.timezone,
                 cTimezoneName: $this.clientData.locationDetail.timezone,
@@ -376,7 +396,7 @@ export default {
                 cLong: $this.clientData.locationDetail.lon
               })
               .then(function(response) {
-                // window.location.href = response.data.data.redirectUrl;
+                window.location.href = response.data.data.redirectUrl;
               })
               .catch(function(error) {
                 $this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
@@ -393,26 +413,7 @@ export default {
         });
     }
   },
-  mounted() {
-    let vue = this;
-    this.$fingerPrint2.get(
-      {
-        canvas: true,
-        ie_activex: true,
-        screen_resolution: true
-      },
-      function(components) {
-        var values = components.map(function(component) {
-          return component.value;
-        });
-        var murmur = vue.$fingerPrint2.x64hash128(values.join(""), 31);
-
-        console.log("Device ID: ", murmur);
-        //you can update your data var
-        // this.token = murmur
-      }
-    );
-  }
+  mounted() {}
   /* async updated() {
     const waiting = await this.$nextTick(function() {
       return true;

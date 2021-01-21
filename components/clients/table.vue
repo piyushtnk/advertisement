@@ -56,6 +56,12 @@
                     }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
+                <v-list-item two-line>
+                  <v-list-item-content>
+                    <v-list-item-title>Latitude</v-list-item-title>
+                    <v-list-item-subtitle>{{ item.cLat }}</v-list-item-subtitle>
+                  </v-list-item-content>
+                </v-list-item>
               </v-col>
               <v-col lg="4" md="6" sm="12">
                 <v-list-item two-line>
@@ -118,12 +124,6 @@
                   <v-list-item-content>
                     <v-list-item-title>ISP</v-list-item-title>
                     <v-list-item-subtitle>{{ item.cIsp }}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item two-line>
-                  <v-list-item-content>
-                    <v-list-item-title>Latitude</v-list-item-title>
-                    <v-list-item-subtitle>{{ item.cLat }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
               </v-col>
