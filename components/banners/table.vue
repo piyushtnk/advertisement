@@ -16,7 +16,7 @@
         :search="search"
         item-key="uniqueId"
       >
-        <template v-slot:item.uniqueId="{ item }">
+        <template v-slot:[`item.uniqueId`]="{ item }">
           <div class="py-5">
             <v-img
               :src="`/banner/${item.uniqueId + '.' + item.imageType}`"

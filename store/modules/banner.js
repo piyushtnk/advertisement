@@ -22,9 +22,7 @@ const actions = {
           root: true
         });
         commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-
-        commit("SET_BANNERS", response.data.data);
-
+        commit("UPDATE_BANNERS", response.data.data);
         return true;
       })
       .catch(error => {
@@ -52,11 +50,10 @@ const actions = {
 // Mutations
 const mutations = {
   SET_BANNERS(state, response) {
-    if (state.banners.length > 0) {
-      state.banners = [response, ...state.banners];
-    } else {
-      state.banners = response;
-    }
+    state.banners = response;
+  },
+  UPDATE_BANNERS(state, response) {
+    state.banners = [response, ...state.banners];
   }
 };
 
