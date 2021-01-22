@@ -72,14 +72,16 @@ export default {
   },
   methods: {
     findImage(image) {
+      let path = null;
       try {
-        return require("~/assets/banner/" +
+        path = require("~/assets/banner/" +
           image.uniqueId +
           "." +
           image.imageType);
       } catch (e) {
-        return require("~/assets/no-image.jpg");
+        path = require("~/assets/no-image.jpg");
       }
+      return path;
     },
     getUrl(item) {
       return window.location.origin + "/" + item.uniqueId;

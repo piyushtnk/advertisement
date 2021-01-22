@@ -372,28 +372,40 @@ export default {
             }
             $this.$axios
               .post("/client/" + $this.$route.params.id, {
-                cDeviceType: $this.clientData.info.deviceType(),
-                cBrowser: $this.clientData.info.browser(),
-                cBrowserDetail: $this.clientData.info.browserVersion(),
-                cBrowserVendor: $this.clientData.info.browserVendor(),
+                cDeviceType: $this.isNull($this.clientData.info.deviceType()),
+                cBrowser: $this.isNull($this.clientData.info.browser()),
+                cBrowserDetail: $this.isNull(
+                  $this.clientData.info.browserVersion()
+                ),
+                cBrowserVendor: $this.isNull(
+                  $this.clientData.info.browserVendor()
+                ),
                 cDeviceName: deviceName,
-                cScreen: $this.screenSize,
-                cOriginalScreen: $this.screenSizeMax,
-                cLanguage: $this.language,
-                cIp: $this.clientData.ipAddress,
-                cDeviceId: $this.clientData.deviceId,
-                cOs: $this.clientData.info.os(),
-                cTimezone: $this.clientData.timezone,
-                cTimezoneName: $this.clientData.locationDetail.timezone,
-                cCountryCode: $this.clientData.locationDetail.countryCode,
-                cCountry: $this.clientData.locationDetail.country,
-                cRegionCode: $this.clientData.locationDetail.region,
-                cRegion: $this.clientData.locationDetail.regionName,
-                cCity: $this.clientData.locationDetail.city,
-                cZip: $this.clientData.locationDetail.zip,
-                cIsp: $this.clientData.locationDetail.isp,
-                cLat: $this.clientData.locationDetail.lat,
-                cLong: $this.clientData.locationDetail.lon
+                cScreen: $this.isNull($this.screenSize),
+                cOriginalScreen: $this.isNull($this.screenSizeMax),
+                cLanguage: $this.isNull($this.language),
+                cIp: $this.isNull($this.clientData.ipAddress),
+                cDeviceId: $this.isNull($this.clientData.deviceId),
+                cOs: $this.isNull($this.clientData.info.os()),
+                cTimezone: $this.isNull($this.clientData.timezone),
+                cTimezoneName: $this.isNull(
+                  $this.clientData.locationDetail.timezone
+                ),
+                cCountryCode: $this.isNull(
+                  $this.clientData.locationDetail.countryCode
+                ),
+                cCountry: $this.isNull($this.clientData.locationDetail.country),
+                cRegionCode: $this.isNull(
+                  $this.clientData.locationDetail.region
+                ),
+                cRegion: $this.isNull(
+                  $this.clientData.locationDetail.regionName
+                ),
+                cCity: $this.isNull($this.clientData.locationDetail.city),
+                cZip: $this.isNull($this.clientData.locationDetail.zip),
+                cIsp: $this.isNull($this.clientData.locationDetail.isp),
+                cLat: $this.isNull($this.clientData.locationDetail.lat),
+                cLong: $this.isNull($this.clientData.locationDetail.lon)
               })
               .then(function(response) {
                 window.location.href = response.data.data.redirectUrl;
@@ -411,6 +423,13 @@ export default {
           throw error.response ? error.response.data.error : error;
           $this.show = false;
         });
+    },
+    isNull(value) {
+      if (value == "") {
+        return "-";
+      } else {
+        return value;
+      }
     }
   },
   mounted() {}

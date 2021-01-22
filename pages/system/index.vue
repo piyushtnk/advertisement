@@ -4,7 +4,7 @@
     <ChartComponent />
 
     <!-- Counters area -->
-    <CountersComponent />
+    <CountersComponent :filterForCounter="1" />
   </div>
 </template>
 
@@ -20,12 +20,14 @@ export default {
     CountersComponent: CountersComponent,
     ChartComponent: ChartComponent
   },
-  data: () => ({}),
+  data: () => ({
+    filterForCounter: 1
+  }),
   methods: {
     ...mapActions({ getDashboard: "getDashboard" })
   },
   mounted() {
-    this.getDashboard();
+    this.getDashboard({ filterForCounter: this.filterForCounter });
   }
 };
 </script>

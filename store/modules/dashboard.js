@@ -8,9 +8,10 @@ const state = () => ({
 
 // Actions
 const actions = {
-  async getDashboard({ commit }) {
+  async getDashboard({ commit }, data) {
+    console.log("From Props", data);
     await this.$axios
-      .get("/dashboard")
+      .get("/dashboard", { params: { duration: data.filterForCounter } })
       .then(response => {
         commit("SET_DASHBOARD", response.data.data);
       })
