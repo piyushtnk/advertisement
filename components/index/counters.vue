@@ -148,8 +148,8 @@ export default {
     })
   },
   watch: {
-    defaultFilterDate(v) {
-      this.$emit("update:filterForCounter", v);
+    defaultFilterDate(value) {
+      this.$emit("update:filterForCounter", value);
     }
   }
 };

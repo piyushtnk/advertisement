@@ -24,7 +24,7 @@
               width="200px"
             ></v-img>             -->
             <v-img
-              :src="findImage(item)"
+              :src="`~/assets/banner/${item.uniqueId}.${item.imageType}`"
               :lazy-src="`https://picsum.photos/10/6?image=${5 * 5 + 10}`"
               aspect-ratio="auto"
               class="grey lighten-2"

@@ -9,7 +9,6 @@ const state = () => ({
 // Actions
 const actions = {
   async getDashboard({ commit }, data) {
-    console.log("From Props", data);
     await this.$axios
       .get("/dashboard", { params: { duration: data.filterForCounter } })
       .then(response => {
