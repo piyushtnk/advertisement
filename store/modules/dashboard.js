@@ -1,6 +1,9 @@
 // State
 const state = () => ({
-  dashboard: []
+  dashboard: {
+    all: {},
+    today: {}
+  }
 });
 
 // Actions

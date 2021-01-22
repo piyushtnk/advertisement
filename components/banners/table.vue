@@ -18,12 +18,31 @@
       >
         <template v-slot:[`item.uniqueId`]="{ item }">
           <div class="py-5">
-            <v-img
+            <!-- <v-img              
               :src="`/banner/${item.uniqueId + '.' + item.imageType}`"
               :alt="item.uniqueId"
               width="200px"
-            ></v-img>
+            ></v-img>             -->
+            <v-img
+              :src="findImage(item)"
+              :lazy-src="`https://picsum.photos/10/6?image=${5 * 5 + 10}`"
+              aspect-ratio="auto"
+              class="grey lighten-2"
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
           </div>
+        </template>
+
+        <template v-slot:[`item.imageType`]="{ item }">
+          {{ getUrl(item) }}
         </template>
       </v-data-table>
     </v-card>
@@ -39,8 +58,9 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "Image", value: "uniqueId" },
-        { text: "URL", value: "redirectUrl" },
+        { text: "Banner", value: "uniqueId" },
+        { text: "Banner Link", value: "imageType" },
+        { text: "Redirect URL", value: "redirectUrl" },
         { text: "Created At", value: "createdAt" }
       ]
     };
@@ -49,6 +69,21 @@ export default {
     ...mapGetters({
       banners: "getBanners"
     })
+  },
+  methods: {
+    findImage(image) {
+      try {
+        return require("~/assets/banner/" +
+          image.uniqueId +
+          "." +
+          image.imageType);
+      } catch (e) {
+        return require("~/assets/no-image.jpg");
+      }
+    },
+    getUrl(item) {
+      return window.location.origin + "/" + item.uniqueId;
+    }
   }
 };
 </script>

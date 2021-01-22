@@ -4,7 +4,7 @@
       <v-col cols="12" sm="12">
         <v-card class="mx-auto">
           <v-sparkline
-            :value="dashboard.graph"
+            :value="dashboard.all.graph"
             :gradient="gradient"
             :smooth="radius || false"
             :padding="padding"

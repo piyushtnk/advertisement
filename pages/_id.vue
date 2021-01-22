@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="show">
-      <v-card class="mx-auto" tile>
+      <!-- <v-card class="mx-auto" tile>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>Client Information</v-list-item-title>
@@ -159,7 +159,6 @@
           </v-list-item-content>
         </v-list-item>
 
-        <!-- Manual mode -->
         <v-list-item two-line>
           <v-list-item-content>
             <v-list-item-title>Screen Size</v-list-item-title>
@@ -259,7 +258,8 @@
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-      </v-card>
+      </v-card> -->
+      You're being redirected...
     </div>
     <div v-else>Content not available.</div>
   </div>
@@ -267,7 +267,7 @@
 
 <script>
 export default {
-  layout: "login",
+  layout: "client",
   data() {
     return {
       show: true,
