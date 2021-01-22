@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <!-- Chart -->
-    <ChartComponent />
+    <div>
+        <!-- Chart -->
+        <ChartComponent />
 
-    <!-- Counters area -->
-    <CountersComponent :filterForCounter="1" />
-  </div>
+        <!-- Counters area -->
+        <CountersComponent @childFilterForCounter="filterForCounter" />
+    </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+    import { mapActions } from "vuex";
 
-import CountersComponent from "~/components/index/counters";
-import ChartComponent from "~/components/index/chart";
+    import CountersComponent from "~/components/index/counters";
+    import ChartComponent from "~/components/index/chart";
 
-export default {
-  middleware: "authenticate",
-  components: {
-    CountersComponent: CountersComponent,
-    ChartComponent: ChartComponent
-  },
-  data: () => ({
-    filterForCounter: 1
-  }),
-  methods: {
-    ...mapActions({ getDashboard: "getDashboard" })
-  },
-  mounted() {
-    this.getDashboard({ filterForCounter: this.filterForCounter });
-  }
-};
+    export default {
+        middleware: "authenticate",
+        components: {
+            CountersComponent: CountersComponent,
+            ChartComponent: ChartComponent,
+        },
+        data: () => ({}),
+        methods: {
+            ...mapActions({ getDashboard: "getDashboard", getStats: "getStats" }),
+            filterForCounter(value) {
+                this.$store.dispatch("getStats", { filterForCounter: value });
+            },
+        },
+        mounted() {
+            this.getDashboard();
+            this.getStats({ filterForCounter: 1 });
+        },
+    };
 </script>
