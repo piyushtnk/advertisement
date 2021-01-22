@@ -24,7 +24,7 @@
               width="200px"
             ></v-img>             -->
             <v-img
-              :src="`~/assets/banner/${item.uniqueId}.${item.imageType}`"
+              :src="`/banner/${item.uniqueId}.${item.imageType}`"
               :lazy-src="`https://picsum.photos/10/6?image=${5 * 5 + 10}`"
               aspect-ratio="auto"
               class="grey lighten-2"
@@ -71,7 +71,7 @@ export default {
     })
   },
   methods: {
-    findImage(image) {
+    /* findImage(image) {
       let path = null;
       try {
         path = require("~/assets/banner/" +
@@ -82,7 +82,7 @@ export default {
         path = require("~/assets/no-image.jpg");
       }
       return path;
-    },
+    }, */
     getUrl(item) {
       return window.location.origin + "/" + item.uniqueId;
     }
