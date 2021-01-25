@@ -18,14 +18,13 @@
             >
                 <template v-slot:[`item.uniqueId`]="{ item }">
                     <div class="py-5">
-                        <!-- <v-img              
-						:src="`/banner/${item.uniqueId + '.' + item.imageType}`"
-						:alt="item.uniqueId"
-						width="200px"
-						></v-img>             -->
                         <v-img
-                            :src="`~/assets/banner/${item.uniqueId}.${item.imageType}`"
-                            aspect-ratio="auto"
+                            :lazy-src="`https://picsum.photos/10/6?image=${
+                                5 * 5 + 10
+                            }`"
+                            :src="findImage(item)"
+                            height="100"
+                            width="200"
                             class="grey lighten-2"
                         />
                     </div>
@@ -61,18 +60,15 @@
             }),
         },
         methods: {
-            /* findImage(image) {
-                                          let path = null;
-                                          try {
-                                            path = require("~/assets/banner/" +
-                                              image.uniqueId +
-                                              "." +
-                                              image.imageType);
-                                          } catch (e) {
-                                            path = require("~/assets/no-image.jpg");
-                                          }
-                                          return path;
-                                        }, */
+            findImage(item) {
+                let path = null;
+                try {
+                    path = require(`~/assets/banner/${item.uniqueId}.${item.imageType}`);
+                } catch (e) {
+                    path = require("~/assets/no-image.jpg");
+                }
+                return path;
+            },
             getUrl(item) {
                 return window.location.origin + "/" + item.uniqueId;
             },
