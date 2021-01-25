@@ -24,7 +24,7 @@
 						width="200px"
 						></v-img>             -->
                         <v-img
-                            :src="`/banner/${item.uniqueId}.${item.imageType}`"
+                            :src="`~/assets/banner/${item.uniqueId}.${item.imageType}`"
                             aspect-ratio="auto"
                             class="grey lighten-2"
                         />
@@ -62,17 +62,17 @@
         },
         methods: {
             /* findImage(image) {
-                                      let path = null;
-                                      try {
-                                        path = require("~/assets/banner/" +
-                                          image.uniqueId +
-                                          "." +
-                                          image.imageType);
-                                      } catch (e) {
-                                        path = require("~/assets/no-image.jpg");
-                                      }
-                                      return path;
-                                    }, */
+                                          let path = null;
+                                          try {
+                                            path = require("~/assets/banner/" +
+                                              image.uniqueId +
+                                              "." +
+                                              image.imageType);
+                                          } catch (e) {
+                                            path = require("~/assets/no-image.jpg");
+                                          }
+                                          return path;
+                                        }, */
             getUrl(item) {
                 return window.location.origin + "/" + item.uniqueId;
             },
