@@ -19,9 +19,6 @@
                 <template v-slot:[`item.uniqueId`]="{ item }">
                     <div class="py-5">
                         <v-img
-                            :lazy-src="`https://picsum.photos/10/6?image=${
-                                5 * 5 + 10
-                            }`"
                             :src="findImage(item)"
                             height="100"
                             width="200"
@@ -63,9 +60,9 @@
             findImage(item) {
                 let path = null;
                 try {
-                    path = require(`~/assets/banner/${item.uniqueId}.${item.imageType}`);
+                    path = require(`@/assets/banner/${item.uniqueId}.${item.imageType}`);
                 } catch (e) {
-                    path = require("~/assets/no-image.jpg");
+                    path = require("@/assets/banner/default.jpg");
                 }
                 return path;
             },
