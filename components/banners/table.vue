@@ -60,9 +60,9 @@
             findImage(item) {
                 let path = null;
                 try {
-                    path = require(`@/assets/banner/${item.uniqueId}.${item.imageType}`);
+                    path = require(`~/public/images/banner/${item.uniqueId}.${item.imageType}`);
                 } catch (e) {
-                    path = require("@/assets/banner/default.jpg");
+                    path = require("~/public/images/banner/default.jpg");
                 }
                 return path;
             },
