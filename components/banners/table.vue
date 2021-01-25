@@ -19,31 +19,15 @@
                 <template v-slot:[`item.uniqueId`]="{ item }">
                     <div class="py-5">
                         <!-- <v-img              
-              :src="`/banner/${item.uniqueId + '.' + item.imageType}`"
-              :alt="item.uniqueId"
-              width="200px"
-            ></v-img>             -->
+						:src="`/banner/${item.uniqueId + '.' + item.imageType}`"
+						:alt="item.uniqueId"
+						width="200px"
+						></v-img>             -->
                         <v-img
                             :src="`/banner/${item.uniqueId}.${item.imageType}`"
-                            :lazy-src="`https://picsum.photos/10/6?image=${
-                                5 * 5 + 10
-                            }`"
                             aspect-ratio="auto"
                             class="grey lighten-2"
-                        >
-                            <template v-slot:placeholder>
-                                <v-row
-                                    class="fill-height ma-0"
-                                    align="center"
-                                    justify="center"
-                                >
-                                    <v-progress-circular
-                                        indeterminate
-                                        color="grey lighten-5"
-                                    ></v-progress-circular>
-                                </v-row>
-                            </template>
-                        </v-img>
+                        />
                     </div>
                 </template>
 
@@ -78,17 +62,17 @@
         },
         methods: {
             /* findImage(image) {
-          let path = null;
-          try {
-            path = require("~/assets/banner/" +
-              image.uniqueId +
-              "." +
-              image.imageType);
-          } catch (e) {
-            path = require("~/assets/no-image.jpg");
-          }
-          return path;
-        }, */
+                                      let path = null;
+                                      try {
+                                        path = require("~/assets/banner/" +
+                                          image.uniqueId +
+                                          "." +
+                                          image.imageType);
+                                      } catch (e) {
+                                        path = require("~/assets/no-image.jpg");
+                                      }
+                                      return path;
+                                    }, */
             getUrl(item) {
                 return window.location.origin + "/" + item.uniqueId;
             },
