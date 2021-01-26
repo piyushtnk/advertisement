@@ -7,6 +7,7 @@ const state = () => ({
 		banners: 0,
 	},
 	stats: {
+		banners: 0,
 		visitors: 0,
 		uniqueVisitors: 0,
 		registeredVisitors: 0
@@ -35,7 +36,9 @@ const actions = {
 		await this.$axios
 			.get("/stats", {
 				params: {
-					duration: data.filterForCounter
+					duration: data.filterForCounter ? data.filterForCounter : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null
 				}
 			})
 			.then(response => {
