@@ -7,6 +7,7 @@
 		layout: "client",
 		data() {
 			return {
+				show: true,
 				clientData: {
 					info: {},
 					ipAddress: "Fetching...",
@@ -33,6 +34,36 @@
 							$this.finalize();
 						});
 				});
+
+			// Device Id
+			$this.$fingerPrint2.get(
+				{
+					canvas: true,
+					ie_activex: true,
+					screen_resolution: true,
+				},
+				function (components) {
+					var values = components.map(function (component) {
+						return component.value;
+					});
+					var murmur = $this.$fingerPrint2.x64hash128(
+						values.join(""),
+						31
+					);
+					$this.clientData.deviceId = murmur;
+				}
+			);
+		},
+		computed: {
+			screenSize() {
+				return window.innerHeight + "X" + window.innerHeight;
+			},
+			screenSizeMax() {
+				return window.screen.availWidth + "X" + window.screen.availHeight;
+			},
+			language() {
+				return navigator.language;
+			},
 		},
 		methods: {
 			finalize() {
@@ -41,33 +72,12 @@
 				$this.$axios
 					.get("/client/banner/" + $this.$route.params.id)
 					.then(function (response) {
-						if (response.data.data.id) {
+						if (response.data.data) {
 							// Main device detail
 							$this.clientData.info = $this.$ua;
 
 							// TimeZone
 							$this.clientData.timezone = new Date().toISOString();
-
-							// Device Id
-							$this.$fingerPrint2.get(
-								{
-									canvas: true,
-									ie_activex: true,
-									screen_resolution: true,
-								},
-								function (components) {
-									var values = components.map(function (
-										component
-									) {
-										return component.value;
-									});
-									var murmur = $this.$fingerPrint2.x64hash128(
-										values.join(""),
-										31
-									);
-									$this.clientData.deviceId = murmur;
-								}
-							);
 
 							// Sending data to server
 							let deviceName = null;
@@ -100,60 +110,89 @@
 							} else if ($this.clientData.info.isFromTablet()) {
 								deviceName = "Tablet";
 							}
-							$this.$axios.post("/client/" + $this.$route.params.id, {
-								cDeviceType: $this.isNull(
-									$this.clientData.info.deviceType()
-								),
-								cBrowser: $this.isNull(
-									$this.clientData.info.browser()
-								),
-								cBrowserDetail: $this.isNull(
-									$this.clientData.info.browserVersion()
-								),
-								cBrowserVendor: $this.isNull(
-									$this.clientData.info.browserVendor()
-								),
-								cDeviceName: deviceName,
-								cScreen: $this.isNull($this.screenSize),
-								cOriginalScreen: $this.isNull($this.screenSizeMax),
-								cLanguage: $this.isNull($this.language),
-								cIp: $this.isNull($this.clientData.ipAddress),
-								cDeviceId: $this.isNull($this.clientData.deviceId),
-								cOs: $this.isNull($this.clientData.info.os()),
-								cTimezone: $this.isNull($this.clientData.timezone),
-								cTimezoneName: $this.isNull(
-									$this.clientData.locationDetail.timezone
-								),
-								cCountryCode: $this.isNull(
-									$this.clientData.locationDetail.countryCode
-								),
-								cCountry: $this.isNull(
-									$this.clientData.locationDetail.country
-								),
-								cRegionCode: $this.isNull(
-									$this.clientData.locationDetail.region
-								),
-								cRegion: $this.isNull(
-									$this.clientData.locationDetail.regionName
-								),
-								cCity: $this.isNull(
-									$this.clientData.locationDetail.city
-								),
-								cZip: $this.isNull(
-									$this.clientData.locationDetail.zip
-								),
-								cIsp: $this.isNull(
-									$this.clientData.locationDetail.isp
-								),
-								cLat: $this.isNull(
-									$this.clientData.locationDetail.lat
-								),
-								cLong: $this.isNull(
-									$this.clientData.locationDetail.lon
-								),
-							});
+							$this.$axios
+								.post("/client/" + $this.$route.params.id, {
+									cDeviceType: $this.isNull(
+										$this.clientData.info.deviceType()
+									),
+									cBrowser: $this.isNull(
+										$this.clientData.info.browser()
+									),
+									cBrowserDetail: $this.isNull(
+										$this.clientData.info.browserVersion()
+									),
+									cBrowserVendor: $this.isNull(
+										$this.clientData.info.browserVendor()
+									),
+									cDeviceName: deviceName,
+									cScreen: $this.isNull($this.screenSize),
+									cOriginalScreen: $this.isNull(
+										$this.screenSizeMax
+									),
+									cLanguage: $this.isNull($this.language),
+									cIp: $this.isNull($this.clientData.ipAddress),
+									cDeviceId: $this.isNull(
+										$this.clientData.deviceId
+									),
+									cOs: $this.isNull($this.clientData.info.os()),
+									cTimezone: $this.isNull(
+										$this.clientData.timezone
+									),
+									cTimezoneName: $this.isNull(
+										$this.clientData.locationDetail.timezone
+									),
+									cCountryCode: $this.isNull(
+										$this.clientData.locationDetail.countryCode
+									),
+									cCountry: $this.isNull(
+										$this.clientData.locationDetail.country
+									),
+									cRegionCode: $this.isNull(
+										$this.clientData.locationDetail.region
+									),
+									cRegion: $this.isNull(
+										$this.clientData.locationDetail.regionName
+									),
+									cCity: $this.isNull(
+										$this.clientData.locationDetail.city
+									),
+									cZip: $this.isNull(
+										$this.clientData.locationDetail.zip
+									),
+									cIsp: $this.isNull(
+										$this.clientData.locationDetail.isp
+									),
+									cLat: $this.isNull(
+										$this.clientData.locationDetail.lat
+									),
+									cLong: $this.isNull(
+										$this.clientData.locationDetail.lon
+									),
+								})
+								.then(function (response) {
+									window.location.href =
+										response.data.data.redirectUrl;
+								})
+								.catch(function (error) {
+									$this.$store.commit(
+										"SET_LAYOUT_SNACKBAR_TEXT",
+										error
+									);
+									$this.$store.commit(
+										"SET_LAYOUT_SNACKBAR_VISIBLE",
+										true
+									);
+									throw error.response
+										? error.response.data.error
+										: error;
+								});
 						}
-						window.location.href = response.data.data.redirectUrl;
+					})
+					.catch(function (error) {
+						$this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
+						$this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+						throw error.response ? error.response.data.error : error;
+						$this.show = false;
 					});
 			},
 			isNull(value) {
