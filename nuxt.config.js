@@ -12,14 +12,14 @@ export default {
 	},
 	// Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
 	ssr: false,
-
+	loading: { color: '#3B8070' },
 	components: true,
-	//   router: {
-	//     middleware: ["authenticate", "notAuthenticate"]
-	//   },
+	/* router: {
+		// middleware: ["authenticate", "notAuthenticate"]		
+	}, */
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
-		titleTemplate: "%s - advertisement",
+		titleTemplate: "%s - System Panel",
 		title: "advertisement",
 		meta: [
 			{ charset: "utf-8" },
@@ -35,7 +35,7 @@ export default {
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
 	plugins: [
 		{ src: "~/plugins/axios.js" },
-		{ src: "~/plugins/fingerprint.js", ssr: false }
+		{ src: "~/plugins/fingerprint.js", ssr: false },
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
@@ -56,41 +56,40 @@ export default {
 		// https://go.nuxtjs.dev/content
 		"@nuxt/content",
 		// https://i18n.nuxtjs.org/setup
-		"nuxt-i18n",
+		["nuxt-i18n", {
+			locales: [
+				{
+					name: 'English',
+					code: "en",
+					iso: 'en-US',
+					file: 'en-US.js'
+				},
+				{
+					name: '中文',
+					code: "zh",
+					iso: 'zh-CN',
+					file: 'zh-CN.js'
+				},
+			],
+			lazy: true,
+			langDir: 'locales/',
+			defaultLocale: 'en',
+			// strategy: 'prefix',
+			strategy: 'prefix_except_default',
+			seo: true,
+			loadLanguagesAsync: true,
+			detectBrowserLanguage: {
+				useCookie: true,
+				alwaysRedirect: true,
+			},
+			vueI18n: {
+				locale: 'en',
+				fallbackLocale: 'en',
+			},
+		}],
 		// https://www.npmjs.com/package/nuxt-user-agent
 		"nuxt-user-agent",
 	],
-
-	//   Multi language support
-	i18n: {
-		seo: true,
-		detectBrowserLanguage: {
-			useCookie: true,
-			alwaysRedirect: true,
-		},
-		loadLanguagesAsync: true,
-		langDir: "locales/",
-		defaultLocale: "en",
-		lazy: true,
-		vueI18n: {
-			locale: 'en',
-			fallbackLocale: 'en',
-		},
-		locales: [
-			{
-				name: 'English',
-				code: "en",
-				iso: "en-US",
-				file: "en-US.js"
-			},
-			{
-				name: '中文',
-				code: "zh",
-				iso: "zh-CN",
-				file: "zh-CN.js"
-			}
-		],
-	},
 
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)
 	axios: {
@@ -124,6 +123,10 @@ export default {
 		}
 	},
 
+
+
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
-	build: {}
+	build: {
+
+	}
 };

@@ -1,14 +1,7 @@
-// Json file
-/* {
-	"navbar": {
-		"systemPanel": "System Panel"
-	}
-} */
-
-// JS file
-export default async () => {
+export default async (context, locale) => {
 	return await ({
-		navbar: {
+		welcome: "Welcome",
+		layout: {
 			systemPanel: "System Panel"
 		}
 	})

@@ -1,14 +1,7 @@
-// Json file
-/* {
-	"navbar": {
-		"systemPanel": "系统面板"
-	}
-} */
-
-// Js file
-export default async () => {
+export default async (context, locale) => {
 	return await ({
-		navbar: {
+		welcome: "欢迎",
+		layout: {
 			systemPanel: "系统面板"
 		}
 	})

@@ -10,22 +10,28 @@
     "test": "jest"
   },
   "dependencies": {
+    "@google-cloud/storage": "^5.7.3",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sentry": "^4.5.0",
-    "@sentry/tracing": "^6.0.0",
-    "@sentry/vue": "^6.0.0",
+    "@sentry/tracing": "^6.0.2",
+    "@sentry/vue": "^6.0.2",
+    "child_process": "^1.0.2",
     "cookieparser": "^0.1.0",
     "core-js": "^3.8.3",
     "fingerprintjs2": "^2.1.2",
+    "fs": "0.0.1-security",
     "js-cookie": "^2.2.1",
+    "net": "^1.0.2",
     "nuxt": "^2.14.6",
     "nuxt-i18n": "^6.18.0",
     "nuxt-user-agent": "^1.2.2",
+    "tls": "0.0.1",
     "vue-browser-detect-plugin": "^0.1.13",
+    "vue-i18n": "^8.22.4",
     "vuelidate": "^0.7.6",
-    "vuex": "^3.6.0"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",

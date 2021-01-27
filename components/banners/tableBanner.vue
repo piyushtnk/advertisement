@@ -18,18 +18,18 @@
 			>
 				<template v-slot:[`item.uniqueId`]="{ item }">
 					<div class="py-5">
-						<a :href="item.uniqueId" target="_blank">
+						<a :href="findImage(item)" target="_blank">
 							<v-img
 								:src="findImage(item)"
 								height="100"
-								width="200"
+								width="300"
 								class="grey lighten-2"
 							/>
 						</a>
 					</div>
 				</template>
 
-				<template v-slot:[`item.imageType`]="{ item }">
+				<template v-slot:[`item.url`]="{ item }">
 					{{ getUrl(item) }}
 				</template>
 			</v-data-table>
@@ -47,7 +47,7 @@
 				search: "",
 				headers: [
 					{ text: "Banner", value: "uniqueId" },
-					{ text: "Banner Link", value: "imageType" },
+					{ text: "Banner Link", value: "url" },
 					{ text: "Redirect URL", value: "redirectUrl" },
 					{ text: "Created At", value: "createdAt" },
 				],
@@ -62,7 +62,7 @@
 			findImage(item) {
 				let path = null;
 				try {
-					path = require(`~/assets/banner/${item.uniqueId}.${item.imageType}`);
+					path = `https://storage.cloud.google.com/advertisement_storage/banner/${item.uniqueId}.${item.imageType}`;
 				} catch (e) {
 					path = require("~/assets/banner/default.jpg");
 				}
@@ -72,5 +72,6 @@
 				return window.location.origin + "/" + item.uniqueId;
 			},
 		},
+		mounted() {},
 	};
 </script>

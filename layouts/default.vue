@@ -28,7 +28,7 @@
 				<v-list-item
 					v-for="(item, i) in items"
 					:key="i"
-					:to="item.to"
+					:to="localePath(item.to)"
 					router
 					exact
 				>
@@ -53,15 +53,17 @@
 					</v-btn>
 				</template>
 				<v-list>
-					<nuxt-link
-						v-for="locale in availableLocales"
-						:key="locale.code"
-						:to="switchLocalePath(locale.code)"
-					>
-						<v-list-item>
-							{{ locale.name }}
-						</v-list-item>
-					</nuxt-link>
+					<v-list-item>
+						<nuxt-link
+							v-for="locale in availableLocales"
+							:key="locale.code"
+							:to="switchLocalePath(locale.code)"
+						>
+							<v-list-item>
+								{{ locale.name }}
+							</v-list-item>
+						</nuxt-link>
+					</v-list-item>
 				</v-list>
 			</v-menu>
 
@@ -111,14 +113,13 @@
 				miniVariant: false,
 				right: true,
 				rightDrawer: false,
-				title: this.$t("navbar.systemPanel"),
 			};
 		},
 		methods: {
 			logout() {
 				const success = this.$store.dispatch("logout");
 				if (success) {
-					this.$router.push("/login");
+					this.$router.push(this.localePath("/login"));
 				}
 			},
 		},
@@ -138,6 +139,9 @@
 				return this.$i18n.locales.filter(
 					(i) => i.code !== this.$i18n.locale
 				);
+			},
+			title() {
+				return this.$t("layout.systemPanel");
 			},
 		},
 	};

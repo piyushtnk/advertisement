@@ -18,9 +18,6 @@
 								/>
 							</v-col>
 						</v-row>
-						<nuxt-link :to="switchLocalePath('zh')">
-							<v-list-item> chiense </v-list-item>
-						</nuxt-link>
 					</v-app-bar>
 
 					<v-container>
