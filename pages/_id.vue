@@ -26,6 +26,25 @@
 				.then(({ ip }) => {
 					$this.clientData.ipAddress = ip;
 
+					// Device Id
+					$this.$fingerPrint2.get(
+						{
+							canvas: true,
+							ie_activex: true,
+							screen_resolution: true,
+						},
+						function (components) {
+							var values = components.map(function (component) {
+								return component.value;
+							});
+							var murmur = $this.$fingerPrint2.x64hash128(
+								values.join(""),
+								31
+							);
+							$this.clientData.deviceId = murmur;
+						}
+					);
+
 					// Location fetch
 					fetch("http://ip-api.com/json/")
 						.then((x) => x.json())
@@ -34,25 +53,6 @@
 							$this.finalize();
 						});
 				});
-
-			// Device Id
-			$this.$fingerPrint2.get(
-				{
-					canvas: true,
-					ie_activex: true,
-					screen_resolution: true,
-				},
-				function (components) {
-					var values = components.map(function (component) {
-						return component.value;
-					});
-					var murmur = $this.$fingerPrint2.x64hash128(
-						values.join(""),
-						31
-					);
-					$this.clientData.deviceId = murmur;
-				}
-			);
 		},
 		computed: {
 			screenSize() {
