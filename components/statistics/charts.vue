@@ -122,6 +122,11 @@
 				this.polygonSeries.data = value.graph;
 			},
 		},
+		beforeDestroy() {
+			if (this.chart) {
+				this.chart.dispose();
+			}
+		},
 	};
 </script>
 
