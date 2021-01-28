@@ -1,2 +1,2 @@
-# advertisement
-Advertisement of banner 
+# Advertisement
+Original Repository
