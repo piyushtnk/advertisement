@@ -1,5 +1,53 @@
 <template>
 	<div>
+		<!-- Registered players, Top-up players and Unique clients  -->
+		<v-row>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ getRealPercentage(statistics.playersRegistered) }}
+					</v-card-title>
+					<v-card-text> Registered Players </v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ getRealPercentage(statistics.topupPlayers) }}
+					</v-card-title>
+					<v-card-text> Top-up Players </v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ getRealPercentage(statistics.uniqueClients) }}
+					</v-card-title>
+					<v-card-text> Unique Clients </v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
+		<!-- PC AND Mobile -->
+		<v-row>
+			<v-col cols="12" lg="6" md="6" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ getRealPercentage(statistics.clientsFromPc) }}
+					</v-card-title>
+					<v-card-text> From PC </v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="6" md="6" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ getRealPercentage(statistics.clientsFromMobile) }}
+					</v-card-title>
+					<v-card-text class="h"> From Mobile </v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">
 			<v-col cols="12" lg="12" md="12" sm="12">
@@ -54,54 +102,6 @@
 				</v-data-iterator>
 			</v-col>
 		</v-row>
-
-		<!-- PC AND Mobile -->
-		<v-row>
-			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.clientsFromPc) }}
-					</v-card-title>
-					<v-card-text> From PC </v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.clientsFromMobile) }}
-					</v-card-title>
-					<v-card-text class="h"> From Mobile </v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
-
-		<!-- Registered players, Top-up players and Unique clients  -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.playersRegistered) }}
-					</v-card-title>
-					<v-card-text> Registered Players </v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.topupPlayers) }}
-					</v-card-title>
-					<v-card-text> Top-up Players </v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.uniqueClients) }}
-					</v-card-title>
-					<v-card-text> Unique Clients </v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
 	</div>
 </template>
 
@@ -121,7 +121,8 @@
 		},
 		methods: {
 			getRealPercentage(value) {
-				return Number.parseFloat(value).toPrecision(2) * 100 + "%";
+				let number = value * 100;
+				return Number.parseFloat(number).toPrecision(2) + "%";
 			},
 		},
 	};
