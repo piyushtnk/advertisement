@@ -74,6 +74,24 @@
 		</v-app-bar>
 		<v-main>
 			<v-container>
+				<v-row no-gutters>
+					<v-col>
+						<v-breadcrumbs
+							:items="breadcrumbsItems"
+							large
+							class="pl-0 pt-0"
+						>
+							<template v-slot:item="{ item }">
+								<v-breadcrumbs-item
+									:href="item.href"
+									:disabled="item.disabled"
+								>
+									{{ item.text.toUpperCase() }}
+								</v-breadcrumbs-item>
+							</template>
+						</v-breadcrumbs>
+					</v-col>
+				</v-row>
 				<nuxt />
 			</v-container>
 		</v-main>
@@ -98,6 +116,11 @@
 						icon: "mdi-home",
 						title: "Dashboard",
 						to: "/system",
+					},
+					{
+						icon: "mdi-chart-bar",
+						title: "Statistics",
+						to: "/system/statistics",
 					},
 					{
 						icon: "mdi-image",
@@ -134,6 +157,27 @@
 				set: function (value) {
 					this.$store.dispatch("setSnackbarVisible", value);
 				},
+			},
+			breadcrumbsItems() {
+				const fullPath = this.$route.fullPath;
+				const params = fullPath.startsWith("/")
+					? fullPath.substring(1).split("/")
+					: fullPath.split("/");
+				const crumbs = [];
+				let path = "";
+				params.forEach((param, index) => {
+					path = `${path}/${param}`;
+					const match = this.$router.match(path);
+					if (match.name !== null) {
+						crumbs.push({
+							text: param.replace(/-/g, " "),
+							disabled:
+								match.fullPath == this.$route.path ? true : false,
+							href: match.fullPath,
+						});
+					}
+				});
+				return crumbs;
 			},
 			availableLocales() {
 				return this.$i18n.locales.filter(

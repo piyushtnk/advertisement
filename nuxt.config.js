@@ -1,7 +1,7 @@
 import colors from "vuetify/es5/util/colors";
 
 const env = {
-	API_URL: "http://34.87.169.84/api/"
+	API_URL: "http://999.money/api/"
 };
 
 export default {
@@ -36,6 +36,7 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: "~/plugins/fingerprint.js", ssr: false },
+		{ src: '~/plugins/amCharts.js', ssr: false }
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)

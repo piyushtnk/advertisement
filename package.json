@@ -10,6 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
+    "@amcharts/amcharts4-fonts": "^4.0.1",
+    "@amcharts/amcharts4-geodata": "^4.1.19",
     "@google-cloud/storage": "^5.7.3",
     "@nuxt/content": "^1.9.0",
     "@nuxtjs/axios": "^5.12.2",
