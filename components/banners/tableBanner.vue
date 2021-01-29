@@ -15,6 +15,8 @@
 				:items="banners"
 				:search="search"
 				item-key="uniqueId"
+				class="elevation-1"
+				calculate-widths
 			>
 				<template v-slot:[`item.uniqueId`]="{ item }">
 					<div class="py-5">
@@ -34,6 +36,12 @@
 						{{ getUrl(item) }}
 					</a>
 				</template>
+
+				<template v-slot:[`item.api`]="{ item }">
+					<a :href="findImage(item)" target="_blank">
+						{{ findImage(item) }}
+					</a>
+				</template>
 			</v-data-table>
 		</v-card>
 	</div>
@@ -50,7 +58,9 @@
 				headers: [
 					{ text: "Banner", value: "uniqueId" },
 					{ text: "Banner Link", value: "url" },
+					{ text: "API Link", value: "api" },
 					{ text: "Redirect URL", value: "redirectUrl" },
+					{ text: "Comment", value: "comment" },
 					{ text: "Created At", value: "createdAt" },
 				],
 			};

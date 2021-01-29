@@ -14,9 +14,15 @@ const state = () => ({
 // Actions
 const actions = {
 	// Get all stats
-	async getStatistics({ commit }) {
+	async getStatistics({ commit }, data) {
 		await this.$axios
-			.get("/stats/banners", { params: { duration: 1 } })
+			.get("/stats/banners", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null
+				}
+			})
 			.then(response => {
 				commit("SET_STATISTICS", response.data.data);
 			})

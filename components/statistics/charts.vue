@@ -1,6 +1,53 @@
 <template>
 	<div>
 		<v-row>
+			<v-col cols="6">
+				<v-dialog
+					ref="dialog"
+					v-model="modal"
+					@input="(v) => v || whenDialogClosed()"
+					:return-value.sync="date"
+					persistent
+					width="300px"
+					overlay-opacity="0.8"
+				>
+					<template v-slot:activator="{ on, attrs }">
+						<v-text-field
+							v-model="dateRangeText"
+							label="Specific date's data"
+							prepend-icon="mdi-calendar"
+							readonly
+							v-bind="attrs"
+							v-on="on"
+						></v-text-field>
+					</template>
+					<v-date-picker v-model="date" scrollable range light>
+						<v-spacer></v-spacer>
+						<v-btn text color="primary" @click="modal = false">
+							Cancel
+						</v-btn>
+						<v-btn
+							text
+							color="primary"
+							@click="$refs.dialog.save(date)"
+						>
+							OK
+						</v-btn>
+					</v-date-picker>
+				</v-dialog>
+			</v-col>
+			<v-col cols="6">
+				<v-select
+					v-model="defaultFilterDate"
+					:items="filterDate"
+					item-value="state"
+					item-text="abbr"
+					label="Filter Type"
+				/>
+			</v-col>
+		</v-row>
+
+		<v-row>
 			<v-col cols="12">
 				<v-card class="mx-auto" outlined color="#FDFDFD">
 					<v-list-item three-line>
@@ -8,6 +55,7 @@
 							<div class="overline mb-4 text-dark">
 								WORLD CHART
 							</div>
+
 							<div id="chartdiv"></div>
 						</v-list-item-content>
 					</v-list-item>
@@ -27,6 +75,39 @@
 				heatLegend: {},
 				polygonSeries: {},
 				chart: {},
+				date: [],
+				modal: false,
+				defaultFilterDate: 1,
+				filterDate: [
+					{
+						state: 1,
+						abbr: "Today",
+					},
+					{
+						state: 2,
+						abbr: "Yesterday",
+					},
+					{
+						state: 3,
+						abbr: "This Week",
+					},
+					{
+						state: 4,
+						abbr: "Last Week",
+					},
+					{
+						state: 5,
+						abbr: "This Month",
+					},
+					{
+						state: 6,
+						abbr: "Last Month",
+					},
+					{
+						state: 7,
+						abbr: "All Time",
+					},
+				],
 			};
 		},
 		mounted() {
@@ -111,15 +192,39 @@
 
 			// excludes Antarctica
 			$this.polygonSeries.exclude = ["AQ"];
+
+			// Hitting parents.
+			this.$emit("childFilterForCounter", {
+				duration: this.defaultFilterDate,
+				startDate: this.date[0],
+				endDate: this.date[1],
+			});
+		},
+		methods: {
+			whenDialogClosed() {
+				if (this.date.length == 2) {
+					this.$emit("childFilterForCounter", {
+						startDate: this.date[0],
+						endDate: this.date[1],
+					});
+				}
+			},
 		},
 		computed: {
 			...mapGetters({
 				statistics: "getStatistics",
 			}),
+
+			dateRangeText() {
+				return this.date.join(" ~ ");
+			},
 		},
 		watch: {
 			statistics(value) {
 				this.polygonSeries.data = value.graph;
+			},
+			defaultFilterDate(value) {
+				this.$emit("childFilterForCounter", { duration: value });
 			},
 		},
 		beforeDestroy() {

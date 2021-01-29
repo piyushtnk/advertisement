@@ -132,6 +132,11 @@
 						title: "Clients",
 						to: "/system/clients",
 					},
+					{
+						icon: "mdi-account-arrow-left",
+						title: "Players",
+						to: "/system/players",
+					},
 				],
 				miniVariant: false,
 				right: true,

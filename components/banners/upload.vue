@@ -8,10 +8,10 @@
 						<div class="text--primary">
 							<form>
 								<v-row>
-									<v-col cols="12" lg="6" md="6" sm="12">
+									<v-col cols="12" lg="4" md="4" sm="12">
 										<v-file-input
 											accept="image/*"
-											label="Your banner"
+											label="Choose Banner"
 											v-model="bannerImage"
 											:error-messages="bannerImageErrors"
 											required
@@ -20,14 +20,25 @@
 										></v-file-input>
 									</v-col>
 
-									<v-col cols="12" lg="6" md="6" sm="12">
+									<v-col cols="12" lg="4" md="4" sm="12">
 										<v-text-field
 											v-model="bannerUrl"
 											:error-messages="urlErrors"
-											label="Banner URL"
+											label="Destination URL"
 											required
 											@input="$v.bannerUrl.$touch()"
 											@blur="$v.bannerUrl.$touch()"
+										></v-text-field>
+									</v-col>
+
+									<v-col cols="12" lg="4" md="4" sm="12">
+										<v-text-field
+											v-model="comment"
+											:error-messages="commentErrors"
+											label="Add Comment"
+											required
+											@input="$v.comment.$touch()"
+											@blur="$v.comment.$touch()"
 										></v-text-field>
 									</v-col>
 								</v-row>
@@ -60,12 +71,14 @@
 		data: () => ({
 			bannerImage: null,
 			bannerUrl: null,
+			comment: null,
 			loading: false,
 		}),
 		mixins: [validationMixin],
 		validations: {
 			bannerImage: { required },
 			bannerUrl: { required },
+			comment: { required },
 		},
 		computed: {
 			...mapGetters({
@@ -83,6 +96,12 @@
 				!this.$v.bannerUrl.required && errors.push("URL is required.");
 				return errors;
 			},
+			commentErrors() {
+				const errors = [];
+				if (!this.$v.comment.$dirty) return errors;
+				!this.$v.comment.required && errors.push("Comment is required.");
+				return errors;
+			},
 		},
 		methods: {
 			submit() {
@@ -98,6 +117,7 @@
 						$this.$store.dispatch("uploadBanner", {
 							image: $this.bannerImage,
 							url: $this.bannerUrl,
+							comment: $this.comment,
 						})
 					) {
 						$this.loading = false;

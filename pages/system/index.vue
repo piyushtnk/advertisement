@@ -32,7 +32,7 @@
 			},
 		},
 		mounted() {
-			this.getDashboard();
+			// this.getDashboard();
 			// this.getStats({ filterForCounter: 1, startDate: null, endDate: null });
 		},
 	};

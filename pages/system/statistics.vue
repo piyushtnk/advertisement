@@ -4,11 +4,10 @@
 			Be Patient, It'll take some time, Live data are being computed and
 			will be displayed soon.
 		</v-alert>
-
 		<v-icon>fas fa-circle-notch fa-spin</v-icon>
 
 		<!-- World map -->
-		<ChartsComponent />
+		<ChartsComponent @childFilterForCounter="filterValueForStatistics" />
 
 		<!-- Counter Live -->
 		<CounterComponent />
@@ -31,13 +30,16 @@
 		},
 		methods: {
 			...mapActions({ getStatistics: "getStatistics" }),
+			filterValueForStatistics(value) {
+				this.$store.dispatch("getStatistics", {
+					duration: value.duration,
+					startDate: value.startDate,
+					endDate: value.endDate,
+				});
+			},
 		},
 		mounted() {
-			const $this = this;
-			$this.getStatistics();
-			/* setInterval(function () {
-					$this.getStatistics();
-				}, 10000); */
+			// this.getStatistics();
 		},
 	};
 </script>
