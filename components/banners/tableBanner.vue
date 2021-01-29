@@ -30,7 +30,9 @@
 				</template>
 
 				<template v-slot:[`item.url`]="{ item }">
-					{{ getUrl(item) }}
+					<a :href="getUrl(item)" target="_blank">
+						{{ getUrl(item) }}
+					</a>
 				</template>
 			</v-data-table>
 		</v-card>

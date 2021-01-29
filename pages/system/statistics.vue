@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<v-alert type="info">
+			Be Patient, It'll take some time, Live data are being computed and
+			will be displayed soon.
+		</v-alert>
+
+		<v-icon>fas fa-circle-notch fa-spin</v-icon>
+
 		<!-- World map -->
 		<ChartsComponent />
 
@@ -26,7 +33,11 @@
 			...mapActions({ getStatistics: "getStatistics" }),
 		},
 		mounted() {
-			this.getStatistics();
+			const $this = this;
+			$this.getStatistics();
+			/* setInterval(function () {
+					$this.getStatistics();
+				}, 10000); */
 		},
 	};
 </script>

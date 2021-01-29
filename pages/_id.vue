@@ -17,6 +17,26 @@
 				},
 			};
 		},
+		mounted() {
+			let $this = this;
+			$this.$fingerPrint2.get(
+				{
+					canvas: true,
+					ie_activex: true,
+					screen_resolution: true,
+				},
+				function (components) {
+					var values = components.map(function (component) {
+						return component.value;
+					});
+					var murmur = $this.$fingerPrint2.x64hash128(
+						values.join(""),
+						31
+					);
+					$this.clientData.deviceId = murmur;
+				}
+			);
+		},
 		async created() {
 			const $this = this;
 
@@ -25,25 +45,6 @@
 				.then((x) => x.json())
 				.then(({ ip }) => {
 					$this.clientData.ipAddress = ip;
-
-					// Device Id
-					$this.$fingerPrint2.get(
-						{
-							canvas: true,
-							ie_activex: true,
-							screen_resolution: true,
-						},
-						function (components) {
-							var values = components.map(function (component) {
-								return component.value;
-							});
-							var murmur = $this.$fingerPrint2.x64hash128(
-								values.join(""),
-								31
-							);
-							$this.clientData.deviceId = murmur;
-						}
-					);
 
 					// Location fetch
 					fetch("http://ip-api.com/json/")
@@ -168,20 +169,13 @@
 									cLong: $this.isNull(
 										$this.clientData.locationDetail.lon
 									),
+									cOrigin: document.referrer,
 								})
 								.then(function (response) {
 									window.location.href =
 										response.data.data.redirectUrl;
 								})
 								.catch(function (error) {
-									$this.$store.commit(
-										"SET_LAYOUT_SNACKBAR_TEXT",
-										error
-									);
-									$this.$store.commit(
-										"SET_LAYOUT_SNACKBAR_VISIBLE",
-										true
-									);
 									throw error.response
 										? error.response.data.error
 										: error;
@@ -189,10 +183,7 @@
 						}
 					})
 					.catch(function (error) {
-						$this.$store.commit("SET_LAYOUT_SNACKBAR_TEXT", error);
-						$this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
 						throw error.response ? error.response.data.error : error;
-						$this.show = false;
 					});
 			},
 			isNull(value) {
