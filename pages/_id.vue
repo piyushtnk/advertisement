@@ -17,26 +17,6 @@
 				},
 			};
 		},
-		mounted() {
-			let $this = this;
-			$this.$fingerPrint2.get(
-				{
-					canvas: true,
-					ie_activex: true,
-					screen_resolution: true,
-				},
-				function (components) {
-					var values = components.map(function (component) {
-						return component.value;
-					});
-					var murmur = $this.$fingerPrint2.x64hash128(
-						values.join(""),
-						31
-					);
-					$this.clientData.deviceId = murmur;
-				}
-			);
-		},
 		async created() {
 			const $this = this;
 
@@ -51,6 +31,7 @@
 						.then((x) => x.json())
 						.then((response) => {
 							$this.clientData.locationDetail = response;
+							$this.deviceId();
 							$this.finalize();
 						});
 				});
@@ -67,6 +48,38 @@
 			},
 		},
 		methods: {
+			fingerPrint2() {
+				let $this = this;
+				$this.$fingerPrint2.get(
+					{
+						canvas: true,
+						ie_activex: true,
+						screen_resolution: true,
+					},
+					function (components) {
+						var values = components.map(function (component) {
+							return component.value;
+						});
+						var murmur = $this.$fingerPrint2.x64hash128(
+							values.join(""),
+							31
+						);
+						$this.clientData.deviceId = murmur;
+						return true;
+					}
+				);
+			},
+			deviceId() {
+				var navigator_info = window.navigator;
+				var screen_info = window.screen;
+				var uid = navigator_info.mimeTypes.length;
+				uid += navigator_info.userAgent.replace(/\D+/g, "");
+				uid += navigator_info.plugins.length;
+				uid += screen_info.height || "";
+				uid += screen_info.width || "";
+				uid += screen_info.pixelDepth || "";
+				this.clientData.deviceId = uid;
+			},
 			finalize() {
 				// Check the banner existence
 				const $this = this;

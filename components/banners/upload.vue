@@ -111,8 +111,7 @@
 				if ($this.$v.$invalid) {
 					$this.loading = false;
 					return false;
-				}
-				setTimeout(() => {
+				} else {
 					if (
 						$this.$store.dispatch("uploadBanner", {
 							image: $this.bannerImage,
@@ -122,7 +121,7 @@
 					) {
 						$this.loading = false;
 					}
-				}, 1000);
+				}
 			},
 		},
 	};
