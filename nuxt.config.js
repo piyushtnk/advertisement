@@ -1,7 +1,7 @@
 import colors from "vuetify/es5/util/colors";
 
 const env = {
-	API_URL: "http://999.money/api/"
+	API_URL: "https://www.999.money/api/"
 };
 
 export default {
