@@ -14,6 +14,7 @@
 					timezone: null,
 					locationDetail: {},
 					deviceId: null,
+					origin: null,
 				},
 			};
 		},
@@ -70,6 +71,7 @@
 				);
 			},
 			deviceId() {
+				// Device Id
 				var navigator_info = window.navigator;
 				var screen_info = window.screen;
 				var uid = navigator_info.mimeTypes.length;
@@ -79,6 +81,9 @@
 				uid += screen_info.width || "";
 				uid += screen_info.pixelDepth || "";
 				this.clientData.deviceId = uid;
+
+				// Origin
+				this.clientData.origin = document.referrer;
 			},
 			finalize() {
 				// Check the banner existence
@@ -182,7 +187,7 @@
 									cLong: $this.isNull(
 										$this.clientData.locationDetail.lon
 									),
-									cOrigin: document.referrer,
+									cOrigin: $this.clientData.origin,
 								})
 								.then(function (response) {
 									window.location.href =
