@@ -36,7 +36,7 @@
 						<v-icon>{{ item.icon }}</v-icon>
 					</v-list-item-action>
 					<v-list-item-content>
-						<v-list-item-title v-text="item.title" />
+						<v-list-item-title v-text="$t(item.title)" />
 					</v-list-item-content>
 				</v-list-item>
 			</v-list>
@@ -114,27 +114,27 @@
 				items: [
 					{
 						icon: "mdi-home",
-						title: "Dashboard",
+						title: "layout.dashboard",
 						to: "/system",
 					},
 					{
 						icon: "mdi-chart-bar",
-						title: "Statistics",
+						title: "layout.statistics",
 						to: "/system/statistics",
 					},
 					{
 						icon: "mdi-image",
-						title: "Banner",
+						title: "layout.banner",
 						to: "/system/banner",
 					},
 					{
 						icon: "mdi-account-group",
-						title: "Clients",
+						title: "layout.clients",
 						to: "/system/clients",
 					},
 					{
 						icon: "mdi-account-arrow-left",
-						title: "Players",
+						title: "layout.players",
 						to: "/system/players",
 					},
 				],
