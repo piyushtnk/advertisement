@@ -199,7 +199,7 @@
 					});
 			},
 			isNull(value) {
-				if (value == "") {
+				if (value == "" || value == null) {
 					return "-";
 				} else {
 					return value;
