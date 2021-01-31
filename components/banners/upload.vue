@@ -32,7 +32,7 @@
 											item-text="domainName"
 											item-value="domainName"
 										></v-select>
-										<nuxt-link to="banner/domain">
+										<nuxt-link to="/system/banner/domain">
 											Add New Domain?
 										</nuxt-link>
 									</v-col>
