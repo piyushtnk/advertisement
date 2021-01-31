@@ -80,6 +80,10 @@
 				defaultFilterDate: 1,
 				filterDate: [
 					{
+						state: 7,
+						abbr: "All Time",
+					},
+					{
 						state: 1,
 						abbr: "Today",
 					},
@@ -102,10 +106,6 @@
 					{
 						state: 6,
 						abbr: "Last Month",
-					},
-					{
-						state: 7,
-						abbr: "All Time",
 					},
 				],
 			};

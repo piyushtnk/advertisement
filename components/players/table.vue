@@ -282,6 +282,10 @@
 				defaultFilterDate: 1,
 				filterDate: [
 					{
+						state: 7,
+						abbr: "All Time",
+					},
+					{
 						state: 1,
 						abbr: "Today",
 					},
@@ -305,18 +309,14 @@
 						state: 6,
 						abbr: "Last Month",
 					},
-					{
-						state: 7,
-						abbr: "All Time",
-					},
 				],
 				headers: [
-					{ text: "First Name", value: "firstname" },
-					{ text: "Last Name", value: "lastname" },
 					{ text: "Player ID", value: "playerid" },
-					{ text: "Agent ID", value: "agentid" },
-					{ text: "Balance", value: "balance" },
-					{ text: "Tiers", value: "tiers" },
+					{ text: "Player Name", value: "firstname" },
+					{ text: "Mobile", value: "mobile" },
+					{ text: "Registration Time", value: "createdate" },
+					{ text: "IP", value: "regip" },
+					{ text: "Device", value: "tiers" },
 				],
 			};
 		},

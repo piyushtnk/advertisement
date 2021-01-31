@@ -35,7 +35,7 @@
 										<v-text-field
 											v-model="comment"
 											:error-messages="commentErrors"
-											label="Add Comment"
+											label="Advertisement Source"
 											required
 											@input="$v.comment.$touch()"
 											@blur="$v.comment.$touch()"
@@ -46,8 +46,10 @@
 						</div>
 					</v-card-text>
 					<v-card-actions>
+						<v-spacer></v-spacer>
+
 						<v-btn
-							text
+							outlined
 							color="teal accent-4"
 							@click="submit"
 							:loading="loading"

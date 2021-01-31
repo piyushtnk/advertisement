@@ -45,7 +45,41 @@ const actions = {
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
-	}
+	},
+
+	async updateBanner({ commit }, data) {
+		await this.$axios
+			.put("/banner/" + data.uniqueId, {
+				redirectUrl: data.redirectUrl,
+				comment: data.comment
+			})
+			.then(response => {
+				commit("UPDATE_BANNERS", response.data.data);
+				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				return true;
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	async deleteBanner({ commit }, data) {
+		await this.$axios
+			.delete("/banner/" + data.uniqueId)
+			.then(response => {
+				commit("SET_SNACKBAR_TEXT", 'Banner deleted successfully', { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				return true;
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
 };
 
 // Mutations
