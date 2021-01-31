@@ -10,7 +10,6 @@
 				show: true,
 				clientData: {
 					info: {},
-					ipAddress: "Fetching...",
 					timezone: null,
 					locationDetail: {},
 					deviceId: null,
@@ -21,20 +20,13 @@
 		async created() {
 			const $this = this;
 
-			// Ip address
-			await fetch("https://api.ipify.org?format=json")
+			// Location fetch
+			fetch("https://ipapi.co/json/")
 				.then((x) => x.json())
-				.then(({ ip }) => {
-					$this.clientData.ipAddress = ip;
-
-					// Location fetch
-					fetch("http://ip-api.com/json/")
-						.then((x) => x.json())
-						.then((response) => {
-							$this.clientData.locationDetail = response;
-							$this.deviceId();
-							$this.finalize();
-						});
+				.then((response) => {
+					$this.clientData.locationDetail = response;
+					$this.deviceId();
+					$this.finalize();
 				});
 		},
 		computed: {
@@ -149,7 +141,9 @@
 										$this.screenSizeMax
 									),
 									cLanguage: $this.isNull($this.language),
-									cIp: $this.isNull($this.clientData.ipAddress),
+									cIp: $this.isNull(
+										$this.clientData.locationDetail.ip
+									),
 									cDeviceId: $this.isNull(
 										$this.clientData.deviceId
 									),
@@ -161,31 +155,31 @@
 										$this.clientData.locationDetail.timezone
 									),
 									cCountryCode: $this.isNull(
-										$this.clientData.locationDetail.countryCode
+										$this.clientData.locationDetail.country_code
 									),
 									cCountry: $this.isNull(
-										$this.clientData.locationDetail.country
+										$this.clientData.locationDetail.country_name
 									),
 									cRegionCode: $this.isNull(
-										$this.clientData.locationDetail.region
+										$this.clientData.locationDetail.region_code
 									),
 									cRegion: $this.isNull(
-										$this.clientData.locationDetail.regionName
+										$this.clientData.locationDetail.region
 									),
 									cCity: $this.isNull(
 										$this.clientData.locationDetail.city
 									),
 									cZip: $this.isNull(
-										$this.clientData.locationDetail.zip
+										$this.clientData.locationDetail.postal
 									),
 									cIsp: $this.isNull(
-										$this.clientData.locationDetail.isp
+										$this.clientData.locationDetail.org
 									),
 									cLat: $this.isNull(
-										$this.clientData.locationDetail.lat
+										$this.clientData.locationDetail.latitude
 									),
 									cLong: $this.isNull(
-										$this.clientData.locationDetail.lon
+										$this.clientData.locationDetail.longitude
 									),
 									cOrigin: $this.clientData.origin,
 								})
