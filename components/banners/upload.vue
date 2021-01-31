@@ -6,7 +6,7 @@
 					<v-card-text>
 						<div>Register your banner</div>
 						<div class="text--primary">
-							<form>
+							<form v-on:submit.prevent="submit">
 								<v-row>
 									<v-col cols="12" lg="4" md="4" sm="12">
 										<v-file-input
@@ -21,14 +21,20 @@
 									</v-col>
 
 									<v-col cols="12" lg="4" md="4" sm="12">
-										<v-text-field
+										<v-select
+											:items="bannerDomains"
 											v-model="bannerUrl"
 											:error-messages="urlErrors"
 											label="Destination URL"
 											required
 											@input="$v.bannerUrl.$touch()"
 											@blur="$v.bannerUrl.$touch()"
-										></v-text-field>
+											item-text="domainName"
+											item-value="domainName"
+										></v-select>
+										<nuxt-link to="banner/domain">
+											Add New Domain?
+										</nuxt-link>
 									</v-col>
 
 									<v-col cols="12" lg="4" md="4" sm="12">
@@ -85,6 +91,7 @@
 		computed: {
 			...mapGetters({
 				dashboard: "getDashboard",
+				bannerDomains: "getBannerDomains",
 			}),
 			bannerImageErrors() {
 				const errors = [];

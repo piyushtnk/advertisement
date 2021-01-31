@@ -137,6 +137,11 @@
 						title: "layout.players",
 						to: "/system/players",
 					},
+					{
+						icon: "mdi-clipboard-file",
+						title: "layout.reports",
+						to: "/system/reports",
+					},
 				],
 				miniVariant: false,
 				right: true,

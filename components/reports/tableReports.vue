@@ -80,9 +80,7 @@
 													Date</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.createdate
-													)
+													isNull(item.createdate)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -103,9 +101,7 @@
 													Deposit</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.totaldeposit
-													)
+													isNull(item.totaldeposit)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -116,7 +112,7 @@
 													Time</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
+													isNull(
 														item.lastwithdrawtime
 													)
 												}}</v-list-item-subtitle>
@@ -129,9 +125,7 @@
 													At</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.createdAt
-													)
+													isNull(item.createdAt)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -146,9 +140,7 @@
 													Time</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.logintime
-													)
+													isNull(item.logintime)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -159,7 +151,7 @@
 													Count</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
+													isNull(
 														item.totaldepositcount
 													)
 												}}</v-list-item-subtitle>
@@ -172,9 +164,7 @@
 													Time</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.lastdeposittime
-													)
+													isNull(item.lastdeposittime)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -185,9 +175,7 @@
 													Account</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.ulagentaccount
-													)
+													isNull(item.ulagentaccount)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -198,9 +186,7 @@
 													At</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.updatedAt
-													)
+													isNull(item.updatedAt)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -215,7 +201,7 @@
 													IP</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(item.regip)
+													isNull(item.regip)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -226,9 +212,7 @@
 													Withdraw</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.totalwithdraw
-													)
+													isNull(item.totalwithdraw)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -239,7 +223,7 @@
 													Count</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
+													isNull(
 														item.totalwithdrawcount
 													)
 												}}</v-list-item-subtitle>
@@ -252,9 +236,7 @@
 													ID</v-list-item-title
 												>
 												<v-list-item-subtitle>{{
-													fixParameters(
-														item.ulagentid
-													)
+													isNull(item.ulagentid)
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
@@ -270,11 +252,12 @@
 </template>
 
 <script>
+	import { isNumber } from "@amcharts/amcharts4/core";
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
 
 	export default {
-		name: "TableComponent",
+		name: "TableReportsComponent",
 		mixins: [Variables],
 		data() {
 			return {
@@ -284,11 +267,11 @@
 				defaultFilterDate: 1,
 				headers: [
 					{ text: "Player ID", value: "playerid" },
-					{ text: "Player Name", value: "firstname" },
 					{ text: "Mobile", value: "mobile" },
 					{ text: "Registration Time", value: "createdate" },
+					{ text: "Player Name", value: "firstname" },
 					{ text: "IP", value: "regip" },
-					{ text: "Device", value: "tiers" },
+					// { text: "Device", value: "tiers" },
 				],
 			};
 		},
@@ -317,8 +300,12 @@
 					});
 				}
 			},
-			fixParameters(value) {
-				return value ? value : "-";
+			isNull(value) {
+				if (value == "" || value == null) {
+					return "-";
+				} else {
+					return value;
+				}
 			},
 			arrayToText(value) {
 				if (Array.isArray(value)) {

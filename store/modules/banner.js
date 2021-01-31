@@ -1,6 +1,7 @@
 // State
 const state = () => ({
-	banners: []
+	banners: [],
+	bannerDomains: []
 });
 
 // Actions
@@ -39,6 +40,51 @@ const actions = {
 			.get("/banners")
 			.then(response => {
 				commit("SET_BANNERS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Add Domain name
+	async addDomainName({ commit }, data) {
+		await this.$axios
+			.post("/domain", data)
+			.then(response => {
+				commit("SET_SNACKBAR_TEXT", "Your domain name registered successfully.", {
+					root: true
+				});
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				commit("UPDATE_BANNER_DOMAIN", response.data.data);
+				return true;
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	async getBannerDomains({ commit }) {
+		await this.$axios
+			.get("/domains")
+			.then(response => {
+				commit("SET_BANNER_DOMAIN", response.data.data);
+			})
+			.catch(error => {
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	async deleteBannerDomain({ commit }, data) {
+		await this.$axios
+			.delete("/domain/" + data.id)
+			.then(response => {
+				commit("SET_SNACKBAR_TEXT", 'Banner domain deleted successfully', { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				return true;
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
@@ -89,6 +135,12 @@ const mutations = {
 	},
 	UPDATE_BANNERS(state, response) {
 		state.banners = [response, ...state.banners];
+	},
+	SET_BANNER_DOMAIN(state, response) {
+		state.bannerDomains = response;
+	},
+	UPDATE_BANNER_DOMAIN(state, response) {
+		state.bannerDomains = [response, ...state.bannerDomains];
 	}
 };
 
@@ -96,6 +148,9 @@ const mutations = {
 const getters = {
 	getBanners: state => {
 		return state.banners;
+	},
+	getBannerDomains: state => {
+		return state.bannerDomains;
 	}
 };
 

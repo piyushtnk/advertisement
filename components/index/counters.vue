@@ -4,7 +4,9 @@
 			<v-col cols="12">
 				<v-card class="mx-auto">
 					<v-app-bar dark>
-						<v-toolbar-title>Live Statistics</v-toolbar-title>
+						<v-toolbar-title>{{
+							$t("dashboard.liveStatistics")
+						}}</v-toolbar-title>
 						<v-spacer></v-spacer>
 						<v-row>
 							<v-col cols="auto" class="ml-auto">
@@ -35,7 +37,7 @@
 									<template v-slot:activator="{ on, attrs }">
 										<v-text-field
 											v-model="dateRangeText"
-											label="Specific date's data"
+											:label="$t('chooseSpecificDate')"
 											prepend-icon="mdi-calendar"
 											readonly
 											v-bind="attrs"
@@ -55,14 +57,14 @@
 											color="primary"
 											@click="modal = false"
 										>
-											Cancel
+											{{ $t("cancel") }}
 										</v-btn>
 										<v-btn
 											text
 											color="primary"
 											@click="$refs.dialog.save(date)"
 										>
-											OK
+											{{ $t("ok") }}
 										</v-btn>
 									</v-date-picker>
 								</v-dialog>
@@ -73,7 +75,9 @@
 									<v-card-title class="display-3">{{
 										stats.visitors
 									}}</v-card-title>
-									<v-card-text> Visitors (PV) </v-card-text>
+									<v-card-text>
+										{{ $t("visitors") }} (PV)
+									</v-card-text>
 								</v-card>
 							</v-col>
 
@@ -83,7 +87,8 @@
 										stats.uniqueVisitors
 									}}</v-card-title>
 									<v-card-text>
-										Actual Visitors (UV)
+										{{ $t("dashboard.actualVisitors") }}
+										(UV)
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -94,7 +99,8 @@
 										stats.registeredVisitors
 									}}</v-card-title>
 									<v-card-text>
-										Registered Visitors (RV)
+										{{ $t("dashboard.registeredVisitors") }}
+										(RV)
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -105,7 +111,7 @@
 										stats.banners
 									}}</v-card-title>
 									<v-card-text>
-										Registered Banners
+										{{ $t("dashboard.registeredBanners") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -120,7 +126,9 @@
 			<v-col cols="12">
 				<v-card class="mx-auto">
 					<v-app-bar dark>
-						<v-toolbar-title>System Stats</v-toolbar-title>
+						<v-toolbar-title>{{
+							$t("dashboard.systemStats")
+						}}</v-toolbar-title>
 					</v-app-bar>
 
 					<v-container>
@@ -130,7 +138,9 @@
 									<v-card-title class="display-3">{{
 										dashboard.banners
 									}}</v-card-title>
-									<v-card-text> Banners </v-card-text>
+									<v-card-text>
+										{{ $t("dashboard.banners") }}
+									</v-card-text>
 								</v-card>
 							</v-col>
 
@@ -139,7 +149,9 @@
 									<v-card-title class="display-3">{{
 										dashboard.admins
 									}}</v-card-title>
-									<v-card-text> Admins </v-card-text>
+									<v-card-text>
+										{{ $t("dashboard.admins") }}
+									</v-card-text>
 								</v-card>
 							</v-col>
 
@@ -148,7 +160,9 @@
 									<v-card-title class="display-3">{{
 										dashboard.liveAdmins
 									}}</v-card-title>
-									<v-card-text> LoggedIn Admins </v-card-text>
+									<v-card-text>
+										{{ $t("dashboard.loggedInAdmins") }}
+									</v-card-text>
 								</v-card>
 							</v-col>
 						</v-row>
@@ -161,44 +175,15 @@
 
 <script>
 	import { mapGetters } from "vuex";
+	import VariablesMixin from "~/mixins/variables";
 
 	export default {
 		name: "CountersComponent",
 		data: () => ({
 			date: [],
 			modal: false,
-			defaultFilterDate: 1,
-			filterDate: [
-				{
-					state: 1,
-					abbr: "Today",
-				},
-				{
-					state: 2,
-					abbr: "Yesterday",
-				},
-				{
-					state: 3,
-					abbr: "This Week",
-				},
-				{
-					state: 4,
-					abbr: "Last Week",
-				},
-				{
-					state: 5,
-					abbr: "This Month",
-				},
-				{
-					state: 6,
-					abbr: "Last Month",
-				},
-				{
-					state: 7,
-					abbr: "All Time",
-				},
-			],
 		}),
+		mixins: [VariablesMixin],
 		computed: {
 			...mapGetters({
 				dashboard: "getDashboard",
