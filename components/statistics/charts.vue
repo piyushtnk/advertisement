@@ -143,8 +143,8 @@
 			$this.polygonSeries.heatRules.push({
 				property: "fill",
 				target: $this.polygonSeries.mapPolygons.template,
-				min: am4core.color("#ffffff"),
-				max: am4core.color("#448AFF"),
+				min: am4core.color("#90caf9"),
+				max: am4core.color("#f44336"),
 			});
 			$this.polygonSeries.useGeodata = true;
 

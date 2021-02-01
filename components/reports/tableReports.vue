@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-row class="mb-5">
+		<v-row>
 			<v-col cols="6">
 				<v-dialog
 					ref="dialog"
@@ -68,10 +68,14 @@
 						single-expand
 						item-expanded
 					>
+						<template v-slot:[`item.firstname`]="{ item }">
+							{{ isNull(item.firstname) }}
+							{{ isNull(item.lastname) }}
+						</template>
+
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length">
 								<v-row no-gutters>
-									<!-- Col 1 -->
 									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
@@ -79,11 +83,15 @@
 													>Create
 													Date</v-list-item-title
 												>
-												<v-list-item-subtitle>{{
-													isNull(item.createdate)
-												}}</v-list-item-subtitle>
+												<v-list-item-subtitle
+													>{{
+														isNull(item.createdate)
+													}}
+												</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -94,6 +102,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -105,6 +115,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -118,6 +130,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -131,7 +145,6 @@
 										</v-list-item>
 									</v-col>
 
-									<!-- Col 2 -->
 									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
@@ -144,6 +157,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -157,6 +172,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -168,6 +185,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -179,6 +198,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -192,7 +213,6 @@
 										</v-list-item>
 									</v-col>
 
-									<!-- Col 3 -->
 									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
@@ -205,6 +225,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -216,6 +238,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -229,6 +253,8 @@
 												}}</v-list-item-subtitle>
 											</v-list-item-content>
 										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
 										<v-list-item two-line>
 											<v-list-item-content>
 												<v-list-item-title
@@ -266,10 +292,22 @@
 				defaultFilterDate: 1,
 				headers: [
 					{ text: "User ID", value: "playerid" },
+					{ text: "Name", value: "firstname" },
 					{ text: "Mobile", value: "mobile" },
 					{ text: "Registration Time", value: "createdate" },
-					{ text: "Player Name", value: "firstname" },
 					{ text: "IP", value: "regip" },
+					{ text: "Device", value: "logindevice" },
+					{ text: "Source URL", value: "ulagentaccount" },
+					{ text: "Total Top-up", value: "totaldeposit" },
+					{ text: "Total Top-up Count", value: "totaldepositcount" },
+					{ text: "Total Withdrawal", value: "totalwithdraw" },
+					{ text: "Total Withdrawal Count", value: "totalwithdrawcount" },
+					{ text: "Total Claimed", value: "totalbonus" },
+					{ text: "Total Win/Lose", value: "totalwinloss" },
+					{ text: "Total Valid Bet", value: "validbet" },
+					{ text: "Country", value: "country" },
+					// { text: "Language", value: "language" },
+					{ text: "No. of IP", value: "logincount" },
 				],
 			};
 		},
@@ -299,7 +337,7 @@
 				}
 			},
 			isNull(value) {
-				if (value == "" || value == null) {
+				if (value == "" || value == null || value == "null") {
 					return "-";
 				} else {
 					return value;

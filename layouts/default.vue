@@ -73,7 +73,7 @@
 			</v-btn>
 		</v-app-bar>
 		<v-main>
-			<v-container>
+			<v-container fluid>
 				<v-row no-gutters>
 					<v-col>
 						<v-breadcrumbs

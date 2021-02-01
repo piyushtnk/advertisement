@@ -22,7 +22,7 @@
 						</v-row>
 					</v-app-bar>
 
-					<v-container>
+					<v-card-text>
 						<v-row>
 							<v-col cols="12" lg="12" md="12" sm="12">
 								<v-dialog
@@ -116,7 +116,7 @@
 								</v-card>
 							</v-col>
 						</v-row>
-					</v-container>
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -131,7 +131,7 @@
 						}}</v-toolbar-title>
 					</v-app-bar>
 
-					<v-container>
+					<v-card-text>
 						<v-row>
 							<v-col cols="12" lg="4" md="6" sm="12">
 								<v-card class="mx-auto" outlined>
@@ -166,7 +166,7 @@
 								</v-card>
 							</v-col>
 						</v-row>
-					</v-container>
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
