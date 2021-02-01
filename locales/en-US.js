@@ -1,7 +1,7 @@
 export default async (context, locale) => {
 	return await ({
 		welcome: "Welcome",
-		visitors: '',
+		visitors: 'Visitors',
 		chooseSpecificDate: 'Choose Specific Date',
 		ok: 'Ok',
 		okay: 'Okay',

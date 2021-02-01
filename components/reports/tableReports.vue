@@ -252,7 +252,6 @@
 </template>
 
 <script>
-	import { isNumber } from "@amcharts/amcharts4/core";
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
 
@@ -266,12 +265,11 @@
 				modal: false,
 				defaultFilterDate: 1,
 				headers: [
-					{ text: "Player ID", value: "playerid" },
+					{ text: "User ID", value: "playerid" },
 					{ text: "Mobile", value: "mobile" },
 					{ text: "Registration Time", value: "createdate" },
 					{ text: "Player Name", value: "firstname" },
 					{ text: "IP", value: "regip" },
-					// { text: "Device", value: "tiers" },
 				],
 			};
 		},

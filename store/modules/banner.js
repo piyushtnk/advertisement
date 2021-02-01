@@ -100,7 +100,7 @@ const actions = {
 				comment: data.comment
 			})
 			.then(response => {
-				commit("UPDATE_BANNERS", response.data.data);
+				// commit("UPDATE_BANNERS", response.data.data);
 				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				return true;

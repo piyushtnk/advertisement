@@ -14,7 +14,7 @@
 				:headers="headers"
 				:items="banners"
 				:search="search"
-				item-key="uniqueId"
+				item-key="id"
 				class="elevation-1"
 			>
 				<template v-slot:[`item.uniqueId`]="{ item }">
