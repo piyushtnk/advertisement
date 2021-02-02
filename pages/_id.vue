@@ -27,6 +27,23 @@
 					$this.clientData.locationDetail = response;
 					$this.deviceId();
 					$this.finalize();
+				})
+				.catch(function () {
+					$this.deviceId();
+					$this.finalize();
+					$this.clientData.locationDetail = {
+						ip: "-",
+						timezone: "-",
+						country_code: "-",
+						country_name: "-",
+						region_code: "-",
+						region: "-",
+						city: "-",
+						postal: "-",
+						org: "-",
+						latitude: "-",
+						longitude: "-",
+					};
 				});
 		},
 		computed: {
