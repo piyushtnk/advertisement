@@ -142,6 +142,9 @@
 					this.$emit("childFilterForDate", {
 						startDate: this.date[0],
 						endDate: this.date[1],
+						sort: "id|desc",
+						limit: this.options.itemsPerPage,
+						page: this.options.page,
 					});
 				}
 			},
@@ -175,7 +178,12 @@
 		},
 		watch: {
 			defaultFilterDate(value) {
-				this.$emit("childFilterForDate", { duration: value });
+				this.$emit("childFilterForDate", {
+					duration: value,
+					sort: "id|desc",
+					limit: this.options.itemsPerPage,
+					page: this.options.page,
+				});
 			},
 			options: {
 				handler() {
