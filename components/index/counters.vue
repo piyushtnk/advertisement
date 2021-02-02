@@ -139,7 +139,7 @@
 										dashboard.banners
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("dashboard.banners") }}
+										{{ $t("layout.banner") }}
 									</v-card-text>
 								</v-card>
 							</v-col>

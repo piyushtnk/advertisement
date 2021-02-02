@@ -30,7 +30,7 @@
 
 		<!-- PC AND Mobile -->
 		<v-row>
-			<v-col cols="12" lg="6" md="6" sm="12">
+			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
 						{{ getRealPercentage(statistics.clientsFromPc) }}
@@ -38,12 +38,20 @@
 					<v-card-text> From PC </v-card-text>
 				</v-card>
 			</v-col>
-			<v-col cols="12" lg="6" md="6" sm="12">
+			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
 						{{ getRealPercentage(statistics.clientsFromMobile) }}
 					</v-card-title>
 					<v-card-text class="h"> From Mobile </v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ ipClients.total }}
+					</v-card-title>
+					<v-card-text class="h"> From IP </v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -190,20 +198,30 @@
 </template>
 
 <script>
-	import { mapGetters } from "vuex";
+	import { mapActions, mapGetters } from "vuex";
 
 	export default {
 		name: "CounterComponent",
 		data() {
 			return {};
 		},
+		mounted() {
+			this.$store.dispatch("getIpClients", {
+				duration: 1,
+				sort: "id|desc",
+				limit: 1,
+				page: 1,
+			});
+		},
 		computed: {
 			...mapGetters({
 				statisticsOsAndBrowser: "getStatisticsOfOsAndBrowser",
 				statistics: "getStatistics",
+				ipClients: "getIpClients",
 			}),
 		},
 		methods: {
+			...mapActions(["getIpClients"]),
 			getRealPercentage(value) {
 				let number = value * 100;
 				return Number.parseFloat(number).toPrecision(2) + "%";
