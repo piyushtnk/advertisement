@@ -13,7 +13,9 @@ export default async (context, locale) => {
 			systemPanel: "System Panel",
 			dashboard: 'Dashboard',
 			statistics: 'Statistics',
-			reports: 'Reports'
+			reports: 'Reports',
+			otherPlayers: 'Other Players',
+			ipClients: 'IP Clients'
 		},
 		dashboard: {
 			recentInteractionUserGraph: 'Recent interaction users graph',
@@ -25,6 +27,9 @@ export default async (context, locale) => {
 			systemStats: 'System Stats',
 			admins: 'Admins',
 			loggedInAdmins: 'Logged In Admins'
+		},
+		ip: {
+			alert: "These are the clients who's tried to access or requested our banner image"
 		}
 	})
 }

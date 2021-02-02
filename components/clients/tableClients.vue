@@ -1,222 +1,241 @@
 <template>
 	<div>
-		<v-card>
-			<v-card-title>
-				<v-text-field
-					v-model="search"
-					append-icon="mdi-magnify"
-					label="Search"
-					single-line
-					hide-details
-				></v-text-field>
-			</v-card-title>
-			<v-data-table
-				:items-per-page="10"
-				:headers="headers"
-				item-key="cToken"
-				:items="clients"
-				:search="search"
-				show-expand
-				single-expand
-				item-expanded
-			>
-				<template v-slot:expanded-item="{ headers, item }">
-					<td :colspan="headers.length">
-						<v-row no-gutters>
-							<v-col lg="4" md="6" sm="12">
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Timezone</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cTimezone
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Location</v-list-item-title
-										>
-										<v-list-item-subtitle
-											>{{ item.cLat }},
-											{{
-												item.cLong
-											}}</v-list-item-subtitle
-										>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Region Code</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cRegionCode
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>OS</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cOs
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Original Screen</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cOriginalScreen
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Browser Detail</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cBrowserDetail
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-							</v-col>
-							<v-col lg="4" md="6" sm="12">
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Timezone Name</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cTimezoneName
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Country</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cCountry
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Region</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cRegion
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Created At</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.createdAt
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Screen</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cScreen
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Browser</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cBrowser
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-							</v-col>
-							<v-col lg="4" md="6" sm="12">
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Country Code</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cCountryCode
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>City</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cCity
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>ZIP</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cZip
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>ISP</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cIsp
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Browser Vendor</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cBrowserVendor
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-								<v-list-item two-line>
-									<v-list-item-content>
-										<v-list-item-title
-											>Device Type</v-list-item-title
-										>
-										<v-list-item-subtitle>{{
-											item.cDeviceType
-										}}</v-list-item-subtitle>
-									</v-list-item-content>
-								</v-list-item>
-							</v-col>
-						</v-row>
-					</td>
-				</template>
-			</v-data-table>
-		</v-card>
+		<v-row>
+			<v-col cols="12" lg="12" md="12" sm="12">
+				<v-alert text type="info"
+					>These are all clients which came through the advertisement
+					banner (999.money)</v-alert
+				>
+			</v-col>
+
+			<v-col cols="12" lg="12" md="12" sm="12">
+				<v-card>
+					<v-card-title>
+						<v-text-field
+							v-model="search"
+							append-icon="mdi-magnify"
+							label="Search"
+							single-line
+							hide-details
+						></v-text-field>
+					</v-card-title>
+					<v-data-table
+						:items-per-page="10"
+						:headers="headers"
+						item-key="cToken"
+						:items="clients"
+						:search="search"
+						show-expand
+						single-expand
+						item-expanded
+					>
+						<template v-slot:expanded-item="{ headers, item }">
+							<td :colspan="headers.length">
+								<v-row no-gutters>
+									<v-col lg="4" md="6" sm="12">
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Timezone</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cTimezone
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Location</v-list-item-title
+												>
+												<v-list-item-subtitle
+													>{{ item.cLat }},
+													{{
+														item.cLong
+													}}</v-list-item-subtitle
+												>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Region
+													Code</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cRegionCode
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>OS</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cOs
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Original
+													Screen</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cOriginalScreen
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Browser
+													Detail</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cBrowserDetail
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Timezone
+													Name</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cTimezoneName
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Country</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cCountry
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Region</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cRegion
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Created
+													At</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.createdAt
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Screen</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cScreen
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Browser</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cBrowser
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+									</v-col>
+									<v-col lg="4" md="6" sm="12">
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Country
+													Code</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cCountryCode
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>City</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cCity
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>ZIP</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cZip
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>ISP</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cIsp
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Browser
+													Vendor</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cBrowserVendor
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+										<v-list-item two-line>
+											<v-list-item-content>
+												<v-list-item-title
+													>Device
+													Type</v-list-item-title
+												>
+												<v-list-item-subtitle>{{
+													item.cDeviceType
+												}}</v-list-item-subtitle>
+											</v-list-item-content>
+										</v-list-item>
+									</v-col>
+								</v-row>
+							</td>
+						</template>
+					</v-data-table>
+				</v-card>
+			</v-col>
+		</v-row>
 	</div>
 </template>
 

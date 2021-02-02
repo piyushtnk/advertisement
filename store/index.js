@@ -14,7 +14,7 @@ const createStore = () => {
 			Dashboard,
 			Banner,
 			Clients,
-			Stats
+			Stats,
 		}
 	});
 };

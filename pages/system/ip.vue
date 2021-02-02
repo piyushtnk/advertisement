@@ -2,9 +2,7 @@
 	<div>
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-alert text type="warning"
-					>These players details of registered players list.</v-alert
-				>
+				<v-alert text type="info">{{ $t("ip.alert") }}.</v-alert>
 			</v-col>
 		</v-row>
 
@@ -16,7 +14,7 @@
 <script>
 	import { mapActions } from "vuex";
 
-	import TableComponent from "~/components/players/table";
+	import TableComponent from "~/components/ip/ipTable";
 
 	export default {
 		middleware: "authenticate",
@@ -25,18 +23,17 @@
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getPlayers: "getPlayers" }),
+			...mapActions({ getIpClients: "getIpClients" }),
 			filterForDate(value) {
-				this.$store.dispatch("getPlayers", {
+				this.$store.dispatch("getIpClients", {
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
+					sort: "id|desc",
+					limit: value.limit,
+					page: value.page,
 				});
 			},
-		},
-		mounted() {
-			// this.getDashboard();
-			// this.getStats({ filterForCounter: 1, startDate: null, endDate: null });
 		},
 	};
 </script>

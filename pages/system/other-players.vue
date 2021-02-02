@@ -2,8 +2,9 @@
 	<div>
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-alert text type="warning"
-					>These players details of registered players list.</v-alert
+				<v-alert text type="info"
+					>These players details of other than registered
+					players(Example. SMS, etc.).</v-alert
 				>
 			</v-col>
 		</v-row>
@@ -16,7 +17,7 @@
 <script>
 	import { mapActions } from "vuex";
 
-	import TableComponent from "~/components/players/table";
+	import TableComponent from "~/components/otherPlayers/otherPlayersTable";
 
 	export default {
 		middleware: "authenticate",
@@ -25,18 +26,14 @@
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getPlayers: "getPlayers" }),
+			...mapActions({ getOtherPlayers: "getOtherPlayers" }),
 			filterForDate(value) {
-				this.$store.dispatch("getPlayers", {
+				this.$store.dispatch("getOtherPlayers", {
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
 				});
 			},
-		},
-		mounted() {
-			// this.getDashboard();
-			// this.getStats({ filterForCounter: 1, startDate: null, endDate: null });
 		},
 	};
 </script>

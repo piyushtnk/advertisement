@@ -274,7 +274,7 @@
 	import Variables from "~/mixins/variables";
 
 	export default {
-		name: "TableComponent",
+		name: "OtherPlayersTableComponent",
 		mixins: [Variables],
 		data() {
 			return {
@@ -283,18 +283,29 @@
 				modal: false,
 				defaultFilterDate: 1,
 				headers: [
-					{ text: "Player ID", value: "playerid" },
-					{ text: "Player Name", value: "firstname" },
+					{ text: "User ID", value: "playerid" },
+					{ text: "Name", value: "firstname" },
 					{ text: "Mobile", value: "mobile" },
 					{ text: "Registration Time", value: "createdate" },
 					{ text: "IP", value: "regip" },
 					{ text: "Device", value: "logindevice" },
+					{ text: "Source URL", value: "ulagentaccount" },
+					{ text: "Total Top-up", value: "totaldeposit" },
+					{ text: "Total Top-up Count", value: "totaldepositcount" },
+					{ text: "Total Withdrawal", value: "totalwithdraw" },
+					{ text: "Total Withdrawal Count", value: "totalwithdrawcount" },
+					{ text: "Total Claimed", value: "totalbonus" },
+					{ text: "Total Win/Lose", value: "totalwinloss" },
+					{ text: "Total Valid Bet", value: "validbet" },
+					{ text: "Country", value: "country" },
+					// { text: "Language", value: "language" },
+					{ text: "No. of IP", value: "logincount" },
 				],
 			};
 		},
 		computed: {
 			...mapGetters({
-				players: "getPlayers",
+				players: "getOtherPlayers",
 			}),
 			dateRangeText() {
 				return this.date.join(" ~ ");

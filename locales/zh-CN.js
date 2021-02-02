@@ -13,7 +13,9 @@ export default async (context, locale) => {
 			systemPanel: "系统面板",
 			dashboard: '仪表板',
 			statistics: '统计',
-			reports: '报告'
+			reports: '报告',
+			otherPlayers: '其他玩家',
+			ipClients: 'IP客户'
 		},
 		dashboard: {
 			recentInteractionUserGraph: '最近的互动用户图',
@@ -25,6 +27,9 @@ export default async (context, locale) => {
 			systemStats: '系统统计',
 			admins: '管理员',
 			loggedInAdmins: '登录管理员'
+		},
+		ip: {
+			alert: '这些是尝试访问或请求我们横幅图像的客户'
 		}
 	})
 }
