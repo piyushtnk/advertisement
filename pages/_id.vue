@@ -29,9 +29,9 @@
 					$this.finalize();
 				})
 				.catch(function () {
-					$this.$axios.get("/image/sendip").then(function (x2) {
+					$this.$axios.get("/image/sendip").then(async function (x2) {
 						$this.clientData.locationDetail = {
-							ip: x2.ip,
+							ip: x2.data.ip,
 							timezone: "-",
 							country_code: "-",
 							country_name: "-",
@@ -43,7 +43,7 @@
 							latitude: "-",
 							longitude: "-",
 						};
-						$this.deviceId();
+						await $this.deviceId();
 						$this.finalize();
 					});
 				});
@@ -81,7 +81,7 @@
 					}
 				);
 			},
-			deviceId() {
+			async deviceId() {
 				// Device Id
 				var navigator_info = window.navigator;
 				var screen_info = window.screen;
