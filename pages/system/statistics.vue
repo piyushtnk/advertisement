@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-alert type="info">
+		<v-alert text type="info">
 			Be Patient, It'll take some time, Live data are being computed and
 			will be displayed soon.
 		</v-alert>

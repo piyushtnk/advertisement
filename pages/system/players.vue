@@ -2,7 +2,7 @@
 	<div>
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-alert text type="warning"
+				<v-alert text type="info"
 					>These players details of registered players list.</v-alert
 				>
 			</v-col>

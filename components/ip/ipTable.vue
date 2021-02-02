@@ -66,9 +66,6 @@
 						:pageCount="ipClients.totalPages"
 						:items="ipClients.data"
 						:search="search"
-						show-expand
-						single-expand
-						item-expanded
 						:loading="loading"
 						:footer-props="{
 							showFirstLastPage: true,
