@@ -29,21 +29,23 @@
 					$this.finalize();
 				})
 				.catch(function () {
-					$this.deviceId();
-					$this.finalize();
-					$this.clientData.locationDetail = {
-						ip: "-",
-						timezone: "-",
-						country_code: "-",
-						country_name: "-",
-						region_code: "-",
-						region: "-",
-						city: "-",
-						postal: "-",
-						org: "-",
-						latitude: "-",
-						longitude: "-",
-					};
+					$this.$axios.get("/image/sendip").then(function (x2) {
+						$this.clientData.locationDetail = {
+							ip: x2.ip,
+							timezone: "-",
+							country_code: "-",
+							country_name: "-",
+							region_code: "-",
+							region: "-",
+							city: "-",
+							postal: "-",
+							org: "-",
+							latitude: "-",
+							longitude: "-",
+						};
+						$this.deviceId();
+						$this.finalize();
+					});
 				});
 		},
 		computed: {
