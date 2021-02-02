@@ -9,9 +9,18 @@ const state = () => ({
 // Actions
 const actions = {
 	// Fetching clients only.
-	async getClients({ commit }) {
+	async getClients({ commit }, data) {
 		await this.$axios
-			.get("/clients")
+			.get("/clients", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+					sort: 'cid|desc',
+					limit: data.limit,
+					page: data.page
+				}
+			})
 			.then(response => {
 				commit("SET_CLIENTS", response.data.data);
 			})
@@ -29,7 +38,10 @@ const actions = {
 				params: {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null
+					endDate: data.endDate ? data.endDate : null,
+					sort: 'id|desc',
+					limit: data.limit,
+					page: data.page
 				}
 			})
 			.then(response => {
@@ -49,7 +61,10 @@ const actions = {
 				params: {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null
+					endDate: data.endDate ? data.endDate : null,
+					sort: 'id|desc',
+					limit: data.limit,
+					page: data.page
 				}
 			})
 			.then(response => {

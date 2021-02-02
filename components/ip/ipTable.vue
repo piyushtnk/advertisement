@@ -103,9 +103,6 @@
 				search: "",
 				date: [],
 				modal: false,
-				defaultFilterDate: 1,
-				options: {},
-				loading: true,
 				headers: [
 					{ text: "ASN", value: "asn" },
 					{ text: "City", value: "city" },
@@ -137,17 +134,6 @@
 			},
 		},
 		methods: {
-			whenDialogClosed() {
-				if (this.date.length == 2) {
-					this.$emit("childFilterForDate", {
-						startDate: this.date[0],
-						endDate: this.date[1],
-						sort: "id|desc",
-						limit: this.options.itemsPerPage,
-						page: this.options.page,
-					});
-				}
-			},
 			isNull(value) {
 				if (value == "" || value == null || value == "null") {
 					return "-";
@@ -162,35 +148,8 @@
 					return value;
 				}
 			},
-			readDataFromAPI() {
-				this.loading = true;
-				const { page, itemsPerPage } = this.options;
-				// Hitting parents.
-				this.$emit("childFilterForDate", {
-					duration: this.defaultFilterDate,
-					startDate: this.date[0],
-					endDate: this.date[1],
-					sort: "id|desc",
-					limit: itemsPerPage,
-					page: page,
-				});
-			},
 		},
 		watch: {
-			defaultFilterDate(value) {
-				this.$emit("childFilterForDate", {
-					duration: value,
-					sort: "id|desc",
-					limit: this.options.itemsPerPage,
-					page: this.options.page,
-				});
-			},
-			options: {
-				handler() {
-					this.readDataFromAPI();
-				},
-			},
-			deep: true,
 			ipClients() {
 				this.loading = false;
 			},

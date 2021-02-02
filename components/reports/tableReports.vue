@@ -62,11 +62,28 @@
 						:items-per-page="10"
 						:headers="headers"
 						item-key="id"
-						:items="players"
+						:options.sync="options"
+						:server-items-length="players.total"
+						:pageCount="players.totalPages"
+						:items="players.data"
 						:search="search"
-						show-expand
-						single-expand
-						item-expanded
+						:loading="loading"
+						:footer-props="{
+							showFirstLastPage: true,
+							firstIcon: 'mdi-arrow-collapse-left',
+							lastIcon: 'mdi-arrow-collapse-right',
+							prevIcon: 'mdi-minus',
+							nextIcon: 'mdi-plus',
+							itemsPerPageOptions: [
+								5,
+								10,
+								15,
+								100,
+								200,
+								500,
+								1000,
+							],
+						}"
 					>
 						<template v-slot:[`item.firstname`]="{ item }">
 							{{ isNull(item.firstname) }}
@@ -289,7 +306,6 @@
 				search: "",
 				date: [],
 				modal: false,
-				defaultFilterDate: 1,
 				headers: [
 					{ text: "User ID", value: "playerid" },
 					{ text: "Name", value: "firstname" },
@@ -319,23 +335,7 @@
 				return this.date.join(" ~ ");
 			},
 		},
-		mounted() {
-			// Hitting parents.
-			this.$emit("childFilterForDate", {
-				duration: this.defaultFilterDate,
-				startDate: this.date[0],
-				endDate: this.date[1],
-			});
-		},
 		methods: {
-			whenDialogClosed() {
-				if (this.date.length == 2) {
-					this.$emit("childFilterForDate", {
-						startDate: this.date[0],
-						endDate: this.date[1],
-					});
-				}
-			},
 			isNull(value) {
 				if (value == "" || value == null || value == "null") {
 					return "-";
@@ -352,8 +352,8 @@
 			},
 		},
 		watch: {
-			defaultFilterDate(value) {
-				this.$emit("childFilterForDate", { duration: value });
+			players() {
+				this.loading = false;
 			},
 		},
 	};

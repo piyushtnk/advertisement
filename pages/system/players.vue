@@ -31,6 +31,9 @@
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
+					sort: "id|desc",
+					limit: value.limit,
+					page: value.page,
 				});
 			},
 		},

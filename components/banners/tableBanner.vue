@@ -1,5 +1,51 @@
 <template>
 	<div>
+		<v-row class="mb-5">
+			<v-col cols="6">
+				<v-dialog
+					ref="dialog"
+					v-model="modal"
+					@input="(v) => v || whenDialogClosed()"
+					:return-value.sync="date"
+					persistent
+					width="300px"
+					overlay-opacity="0.8"
+				>
+					<template v-slot:activator="{ on, attrs }">
+						<v-text-field
+							v-model="dateRangeText"
+							label="Specific date's data"
+							prepend-icon="mdi-calendar"
+							readonly
+							v-bind="attrs"
+							v-on="on"
+						></v-text-field>
+					</template>
+					<v-date-picker v-model="date" scrollable range light>
+						<v-spacer></v-spacer>
+						<v-btn text color="primary" @click="modal = false">
+							Cancel
+						</v-btn>
+						<v-btn
+							text
+							color="primary"
+							@click="$refs.dialog.save(date)"
+						>
+							OK
+						</v-btn>
+					</v-date-picker>
+				</v-dialog>
+			</v-col>
+			<v-col cols="6">
+				<v-select
+					v-model="defaultFilterDate"
+					:items="filterDate"
+					item-value="state"
+					item-text="abbr"
+					label="Filter Type"
+				/>
+			</v-col>
+		</v-row>
 		<v-card>
 			<v-card-title>
 				<v-text-field
@@ -12,10 +58,22 @@
 			</v-card-title>
 			<v-data-table
 				:headers="headers"
-				:items="banners"
-				:search="search"
 				item-key="id"
 				class="elevation-1"
+				:options.sync="options"
+				:server-items-length="banners.total"
+				:pageCount="banners.totalPages"
+				:items="banners.data"
+				:search="search"
+				:loading="loading"
+				:footer-props="{
+					showFirstLastPage: true,
+					firstIcon: 'mdi-arrow-collapse-left',
+					lastIcon: 'mdi-arrow-collapse-right',
+					prevIcon: 'mdi-minus',
+					nextIcon: 'mdi-plus',
+					itemsPerPageOptions: [5, 10, 15, 100, 200, 500, 1000],
+				}"
 			>
 				<template v-slot:[`item.uniqueId`]="{ item }">
 					<div class="py-5">
@@ -135,12 +193,17 @@
 
 <script>
 	import { mapGetters } from "vuex";
+	import Variables from "~/mixins/variables";
 
 	export default {
 		name: "TableBannerComponent",
+		mixins: [Variables],
 		data() {
 			return {
 				search: "",
+				date: [],
+				modal: false,
+				defaultFilterDate: 7,
 				headers: [
 					{ text: "Banner", value: "uniqueId" },
 					{ text: "Banner Link", value: "url" },
@@ -169,6 +232,9 @@
 			...mapGetters({
 				banners: "getBanners",
 			}),
+			dateRangeText() {
+				return this.date.join(" ~ ");
+			},
 		},
 		methods: {
 			findImage(item) {
@@ -241,6 +307,9 @@
 			},
 			dialogDelete(val) {
 				val || this.closeDelete();
+			},
+			banners() {
+				this.loading = false;
 			},
 		},
 	};

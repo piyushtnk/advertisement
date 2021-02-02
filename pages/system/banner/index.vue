@@ -4,7 +4,7 @@
 		<UploadComponent />
 
 		<!-- Banner list -->
-		<TableComponent class="my-12" />
+		<TableComponent class="my-12" @childFilterForDate="filterForDate" />
 	</div>
 </template>
 
@@ -28,9 +28,18 @@
 				getBanners: "getBanners",
 				getBannerDomains: "getBannerDomains",
 			}),
+			filterForDate(value) {
+				this.$store.dispatch("getBanners", {
+					duration: value.duration,
+					startDate: value.startDate,
+					endDate: value.endDate,
+					sort: "id|desc",
+					limit: value.limit,
+					page: value.page,
+				});
+			},
 		},
 		mounted() {
-			this.getBanners();
 			this.getBannerDomains();
 		},
 	};

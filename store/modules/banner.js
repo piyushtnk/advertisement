@@ -35,9 +35,18 @@ const actions = {
 	},
 
 	// Get all banners
-	async getBanners({ commit }) {
+	async getBanners({ commit }, data) {
 		await this.$axios
-			.get("/banners")
+			.get("/banners", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+					sort: 'cid|desc',
+					limit: data.limit,
+					page: data.page
+				}
+			})
 			.then(response => {
 				commit("SET_BANNERS", response.data.data);
 			})
