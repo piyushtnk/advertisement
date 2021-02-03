@@ -207,9 +207,14 @@
 				dialogDelete: false,
 				editedIndex: -1,
 				editedItem: {
-					redirectUrl: "",
+					allClientsCount: 0,
 					comment: "",
+					createdAt: "",
+					id: 0,
+					imageType: "",
+					redirectUrl: "",
 					uniqueId: "",
+					updatedAt: "",
 				},
 				defaultItem: {
 					redirectUrl: "",
@@ -239,13 +244,13 @@
 
 			// Actions area
 			editItem(item) {
-				this.editedIndex = this.banners.indexOf(item);
+				this.editedIndex = this.banners.data.indexOf(item);
 				this.editedItem = Object.assign({}, item);
 				this.dialog = true;
 			},
 
 			deleteItem(item) {
-				this.editedIndex = this.banners.indexOf(item);
+				this.editedIndex = this.banners.data.indexOf(item);
 				this.editedItem = Object.assign({}, item);
 				this.dialogDelete = true;
 			},
@@ -253,7 +258,7 @@
 			deleteItemConfirm() {
 				this.loading = true;
 				if (this.$store.dispatch("deleteBanner", this.editedItem)) {
-					this.banners.splice(this.editedIndex, 1);
+					this.banners.data.splice(this.editedIndex, 1);
 					this.loading = false;
 				}
 				this.closeDelete();
@@ -278,12 +283,15 @@
 			save() {
 				if (this.editedIndex > -1) {
 					this.loading = true;
-					Object.assign(this.banners[this.editedIndex], this.editedItem);
+					Object.assign(
+						this.banners.data[this.editedIndex],
+						this.editedItem
+					);
 					if (this.$store.dispatch("updateBanner", this.editedItem)) {
 						this.loading = false;
 					}
 				} else {
-					this.banners.push(this.editedItem);
+					this.banners.data.push(this.editedItem);
 				}
 				this.close();
 			},

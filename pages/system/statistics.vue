@@ -11,6 +11,9 @@
 
 		<!-- Counter Live -->
 		<CounterComponent />
+
+		<!-- Top 10 Banner -->
+		<Top10ViewedBannerComponent />
 	</div>
 </template>
 
@@ -18,6 +21,7 @@
 	import { mapActions } from "vuex";
 	import ChartsComponent from "~/components/statistics/charts";
 	import CounterComponent from "~/components/statistics/counter";
+	import Top10ViewedBannerComponent from "~/components/statistics/top10ViewedBanner";
 
 	export default {
 		middleware: "authenticate",
@@ -27,6 +31,7 @@
 		components: {
 			ChartsComponent: ChartsComponent,
 			CounterComponent: CounterComponent,
+			Top10ViewedBannerComponent: Top10ViewedBannerComponent,
 		},
 		methods: {
 			...mapActions({ getStatistics: "getStatistics" }),
@@ -37,9 +42,6 @@
 					endDate: value.endDate,
 				});
 			},
-		},
-		mounted() {
-			// this.getStatistics();
 		},
 	};
 </script>
