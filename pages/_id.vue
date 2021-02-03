@@ -17,22 +17,9 @@
 				},
 			};
 		},
-		async created() {
+		created() {
 			const $this = this;
-			$this.clientData.locationDetail = {
-				ip: "-",
-				timezone: "-",
-				country_code: "-",
-				country_name: "-",
-				region_code: "-",
-				region: "-",
-				city: "-",
-				postal: "-",
-				org: "-",
-				latitude: "-",
-				longitude: "-",
-			};
-			await $this.deviceId();
+			$this.deviceId();
 			$this.finalize();
 		},
 		computed: {
@@ -147,45 +134,12 @@
 										$this.screenSizeMax
 									),
 									cLanguage: $this.isNull($this.language),
-									cIp: $this.isNull(
-										$this.clientData.locationDetail.ip
-									),
 									cDeviceId: $this.isNull(
 										$this.clientData.deviceId
 									),
 									cOs: $this.isNull($this.clientData.info.os()),
 									cTimezone: $this.isNull(
 										$this.clientData.timezone
-									),
-									cTimezoneName: $this.isNull(
-										$this.clientData.locationDetail.timezone
-									),
-									cCountryCode: $this.isNull(
-										$this.clientData.locationDetail.country_code
-									),
-									cCountry: $this.isNull(
-										$this.clientData.locationDetail.country_name
-									),
-									cRegionCode: $this.isNull(
-										$this.clientData.locationDetail.region_code
-									),
-									cRegion: $this.isNull(
-										$this.clientData.locationDetail.region
-									),
-									cCity: $this.isNull(
-										$this.clientData.locationDetail.city
-									),
-									cZip: $this.isNull(
-										$this.clientData.locationDetail.postal
-									),
-									cIsp: $this.isNull(
-										$this.clientData.locationDetail.org
-									),
-									cLat: $this.isNull(
-										$this.clientData.locationDetail.latitude
-									),
-									cLong: $this.isNull(
-										$this.clientData.locationDetail.longitude
 									),
 									cOrigin: $this.clientData.origin,
 								})
