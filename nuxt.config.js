@@ -8,7 +8,8 @@ export default {
 	// Environment variable
 	env: {
 		API_URL: env.API_URL,
-		CONTACT_DEV: "Something went wrong, contact your developer."
+		CONTACT_DEV: "Something went wrong, contact your developer.",
+		IP_API: '48770181ed644728bb63657058b35289'
 	},
 	// Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
 	ssr: false,

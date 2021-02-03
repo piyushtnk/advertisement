@@ -76,22 +76,7 @@
 						:items="clients.data"
 						:search="search"
 						:loading="loading"
-						:footer-props="{
-							showFirstLastPage: true,
-							firstIcon: 'mdi-arrow-collapse-left',
-							lastIcon: 'mdi-arrow-collapse-right',
-							prevIcon: 'mdi-minus',
-							nextIcon: 'mdi-plus',
-							itemsPerPageOptions: [
-								5,
-								10,
-								15,
-								100,
-								200,
-								500,
-								1000,
-							],
-						}"
+						:footer-props="footerProps"
 					>
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length">
@@ -312,9 +297,6 @@
 		mixins: [Variables],
 		data() {
 			return {
-				search: "",
-				date: [],
-				modal: false,
 				headers: [
 					{ text: "IP", value: "cIp" },
 					{ text: "Device Name", value: "cDeviceName" },
@@ -345,9 +327,6 @@
 			...mapGetters({
 				clients: "getClients",
 			}),
-			dateRangeText() {
-				return this.date.join(" ~ ");
-			},
 		},
 		watch: {
 			defaultFilterDate(value) {

@@ -68,22 +68,7 @@
 						:items="players.data"
 						:search="search"
 						:loading="loading"
-						:footer-props="{
-							showFirstLastPage: true,
-							firstIcon: 'mdi-arrow-collapse-left',
-							lastIcon: 'mdi-arrow-collapse-right',
-							prevIcon: 'mdi-minus',
-							nextIcon: 'mdi-plus',
-							itemsPerPageOptions: [
-								5,
-								10,
-								15,
-								100,
-								200,
-								500,
-								1000,
-							],
-						}"
+						:footer-props="footerProps"
 					>
 						<template v-slot:[`item.firstname`]="{ item }">
 							{{ isNull(item.firstname) }}
@@ -303,9 +288,6 @@
 		mixins: [Variables],
 		data() {
 			return {
-				search: "",
-				date: [],
-				modal: false,
 				headers: [
 					{ text: "User ID", value: "playerid" },
 					{ text: "Name", value: "firstname" },
@@ -331,21 +313,11 @@
 			...mapGetters({
 				players: "getPlayers",
 			}),
-			dateRangeText() {
-				return this.date.join(" ~ ");
-			},
 		},
 		methods: {
 			isNull(value) {
 				if (value == "" || value == null || value == "null") {
 					return "-";
-				} else {
-					return value;
-				}
-			},
-			arrayToText(value) {
-				if (Array.isArray(value)) {
-					return value[0];
 				} else {
 					return value;
 				}

@@ -42,7 +42,7 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: 'cid|desc',
+					sort: 'id|desc',
 					limit: data.limit,
 					page: data.page
 				}

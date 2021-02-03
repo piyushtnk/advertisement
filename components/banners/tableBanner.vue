@@ -66,14 +66,7 @@
 				:items="banners.data"
 				:search="search"
 				:loading="loading"
-				:footer-props="{
-					showFirstLastPage: true,
-					firstIcon: 'mdi-arrow-collapse-left',
-					lastIcon: 'mdi-arrow-collapse-right',
-					prevIcon: 'mdi-minus',
-					nextIcon: 'mdi-plus',
-					itemsPerPageOptions: [5, 10, 15, 100, 200, 500, 1000],
-				}"
+				:footer-props="footerProps"
 			>
 				<template v-slot:[`item.uniqueId`]="{ item }">
 					<div class="py-5">
@@ -200,9 +193,6 @@
 		mixins: [Variables],
 		data() {
 			return {
-				search: "",
-				date: [],
-				modal: false,
 				defaultFilterDate: 7,
 				headers: [
 					{ text: "Banner", value: "uniqueId" },
@@ -232,9 +222,6 @@
 			...mapGetters({
 				banners: "getBanners",
 			}),
-			dateRangeText() {
-				return this.date.join(" ~ ");
-			},
 		},
 		methods: {
 			findImage(item) {

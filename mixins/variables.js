@@ -1,5 +1,8 @@
 export default {
 	data: () => ({
+		search: "",
+		date: [],
+		modal: false,
 		defaultFilterDate: 1,
 		options: {},
 		loading: true,
@@ -33,8 +36,28 @@ export default {
 				abbr: "Last Month",
 			},
 		],
+		footerProps: {
+			showFirstLastPage: true,
+			firstIcon: 'mdi-arrow-collapse-left',
+			lastIcon: 'mdi-arrow-collapse-right',
+			prevIcon: 'mdi-minus',
+			nextIcon: 'mdi-plus',
+			itemsPerPageOptions: [
+				5,
+				10,
+				15,
+				100,
+				200,
+				500,
+				1000,
+			],
+		}
 	}),
-	computed: {},
+	computed: {
+		dateRangeText() {
+			return this.date.join(" ~ ");
+		},
+	},
 	mounted() {
 		// Hitting parents.
 		this.$emit("childFilterForDate", {
@@ -69,6 +92,13 @@ export default {
 					limit: this.options.itemsPerPage,
 					page: this.options.page,
 				});
+			}
+		},
+		arrayToText(value) {
+			if (Array.isArray(value)) {
+				return value[0];
+			} else {
+				return value;
 			}
 		},
 	},

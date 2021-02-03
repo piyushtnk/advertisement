@@ -19,21 +19,34 @@
 		},
 		async created() {
 			const $this = this;
-			$this.clientData.locationDetail = {
-				ip: "-",
-				timezone: "-",
-				country_code: "-",
-				country_name: "-",
-				region_code: "-",
-				region: "-",
-				city: "-",
-				postal: "-",
-				org: "-",
-				latitude: "-",
-				longitude: "-",
-			};
-			await $this.deviceId();
-			$this.finalize();
+
+			// Location fetch
+			fetch("https://ipapi.co/json/")
+				.then((x) => x.json())
+				.then((response) => {
+					$this.clientData.locationDetail = response;
+					$this.deviceId();
+					$this.finalize();
+				})
+				.catch(function () {
+					$this.$axios.get("/image/sendip").then(async function (x2) {
+						$this.clientData.locationDetail = {
+							ip: x2.data.ip,
+							timezone: "-",
+							country_code: "-",
+							country_name: "-",
+							region_code: "-",
+							region: "-",
+							city: "-",
+							postal: "-",
+							org: "-",
+							latitude: "-",
+							longitude: "-",
+						};
+						await $this.deviceId();
+						$this.finalize();
+					});
+				});
 		},
 		computed: {
 			screenSize() {
