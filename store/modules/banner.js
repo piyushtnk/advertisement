@@ -1,7 +1,9 @@
 // State
 const state = () => ({
 	banners: [],
-	bannerDomains: []
+	bannerDomains: [],
+	topViewedBanners: [],
+	last10MinuteBanners: []
 });
 
 // Actions
@@ -49,6 +51,40 @@ const actions = {
 			})
 			.then(response => {
 				commit("SET_BANNERS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Get Top 10 Viewed Banners
+	async getTopViewedBanners({ commit }, data) {
+		await this.$axios
+			.get("/topviewbanners", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+				}
+			})
+			.then(response => {
+				commit("SET_TOP_ViEWED_BANNERS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Last 10 Minutes Active Banners
+	async getLast10MinuteBanners({ commit }, data) {
+		await this.$axios
+			.get("/activebanners")
+			.then(response => {
+				commit("SET_10_MINUTE_BANNERS", response.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
@@ -148,6 +184,12 @@ const mutations = {
 	SET_BANNER_DOMAIN(state, response) {
 		state.bannerDomains = response;
 	},
+	SET_TOP_ViEWED_BANNERS(state, response) {
+		state.topViewedBanners = response;
+	},
+	SET_10_MINUTE_BANNERS(state, response) {
+		state.last10MinuteBanners = response;
+	},
 	UPDATE_BANNER_DOMAIN(state, response) {
 		state.bannerDomains = [response, ...state.bannerDomains];
 	}
@@ -158,8 +200,14 @@ const getters = {
 	getBanners: state => {
 		return state.banners;
 	},
+	getTopViewedBanners: state => {
+		return state.topViewedBanners;
+	},
 	getBannerDomains: state => {
 		return state.bannerDomains;
+	},
+	getLast10MinuteBanners: state => {
+		return state.last10MinuteBanners;
 	}
 };
 

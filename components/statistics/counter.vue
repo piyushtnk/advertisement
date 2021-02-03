@@ -124,6 +124,7 @@
 								<thead>
 									<tr>
 										<th class="text-left">Image</th>
+										<th class="text-left">Origin</th>
 										<th class="text-left">
 											Redirection URL
 										</th>
@@ -137,36 +138,55 @@
 										:key="item.uniqueId"
 									>
 										<td class="pa-2">
-											<v-img
-												:src="
+											<a
+												:href="
 													getImage(
 														item.uniqueId,
 														item.imageType
 													)
 												"
-												:lazy-src="
-													getImage(
-														item.uniqueId,
-														item.imageType
-													)
-												"
-												class="grey lighten-2"
-												width="500"
-												height="200"
+												target="_blank"
 											>
-												<template v-slot:placeholder>
-													<v-row
-														class="fill-height ma-0"
-														align="center"
-														justify="center"
+												<v-img
+													:src="
+														getImage(
+															item.uniqueId,
+															item.imageType
+														)
+													"
+													:lazy-src="
+														getImage(
+															item.uniqueId,
+															item.imageType
+														)
+													"
+													class="grey lighten-2"
+													width="500"
+													height="200"
+												>
+													<template
+														v-slot:placeholder
 													>
-														<v-progress-circular
-															indeterminate
-															color="grey lighten-5"
-														></v-progress-circular>
-													</v-row>
-												</template>
-											</v-img>
+														<v-row
+															class="fill-height ma-0"
+															align="center"
+															justify="center"
+														>
+															<v-progress-circular
+																indeterminate
+																color="grey lighten-5"
+															></v-progress-circular>
+														</v-row>
+													</template>
+												</v-img>
+											</a>
+										</td>
+										<td>
+											{{
+												item.comment
+													? item.comment
+													: "No Info Provided"
+											}}
 										</td>
 										<td>
 											<a

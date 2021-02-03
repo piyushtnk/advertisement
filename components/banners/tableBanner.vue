@@ -178,6 +178,9 @@
 					<v-icon @click="deleteItem(item)" large color="red">
 						mdi-delete-circle
 					</v-icon>
+					<v-icon @click="downloadCode(item)" large color="blue">
+						mdi-code-braces-box
+					</v-icon>
 				</template>
 			</v-data-table>
 		</v-card>
@@ -262,6 +265,21 @@
 					this.loading = false;
 				}
 				this.closeDelete();
+			},
+
+			downloadCode(item) {
+				let fileContent = `<html><head><body><a href="http://999.money/${item.uniqueId}"><img src="http://999.money/api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
+				let element = document.createElement("a");
+				element.setAttribute(
+					"href",
+					"data:text/html;charset=utf-8," +
+						encodeURIComponent(fileContent)
+				);
+				element.setAttribute("download", item.uniqueId + ".html");
+				element.style.display = "none";
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
 			},
 
 			close() {

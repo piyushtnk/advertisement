@@ -13,7 +13,10 @@
 		<CounterComponent />
 
 		<!-- Top 10 Banner -->
-		<Top10ViewedBannerComponent />
+		<TopViewedBannersComponent />
+
+		<!-- Last 10 Minute Banners List -->
+		<Last10MinuteBannersComponent />
 	</div>
 </template>
 
@@ -21,7 +24,8 @@
 	import { mapActions } from "vuex";
 	import ChartsComponent from "~/components/statistics/charts";
 	import CounterComponent from "~/components/statistics/counter";
-	import Top10ViewedBannerComponent from "~/components/statistics/top10ViewedBanner";
+	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
+	import Last10MinuteBannersComponent from "~/components/statistics/last10MinuteBanners";
 
 	export default {
 		middleware: "authenticate",
@@ -31,16 +35,31 @@
 		components: {
 			ChartsComponent: ChartsComponent,
 			CounterComponent: CounterComponent,
-			Top10ViewedBannerComponent: Top10ViewedBannerComponent,
+			TopViewedBannersComponent: TopViewedBannersComponent,
+			Last10MinuteBannersComponent: Last10MinuteBannersComponent,
 		},
 		methods: {
-			...mapActions({ getStatistics: "getStatistics" }),
+			...mapActions({
+				getStatistics: "getStatistics",
+				getTopViewedBanners: "getTopViewedBanners",
+				getLast10MinuteBanners: "getLast10MinuteBanners",
+			}),
 			filterValueForStatistics(value) {
 				this.$store.dispatch("getStatistics", {
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
 				});
+
+				// top viewed banners
+				this.$store.dispatch("getTopViewedBanners", {
+					duration: value.duration,
+					startDate: value.startDate,
+					endDate: value.endDate,
+				});
+
+				// top viewed banners
+				this.$store.dispatch("getLast10MinuteBanners");
 			},
 		},
 	};

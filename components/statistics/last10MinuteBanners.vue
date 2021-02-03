@@ -4,7 +4,7 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						Top Recent Banners Performance
+						Last 10 Minutes Banners Performance List.
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table fixed-header dense>
@@ -12,6 +12,7 @@
 								<thead>
 									<tr>
 										<th class="text-left">Image</th>
+										<th class="text-left">Origin</th>
 										<th class="text-left">
 											Redirection URL
 										</th>
@@ -21,40 +22,59 @@
 								</thead>
 								<tbody>
 									<tr
-										v-for="item in statistics.topBanners"
-										:key="item.uniqueId"
+										v-for="item in last10MinuteBanners.data"
+										:key="item.id"
 									>
 										<td class="pa-2">
-											<v-img
-												:src="
+											<a
+												:href="
 													getImage(
 														item.uniqueId,
 														item.imageType
 													)
 												"
-												:lazy-src="
-													getImage(
-														item.uniqueId,
-														item.imageType
-													)
-												"
-												class="grey lighten-2"
-												width="500"
-												height="200"
+												target="_blank"
 											>
-												<template v-slot:placeholder>
-													<v-row
-														class="fill-height ma-0"
-														align="center"
-														justify="center"
+												<v-img
+													:src="
+														getImage(
+															item.uniqueId,
+															item.imageType
+														)
+													"
+													:lazy-src="
+														getImage(
+															item.uniqueId,
+															item.imageType
+														)
+													"
+													class="grey lighten-2"
+													width="500"
+													height="200"
+												>
+													<template
+														v-slot:placeholder
 													>
-														<v-progress-circular
-															indeterminate
-															color="grey lighten-5"
-														></v-progress-circular>
-													</v-row>
-												</template>
-											</v-img>
+														<v-row
+															class="fill-height ma-0"
+															align="center"
+															justify="center"
+														>
+															<v-progress-circular
+																indeterminate
+																color="grey lighten-5"
+															></v-progress-circular>
+														</v-row>
+													</template>
+												</v-img>
+											</a>
+										</td>
+										<td>
+											{{
+												item.comment
+													? item.comment
+													: "No Info Provided"
+											}}
 										</td>
 										<td>
 											<a
@@ -70,7 +90,7 @@
 												color="green"
 												text-color="white"
 											>
-												{{ item.count }}
+												{{ item.totalClients }}
 											</v-chip>
 										</td>
 										<td>{{ item.createdAt }}</td>
@@ -89,31 +109,23 @@
 	import { mapActions, mapGetters } from "vuex";
 
 	export default {
-		name: "Top10ViewedBannerComponent",
+		name: "TopViewedBannersComponent",
 		data() {
-			return {};
+			return {
+				date: [],
+				defaultFilterDate: 1,
+			};
 		},
 		mounted() {
-			this.$store.dispatch("getIpClients", {
-				duration: 1,
-				sort: "id|desc",
-				limit: 1,
-				page: 1,
-			});
+			// Hitting parents.
+			this.$emit("childFilterForCounter");
 		},
 		computed: {
 			...mapGetters({
-				statisticsOsAndBrowser: "getStatisticsOfOsAndBrowser",
-				statistics: "getStatistics",
-				ipClients: "getIpClients",
+				last10MinuteBanners: "getLast10MinuteBanners",
 			}),
 		},
 		methods: {
-			...mapActions(["getIpClients"]),
-			getRealPercentage(value) {
-				let number = value * 100;
-				return Number.parseFloat(number).toPrecision(2) + "%";
-			},
 			getImage(imageName, imageType) {
 				return `https://storage.googleapis.com/advertisement_storage/banner/${imageName}.${imageType}`;
 			},
