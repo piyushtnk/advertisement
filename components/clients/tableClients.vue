@@ -69,7 +69,7 @@
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
-							:items="headers"
+							:items="headerSearch"
 							item-value="value"
 							item-text="text"
 							label="Column Name"
@@ -369,6 +369,14 @@
 					// { text: "ISP", value: "cIsp" },
 					// { text: "Latitude", value: "cLat" },
 					// { text: "Longitude", value: "cLong" },
+				],
+				headerSearch: [
+					{ text: "IP", value: "cIp" },
+					{ text: "Device Name", value: "cDeviceName" },
+					{ text: "Language", value: "cLanguage" },
+					{ text: "Country", value: "cCountry" },
+					{ text: "Region", value: "cRegion" },
+					{ text: "City", value: "cCity" },
 				],
 				sortBy: "cid|desc",
 			};

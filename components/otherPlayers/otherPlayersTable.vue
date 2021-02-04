@@ -60,7 +60,7 @@
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
-							:items="headers"
+							:items="headerSearch"
 							item-value="value"
 							item-text="text"
 							label="Column Name"
@@ -350,6 +350,23 @@
 					{ text: "Total Valid Bet", value: "validbet" },
 					{ text: "Country", value: "country" },
 					// { text: "Language", value: "language" },
+					{ text: "No. of IP", value: "logincount" },
+				],
+				headerSearch: [
+					{ text: "User ID", value: "playerid" },
+					{ text: "Name", value: "firstname" },
+					{ text: "Mobile", value: "mobile" },
+					{ text: "IP", value: "regip" },
+					{ text: "Device", value: "logindevice" },
+					{ text: "Source URL", value: "ulagentaccount" },
+					{ text: "Total Top-up", value: "totaldeposit" },
+					{ text: "Total Top-up Count", value: "totaldepositcount" },
+					{ text: "Total Withdrawal", value: "totalwithdraw" },
+					{ text: "Total Withdrawal Count", value: "totalwithdrawcount" },
+					{ text: "Total Claimed", value: "totalbonus" },
+					{ text: "Total Win/Lose", value: "totalwinloss" },
+					{ text: "Total Valid Bet", value: "validbet" },
+					{ text: "Country", value: "country" },
 					{ text: "No. of IP", value: "logincount" },
 				],
 				sortBy: "id|desc",

@@ -60,7 +60,7 @@
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
-							:items="headers"
+							:items="headerSearch"
 							item-value="value"
 							item-text="text"
 							label="Column Name"
@@ -152,6 +152,25 @@
 					{ text: "Region Code", value: "region_code" },
 					{ text: "Timezone", value: "timezone" },
 					{ text: "Registered Date", value: "created_at" },
+				],
+				headerSearch: [
+					{ text: "ASN", value: "asn" },
+					{ text: "City", value: "city" },
+					{ text: "Continent Code", value: "continent_code" },
+					{ text: "Country", value: "country" },
+					{ text: "Country Code", value: "country_code" },
+					{ text: "Currency", value: "currency" },
+					{ text: "Currency Name", value: "currency_name" },
+					{ text: "European Union", value: "eu" },
+					{ text: "IP", value: "ip" },
+					{ text: "Languages", value: "languages" },
+					{ text: "Latitude", value: "latitude" },
+					{ text: "Longitude", value: "latitude" },
+					{ text: "Organization", value: "org" },
+					{ text: "Postal", value: "postal" },
+					{ text: "Region", value: "region" },
+					{ text: "Region Code", value: "region_code" },
+					{ text: "Timezone", value: "timezone" },
 				],
 				sortBy: "id|desc",
 			};

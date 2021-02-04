@@ -60,7 +60,7 @@
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
-							:items="headers"
+							:items="headerSearch"
 							item-value="value"
 							item-text="text"
 							label="Column Name"
@@ -257,6 +257,11 @@
 					{ text: "Advertisement Source", value: "comment" },
 					{ text: "Created At", value: "createdAt" },
 					{ text: "Actions", value: "actions", sortable: false },
+				],
+				headerSearch: [
+					{ text: "Banner Link", value: "uniqueId" },
+					{ text: "Destination URL", value: "redirectUrl" },
+					{ text: "Advertisement Source", value: "comment" },
 				],
 				dialog: false,
 				dialogDelete: false,

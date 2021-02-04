@@ -60,7 +60,7 @@
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
-							:items="headers"
+							:items="headerSearch"
 							item-value="value"
 							item-text="text"
 							label="Column Name"
@@ -338,6 +338,13 @@
 					{ text: "Player Name", value: "firstname" },
 					{ text: "Mobile", value: "mobile" },
 					{ text: "Registration Time", value: "createdate" },
+					{ text: "IP", value: "regip" },
+					{ text: "Device", value: "logindevice" },
+				],
+				headerSearch: [
+					{ text: "Player ID", value: "playerid" },
+					{ text: "Player Name", value: "firstname" },
+					{ text: "Mobile", value: "mobile" },
 					{ text: "IP", value: "regip" },
 					{ text: "Device", value: "logindevice" },
 				],
