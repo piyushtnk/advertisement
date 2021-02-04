@@ -23,9 +23,10 @@
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
-					sort: "id|desc",
+					sortBy: value.sortBy,
 					limit: value.limit,
 					page: value.page,
+					search: value.search,
 				});
 			},
 		},

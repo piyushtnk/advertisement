@@ -8,6 +8,7 @@ const state = () => ({
 const actions = {
 	setSnackbarText({ commit }, text) {
 		commit("SET_SNACKBAR_TEXT", text);
+		commit("SET_SNACKBAR_VISIBLE", true);
 	},
 	setSnackbarVisible({ commit }, type) {
 		commit("SET_SNACKBAR_VISIBLE", type);

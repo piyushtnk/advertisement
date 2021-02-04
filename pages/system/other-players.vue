@@ -35,6 +35,7 @@
 					sort: "id|desc",
 					limit: value.limit,
 					page: value.page,
+					search: value.search,
 				});
 			},
 		},

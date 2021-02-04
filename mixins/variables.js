@@ -1,6 +1,9 @@
 export default {
 	data: () => ({
-		search: "",
+		search: {
+			column: '',
+			value: ''
+		},
 		date: [],
 		modal: false,
 		defaultFilterDate: 1,
@@ -51,47 +54,32 @@ export default {
 				500,
 				1000,
 			],
-		}
+		},
+		sortBy: 'id|desc'
 	}),
 	computed: {
 		dateRangeText() {
 			return this.date.join(" ~ ");
 		},
+		searchByColumn() {
+			if (this.search.column != '' && this.search.value != '') {
+				return this.search.column + '|' + this.search.value;
+			} else {
+				return '';
+			}
+		}
 	},
 	mounted() {
-		// Hitting parents.
-		this.$emit("childFilterForDate", {
-			duration: this.defaultFilterDate,
-			startDate: this.date[0],
-			endDate: this.date[1],
-			sort: "id|desc",
-			limit: this.options.itemsPerPage,
-			page: this.options.page,
-		});
+		this.beforeSearchMiddleware();
 	},
 	methods: {
 		readDataFromAPI() {
 			this.loading = true;
-			const { page, itemsPerPage } = this.options;
-			// Hitting parents.
-			this.$emit("childFilterForDate", {
-				duration: this.defaultFilterDate,
-				startDate: this.date[0],
-				endDate: this.date[1],
-				sort: "id|desc",
-				limit: itemsPerPage,
-				page: page,
-			});
+			this.beforeSearchMiddleware();
 		},
 		whenDialogClosed() {
 			if (this.date.length == 2) {
-				this.$emit("childFilterForDate", {
-					startDate: this.date[0],
-					endDate: this.date[1],
-					sort: "id|desc",
-					limit: this.options.itemsPerPage,
-					page: this.options.page,
-				});
+				this.defaultFilterDate = null;
 			}
 		},
 		arrayToText(value) {
@@ -101,15 +89,33 @@ export default {
 				return value;
 			}
 		},
+		beforeSearchMiddleware() {
+			this.loading = true;
+			this.$emit("childFilterForDate", {
+				duration: this.defaultFilterDate,
+				startDate: this.date[0],
+				endDate: this.date[1],
+				sortBy: this.sortBy,
+				limit: this.options.itemsPerPage,
+				page: this.options.page,
+				search: this.searchByColumn
+			});
+		},
+		clearSearchFilter() {
+			this.date = [];
+			this.search = {
+				column: '',
+				value: ''
+			};
+			this.defaultFilterDate = 1;
+			this.loading = true;
+			this.beforeSearchMiddleware();
+		}
 	},
 	watch: {
 		defaultFilterDate(value) {
-			this.$emit("childFilterForDate", {
-				duration: value,
-				sort: "id|desc",
-				limit: this.options.itemsPerPage,
-				page: this.options.page,
-			});
+			this.defaultFilterDate = value;
+			this.date = [];
 		},
 		deep: true,
 		options: {

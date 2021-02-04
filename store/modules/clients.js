@@ -16,9 +16,10 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: 'cid|desc',
+					sort: data.sortBy,
 					limit: data.limit,
-					page: data.page
+					page: data.page,
+					search: data.search
 				}
 			})
 			.then(response => {
@@ -39,9 +40,10 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: 'id|desc',
+					sort: data.sortBy,
 					limit: data.limit,
-					page: data.page
+					page: data.page,
+					search: data.search
 				}
 			})
 			.then(response => {
@@ -62,9 +64,10 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: 'id|desc',
+					sort: data.sortBy,
 					limit: data.limit,
-					page: data.page
+					page: data.page,
+					search: data.search
 				}
 			})
 			.then(response => {
@@ -85,9 +88,10 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: 'id|desc',
+					sort: data.sortBy,
 					limit: data.limit,
-					page: data.page
+					page: data.page,
+					search: data.search
 				}
 			})
 			.then(response => {

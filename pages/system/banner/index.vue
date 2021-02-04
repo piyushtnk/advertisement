@@ -4,7 +4,7 @@
 		<UploadComponent />
 
 		<!-- Banner list -->
-		<TableComponent class="my-12" @childFilterForDate="filterForDate" />
+		<TableComponent @childFilterForDate="filterForDate" />
 	</div>
 </template>
 
@@ -33,9 +33,10 @@
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,
-					sort: "id|desc",
+					sort: value.sortBy,
 					limit: value.limit,
 					page: value.page,
+					search: value.search,
 				});
 			},
 		},

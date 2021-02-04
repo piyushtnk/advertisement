@@ -80,9 +80,6 @@
 							// Main device detail
 							$this.clientData.info = $this.$ua;
 
-							// TimeZone
-							$this.clientData.timezone = new Date().toISOString();
-
 							// Sending data to server
 							let deviceName = null;
 							if ($this.clientData.info.isFromIphone()) {
@@ -138,9 +135,6 @@
 										$this.clientData.deviceId
 									),
 									cOs: $this.isNull($this.clientData.info.os()),
-									cTimezone: $this.isNull(
-										$this.clientData.timezone
-									),
 									cOrigin: $this.clientData.origin,
 								})
 								.then(function (response) {

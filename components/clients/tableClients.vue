@@ -8,280 +8,329 @@
 				>
 			</v-col>
 		</v-row>
-		<v-row class="mb-5">
-			<v-col cols="6">
-				<v-dialog
-					ref="dialog"
-					v-model="modal"
-					@input="(v) => v || whenDialogClosed()"
-					:return-value.sync="date"
-					persistent
-					width="300px"
-					overlay-opacity="0.8"
-				>
-					<template v-slot:activator="{ on, attrs }">
-						<v-text-field
-							v-model="dateRangeText"
-							label="Specific date's data"
-							prepend-icon="mdi-calendar"
-							readonly
-							v-bind="attrs"
-							v-on="on"
-						></v-text-field>
-					</template>
-					<v-date-picker v-model="date" scrollable range light>
-						<v-spacer></v-spacer>
-						<v-btn text color="primary" @click="modal = false">
-							Cancel
-						</v-btn>
-						<v-btn
-							text
-							color="primary"
-							@click="$refs.dialog.save(date)"
+
+		<!-- Filter Area -->
+		<v-card class="my-5">
+			<v-card-text>
+				<v-row align="center">
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-dialog
+							ref="dialog"
+							v-model="modal"
+							@input="(v) => v || whenDialogClosed()"
+							:return-value.sync="date"
+							persistent
+							width="300px"
+							overlay-opacity="0.8"
 						>
-							OK
+							<template v-slot:activator="{ on, attrs }">
+								<v-text-field
+									v-model="dateRangeText"
+									label="Specific date's data"
+									prepend-icon="mdi-calendar"
+									readonly
+									v-bind="attrs"
+									v-on="on"
+								></v-text-field>
+							</template>
+							<v-date-picker
+								v-model="date"
+								scrollable
+								range
+								light
+							>
+								<v-spacer></v-spacer>
+								<v-btn
+									text
+									color="primary"
+									@click="modal = false"
+								>
+									Cancel
+								</v-btn>
+								<v-btn
+									text
+									color="primary"
+									@click="$refs.dialog.save(date)"
+								>
+									OK
+								</v-btn>
+							</v-date-picker>
+						</v-dialog>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-select
+							v-model="defaultFilterDate"
+							:items="filterDate"
+							item-value="state"
+							item-text="abbr"
+							label="Filter Type"
+						/>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-select
+							v-model="search.column"
+							:items="headers"
+							item-value="value"
+							item-text="text"
+							label="Column Name"
+						/>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-text-field
+							v-model="search.value"
+							label="Search Text"
+							required
+						></v-text-field>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-btn
+							color="blue"
+							class="white--text mx-auto"
+							@click="beforeSearchMiddleware"
+							block
+							:loading="loading"
+						>
+							Search
+							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
-					</v-date-picker>
-				</v-dialog>
-			</v-col>
-			<v-col cols="6">
-				<v-select
-					v-model="defaultFilterDate"
-					:items="filterDate"
-					item-value="state"
-					item-text="abbr"
-					label="Filter Type"
-				/>
-			</v-col>
-		</v-row>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-btn
+							color="red"
+							class="white--text"
+							@click="clearSearchFilter"
+							block
+							:loading="loading"
+						>
+							Clear
+							<v-icon right dark> mdi-trash-can </v-icon>
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
+
+		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card>
-					<v-card-title>
-						<v-text-field
-							v-model="search"
-							append-icon="mdi-magnify"
-							label="Search"
-							single-line
-							hide-details
-						></v-text-field>
-					</v-card-title>
-					<v-data-table
-						:items-per-page="10"
-						:headers="headers"
-						item-key="cToken"
-						:options.sync="options"
-						:server-items-length="clients.total"
-						:pageCount="clients.totalPages"
-						:items="clients.data"
-						:search="search"
-						:loading="loading"
-						:footer-props="footerProps"
-					>
-						<template v-slot:expanded-item="{ headers, item }">
-							<td :colspan="headers.length">
-								<v-row no-gutters>
-									<v-col lg="4" md="6" sm="12">
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Timezone</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cTimezone
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Location</v-list-item-title
-												>
-												<v-list-item-subtitle
-													>{{ item.cLat }},
-													{{
-														item.cLong
-													}}</v-list-item-subtitle
-												>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Region
-													Code</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cRegionCode
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>OS</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cOs
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Original
-													Screen</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cOriginalScreen
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Browser
-													Detail</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cBrowserDetail
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-									</v-col>
-									<v-col lg="4" md="6" sm="12">
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Timezone
-													Name</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cTimezoneName
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Country</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cCountry
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Region</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cRegion
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Created
-													At</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.createdAt
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Screen</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cScreen
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Browser</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cBrowser
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-									</v-col>
-									<v-col lg="4" md="6" sm="12">
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Country
-													Code</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cCountryCode
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>City</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cCity
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>ZIP</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cZip
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>ISP</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cIsp
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Browser
-													Vendor</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cBrowserVendor
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-										<v-list-item two-line>
-											<v-list-item-content>
-												<v-list-item-title
-													>Device
-													Type</v-list-item-title
-												>
-												<v-list-item-subtitle>{{
-													item.cDeviceType
-												}}</v-list-item-subtitle>
-											</v-list-item-content>
-										</v-list-item>
-									</v-col>
-								</v-row>
-							</td>
-						</template>
-					</v-data-table>
+					<v-card-text>
+						<v-data-table
+							:items-per-page="10"
+							:headers="headers"
+							item-key="cToken"
+							:options.sync="options"
+							:server-items-length="clients.total"
+							:pageCount="clients.totalPages"
+							:items="clients.data"
+							:loading="loading"
+							:footer-props="footerProps"
+						>
+							<template v-slot:expanded-item="{ headers, item }">
+								<td :colspan="headers.length">
+									<v-row no-gutters>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Timezone</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cTimezone
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Location</v-list-item-title
+													>
+													<v-list-item-subtitle
+														>{{ item.cLat }},
+														{{
+															item.cLong
+														}}</v-list-item-subtitle
+													>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Region
+														Code</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cRegionCode
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>OS</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cOs
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Original
+														Screen</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cOriginalScreen
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Browser
+														Detail</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cBrowserDetail
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Timezone
+														Name</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cTimezoneName
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Country</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cCountry
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Region</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cRegion
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Created
+														At</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.createdAt
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Screen</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cScreen
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Browser</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cBrowser
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Country
+														Code</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cCountryCode
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>City</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cCity
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>ZIP</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cZip
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>ISP</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cIsp
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Browser
+														Vendor</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cBrowserVendor
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title
+														>Device
+														Type</v-list-item-title
+													>
+													<v-list-item-subtitle>{{
+														item.cDeviceType
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+									</v-row>
+								</td>
+							</template>
+						</v-data-table>
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -321,6 +370,7 @@
 					// { text: "Latitude", value: "cLat" },
 					// { text: "Longitude", value: "cLong" },
 				],
+				sortBy: "cid|desc",
 			};
 		},
 		computed: {
@@ -329,14 +379,6 @@
 			}),
 		},
 		watch: {
-			defaultFilterDate(value) {
-				this.$emit("childFilterForDate", {
-					duration: value,
-					sort: "cid|desc",
-					limit: this.options.itemsPerPage,
-					page: this.options.page,
-				});
-			},
 			clients() {
 				this.loading = false;
 			},

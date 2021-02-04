@@ -1,188 +1,240 @@
 <template>
 	<div>
-		<v-row class="mb-5">
-			<v-col cols="6">
-				<v-dialog
-					ref="dialog"
-					v-model="modal"
-					@input="(v) => v || whenDialogClosed()"
-					:return-value.sync="date"
-					persistent
-					width="300px"
-					overlay-opacity="0.8"
-				>
-					<template v-slot:activator="{ on, attrs }">
-						<v-text-field
-							v-model="dateRangeText"
-							label="Specific date's data"
-							prepend-icon="mdi-calendar"
-							readonly
-							v-bind="attrs"
-							v-on="on"
-						></v-text-field>
-					</template>
-					<v-date-picker v-model="date" scrollable range light>
-						<v-spacer></v-spacer>
-						<v-btn text color="primary" @click="modal = false">
-							Cancel
-						</v-btn>
-						<v-btn
-							text
-							color="primary"
-							@click="$refs.dialog.save(date)"
+		<!-- Filter Area -->
+		<v-card class="my-5">
+			<v-card-text>
+				<v-row align="center">
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-dialog
+							ref="dialog"
+							v-model="modal"
+							@input="(v) => v || whenDialogClosed()"
+							:return-value.sync="date"
+							persistent
+							width="300px"
+							overlay-opacity="0.8"
 						>
-							OK
-						</v-btn>
-					</v-date-picker>
-				</v-dialog>
-			</v-col>
-			<v-col cols="6">
-				<v-select
-					v-model="defaultFilterDate"
-					:items="filterDate"
-					item-value="state"
-					item-text="abbr"
-					label="Filter Type"
-				/>
-			</v-col>
-		</v-row>
-		<v-card>
-			<v-card-title>
-				<v-text-field
-					v-model="search"
-					append-icon="mdi-magnify"
-					label="Search"
-					single-line
-					hide-details
-				></v-text-field>
-			</v-card-title>
-			<v-data-table
-				:headers="headers"
-				item-key="id"
-				class="elevation-1"
-				:options.sync="options"
-				:server-items-length="banners.total"
-				:pageCount="banners.totalPages"
-				:items="banners.data"
-				:search="search"
-				:loading="loading"
-				:footer-props="footerProps"
-			>
-				<template v-slot:[`item.uniqueId`]="{ item }">
-					<div class="py-5">
-						<a :href="findImage(item)" target="_blank">
-							<v-img
-								:src="findImage(item)"
-								height="100"
-								width="300"
-								class="grey lighten-2"
-							/>
-						</a>
-					</div>
-				</template>
-
-				<template v-slot:[`item.url`]="{ item }">
-					<a :href="getUrl(item)" target="_blank">
-						{{ getUrl(item) }}
-					</a>
-				</template>
-
-				<template v-slot:[`item.api`]="{ item }">
-					<a :href="findImage(item)" target="_blank">
-						{{ findImage(item) }}
-					</a>
-				</template>
-
-				<!-- Dialog Box -->
-				<template v-slot:top class="m-0 p-0">
-					<v-dialog
-						v-model="dialog"
-						max-width="500px"
-						transition="dialog-bottom-transition"
-					>
-						<v-card>
-							<v-card-title>
-								<span class="headline">Edit Item</span>
-							</v-card-title>
-
-							<v-card-text>
-								<v-container>
-									<v-row>
-										<v-col cols="12" sm="6" md="6">
-											<v-text-field
-												v-model="editedItem.redirectUrl"
-												label="Destination URL"
-											></v-text-field>
-										</v-col>
-										<v-col cols="12" sm="6" md="6">
-											<v-text-field
-												v-model="editedItem.comment"
-												label="Advertisement Source"
-											></v-text-field>
-										</v-col>
-									</v-row>
-								</v-container>
-							</v-card-text>
-
-							<v-card-actions>
+							<template v-slot:activator="{ on, attrs }">
+								<v-text-field
+									v-model="dateRangeText"
+									label="Specific date's data"
+									prepend-icon="mdi-calendar"
+									readonly
+									v-bind="attrs"
+									v-on="on"
+								></v-text-field>
+							</template>
+							<v-date-picker
+								v-model="date"
+								scrollable
+								range
+								light
+							>
 								<v-spacer></v-spacer>
 								<v-btn
-									color="blue darken-1"
 									text
-									@click="close"
+									color="primary"
+									@click="modal = false"
 								>
 									Cancel
 								</v-btn>
 								<v-btn
-									color="blue darken-1"
 									text
-									@click="save"
-									:loading="loading"
+									color="primary"
+									@click="$refs.dialog.save(date)"
 								>
-									Save
+									OK
 								</v-btn>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
-					<v-dialog
-						v-model="dialogDelete"
-						max-width="500px"
-						transition="dialog-top-transition"
-					>
-						<v-card color="red">
-							<v-card-title class="headline"
-								>Are you sure you want to delete this
-								item?</v-card-title
-							>
-							<v-card-actions>
-								<v-spacer></v-spacer>
-								<v-btn text @click="closeDelete">Cancel</v-btn>
-								<v-btn
-									text
-									@click="deleteItemConfirm"
-									depressed
-									:loading="loading"
-									>OK</v-btn
-								>
-								<v-spacer></v-spacer>
-							</v-card-actions>
-						</v-card>
-					</v-dialog>
-				</template>
+							</v-date-picker>
+						</v-dialog>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-select
+							v-model="defaultFilterDate"
+							:items="filterDate"
+							item-value="state"
+							item-text="abbr"
+							label="Filter Type"
+						/>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-select
+							v-model="search.column"
+							:items="headers"
+							item-value="value"
+							item-text="text"
+							label="Column Name"
+						/>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-text-field
+							v-model="search.value"
+							label="Search Text"
+							required
+						></v-text-field>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-btn
+							color="blue"
+							class="white--text mx-auto"
+							@click="beforeSearchMiddleware"
+							block
+							:loading="loading"
+						>
+							Search
+							<v-icon right dark> mdi-account-search </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-btn
+							color="red"
+							class="white--text"
+							@click="clearSearchFilter"
+							block
+							:loading="loading"
+						>
+							Clear
+							<v-icon right dark> mdi-trash-can </v-icon>
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
 
-				<!-- Actions -->
-				<template v-slot:[`item.actions`]="{ item }">
-					<v-icon @click="editItem(item)" large color="green">
-						mdi-pencil-circle
-					</v-icon>
-					<v-icon @click="deleteItem(item)" large color="red">
-						mdi-delete-circle
-					</v-icon>
-					<v-icon @click="downloadCode(item)" large color="blue">
-						mdi-code-braces-box
-					</v-icon>
-				</template>
-			</v-data-table>
+		<!-- Table Listing -->
+		<v-card>
+			<v-card-text>
+				<v-data-table
+					:headers="headers"
+					item-key="id"
+					class="elevation-1"
+					:options.sync="options"
+					:server-items-length="banners.total"
+					:pageCount="banners.totalPages"
+					:items="banners.data"
+					:loading="loading"
+					:footer-props="footerProps"
+				>
+					<template v-slot:[`item.uniqueId`]="{ item }">
+						<div class="py-5">
+							<a :href="findImage(item)" target="_blank">
+								<v-img
+									:src="findImage(item)"
+									height="100"
+									width="300"
+									class="grey lighten-2"
+								/>
+							</a>
+						</div>
+					</template>
+
+					<template v-slot:[`item.url`]="{ item }">
+						<a :href="getUrl(item)" target="_blank">
+							{{ getUrl(item) }}
+						</a>
+					</template>
+
+					<template v-slot:[`item.api`]="{ item }">
+						<a :href="findImage(item)" target="_blank">
+							{{ findImage(item) }}
+						</a>
+					</template>
+
+					<!-- Dialog Box -->
+					<template v-slot:top class="m-0 p-0">
+						<v-dialog
+							v-model="dialog"
+							max-width="500px"
+							transition="dialog-bottom-transition"
+						>
+							<v-card>
+								<v-card-title>
+									<span class="headline">Edit Item</span>
+								</v-card-title>
+
+								<v-card-text>
+									<v-container>
+										<v-row>
+											<v-col cols="12" sm="6" md="6">
+												<v-text-field
+													v-model="
+														editedItem.redirectUrl
+													"
+													label="Destination URL"
+												></v-text-field>
+											</v-col>
+											<v-col cols="12" sm="6" md="6">
+												<v-text-field
+													v-model="editedItem.comment"
+													label="Advertisement Source"
+												></v-text-field>
+											</v-col>
+										</v-row>
+									</v-container>
+								</v-card-text>
+
+								<v-card-actions>
+									<v-spacer></v-spacer>
+									<v-btn
+										color="blue darken-1"
+										text
+										@click="close"
+									>
+										Cancel
+									</v-btn>
+									<v-btn
+										color="blue darken-1"
+										text
+										@click="save"
+										:loading="loading"
+									>
+										Save
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-dialog>
+						<v-dialog
+							v-model="dialogDelete"
+							max-width="500px"
+							transition="dialog-top-transition"
+						>
+							<v-card color="red">
+								<v-card-title class="headline"
+									>Are you sure you want to delete this
+									item?</v-card-title
+								>
+								<v-card-actions>
+									<v-spacer></v-spacer>
+									<v-btn text @click="closeDelete"
+										>Cancel</v-btn
+									>
+									<v-btn
+										text
+										@click="deleteItemConfirm"
+										depressed
+										:loading="loading"
+										>OK</v-btn
+									>
+									<v-spacer></v-spacer>
+								</v-card-actions>
+							</v-card>
+						</v-dialog>
+					</template>
+
+					<!-- Actions -->
+					<template v-slot:[`item.actions`]="{ item }">
+						<v-icon @click="editItem(item)" large color="green">
+							mdi-pencil-circle
+						</v-icon>
+						<v-icon @click="deleteItem(item)" large color="red">
+							mdi-delete-circle
+						</v-icon>
+						<v-icon @click="downloadCode(item)" large color="blue">
+							mdi-code-braces-box
+						</v-icon>
+					</template>
+				</v-data-table>
+			</v-card-text>
 		</v-card>
 	</div>
 </template>
@@ -224,6 +276,7 @@
 					comment: "",
 				},
 				loading: false,
+				sortBy: "id|desc",
 			};
 		},
 		computed: {
