@@ -4,6 +4,8 @@ import * as am4maps from '@amcharts/amcharts4/maps';
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
+import am4themes_dataviz from "@amcharts/amcharts4/themes/dataviz";
+
 import Vue from "vue";
 
 Vue.prototype.$am4core = () => {
@@ -13,6 +15,7 @@ Vue.prototype.$am4core = () => {
 		am4maps,
 		am4geodata_worldLow,
 		am4themes_animated,
-		am4themes_dark
+		am4themes_dark,
+		am4themes_dataviz
 	}
 }

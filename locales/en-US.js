@@ -15,7 +15,7 @@ export default async (context, locale) => {
 			statistics: 'Statistics',
 			reports: 'Reports',
 			otherPlayers: 'Other Players',
-			ipClients: 'IP Clients'
+			ipClients: 'API IP Clients'
 		},
 		dashboard: {
 			recentInteractionUserGraph: 'Recent interaction users graph',

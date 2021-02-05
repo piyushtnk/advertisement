@@ -3,20 +3,10 @@
 		<v-row no-gutters>
 			<v-col cols="12" sm="12">
 				<v-card class="mx-auto">
-					<v-sparkline
-						:value="dashboard.graph"
-						:gradient="gradient"
-						:smooth="radius || false"
-						:padding="padding"
-						:line-width="width"
-						:stroke-linecap="lineCap"
-						:gradient-direction="gradientDirection"
-						:fill="fill"
-						:type="type"
-						:auto-line-width="autoLineWidth"
-						auto-draw
-					></v-sparkline>
+					<!-- Chart Div -->
+					<div class="hello" ref="chartdiv"></div>
 
+					<!-- Chart Details -->
 					<v-card-title>
 						{{ $t("dashboard.recentInteractionUserGraph") }}
 					</v-card-title>
@@ -32,33 +22,80 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	const gradients = [
-		["#222"],
-		["#42b3f4"],
-		["red", "orange", "yellow"],
-		["purple", "violet"],
-		["#00c6ff", "#F0F", "#FF0"],
-		["#f72047", "#ffd200", "#1feaea"],
-	];
+
 	export default {
 		name: "ChartComponent",
 		data: () => ({
-			width: 2,
-			radius: 10,
-			padding: 8,
-			lineCap: "round",
-			gradient: gradients[5],
-			// value: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0],
-			gradientDirection: "top",
-			gradients,
-			fill: false,
-			type: "trend",
-			autoLineWidth: false,
+			chart: {},
 		}),
 		computed: {
 			...mapGetters({
 				dashboard: "getDashboard",
 			}),
+			chartCore() {
+				return this.$am4core();
+			},
+		},
+		created() {
+			this.chartCore.am4core.useTheme(this.chartCore.am4themes_dataviz);
+			this.chartCore.am4core.useTheme(this.chartCore.am4themes_animated);
+		},
+		mounted() {
+			this.createChart();
+		},
+		methods: {
+			createChart() {
+				this.chart = this.chartCore.am4core.create(
+					this.$refs.chartdiv,
+					this.chartCore.am4charts.XYChart
+				);
+				this.chart.background.fill = "#ffffff";
+
+				// Create axes
+				let dateAxis = this.chart.xAxes.push(
+					new this.chartCore.am4charts.DateAxis()
+				);
+				dateAxis.renderer.minGridDistance = 60;
+
+				let valueAxis = this.chart.yAxes.push(
+					new this.chartCore.am4charts.ValueAxis()
+				);
+				valueAxis.renderer.minGridDistance = 60;
+
+				// Create series
+				let series = this.chart.series.push(
+					new this.chartCore.am4charts.LineSeries()
+				);
+				series.dataFields.valueY = "value";
+				series.dataFields.dateX = "date";
+				series.tooltipText = "{value}";
+
+				series.tooltip.pointerOrientation = "vertical";
+
+				this.chart.cursor = new this.chartCore.am4charts.XYCursor();
+				this.chart.cursor.snapToSeries = series;
+				this.chart.cursor.xAxis = dateAxis;
+
+				//this.chart.scrollbarY = new am4core.Scrollbar();
+				this.chart.scrollbarX = new this.chartCore.am4core.Scrollbar();
+			},
+		},
+		beforeDestroy() {
+			if (this.chart) {
+				this.chart.dispose();
+			}
+		},
+		watch: {
+			dashboard(value) {
+				this.chart.data = value.graph;
+			},
 		},
 	};
 </script>
+
+<style scoped>
+	.hello {
+		width: 100%;
+		height: 500px;
+	}
+</style>

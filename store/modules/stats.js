@@ -8,15 +8,16 @@ const state = () => ({
 			}
 		]
 	},
+	statsInfoTwo: {},
 	osAndBrowser: []
 });
 
 // Actions
 const actions = {
-	// Get all stats
+	// Get all stats - 1 
 	async getStatistics({ commit }, data) {
 		await this.$axios
-			.get("/stats/banners", {
+			.get("/stats/banners/1", {
 				params: {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
@@ -25,6 +26,26 @@ const actions = {
 			})
 			.then(response => {
 				commit("SET_STATISTICS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Get all stats - 2
+	async getStatistics2({ commit }, data) {
+		await this.$axios
+			.get("/stats/banners/2", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null
+				}
+			})
+			.then(response => {
+				commit("SET_STATISTICS_2", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
@@ -48,6 +69,9 @@ const mutations = {
 				data: response.osType
 			}
 		];
+	},
+	SET_STATISTICS_2: (state, response) => {
+		state.statsInfoTwo = response;
 	}
 };
 
@@ -55,6 +79,9 @@ const mutations = {
 const getters = {
 	getStatistics: state => {
 		return state.statsInfo;
+	},
+	getStatistics2: state => {
+		return state.statsInfoTwo;
 	},
 	getStatisticsOfOsAndBrowser: state => {
 		return state.osAndBrowser;

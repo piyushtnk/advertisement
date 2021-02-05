@@ -1,57 +1,117 @@
 <template>
 	<div>
-		<!-- Registered players, Top-up players and Unique clients  -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.playersRegistered) }}
-					</v-card-title>
-					<v-card-text> Registered Players </v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.topupPlayers) }}
-					</v-card-title>
-					<v-card-text> Top-up Players </v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.uniqueClients) }}
-					</v-card-title>
-					<v-card-text> Unique Clients </v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
-
 		<!-- PC AND Mobile -->
 		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.clientsFromPc) }}
+						{{ statistics.allClients }}
 					</v-card-title>
-					<v-card-text> From PC </v-card-text>
+					<v-card-text> Overall Clicks On Banners </v-card-text>
+				</v-card>
+			</v-col>
+
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics.uniqueClients }}
+					</v-card-title>
+					<v-card-text> Unique Clicks On Banners </v-card-text>
+				</v-card>
+			</v-col>
+
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics.registeredPlayersThroughBanners }}
+					</v-card-title>
+					<v-card-text> Registered Players From Banners </v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
+		<!-- Registered players, Top-up players and Unique clients  -->
+		<v-row>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics.topupPlayersCountFromAllSources }}
+					</v-card-title>
+					<v-card-text> Top-up Players From All Sources </v-card-text>
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ getRealPercentage(statistics.clientsFromMobile) }}
+						{{ statistics.clientsFromPcCount }}
 					</v-card-title>
-					<v-card-text class="h"> From Mobile </v-card-text>
+					<v-card-text> Unique Banner Clicks From PC </v-card-text>
 				</v-card>
 			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics.clientsFromMobileCount }}
+					</v-card-title>
+					<v-card-text class="h">
+						Unique Banner Clicks From Mobile
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
+		<!-- IP 2 -->
+		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
 						{{ ipClients.total }}
 					</v-card-title>
-					<v-card-text class="h"> From IP </v-card-text>
+					<v-card-text class="h">
+						Banner Viewers (API/IP)
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics2.overallTopupCount }}
+					</v-card-title>
+					<v-card-text class="h"> Overall Top-up Count </v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics2.overallTopupCountFromBanners }}
+					</v-card-title>
+					<v-card-text class="h">
+						Overall Top-up Count From Banners
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
+		<!-- IP - 2  -->
+		<v-row>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics2.overallTotalTopupValue }}
+					</v-card-title>
+					<v-card-text class="h">
+						Overall Total Top-up Value
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="4" md="4" sm="12">
+				<v-card class="mx-auto mt-5" outlined>
+					<v-card-title class="display-1">
+						{{ statistics2.overallTotalTopupValueFromBanners }}
+					</v-card-title>
+					<v-card-text class="h">
+						Overall Total Top-up Value From Banners
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -237,6 +297,7 @@
 			...mapGetters({
 				statisticsOsAndBrowser: "getStatisticsOfOsAndBrowser",
 				statistics: "getStatistics",
+				statistics2: "getStatistics2",
 				ipClients: "getIpClients",
 			}),
 		},

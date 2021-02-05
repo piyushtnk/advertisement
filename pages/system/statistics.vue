@@ -41,11 +41,18 @@
 		methods: {
 			...mapActions({
 				getStatistics: "getStatistics",
+				getStatistics2: "getStatistics2",
 				getTopViewedBanners: "getTopViewedBanners",
 				getLast10MinuteBanners: "getLast10MinuteBanners",
 			}),
 			filterValueForStatistics(value) {
 				this.$store.dispatch("getStatistics", {
+					duration: value.duration,
+					startDate: value.startDate,
+					endDate: value.endDate,
+				});
+
+				this.$store.dispatch("getStatistics2", {
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,

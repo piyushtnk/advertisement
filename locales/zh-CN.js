@@ -15,7 +15,7 @@ export default async (context, locale) => {
 			statistics: '统计',
 			reports: '报告',
 			otherPlayers: '其他玩家',
-			ipClients: 'IP客户'
+			ipClients: 'API IP 客户'
 		},
 		dashboard: {
 			recentInteractionUserGraph: '最近的互动用户图',
