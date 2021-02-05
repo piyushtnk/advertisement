@@ -77,7 +77,9 @@
 					<v-card-title class="display-1">
 						{{ statistics2.overallTopupCount }}
 					</v-card-title>
-					<v-card-text class="h"> Overall Top-up Count </v-card-text>
+					<v-card-text class="h">
+						Overall Top-up Count (All Sources)
+					</v-card-text>
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
@@ -100,7 +102,7 @@
 						{{ statistics2.overallTotalTopupValue }}
 					</v-card-title>
 					<v-card-text class="h">
-						Overall Total Top-up Value
+						Overall Total Top-up Value (All Sources)
 					</v-card-text>
 				</v-card>
 			</v-col>

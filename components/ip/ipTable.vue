@@ -151,7 +151,7 @@
 					{ text: "Region", value: "region" },
 					{ text: "Region Code", value: "region_code" },
 					{ text: "Timezone", value: "timezone" },
-					{ text: "Registered Date", value: "created_at" },
+					{ text: "Registered Date", value: "createdAt" },
 				],
 				headerSearch: [
 					{ text: "ASN", value: "asn" },

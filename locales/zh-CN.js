@@ -2,7 +2,7 @@ export default async (context, locale) => {
 	return await ({
 		welcome: "欢迎",
 		chooseSpecificDate: '选择特定日期',
-		visitors: '参观者',
+		visitors: '所有横幅点击',
 		ok: '行',
 		okay: '好的',
 		cancel: '取消',
@@ -22,8 +22,8 @@ export default async (context, locale) => {
 			recentVisitorThroughBanner: '横幅最新访客',
 			liveStatistics: '实时统计',
 			actualVisitors: '实际访客',
-			registeredVisitors: '注册访客',
-			registeredBanners: '注册横幅',
+			registeredVisitors: '横幅注册访客',
+			registeredBanners: '横幅添加到系统',
 			systemStats: '系统统计',
 			admins: '管理员',
 			loggedInAdmins: '登录管理员'
