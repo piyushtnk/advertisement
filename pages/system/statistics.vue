@@ -67,6 +67,17 @@
 
 				// top viewed banners
 				this.$store.dispatch("getLast10MinuteBanners");
+
+				// top viewed banners
+				this.$store.dispatch("getIpClients", {
+					duration: value.duration,
+					startDate: value.startDate,
+					endDate: value.endDate,
+					sort: "id|desc",
+					limit: 1,
+					page: 1,
+					search: "",
+				});
 			},
 		},
 	};

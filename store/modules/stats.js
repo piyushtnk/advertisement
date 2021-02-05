@@ -8,7 +8,12 @@ const state = () => ({
 			}
 		]
 	},
-	statsInfoTwo: {},
+	statsInfoTwo: {
+		overallTopupCount: 0,
+		overallTopupCountFromBanners: 0,
+		overallTotalTopupValue: 0,
+		overallTotalTopupValueFromBanners: 0
+	},
 	osAndBrowser: []
 });
 

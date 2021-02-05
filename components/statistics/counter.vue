@@ -75,7 +75,7 @@
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ statistics2.overallTopupCount }}
+						{{ isNull(statistics2.overallTopupCount) }}
 					</v-card-title>
 					<v-card-text class="h">
 						Overall Top-up Count (All Sources)
@@ -85,7 +85,7 @@
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ statistics2.overallTopupCountFromBanners }}
+						{{ isNull(statistics2.overallTopupCountFromBanners) }}
 					</v-card-title>
 					<v-card-text class="h">
 						Overall Top-up Count From Banners
@@ -99,7 +99,7 @@
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ statistics2.overallTotalTopupValue }}
+						{{ isNull(statistics2.overallTotalTopupValue) }}
 					</v-card-title>
 					<v-card-text class="h">
 						Overall Total Top-up Value (All Sources)
@@ -109,7 +109,11 @@
 			<v-col cols="12" lg="4" md="4" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						{{ statistics2.overallTotalTopupValueFromBanners }}
+						{{
+							isNull(
+								statistics2.overallTotalTopupValueFromBanners
+							)
+						}}
 					</v-card-title>
 					<v-card-text class="h">
 						Overall Total Top-up Value From Banners
@@ -311,6 +315,13 @@
 			},
 			getImage(imageName, imageType) {
 				return `https://storage.googleapis.com/advertisement_storage/banner/${imageName}.${imageType}`;
+			},
+			isNull(value) {
+				if (value == null) {
+					return 0;
+				} else {
+					return value;
+				}
 			},
 		},
 	};
