@@ -142,11 +142,11 @@
 						title: "layout.reports",
 						to: "/system/reports",
 					},
-					{
-						icon: "mdi-account-switch",
-						title: "layout.otherPlayers",
-						to: "/system/other-players",
-					},
+					// {
+					// 	icon: "mdi-account-switch",
+					// 	title: "layout.otherPlayers",
+					// 	to: "/system/other-players",
+					// },
 					{
 						icon: "mdi-ip",
 						title: "layout.ipClients",

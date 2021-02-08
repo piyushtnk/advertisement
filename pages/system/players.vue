@@ -35,12 +35,9 @@
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
+					registerWithUs: value.registerWithUs,
 				});
 			},
-		},
-		mounted() {
-			// this.getDashboard();
-			// this.getStats({ filterForCounter: 1, startDate: null, endDate: null });
 		},
 	};
 </script>

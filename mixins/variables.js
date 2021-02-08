@@ -55,7 +55,7 @@ export default {
 				1000,
 			],
 		},
-		sortBy: 'id|desc'
+		sortBy: 'id|desc',
 	}),
 	computed: {
 		dateRangeText() {
@@ -91,7 +91,7 @@ export default {
 		},
 		beforeSearchMiddleware() {
 			this.loading = true;
-			this.$emit("childFilterForDate", {
+			let defaultObjectParams = {
 				duration: this.defaultFilterDate,
 				startDate: this.date[0],
 				endDate: this.date[1],
@@ -99,7 +99,13 @@ export default {
 				limit: this.options.itemsPerPage,
 				page: this.options.page,
 				search: this.searchByColumn
-			});
+			}
+
+			// If players API got called.			
+			if (this.playersType >= 0) {
+				defaultObjectParams.registerWithUs = this.playersType;
+			}
+			this.$emit("childFilterForDate", defaultObjectParams);
 		},
 		clearSearchFilter() {
 			this.date = [];
