@@ -155,7 +155,16 @@
 								<v-card-text>
 									<v-container>
 										<v-row>
-											<v-col cols="12" sm="6" md="6">
+											<v-col cols="12" sm="12" md="12">
+												<v-file-input
+													accept="image/*"
+													label="Update Banner"
+													v-model="
+														editedItem.bannerImage
+													"
+												></v-file-input>
+											</v-col>
+											<v-col cols="12" sm="12" md="12">
 												<v-text-field
 													v-model="
 														editedItem.redirectUrl
@@ -163,7 +172,7 @@
 													label="Destination URL"
 												></v-text-field>
 											</v-col>
-											<v-col cols="12" sm="6" md="6">
+											<v-col cols="12" sm="12" md="12">
 												<v-text-field
 													v-model="editedItem.comment"
 													label="Advertisement Source"
@@ -255,6 +264,7 @@
 					{ text: "Container URL", value: "api" },
 					{ text: "Destination URL", value: "redirectUrl" },
 					{ text: "Advertisement Source", value: "comment" },
+					{ text: "Total Hits", value: "allClientsCount" },
 					{ text: "Created At", value: "createdAt" },
 					{ text: "Actions", value: "actions", sortable: false },
 				],
@@ -267,18 +277,18 @@
 				dialogDelete: false,
 				editedIndex: -1,
 				editedItem: {
-					allClientsCount: 0,
-					comment: "",
-					createdAt: "",
-					id: 0,
+					uniqueId: "",
 					imageType: "",
 					redirectUrl: "",
-					uniqueId: "",
-					updatedAt: "",
+					comment: "",
+					bannerImage: [],
 				},
 				defaultItem: {
+					uniqueId: "",
+					imageType: "",
 					redirectUrl: "",
 					comment: "",
+					bannerImage: [],
 				},
 				loading: false,
 				sortBy: "id|desc",
@@ -342,10 +352,10 @@
 
 			close() {
 				this.dialog = false;
-				this.$nextTick(() => {
-					this.editedItem = Object.assign({}, this.defaultItem);
-					this.editedIndex = -1;
-				});
+				// this.$nextTick(() => {
+				// 	this.editedItem = Object.assign({}, this.defaultItem);
+				// 	this.editedIndex = -1;
+				// });
 			},
 
 			closeDelete() {
@@ -357,12 +367,12 @@
 			},
 
 			save() {
+				this.loading = true;
 				if (this.editedIndex > -1) {
-					this.loading = true;
-					Object.assign(
-						this.banners.data[this.editedIndex],
-						this.editedItem
-					);
+					// Object.assign(
+					// 	this.banners.data[this.editedIndex],
+					// 	this.editedItem
+					// );
 					if (this.$store.dispatch("updateBanner", this.editedItem)) {
 						this.loading = false;
 					}

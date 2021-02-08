@@ -26,7 +26,51 @@ const actions = {
 					root: true
 				});
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				return true;
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Update banner
+	async updateBanner({ commit }, data) {
+		let formData = new FormData();
+		if (data.bannerImage) {
+			formData.append("banner", data.bannerImage);
+		}
+		formData.append("redirectUrl", data.redirectUrl);
+		formData.append("comment", data.comment);
+
+		await this.$axios
+			.put("/banner/" + data.uniqueId, formData, {
+				headers: {
+					"Content-Type": "multipart/form-data"
+				}
+			})
+			.then(response => {
+				// commit("UPDATE_BANNERS", response.data.data);
+				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				commit("UPDATE_BANNERS", response.data.data);
+				return true;
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Delete banner
+	async deleteBanner({ commit }, data) {
+		await this.$axios
+			.delete("/banner/" + data.uniqueId)
+			.then(response => {
+				commit("SET_SNACKBAR_TEXT", 'Banner deleted successfully', { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				return true;
 			})
 			.catch(error => {
@@ -139,39 +183,7 @@ const actions = {
 			});
 	},
 
-	async updateBanner({ commit }, data) {
-		await this.$axios
-			.put("/banner/" + data.uniqueId, {
-				redirectUrl: data.redirectUrl,
-				comment: data.comment
-			})
-			.then(response => {
-				// commit("UPDATE_BANNERS", response.data.data);
-				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				return true;
-			})
-			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				throw error.response ? error.response.data.error : error;
-			});
-	},
 
-	async deleteBanner({ commit }, data) {
-		await this.$axios
-			.delete("/banner/" + data.uniqueId)
-			.then(response => {
-				commit("SET_SNACKBAR_TEXT", 'Banner deleted successfully', { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				return true;
-			})
-			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				throw error.response ? error.response.data.error : error;
-			});
-	},
 };
 
 // Mutations
@@ -180,7 +192,7 @@ const mutations = {
 		state.banners = response;
 	},
 	UPDATE_BANNERS(state, response) {
-		state.banners = [response, ...state.banners];
+		Object.assign(...state.banners.data, response)
 	},
 	SET_BANNER_DOMAIN(state, response) {
 		state.bannerDomains = response;
