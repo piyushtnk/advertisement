@@ -134,7 +134,7 @@
 		data() {
 			return {
 				headers: [
-					{ text: "ASN", value: "asn" },
+					// { text: "ASN", value: "asn" },
 					{ text: "City", value: "city" },
 					{ text: "Continent Code", value: "continent_code" },
 					{ text: "Country", value: "country" },
@@ -154,7 +154,7 @@
 					{ text: "Registered Date", value: "createdAt" },
 				],
 				headerSearch: [
-					{ text: "ASN", value: "asn" },
+					// { text: "ASN", value: "asn" },
 					{ text: "City", value: "city" },
 					{ text: "Continent Code", value: "continent_code" },
 					{ text: "Country", value: "country" },
