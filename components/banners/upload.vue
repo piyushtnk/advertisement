@@ -121,13 +121,12 @@
 					$this.loading = false;
 					return false;
 				} else {
-					if (
-						$this.$store.dispatch("uploadBanner", {
-							image: $this.bannerImage,
-							url: $this.bannerUrl,
-							comment: $this.comment,
-						})
-					) {
+					let editedObject = {
+						image: $this.bannerImage,
+						url: $this.bannerUrl,
+						comment: $this.comment,
+					};
+					if ($this.$store.dispatch("uploadBanner", editedObject)) {
 						$this.loading = false;
 					}
 				}

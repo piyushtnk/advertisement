@@ -26,6 +26,7 @@ const actions = {
 					root: true
 				});
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				commit("PUSH_BANNERS", response.data.data);
 				return true;
 			})
 			.catch(error => {
@@ -51,7 +52,6 @@ const actions = {
 				}
 			})
 			.then(response => {
-				// commit("UPDATE_BANNERS", response.data.data);
 				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				commit("UPDATE_BANNERS", response.data.data);
@@ -190,6 +190,9 @@ const actions = {
 const mutations = {
 	SET_BANNERS(state, response) {
 		state.banners = response;
+	},
+	PUSH_BANNERS(state, response) {
+		state.banners.data.unshift(response);
 	},
 	UPDATE_BANNERS(state, response) {
 		Object.assign(...state.banners.data, response)
