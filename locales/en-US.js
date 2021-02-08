@@ -29,7 +29,7 @@ export default async (context, locale) => {
 			loggedInAdmins: 'Logged In Admins'
 		},
 		ip: {
-			alert: "These are the clients who's tried to access or requested our banner image"
+			alert: "These are the clients who's tried to access or requested our banner images"
 		}
 	})
 }
