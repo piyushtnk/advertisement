@@ -12,7 +12,7 @@ export default {
 		filterDate: [
 			{
 				state: 7,
-				abbr: "All Time",
+				abbr: "All (From - 26/01/2021)",
 			},
 			{
 				state: 1,

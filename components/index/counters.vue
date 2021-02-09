@@ -71,7 +71,11 @@
 							</v-col>
 
 							<v-col cols="12" lg="6" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									to="/system/clients"
+								>
 									<v-card-title class="display-3">{{
 										stats.visitors
 									}}</v-card-title>
@@ -82,7 +86,11 @@
 							</v-col>
 
 							<v-col cols="12" lg="6" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									to="/system/clients"
+								>
 									<v-card-title class="display-3">{{
 										stats.uniqueVisitors
 									}}</v-card-title>
@@ -94,7 +102,11 @@
 							</v-col>
 
 							<v-col cols="12" lg="6" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									to="/system/players"
+								>
 									<v-card-title class="display-3">{{
 										stats.registeredVisitors
 									}}</v-card-title>
@@ -106,7 +118,11 @@
 							</v-col>
 
 							<v-col cols="12" lg="6" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									to="/system/banner"
+								>
 									<v-card-title class="display-3">{{
 										stats.banners
 									}}</v-card-title>
@@ -134,7 +150,11 @@
 					<v-card-text>
 						<v-row>
 							<v-col cols="12" lg="4" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									to="/system/banner"
+								>
 									<v-card-title class="display-3">{{
 										dashboard.banners
 									}}</v-card-title>

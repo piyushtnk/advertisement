@@ -1,9 +1,85 @@
 <template>
 	<div>
+		<!-- Finance Details - Deposit -->
+		<v-row>
+			<v-col cols="12" lg="12" md="12" sm="12">
+				<v-card class="mx-auto" elevation="2">
+					<v-list-item two-line>
+						<v-list-item-content>
+							<v-list-item-title class="headline">
+								Finance Details - Deposit
+							</v-list-item-title>
+						</v-list-item-content>
+					</v-list-item>
+
+					<v-card-text>
+						<v-row>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallTotalTopupValue
+											)
+										}}
+									</v-card-title>
+									<v-card-text class="h">
+										Overall Total Top-up Value (All Sources)
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallTopupCount
+											)
+										}}
+									</v-card-title>
+									<v-card-text class="h">
+										Overall Top-up Count (All Sources)
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallTopupCountFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text class="h">
+										Overall Top-up Count From Banners
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallTotalTopupValueFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text class="h">
+										Overall Total Top-up Value From Banners
+									</v-card-text>
+								</v-card>
+							</v-col>
+						</v-row>
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+
 		<!-- PC AND Mobile -->
 		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card class="mx-auto mt-5" outlined to="/#">
 					<v-card-title class="display-1">
 						{{ statistics.allClients }}
 					</v-card-title>
@@ -72,55 +148,9 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ isNull(statistics2.overallTopupCount) }}
-					</v-card-title>
-					<v-card-text class="h">
-						Overall Top-up Count (All Sources)
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ isNull(statistics2.overallTopupCountFromBanners) }}
-					</v-card-title>
-					<v-card-text class="h">
-						Overall Top-up Count From Banners
-					</v-card-text>
-				</v-card>
-			</v-col>
 		</v-row>
 
 		<!-- IP - 2  -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{ isNull(statistics2.overallTotalTopupValue) }}
-					</v-card-title>
-					<v-card-text class="h">
-						Overall Total Top-up Value (All Sources)
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
-					<v-card-title class="display-1">
-						{{
-							isNull(
-								statistics2.overallTotalTopupValueFromBanners
-							)
-						}}
-					</v-card-title>
-					<v-card-text class="h">
-						Overall Total Top-up Value From Banners
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
 
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">

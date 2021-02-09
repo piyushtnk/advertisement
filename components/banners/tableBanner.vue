@@ -140,6 +140,12 @@
 						</a>
 					</template>
 
+					<template v-slot:[`item.allClientsCount`]="{ item }">
+						<v-chip color="green" class="ma-2">
+							{{ item.allClientsCount }}
+						</v-chip>
+					</template>
+
 					<!-- Dialog Box -->
 					<template v-slot:top class="m-0 p-0">
 						<v-dialog
@@ -264,7 +270,7 @@
 					{ text: "Container URL", value: "api" },
 					{ text: "Destination URL", value: "redirectUrl" },
 					{ text: "Advertisement Source", value: "comment" },
-					{ text: "Total Hits", value: "allClientsCount" },
+					{ text: "Total Clicks", value: "allClientsCount" },
 					{ text: "Created At", value: "createdAt" },
 					{ text: "Actions", value: "actions", sortable: false },
 				],
