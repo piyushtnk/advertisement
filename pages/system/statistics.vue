@@ -2,7 +2,8 @@
 	<div>
 		<v-alert text type="info">
 			Be Patient, It'll take some time, Live data are being computed and
-			will be displayed soon.
+			will be displayed soon - Finance data will update on every 30
+			minutes.
 		</v-alert>
 		<v-icon>fas fa-circle-notch fa-spin</v-icon>
 
