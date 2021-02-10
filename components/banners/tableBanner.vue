@@ -270,7 +270,7 @@
 					{ text: "Container URL", value: "api" },
 					{ text: "Destination URL", value: "redirectUrl" },
 					{ text: "Advertisement Source", value: "comment" },
-					{ text: "Total Clicks", value: "allClientsCount" },
+					{ text: "Clicks", value: "allClientsCount" },
 					{ text: "Created At", value: "createdAt" },
 					{ text: "Actions", value: "actions", sortable: false },
 				],

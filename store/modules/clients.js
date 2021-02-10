@@ -19,7 +19,8 @@ const actions = {
 					sort: data.sortBy,
 					limit: data.limit,
 					page: data.page,
-					search: data.search
+					search: data.search,
+					unique: data.unique
 				}
 			})
 			.then(response => {
@@ -34,7 +35,6 @@ const actions = {
 
 	// Fetching players only.
 	async getPlayers({ commit }, data) {
-		console.log('store: ', data);
 		await this.$axios
 			.get("/players", {
 				params: {

@@ -2,16 +2,21 @@
 	<div>
 		<v-alert text type="info">
 			Be Patient, It'll take some time, Live data are being computed and
-			will be displayed soon - Finance data will update on every 30
-			minutes.
+			will be displayed soon.
 		</v-alert>
-		<v-icon>fas fa-circle-notch fa-spin</v-icon>
+		<v-alert text type="warning"
+			>Finance data will update on every 30 minutes (eg. 10:00, 10:30,
+			11:00...).
+		</v-alert>
 
 		<!-- World map -->
-		<ChartsComponent @childFilterForCounter="filterValueForStatistics" />
+		<ChartsComponent
+			@childFilterForCounter="filterValueForStatistics"
+			:filterType="filterType"
+		/>
 
 		<!-- Counter Live -->
-		<CounterComponent />
+		<CounterComponent :filterType="filterType" />
 
 		<!-- Top 10 Banner -->
 		<TopViewedBannersComponent />
@@ -31,7 +36,41 @@
 	export default {
 		middleware: "authenticate",
 		data() {
-			return {};
+			return {
+				filterType: {
+					defaultFilterDate: 1,
+					filterDate: [
+						{
+							state: 7,
+							abbr: "All (From - 26/01/2021)",
+						},
+						{
+							state: 1,
+							abbr: "Today",
+						},
+						{
+							state: 2,
+							abbr: "Yesterday",
+						},
+						{
+							state: 3,
+							abbr: "This Week",
+						},
+						{
+							state: 4,
+							abbr: "Last Week",
+						},
+						{
+							state: 5,
+							abbr: "This Month",
+						},
+						{
+							state: 6,
+							abbr: "Last Month",
+						},
+					],
+				},
+			};
 		},
 		components: {
 			ChartsComponent: ChartsComponent,

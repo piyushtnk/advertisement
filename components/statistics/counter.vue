@@ -6,14 +6,22 @@
 				<v-card class="mx-auto" elevation="2">
 					<v-list-item two-line>
 						<v-list-item-content>
-							<v-list-item-title class="headline">
-								Finance Details - Deposit
-							</v-list-item-title>
+							<div class="overline">
+								Finance Detailed Information
+							</div>
 						</v-list-item-content>
 					</v-list-item>
 
 					<v-card-text>
+						<!-- Deposit Information -->
 						<v-row>
+							<v-col cols="12" lg="12" md="12" sm="12">
+								<div class="transition-swing text-h6">
+									Deposit Information
+								</div>
+							</v-col>
+						</v-row>
+						<v-row class="">
 							<v-col cols="12" lg="3" md="3" sm="12">
 								<v-card class="mx-auto" outlined>
 									<v-card-title class="display-1">
@@ -23,7 +31,7 @@
 											)
 										}}
 									</v-card-title>
-									<v-card-text class="h">
+									<v-card-text>
 										Overall Total Top-up Value (All Sources)
 									</v-card-text>
 								</v-card>
@@ -37,7 +45,7 @@
 											)
 										}}
 									</v-card-title>
-									<v-card-text class="h">
+									<v-card-text>
 										Overall Top-up Count (All Sources)
 									</v-card-text>
 								</v-card>
@@ -51,7 +59,7 @@
 											)
 										}}
 									</v-card-title>
-									<v-card-text class="h">
+									<v-card-text>
 										Overall Top-up Count From Banners
 									</v-card-text>
 								</v-card>
@@ -65,8 +73,104 @@
 											)
 										}}
 									</v-card-title>
-									<v-card-text class="h">
+									<v-card-text>
 										Overall Total Top-up Value From Banners
+									</v-card-text>
+								</v-card>
+							</v-col>
+						</v-row>
+
+						<!-- Withdrawal Information -->
+						<v-row class="mt-5">
+							<v-col cols="12" lg="12" md="12" sm="12">
+								<div class="transition-swing text-h6">
+									Withdrawal Information
+								</div>
+							</v-col>
+						</v-row>
+						<v-row class="">
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallWithdrawalValue
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										Overall Total Withdrawal Value (All
+										Sources)
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallWithdrawalCount
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										Overall Withdrawal Count (All Sources)
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallWithdrawalCountFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										Overall Withdrawal Count From Banners
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statistics2.overallTotalWithdrawalValueFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										Overall Total Withdrawal Value From
+										Banners
+									</v-card-text>
+								</v-card>
+							</v-col>
+						</v-row>
+
+						<!-- Profit -->
+						<v-row class="mt-5">
+							<v-col cols="12" lg="12" md="12" sm="12">
+								<div class="transition-swing text-h6">
+									Profit Information
+								</div>
+							</v-col>
+						</v-row>
+						<v-row class="">
+							<v-col cols="12" lg="12" md="12" sm="12">
+								<v-card class="mx-auto" outlined>
+									<v-card-title class="display-1">
+										{{
+											(
+												statistics2.overallTotalTopupValue -
+												statistics2.overallWithdrawalValue
+											).toFixed(2)
+										}}
+									</v-card-title>
+									<v-card-text>
+										Total Profit (Profit = Deposit -
+										Withdrawal) | According filter type
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -79,7 +183,14 @@
 		<!-- PC AND Mobile -->
 		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined to="/#">
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/clients?filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.allClients }}
 					</v-card-title>
@@ -88,7 +199,14 @@
 			</v-col>
 
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/clients?unique=true&filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.uniqueClients }}
 					</v-card-title>
@@ -97,7 +215,14 @@
 			</v-col>
 
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/players?filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.registeredPlayersThroughBanners }}
 					</v-card-title>
@@ -117,7 +242,14 @@
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/clients?unique=true&device=pc&filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.clientsFromPcCount }}
 					</v-card-title>
@@ -125,11 +257,18 @@
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/clients?unique=true&device=mobile&filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.clientsFromMobileCount }}
 					</v-card-title>
-					<v-card-text class="h">
+					<v-card-text>
 						Unique Banner Clicks From Mobile
 					</v-card-text>
 				</v-card>
@@ -139,18 +278,20 @@
 		<!-- IP 2 -->
 		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/ip?filterType=' + filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ ipClients.total }}
 					</v-card-title>
-					<v-card-text class="h">
-						Banner Viewers (API/IP)
-					</v-card-text>
+					<v-card-text> Banner Viewers (API/IP) </v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
-
-		<!-- IP - 2  -->
 
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">
@@ -224,7 +365,7 @@
 										<th class="text-left">
 											Redirection URL
 										</th>
-										<th class="text-left">Total Hits</th>
+										<th class="text-left">Clicks</th>
 										<th class="text-left">Created At</th>
 									</tr>
 								</thead>
@@ -321,6 +462,11 @@
 		data() {
 			return {};
 		},
+		props: {
+			filterType: {
+				type: Object,
+			},
+		},
 		mounted() {
 			this.$store.dispatch("getIpClients", {
 				duration: 1,
@@ -350,7 +496,7 @@
 				if (value == null) {
 					return 0;
 				} else {
-					return value;
+					return value.toFixed(2);
 				}
 			},
 		},

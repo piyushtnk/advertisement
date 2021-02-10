@@ -16,7 +16,7 @@
 										<th class="text-left">
 											Redirection URL
 										</th>
-										<th class="text-left">Total Hits</th>
+										<th class="text-left">Clicks</th>
 										<th class="text-left">Created At</th>
 									</tr>
 								</thead>

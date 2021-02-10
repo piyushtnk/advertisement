@@ -49,8 +49,8 @@
 					</v-col>
 					<v-col cols="6">
 						<v-select
-							v-model="defaultFilterDate"
-							:items="filterDate"
+							v-model="filterType.defaultFilterDate"
+							:items="filterType.filterDate"
 							item-value="state"
 							item-text="abbr"
 							label="Filter Type"
@@ -91,38 +91,12 @@
 				chart: {},
 				date: [],
 				modal: false,
-				defaultFilterDate: 1,
-				filterDate: [
-					{
-						state: 7,
-						abbr: "All (From - 26/01/2021)",
-					},
-					{
-						state: 1,
-						abbr: "Today",
-					},
-					{
-						state: 2,
-						abbr: "Yesterday",
-					},
-					{
-						state: 3,
-						abbr: "This Week",
-					},
-					{
-						state: 4,
-						abbr: "Last Week",
-					},
-					{
-						state: 5,
-						abbr: "This Month",
-					},
-					{
-						state: 6,
-						abbr: "Last Month",
-					},
-				],
 			};
+		},
+		props: {
+			filterType: {
+				type: Object,
+			},
 		},
 		created() {
 			this.chartCore.am4core.useTheme(this.chartCore.am4themes_animated);
@@ -190,7 +164,7 @@
 
 			// Hitting parents.
 			this.$emit("childFilterForCounter", {
-				duration: this.defaultFilterDate,
+				duration: this.filterType.defaultFilterDate,
 				startDate: this.date[0],
 				endDate: this.date[1],
 			});
@@ -244,7 +218,7 @@
 			statistics(value) {
 				this.polygonSeries.data = value.graph;
 			},
-			defaultFilterDate(value) {
+			"filterType.defaultFilterDate"(value) {
 				this.$emit("childFilterForCounter", { duration: value });
 			},
 		},

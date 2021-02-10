@@ -379,12 +379,25 @@
 					{ text: "City", value: "cCity" },
 				],
 				sortBy: "cid|desc",
+				clientUnique: this.$route.query.unique
+					? this.$route.query.unique
+					: false,
 			};
 		},
 		computed: {
 			...mapGetters({
 				clients: "getClients",
 			}),
+		},
+		mounted() {
+			if (this.$route.query.filterType) {
+				this.defaultFilterDate = this.$route.query.filterType;
+			}
+			if (this.$route.query.device) {
+				this.search.column = "cDeviceName";
+				this.search.value = this.$route.query.device;
+				this.beforeSearchMiddleware();
+			}
 		},
 		watch: {
 			clients() {

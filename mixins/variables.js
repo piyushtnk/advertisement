@@ -89,7 +89,7 @@ export default {
 				return value;
 			}
 		},
-		beforeSearchMiddleware() {
+		beforeSearchMiddleware(value) {
 			this.loading = true;
 			let defaultObjectParams = {
 				duration: this.defaultFilterDate,
@@ -104,6 +104,11 @@ export default {
 			// If players API got called.			
 			if (this.playersType >= 0) {
 				defaultObjectParams.registerWithUs = this.playersType;
+			}
+
+			// Route: system/clients			
+			if (this.clientUnique) {
+				defaultObjectParams.unique = this.clientUnique;
 			}
 			this.$emit("childFilterForDate", defaultObjectParams);
 		},

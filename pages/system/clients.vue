@@ -17,7 +17,7 @@
 			TableComponent: TableComponent,
 		},
 		methods: {
-			...mapActions({ getClients: "getClients" }),
+			// ...mapActions({ getClients: "getClients" }),
 			filterForDate(value) {
 				this.$store.dispatch("getClients", {
 					duration: value.duration,
@@ -27,6 +27,7 @@
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
+					unique: value.unique,
 				});
 			},
 		},

@@ -180,6 +180,12 @@
 				ipClients: "getIpClients",
 			}),
 		},
+		mounted() {
+			if (this.$route.query.filterType) {
+				this.defaultFilterDate = this.$route.query.filterType;
+				this.beforeSearchMiddleware();
+			}
+		},
 		methods: {
 			isNull(value) {
 				if (value == "" || value == null || value == "null") {
