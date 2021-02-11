@@ -89,6 +89,12 @@
 												class="ma-2"
 												color="green"
 												text-color="white"
+												:to="
+													'/system/ip?bannerId=' +
+													item.id +
+													'&filterType=' +
+													defaultFilterDate
+												"
 											>
 												{{ item.clientCount }}
 											</v-chip>

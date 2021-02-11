@@ -28,6 +28,7 @@
 					page: value.page,
 					search: value.search,
 					registerWithUs: value.registerWithUs,
+					topUp: value.topUp,
 				});
 			},
 		},

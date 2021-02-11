@@ -141,7 +141,16 @@
 					</template>
 
 					<template v-slot:[`item.allClientsCount`]="{ item }">
-						<v-chip color="green" class="ma-2">
+						<v-chip
+							color="green"
+							class="ma-2"
+							:to="
+								'/system/clients?bannerId=' +
+								item.id +
+								'&filterType=' +
+								defaultFilterDate
+							"
+						>
 							{{ item.allClientsCount }}
 						</v-chip>
 					</template>

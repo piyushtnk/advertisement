@@ -398,12 +398,6 @@
 				players: "getPlayers",
 			}),
 		},
-		mounted() {
-			if (this.$route.query.filterType) {
-				this.defaultFilterDate = this.$route.query.filterType;
-				this.beforeSearchMiddleware();
-			}
-		},
 		methods: {
 			fixParameters(value) {
 				return value ? value : "-";

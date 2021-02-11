@@ -64,16 +64,11 @@ const actions = {
 const mutations = {
 	SET_STATISTICS: (state, response) => {
 		state.statsInfo = response;
-		state.osAndBrowser = [
-			{
-				name: "From Browser",
-				data: response.browserType
-			},
-			{
-				name: "From OS",
-				data: response.osType
-			}
-		];
+		state.osAndBrowser =
+		{
+			browser: response.browserType,
+			os: response.osType
+		};
 	},
 	SET_STATISTICS_2: (state, response) => {
 		state.statsInfoTwo = response;

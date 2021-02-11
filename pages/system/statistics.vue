@@ -4,9 +4,18 @@
 			Be Patient, It'll take some time, Live data are being computed and
 			will be displayed soon.
 		</v-alert>
-		<v-alert text type="warning"
-			>Finance data will update on every 30 minutes (eg. 10:00, 10:30,
-			11:00...).
+		<v-alert text type="warning">
+			<v-row>
+				<v-col class="grow">
+					All finance data will update on every 30 minutes.
+				</v-col>
+				<v-col class="shrink">
+					<v-btn elevation="2" outlined
+						>Next update remaining time -
+						{{ getUpdateIntervalTime }}</v-btn
+					>
+				</v-col>
+			</v-row>
 		</v-alert>
 
 		<!-- World map -->
@@ -27,7 +36,7 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
+	import { mapActions, mapGetters } from "vuex";
 	import ChartsComponent from "~/components/statistics/charts";
 	import CounterComponent from "~/components/statistics/counter";
 	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
@@ -71,6 +80,17 @@
 					],
 				},
 			};
+		},
+		mounted() {
+			let $this = this;
+			setInterval(function () {
+				$this.$store.dispatch("getUpdateIntervalTime");
+			}, 1000);
+		},
+		computed: {
+			...mapGetters({
+				getUpdateIntervalTime: "getUpdateIntervalTime",
+			}),
 		},
 		components: {
 			ChartsComponent: ChartsComponent,

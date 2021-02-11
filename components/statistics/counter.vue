@@ -28,7 +28,7 @@
 										{{
 											isNull(
 												statistics2.overallTotalTopupValue
-											)
+											) + "K"
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -95,7 +95,7 @@
 										{{
 											isNull(
 												statistics2.overallWithdrawalValue
-											)
+											) + "K"
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -162,10 +162,10 @@
 								<v-card class="mx-auto" outlined>
 									<v-card-title class="display-1">
 										{{
-											(
+											isNull(
 												statistics2.overallTotalTopupValue -
-												statistics2.overallWithdrawalValue
-											).toFixed(2)
+													statistics2.overallWithdrawalValue
+											) + "K"
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -234,7 +234,14 @@
 		<!-- Registered players, Top-up players and Unique clients  -->
 		<v-row>
 			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:to="
+						'/system/players?topUp=true&filterType=' +
+						filterType.defaultFilterDate
+					"
+				>
 					<v-card-title class="display-1">
 						{{ statistics.topupPlayersCountFromAllSources }}
 					</v-card-title>
@@ -261,7 +268,7 @@
 					class="mx-auto mt-5"
 					outlined
 					:to="
-						'/system/clients?unique=true&device=mobile&filterType=' +
+						'/system/clients?unique=true&device=smartphone&filterType=' +
 						filterType.defaultFilterDate
 					"
 				>
@@ -295,56 +302,71 @@
 
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">
-			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-data-iterator
-					:items="statisticsOsAndBrowser"
-					items-per-page.sync="2"
-					hide-default-footer
-				>
-					<template v-slot:default="props">
-						<v-row>
-							<v-col
-								v-for="item in props.items"
-								:key="item.browserType"
-								cols="12"
-								sm="6"
-								md="6"
-								lg="6"
-							>
-								<v-card>
-									<v-card-title
-										class="subheading font-weight-bold"
+			<v-col cols="12" lg="6" md="6" sm="12">
+				<v-card>
+					<v-card-title class="subheading font-weight-bold">
+						From Browser
+					</v-card-title>
+					<v-card-text>
+						<v-simple-table @click="alert('okay')">
+							<template v-slot:default>
+								<thead>
+									<tr>
+										<th class="text-left">Browser</th>
+										<th class="text-left">Clicks</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										v-for="item in statisticsOsAndBrowser.browser"
+										:key="item.key"
+										@click="
+											goToClientTablePageWithBrowserParam(
+												item.browserType
+											)
+										"
 									>
-										{{ item.name }}
-									</v-card-title>
-
-									<v-divider></v-divider>
-
-									<v-list
-										dense
-										v-for="singleItem in item.data"
-										:key="singleItem.name"
+										<td>{{ item.browserType }}</td>
+										<td>{{ item.count }}</td>
+									</tr>
+								</tbody>
+							</template>
+						</v-simple-table>
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="6" md="6" sm="12">
+				<v-card>
+					<v-card-title class="subheading font-weight-bold">
+						From OS
+					</v-card-title>
+					<v-card-text>
+						<v-simple-table>
+							<template v-slot:default>
+								<thead>
+									<tr>
+										<th class="text-left">OS</th>
+										<th class="text-left">Clicks</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr
+										v-for="item in statisticsOsAndBrowser.os"
+										:key="item.key"
+										@click="
+											goToClientTablePageWithOsParam(
+												item.osType
+											)
+										"
 									>
-										<v-list-item>
-											<v-list-item-content
-												>{{
-													singleItem.browserType
-														? singleItem.browserType
-														: singleItem.osType
-												}}:</v-list-item-content
-											>
-											<v-list-item-content
-												class="align-end"
-											>
-												{{ singleItem.count }}
-											</v-list-item-content>
-										</v-list-item>
-									</v-list>
-								</v-card>
-							</v-col>
-						</v-row>
-					</template>
-				</v-data-iterator>
+										<td>{{ item.osType }}</td>
+										<td>{{ item.count }}</td>
+									</tr>
+								</tbody>
+							</template>
+						</v-simple-table>
+					</v-card-text>
+				</v-card>
 			</v-col>
 		</v-row>
 
@@ -438,6 +460,12 @@
 												class="ma-2"
 												color="green"
 												text-color="white"
+												:to="
+													'/system/clients?bannerId=' +
+													item.id +
+													'&filterType=' +
+													filterType.defaultFilterDate
+												"
 											>
 												{{ item.count }}
 											</v-chip>
@@ -499,6 +527,28 @@
 					return value.toFixed(2);
 				}
 			},
+			goToClientTablePageWithBrowserParam(value) {
+				this.$router.replace(
+					"/system/clients?browser=" +
+						value +
+						"&filterType=" +
+						this.filterType.defaultFilterDate
+				);
+			},
+			goToClientTablePageWithOsParam(value) {
+				this.$router.replace(
+					"/system/clients?os=" +
+						value +
+						"&filterType=" +
+						this.filterType.defaultFilterDate
+				);
+			},
 		},
 	};
 </script>
+
+<style scoped>
+	tr {
+		cursor: pointer;
+	}
+</style>

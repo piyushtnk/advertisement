@@ -11,7 +11,8 @@ const state = () => ({
 		visitors: 0,
 		uniqueVisitors: 0,
 		registeredVisitors: 0
-	}
+	},
+	updateIntervalTime: ''
 });
 
 // Actions
@@ -53,7 +54,20 @@ const actions = {
 				});
 				throw error.response ? error.response.data.error : error;
 			});
+	},
+	getUpdateIntervalTime({ commit }) {
+		let now = new Date();
+		let minutes = now.getMinutes();
+		let seconds = now.getSeconds();
+		if (minutes > 30) {
+			let data = (60 - minutes >= 10 ? 60 - minutes : '0' + 60 - minutes) + ":" + ((60 - seconds) >= 10 ? (60 - seconds) : '0' + (60 - seconds));
+			commit('SET_INTERVAL_TIME', data);
+		} else {
+			let data = (30 - minutes >= 10 ? 30 - minutes : '0' + 30 - minutes) + ":" + ((60 - seconds) >= 10 ? (60 - seconds) : '0' + (60 - seconds));
+			commit('SET_INTERVAL_TIME', data);
+		}
 	}
+
 };
 
 // Mutations
@@ -63,6 +77,9 @@ const mutations = {
 	},
 	SET_STATS(state, response) {
 		state.stats = response;
+	},
+	SET_INTERVAL_TIME(state, response) {
+		state.updateIntervalTime = response;
 	}
 };
 
@@ -73,6 +90,9 @@ const getters = {
 	},
 	getStats: state => {
 		return state.stats;
+	},
+	getUpdateIntervalTime: state => {
+		return state.updateIntervalTime;
 	}
 };
 

@@ -20,7 +20,9 @@ const actions = {
 					limit: data.limit,
 					page: data.page,
 					search: data.search,
-					unique: data.unique
+					unique: data.unique,
+					topup: data.topUp,
+					bannerId: data.bannerId
 				}
 			})
 			.then(response => {
@@ -45,7 +47,8 @@ const actions = {
 					limit: data.limit,
 					page: data.page,
 					search: data.search,
-					registerus: data.registerWithUs
+					registerus: data.registerWithUs,
+					topup: data.topUp
 				}
 			})
 			.then(response => {
@@ -93,7 +96,8 @@ const actions = {
 					sort: data.sortBy,
 					limit: data.limit,
 					page: data.page,
-					search: data.search
+					search: data.search,
+					bannerId: data.bannerId
 				}
 			})
 			.then(response => {

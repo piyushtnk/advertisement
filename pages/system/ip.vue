@@ -33,6 +33,7 @@
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
+					bannerId: value.bannerId,
 				});
 			},
 		},

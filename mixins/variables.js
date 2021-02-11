@@ -70,12 +70,12 @@ export default {
 		}
 	},
 	mounted() {
-		this.beforeSearchMiddleware();
+		// this.beforeSearchMiddleware();
 	},
 	methods: {
 		readDataFromAPI() {
 			this.loading = true;
-			this.beforeSearchMiddleware();
+			this.beforeSearchMiddleware(this.$route.query);
 		},
 		whenDialogClosed() {
 			if (this.date.length == 2) {
@@ -98,7 +98,34 @@ export default {
 				sortBy: this.sortBy,
 				limit: this.options.itemsPerPage,
 				page: this.options.page,
-				search: this.searchByColumn
+			}
+
+			// Route: system/clients parameters
+			if (value) {
+				if (value.unique) {
+					defaultObjectParams.unique = value.unique;
+				}
+				if (value.filterType) {
+					defaultObjectParams.duration = value.filterType;
+				}
+				if (value.topUp) {
+					defaultObjectParams.topUp = value.topUp;
+				}
+				if (value.device) {
+					this.search.column = "cDeviceType";
+					this.search.value = value.device;
+				}
+				if (value.browser) {
+					this.search.column = "cBrowser";
+					this.search.value = value.browser;
+				}
+				if (value.os) {
+					this.search.column = "cOs";
+					this.search.value = value.os;
+				}
+				if (value.bannerId) {
+					defaultObjectParams.bannerId = value.bannerId;
+				}
 			}
 
 			// If players API got called.			
@@ -106,10 +133,9 @@ export default {
 				defaultObjectParams.registerWithUs = this.playersType;
 			}
 
-			// Route: system/clients			
-			if (this.clientUnique) {
-				defaultObjectParams.unique = this.clientUnique;
-			}
+			// Dynamic Search Object
+			defaultObjectParams.search = this.searchByColumn;
+
 			this.$emit("childFilterForDate", defaultObjectParams);
 		},
 		clearSearchFilter() {

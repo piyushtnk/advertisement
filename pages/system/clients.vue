@@ -6,7 +6,6 @@
 
 <script>
 	import TableComponent from "~/components/clients/tableClients";
-	import { mapActions } from "vuex";
 
 	export default {
 		middleware: "authenticate",
@@ -28,6 +27,8 @@
 					page: value.page,
 					search: value.search,
 					unique: value.unique,
+					topUp: value.topUp,
+					bannerId: value.bannerId,
 				});
 			},
 		},
