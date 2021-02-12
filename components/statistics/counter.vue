@@ -70,7 +70,7 @@
 										{{
 											isNull(
 												statistics2.overallTotalTopupValueFromBanners
-											)
+											) + "K"
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -138,7 +138,7 @@
 										{{
 											isNull(
 												statistics2.overallTotalWithdrawalValueFromBanners
-											)
+											) + "K"
 										}}
 									</v-card-title>
 									<v-card-text>
