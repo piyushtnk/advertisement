@@ -137,7 +137,7 @@
 									<v-card-title class="display-1">
 										{{
 											isNull(
-												statistics2.overallTotalWithdrawalValueFromBanners
+												statistics2.overallWithdrawalValueFromBanners
 											) + "K"
 										}}
 									</v-card-title>
