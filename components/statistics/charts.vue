@@ -36,14 +36,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>
@@ -54,7 +54,7 @@
 							:items="filterType.filterDate"
 							item-value="state"
 							item-text="abbr"
-							label="Filter Type"
+							:label="$t('filterType')"
 						/>
 					</v-col>
 				</v-row>

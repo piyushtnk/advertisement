@@ -74,12 +74,15 @@ export default async (context, locale) => {
 		iPhone: '苹果手机',
 		MacOSX: 'Mac OSX',
 		Windows10: 'Windows 10',
+		WindowsXP: 'Windows XP',
 		Windows7: 'Windows 7',
 		iPad: 'iPad',
 		iPod: 'iPod',
 		Windows81: 'Windows 8.1',
 		Linux: 'Linux',
 		Windows8: 'Windows 8',
+		Vivaldi: "Vivaldi",
+
 
 		topRecentBannersPer: '最近的最佳广告表现',
 		image: '图片',
@@ -169,8 +172,9 @@ export default async (context, locale) => {
 		totalProfit: '盈利',
 
 		registerYourBanner: '注册广告链接',
-		areYouSure: '你确定要删除这个项目吗?'
+		areYouSure: '你确定要删除这个项目吗?',
 
-
+		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
+		WindowsPhoneOS: 'Windows Phone OS.'
 	};
 };

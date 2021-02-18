@@ -74,12 +74,14 @@ export default async (context, locale) => {
 		iPhone: 'iPhone',
 		MacOSX: 'MAC OSX',
 		Windows10: 'Windows 10',
+		WindowsXP: 'Windows XP',
 		Windows7: 'Windows 7',
 		iPad: 'iPad',
 		iPod: 'iPod',
 		Windows81: 'Windows 8.1',
 		Linux: 'Linux',
 		Windows8: 'Windows 8',
+		Vivaldi: "Vivaldi",
 
 		topRecentBannersPer: 'Top Recent Banners Performance',
 		image: 'Image',
@@ -169,7 +171,9 @@ export default async (context, locale) => {
 		totalProfit: 'Total Profit',
 
 		registerYourBanner: 'Register Your Banner',
-		areYouSure: 'Are you sure you want to delete this item?'
+		areYouSure: 'Are you sure you want to delete this item?',
+		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
+		WindowsPhoneOS: 'Windows Phone OS.'
 
 	})
 }

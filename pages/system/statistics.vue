@@ -44,20 +44,8 @@
 	export default {
 		middleware: "authenticate",
 		data() {
-			return {};
-		},
-		mounted() {
-			let $this = this;
-			setInterval(function () {
-				$this.$store.dispatch("getUpdateIntervalTime");
-			}, 1000);
-		},
-		computed: {
-			...mapGetters({
-				getUpdateIntervalTime: "getUpdateIntervalTime",
-			}),
-			filterType() {
-				return {
+			return {
+				filterType: {
 					defaultFilterDate: 1,
 					filterDate: [
 						{
@@ -89,8 +77,19 @@
 							abbr: this.$t("lastMonth"),
 						},
 					],
-				};
-			},
+				},
+			};
+		},
+		mounted() {
+			let $this = this;
+			setInterval(function () {
+				$this.$store.dispatch("getUpdateIntervalTime");
+			}, 1000);
+		},
+		computed: {
+			...mapGetters({
+				getUpdateIntervalTime: "getUpdateIntervalTime",
+			}),
 		},
 		components: {
 			ChartsComponent: ChartsComponent,
