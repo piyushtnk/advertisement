@@ -17,7 +17,7 @@
 							<template v-slot:activator="{ on, attrs }">
 								<v-text-field
 									v-model="dateRangeText"
-									label="Specific date's data"
+									:label="$t('chooseSpecificDate')"
 									prepend-icon="mdi-calendar"
 									readonly
 									v-bind="attrs"
@@ -29,6 +29,7 @@
 								scrollable
 								range
 								light
+								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
 								<v-btn
@@ -54,7 +55,7 @@
 							:items="filterDate"
 							item-value="state"
 							item-text="abbr"
-							label="Filter Type"
+							:label="$t('filterType')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
@@ -63,13 +64,13 @@
 							:items="headerSearch"
 							item-value="value"
 							item-text="text"
-							label="Column Name"
+							:label="$t('columnName')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
-							label="Search Text"
+							:label="$t('searchText')"
 							required
 						></v-text-field>
 					</v-col>
@@ -81,7 +82,7 @@
 							block
 							:loading="loading"
 						>
-							Search
+							{{ $t("search") }}
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
@@ -93,7 +94,7 @@
 							block
 							:loading="loading"
 						>
-							Clear
+							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
@@ -133,45 +134,6 @@
 		mixins: [Variables],
 		data() {
 			return {
-				headers: [
-					// { text: "ASN", value: "asn" },
-					{ text: "City", value: "city" },
-					{ text: "Continent Code", value: "continent_code" },
-					{ text: "Country", value: "country" },
-					{ text: "Country Code", value: "country_code" },
-					{ text: "Currency", value: "currency" },
-					{ text: "Currency Name", value: "currency_name" },
-					{ text: "European Union", value: "eu" },
-					{ text: "IP", value: "ip" },
-					{ text: "Languages", value: "languages" },
-					{ text: "Latitude", value: "latitude" },
-					{ text: "Longitude", value: "latitude" },
-					{ text: "Organization", value: "org" },
-					{ text: "Postal", value: "postal" },
-					{ text: "Region", value: "region" },
-					{ text: "Region Code", value: "region_code" },
-					{ text: "Timezone", value: "timezone" },
-					{ text: "Registered Date", value: "createdAt" },
-				],
-				headerSearch: [
-					// { text: "ASN", value: "asn" },
-					{ text: "City", value: "city" },
-					{ text: "Continent Code", value: "continent_code" },
-					{ text: "Country", value: "country" },
-					{ text: "Country Code", value: "country_code" },
-					{ text: "Currency", value: "currency" },
-					{ text: "Currency Name", value: "currency_name" },
-					{ text: "European Union", value: "eu" },
-					{ text: "IP", value: "ip" },
-					{ text: "Languages", value: "languages" },
-					{ text: "Latitude", value: "latitude" },
-					{ text: "Longitude", value: "latitude" },
-					{ text: "Organization", value: "org" },
-					{ text: "Postal", value: "postal" },
-					{ text: "Region", value: "region" },
-					{ text: "Region Code", value: "region_code" },
-					{ text: "Timezone", value: "timezone" },
-				],
 				sortBy: "id|desc",
 			};
 		},
@@ -179,6 +141,49 @@
 			...mapGetters({
 				ipClients: "getIpClients",
 			}),
+			headers() {
+				return [
+					// { text: "ASN", value: "asn" },
+					{ text: this.$t("city"), value: "city" },
+					{ text: this.$t("continentCode"), value: "continent_code" },
+					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("countryCode"), value: "country_code" },
+					{ text: this.$t("currency"), value: "currency" },
+					{ text: this.$t("currencyName"), value: "currency_name" },
+					{ text: this.$t("europeanUnion"), value: "eu" },
+					{ text: this.$t("ip"), value: "ip" },
+					{ text: this.$t("languages"), value: "languages" },
+					{ text: this.$t("latitude"), value: "latitude" },
+					{ text: this.$t("longitude"), value: "latitude" },
+					{ text: this.$t("organization"), value: "org" },
+					{ text: this.$t("postal"), value: "postal" },
+					{ text: this.$t("region"), value: "region" },
+					{ text: this.$t("regionCode"), value: "region_code" },
+					{ text: this.$t("timezone"), value: "timezone" },
+					{ text: this.$t("registrationDate"), value: "createdAt" },
+				];
+			},
+			headerSearch() {
+				return [
+					// { text: "ASN", value: "asn" },
+					{ text: this.$t("city"), value: "city" },
+					{ text: this.$t("continentCode"), value: "continent_code" },
+					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("countryCode"), value: "country_code" },
+					{ text: this.$t("currency"), value: "currency" },
+					{ text: this.$t("currencyName"), value: "currency_name" },
+					{ text: this.$t("europeanUnion"), value: "eu" },
+					{ text: this.$t("ip"), value: "ip" },
+					{ text: this.$t("languages"), value: "languages" },
+					{ text: this.$t("latitude"), value: "latitude" },
+					{ text: this.$t("longitude"), value: "latitude" },
+					{ text: this.$t("organization"), value: "org" },
+					{ text: this.$t("postal"), value: "postal" },
+					{ text: this.$t("region"), value: "region" },
+					{ text: this.$t("regionCode"), value: "region_code" },
+					{ text: this.$t("timezone"), value: "timezone" },
+				];
+			},
 		},
 		methods: {
 			isNull(value) {

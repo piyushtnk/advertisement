@@ -7,7 +7,7 @@
 					<v-list-item two-line>
 						<v-list-item-content>
 							<div class="overline">
-								Finance Detailed Information
+								{{ $t("financeDetailedInformation") }}
 							</div>
 						</v-list-item-content>
 					</v-list-item>
@@ -17,7 +17,7 @@
 						<v-row>
 							<v-col cols="12" lg="12" md="12" sm="12">
 								<div class="transition-swing text-h6">
-									Deposit Information
+									{{ $t("depositInformation") }}
 								</div>
 							</v-col>
 						</v-row>
@@ -32,7 +32,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Total Top-up Value (All Sources)
+										{{ $t("overallTotalTopUpValue") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -46,7 +46,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Top-up Count (All Sources)
+										{{ $t("overallTopUpCount") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -60,7 +60,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Top-up Count From Banners
+										{{ $t("overallTopUpCountFromBanners") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -74,7 +74,11 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Total Top-up Value From Banners
+										{{
+											$t(
+												"overallTotalTopUpValueFromBanners"
+											)
+										}}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -84,7 +88,7 @@
 						<v-row class="mt-5">
 							<v-col cols="12" lg="12" md="12" sm="12">
 								<div class="transition-swing text-h6">
-									Withdrawal Information
+									{{ $t("withdrawalInformation") }}
 								</div>
 							</v-col>
 						</v-row>
@@ -99,8 +103,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Total Withdrawal Value (All
-										Sources)
+										{{ $t("overallTotalWithdrawalValue") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -114,7 +117,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Withdrawal Count (All Sources)
+										{{ $t("overallTotalWithdrawalCount") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -128,7 +131,11 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Withdrawal Count From Banners
+										{{
+											$t(
+												"overallWithdrawalCountFromBanner"
+											)
+										}}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -142,8 +149,11 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Overall Total Withdrawal Value From
-										Banners
+										{{
+											$t(
+												"overallWithdrawalValueFromBanner"
+											)
+										}}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -153,7 +163,7 @@
 						<v-row class="mt-5">
 							<v-col cols="12" lg="12" md="12" sm="12">
 								<div class="transition-swing text-h6">
-									Profit Information
+									{{ $t("profitInformation") }}
 								</div>
 							</v-col>
 						</v-row>
@@ -169,8 +179,7 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										Total Profit (Profit = Deposit -
-										Withdrawal) | According filter type
+										{{ $t("totalProfit") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -194,7 +203,9 @@
 					<v-card-title class="display-1">
 						{{ statistics.allClients }}
 					</v-card-title>
-					<v-card-text> Overall Clicks On Banners </v-card-text>
+					<v-card-text>
+						{{ $t("overallClicksOnBanners") }}
+					</v-card-text>
 				</v-card>
 			</v-col>
 
@@ -210,7 +221,9 @@
 					<v-card-title class="display-1">
 						{{ statistics.uniqueClients }}
 					</v-card-title>
-					<v-card-text> Unique Clicks On Banners </v-card-text>
+					<v-card-text>
+						{{ $t("uniqueClicksOnBanners") }}
+					</v-card-text>
 				</v-card>
 			</v-col>
 
@@ -226,7 +239,9 @@
 					<v-card-title class="display-1">
 						{{ statistics.registeredPlayersThroughBanners }}
 					</v-card-title>
-					<v-card-text> Registered Players From Banners </v-card-text>
+					<v-card-text>
+						{{ $t("regPlayersFromBanners") }}
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -245,7 +260,9 @@
 					<v-card-title class="display-1">
 						{{ statistics.topupPlayersCountFromAllSources }}
 					</v-card-title>
-					<v-card-text> Top-up Players From All Sources </v-card-text>
+					<v-card-text>
+						{{ $t("topPlayersFromAllSources") }}
+					</v-card-text>
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
@@ -260,7 +277,9 @@
 					<v-card-title class="display-1">
 						{{ statistics.clientsFromPcCount }}
 					</v-card-title>
-					<v-card-text> Unique Banner Clicks From PC </v-card-text>
+					<v-card-text
+						>{{ $t("uniqueBannerClicksFromPC") }}
+					</v-card-text>
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="4" md="4" sm="12">
@@ -276,7 +295,7 @@
 						{{ statistics.clientsFromMobileCount }}
 					</v-card-title>
 					<v-card-text>
-						Unique Banner Clicks From Mobile
+						{{ $t("uniqueBannerClicksFromMobile") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -295,7 +314,7 @@
 					<v-card-title class="display-1">
 						{{ ipClients.total }}
 					</v-card-title>
-					<v-card-text> Banner Viewers (API/IP) </v-card-text>
+					<v-card-text> {{ $t("bannerViewers") }} </v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -305,7 +324,7 @@
 			<v-col cols="12" lg="6" md="6" sm="12">
 				<v-card>
 					<v-card-title class="subheading font-weight-bold">
-						From Browser
+						{{ $t("fromBrowser") }}
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table @click="alert('okay')">
@@ -313,7 +332,9 @@
 								<thead>
 									<tr>
 										<th class="text-left">Browser</th>
-										<th class="text-left">Clicks</th>
+										<th class="text-left">
+											{{ $t("clicks") }}
+										</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -326,7 +347,16 @@
 											)
 										"
 									>
-										<td>{{ item.browserType }}</td>
+										<td>
+											{{
+												$t(
+													item.browserType.replace(
+														/\s+/g,
+														""
+													)
+												)
+											}}
+										</td>
 										<td>{{ item.count }}</td>
 									</tr>
 								</tbody>
@@ -338,7 +368,7 @@
 			<v-col cols="12" lg="6" md="6" sm="12">
 				<v-card>
 					<v-card-title class="subheading font-weight-bold">
-						From OS
+						{{ $t("fromOS") }}
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table>
@@ -346,7 +376,9 @@
 								<thead>
 									<tr>
 										<th class="text-left">OS</th>
-										<th class="text-left">Clicks</th>
+										<th class="text-left">
+											{{ $t("clicks") }}
+										</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -359,7 +391,16 @@
 											)
 										"
 									>
-										<td>{{ item.osType }}</td>
+										<td>
+											{{
+												$t(
+													item.osType
+														.replace(/\s+/g, "")
+														.split(".")
+														.join("")
+												)
+											}}
+										</td>
 										<td>{{ item.count }}</td>
 									</tr>
 								</tbody>
@@ -375,20 +416,28 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						Top Recent Banners Performance
+						{{ $t("topRecentBannersPer") }}
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table fixed-header dense>
 							<template v-slot:default>
 								<thead>
 									<tr>
-										<th class="text-left">Image</th>
-										<th class="text-left">Origin</th>
 										<th class="text-left">
-											Redirection URL
+											{{ $t("image") }}
 										</th>
-										<th class="text-left">Clicks</th>
-										<th class="text-left">Created At</th>
+										<th class="text-left">
+											{{ $t("origin") }}
+										</th>
+										<th class="text-left">
+											{{ $t("redirectionURL") }}
+										</th>
+										<th class="text-left">
+											{{ $t("clicks") }}
+										</th>
+										<th class="text-left">
+											{{ $t("createdAt") }}
+										</th>
 									</tr>
 								</thead>
 								<tbody>

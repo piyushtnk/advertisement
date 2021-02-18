@@ -4,7 +4,7 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card elevation="2" outlined tile class="mx-auto">
 					<v-card-text>
-						<div>Register your banner</div>
+						<div>{{ $t("registerYourBanner") }}</div>
 						<div class="text--primary">
 							<form v-on:submit.prevent="submit">
 								<v-row>
@@ -12,7 +12,7 @@
 										<v-text-field
 											v-model="url"
 											:error-messages="urlErrors"
-											label="Destination URL"
+											:label="$t('destinationURL')"
 											required
 											@input="$v.url.$touch()"
 											@blur="$v.url.$touch()"
@@ -31,7 +31,7 @@
 							@click="submit"
 							:loading="loading"
 						>
-							Submit
+							{{ $t("submit") }}
 						</v-btn>
 					</v-card-actions>
 				</v-card>

@@ -16,7 +16,7 @@
 							<template v-slot:activator="{ on, attrs }">
 								<v-text-field
 									v-model="dateRangeText"
-									label="Specific date's data"
+									:label="$t('chooseSpecificDate')"
 									prepend-icon="mdi-calendar"
 									readonly
 									v-bind="attrs"
@@ -28,6 +28,7 @@
 								scrollable
 								range
 								light
+								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
 								<v-btn
@@ -116,7 +117,7 @@
 			var title = $this.chart.chartContainer.createChild(
 				this.chartCore.am4core.Label
 			);
-			title.text = "Visitors all over the world";
+			title.text = this.$t("visitorAllOverWorld");
 			title.fontSize = 20;
 			title.paddingTop = 30;
 			title.align = "center";

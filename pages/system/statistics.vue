@@ -1,17 +1,16 @@
 <template>
 	<div>
 		<v-alert text type="info">
-			Be Patient, It'll take some time, Live data are being computed and
-			will be displayed soon.
+			{{ $t("statsMessage") }}
 		</v-alert>
 		<v-alert text type="warning">
 			<v-row>
 				<v-col class="grow">
-					All finance data will update on every 30 minutes.
+					{{ $t("statsMessage2") }}
 				</v-col>
 				<v-col class="shrink">
 					<v-btn elevation="2" outlined
-						>Next update remaining time -
+						>{{ $t("statsMessage3") }}
 						{{ getUpdateIntervalTime }}</v-btn
 					>
 				</v-col>
@@ -45,41 +44,7 @@
 	export default {
 		middleware: "authenticate",
 		data() {
-			return {
-				filterType: {
-					defaultFilterDate: 1,
-					filterDate: [
-						{
-							state: 7,
-							abbr: "All (From - 26/01/2021)",
-						},
-						{
-							state: 1,
-							abbr: "Today",
-						},
-						{
-							state: 2,
-							abbr: "Yesterday",
-						},
-						{
-							state: 3,
-							abbr: "This Week",
-						},
-						{
-							state: 4,
-							abbr: "Last Week",
-						},
-						{
-							state: 5,
-							abbr: "This Month",
-						},
-						{
-							state: 6,
-							abbr: "Last Month",
-						},
-					],
-				},
-			};
+			return {};
 		},
 		mounted() {
 			let $this = this;
@@ -91,6 +56,41 @@
 			...mapGetters({
 				getUpdateIntervalTime: "getUpdateIntervalTime",
 			}),
+			filterType() {
+				return {
+					defaultFilterDate: 1,
+					filterDate: [
+						{
+							state: 7,
+							abbr: this.$t("all") + " (From - 26/01/2021)",
+						},
+						{
+							state: 1,
+							abbr: this.$t("today"),
+						},
+						{
+							state: 2,
+							abbr: this.$t("yesterday"),
+						},
+						{
+							state: 3,
+							abbr: this.$t("thisWeek"),
+						},
+						{
+							state: 4,
+							abbr: this.$t("lastWeek"),
+						},
+						{
+							state: 5,
+							abbr: this.$t("thisMonth"),
+						},
+						{
+							state: 6,
+							abbr: this.$t("lastMonth"),
+						},
+					],
+				};
+			},
 		},
 		components: {
 			ChartsComponent: ChartsComponent,

@@ -17,7 +17,7 @@
 							<template v-slot:activator="{ on, attrs }">
 								<v-text-field
 									v-model="dateRangeText"
-									label="Specific date's data"
+									:label="$t('chooseSpecificDate')"
 									prepend-icon="mdi-calendar"
 									readonly
 									v-bind="attrs"
@@ -29,6 +29,7 @@
 								scrollable
 								range
 								light
+								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
 								<v-btn
@@ -54,7 +55,7 @@
 							:items="filterDate"
 							item-value="state"
 							item-text="abbr"
-							label="Filter Type"
+							:label="$t('filterType')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
@@ -63,13 +64,13 @@
 							:items="headerSearch"
 							item-value="value"
 							item-text="text"
-							label="Column Name"
+							:label="$t('columnName')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
-							label="Search Text"
+							:label="$t('searchText')"
 							required
 						></v-text-field>
 					</v-col>
@@ -81,7 +82,7 @@
 							block
 							:loading="loading"
 						>
-							Search
+							{{ $t("search") }}
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
@@ -93,7 +94,7 @@
 							block
 							:loading="loading"
 						>
-							Clear
+							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
@@ -164,7 +165,9 @@
 						>
 							<v-card>
 								<v-card-title>
-									<span class="headline">Edit Item</span>
+									<span class="headline">{{
+										$t("edit")
+									}}</span>
 								</v-card-title>
 
 								<v-card-text>
@@ -173,7 +176,7 @@
 											<v-col cols="12" sm="12" md="12">
 												<v-file-input
 													accept="image/*"
-													label="Update Banner"
+													:label="$t('updateBanner')"
 													v-model="
 														editedItem.bannerImage
 													"
@@ -184,13 +187,19 @@
 													v-model="
 														editedItem.redirectUrl
 													"
-													label="Destination URL"
+													:label="
+														$t('destinationURL')
+													"
 												></v-text-field>
 											</v-col>
 											<v-col cols="12" sm="12" md="12">
 												<v-text-field
 													v-model="editedItem.comment"
-													label="Advertisement Source"
+													:label="
+														$t(
+															'advertisementSource'
+														)
+													"
 												></v-text-field>
 											</v-col>
 										</v-row>
@@ -204,7 +213,7 @@
 										text
 										@click="close"
 									>
-										Cancel
+										{{ $t("cancel") }}
 									</v-btn>
 									<v-btn
 										color="blue darken-1"
@@ -212,7 +221,7 @@
 										@click="save"
 										:loading="loading"
 									>
-										Save
+										{{ $t("save") }}
 									</v-btn>
 								</v-card-actions>
 							</v-card>
@@ -223,21 +232,20 @@
 							transition="dialog-top-transition"
 						>
 							<v-card color="red">
-								<v-card-title class="headline"
-									>Are you sure you want to delete this
-									item?</v-card-title
-								>
+								<v-card-title class="headline">{{
+									$t("areYouSure")
+								}}</v-card-title>
 								<v-card-actions>
 									<v-spacer></v-spacer>
-									<v-btn text @click="closeDelete"
-										>Cancel</v-btn
-									>
+									<v-btn text @click="closeDelete">{{
+										$t("cancel")
+									}}</v-btn>
 									<v-btn
 										text
 										@click="deleteItemConfirm"
 										depressed
 										:loading="loading"
-										>OK</v-btn
+										>{{ $t("ok") }}</v-btn
 									>
 									<v-spacer></v-spacer>
 								</v-card-actions>
@@ -273,21 +281,6 @@
 		data() {
 			return {
 				defaultFilterDate: 7,
-				headers: [
-					{ text: "Banner", value: "uniqueId" },
-					{ text: "Banner Link", value: "url" },
-					{ text: "Container URL", value: "api" },
-					{ text: "Destination URL", value: "redirectUrl" },
-					{ text: "Advertisement Source", value: "comment" },
-					{ text: "Clicks", value: "allClientsCount" },
-					{ text: "Created At", value: "createdAt" },
-					{ text: "Actions", value: "actions", sortable: false },
-				],
-				headerSearch: [
-					{ text: "Banner Link", value: "uniqueId" },
-					{ text: "Destination URL", value: "redirectUrl" },
-					{ text: "Advertisement Source", value: "comment" },
-				],
 				dialog: false,
 				dialogDelete: false,
 				editedIndex: -1,
@@ -313,6 +306,25 @@
 			...mapGetters({
 				banners: "getBanners",
 			}),
+			headerSearch() {
+				return [
+					{ text: this.$t("bannerLink"), value: "uniqueId" },
+					{ text: this.$t("destinationURL"), value: "redirectUrl" },
+					{ text: this.$t("advertisementSource"), value: "comment" },
+				];
+			},
+			headers() {
+				return [
+					{ text: this.$t("banner"), value: "uniqueId" },
+					{ text: this.$t("bannerLink"), value: "url" },
+					{ text: this.$t("containerLink"), value: "api" },
+					{ text: this.$t("destinationURL"), value: "redirectUrl" },
+					{ text: this.$t("advertisementSource"), value: "comment" },
+					{ text: this.$t("clicks"), value: "allClientsCount" },
+					{ text: this.$t("createdAt"), value: "createdAt" },
+					{ text: this.$t("actions"), value: "actions", sortable: false },
+				];
+			},
 		},
 		methods: {
 			findImage(item) {

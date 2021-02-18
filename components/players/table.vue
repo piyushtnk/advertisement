@@ -17,7 +17,7 @@
 							<template v-slot:activator="{ on, attrs }">
 								<v-text-field
 									v-model="dateRangeText"
-									label="Specific date's data"
+									:label="$t('chooseSpecificDate')"
 									prepend-icon="mdi-calendar"
 									readonly
 									v-bind="attrs"
@@ -29,6 +29,7 @@
 								scrollable
 								range
 								light
+								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
 								<v-btn
@@ -54,7 +55,7 @@
 							:items="defaultPlayersType"
 							item-value="key"
 							item-text="value"
-							label="Players Type"
+							:label="$t('playerType')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
@@ -63,7 +64,7 @@
 							:items="filterDate"
 							item-value="state"
 							item-text="abbr"
-							label="Filter Type"
+							:label="$t('filterType')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
@@ -72,13 +73,13 @@
 							:items="headerSearch"
 							item-value="value"
 							item-text="text"
-							label="Column Name"
+							:label="$t('columnName')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
-							label="Search Text"
+							:label="$t('searchText')"
 							required
 						></v-text-field>
 					</v-col>
@@ -90,7 +91,7 @@
 							block
 							:loading="loading"
 						>
-							Search
+							{{ $t("search") }}
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
@@ -102,7 +103,7 @@
 							block
 							:loading="loading"
 						>
-							Clear
+							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
@@ -345,58 +346,76 @@
 		mixins: [Variables],
 		data() {
 			return {
-				headers: [
-					{ text: "User ID", value: "playerid" },
-					{ text: "Name", value: "firstname" },
-					{ text: "Mobile", value: "mobile" },
-					{ text: "Registration Time", value: "createdate" },
-					{ text: "IP", value: "regip" },
-					{ text: "Device", value: "logindevice" },
-					{ text: "Source URL", value: "ulagentaccount" },
-					{ text: "Total Top-up", value: "totaldeposit" },
-					{ text: "Total Top-up Count", value: "totaldepositcount" },
-					{ text: "Total Withdrawal", value: "totalwithdraw" },
-					{ text: "Total Withdrawal Count", value: "totalwithdrawcount" },
-					{ text: "Total Claimed", value: "totalbonus" },
-					{ text: "Total Win/Lose", value: "totalwinloss" },
-					{ text: "Total Valid Bet", value: "validbet" },
-					{ text: "Country", value: "country" },
-					// { text: "Language", value: "language" },
-					{ text: "No. of IP", value: "logincount" },
-				],
-				headerSearch: [
-					{ text: "User ID", value: "playerid" },
-					{ text: "Name", value: "firstname" },
-					{ text: "Mobile", value: "mobile" },
-					{ text: "IP", value: "regip" },
-					{ text: "Device", value: "logindevice" },
-					{ text: "Source URL", value: "ulagentaccount" },
-					{ text: "Total Top-up", value: "totaldeposit" },
-					{ text: "Total Top-up Count", value: "totaldepositcount" },
-					{ text: "Total Withdrawal", value: "totalwithdraw" },
-					{ text: "Total Withdrawal Count", value: "totalwithdrawcount" },
-					{ text: "Total Claimed", value: "totalbonus" },
-					{ text: "Total Win/Lose", value: "totalwinloss" },
-					{ text: "Total Valid Bet", value: "validbet" },
-					{ text: "Country", value: "country" },
-					{ text: "No. of IP", value: "logincount" },
-				],
 				sortBy: "id|desc",
 				playersType: 1, // 0 = Other Sources, 1 = Registered Through Banner, 2 = Registered IP viewers but not clicked on banner.
-				defaultPlayersType: [
-					{ key: 0, value: "Other Sources" },
-					{ key: 1, value: "Registered Through Banner" },
-					{
-						key: 2,
-						value: "Registered IP viewers but not clicked on banner",
-					},
-				],
 			};
 		},
 		computed: {
 			...mapGetters({
 				players: "getPlayers",
 			}),
+			defaultPlayersType() {
+				return [
+					{ key: 0, value: this.$t("otherSources") },
+					{ key: 1, value: this.$t("regThroughBanner") },
+					{
+						key: 2,
+						value: this.$t("regIpViewerButNotClick"),
+					},
+				];
+			},
+			headers() {
+				return [
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
+					{ text: this.$t("mobile"), value: "mobile" },
+					{ text: this.$t("registrationTime"), value: "createdate" },
+					{ text: this.$t("ip"), value: "regip" },
+					{ text: this.$t("device"), value: "logindevice" },
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
+					{
+						text: this.$t("totalTopUpCount"),
+						value: "totaldepositcount",
+					},
+					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawalCount"),
+						value: "totalwithdrawcount",
+					},
+					{ text: this.$t("totalClaimed"), value: "totalbonus" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalValidBet"), value: "validbet" },
+					{ text: this.$t("country"), value: "country" },
+					// { text: "Language", value: "language" },
+					{ text: this.$t("noOfIp"), value: "logincount" },
+				];
+			},
+			headerSearch() {
+				return [
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
+					{ text: this.$t("mobile"), value: "mobile" },
+					{ text: this.$t("ip"), value: "regip" },
+					{ text: this.$t("device"), value: "logindevice" },
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
+					{
+						text: this.$t("totalTopUpCount"),
+						value: "totaldepositcount",
+					},
+					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawalCount"),
+						value: "totalwithdrawcount",
+					},
+					{ text: this.$t("totalClaimed"), value: "totalbonus" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalValidBet"), value: "validbet" },
+					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("noOfIp"), value: "logincount" },
+				];
+			},
 		},
 		methods: {
 			fixParameters(value) {

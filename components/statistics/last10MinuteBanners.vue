@@ -4,20 +4,28 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card class="mx-auto mt-5" outlined>
 					<v-card-title class="display-1">
-						Last 10 Minutes Banners Performance List.
+						{{ $t("last10MinuteBannerList") }}
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table fixed-header dense>
 							<template v-slot:default>
 								<thead>
 									<tr>
-										<th class="text-left">Image</th>
-										<th class="text-left">Origin</th>
 										<th class="text-left">
-											Redirection URL
+											{{ $t("image") }}
 										</th>
-										<th class="text-left">Clicks</th>
-										<th class="text-left">Created At</th>
+										<th class="text-left">
+											{{ $t("origin") }}
+										</th>
+										<th class="text-left">
+											{{ $t("redirectionURL") }}
+										</th>
+										<th class="text-left">
+											{{ $t("clicks") }}
+										</th>
+										<th class="text-left">
+											{{ $t("createdAt") }}
+										</th>
 									</tr>
 								</thead>
 								<tbody>

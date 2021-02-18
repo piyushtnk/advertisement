@@ -2,10 +2,9 @@
 	<div>
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-alert text type="info"
-					>These are all clients which came through the advertisement
-					banner (999.money)</v-alert
-				>
+				<v-alert text type="info">{{
+					$t("theseAreAllClients")
+				}}</v-alert>
 			</v-col>
 		</v-row>
 
@@ -26,7 +25,7 @@
 							<template v-slot:activator="{ on, attrs }">
 								<v-text-field
 									v-model="dateRangeText"
-									label="Specific date's data"
+									:label="$t('chooseSpecificDate')"
 									prepend-icon="mdi-calendar"
 									readonly
 									v-bind="attrs"
@@ -38,6 +37,7 @@
 								scrollable
 								range
 								light
+								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
 								<v-btn
@@ -63,7 +63,7 @@
 							:items="filterDate"
 							item-value="state"
 							item-text="abbr"
-							label="Filter Type"
+							:label="$t('filterType')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
@@ -72,13 +72,13 @@
 							:items="headerSearch"
 							item-value="value"
 							item-text="text"
-							label="Column Name"
+							:label="$t('columnName')"
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
-							label="Search Text"
+							:label="$t('searchText')"
 							required
 						></v-text-field>
 					</v-col>
@@ -90,7 +90,7 @@
 							block
 							:loading="loading"
 						>
-							Search
+							{{ $t("search") }}
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
@@ -102,7 +102,7 @@
 							block
 							:loading="loading"
 						>
-							Clear
+							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
@@ -346,44 +346,6 @@
 		mixins: [Variables],
 		data() {
 			return {
-				headers: [
-					{ text: "IP", value: "cIp" },
-					{ text: "Device Name", value: "cDeviceName" },
-					{ text: "Device Type", value: "cDeviceType" },
-					{ text: "Browser", value: "cBrowser" },
-					{ text: "OS", value: "cOs" },
-					{ text: "Language", value: "cLanguage" },
-					{ text: "Country", value: "cCountry" },
-					{ text: "Region", value: "cRegion" },
-					{ text: "City", value: "cCity" },
-					{ text: "Created At", value: "createdAt" },
-					// { text: "Device Type", value: "cDeviceType" },
-					// { text: "Browser", value: "cBrowser" },
-					// { text: "Browser Detail", value: "cBrowserDetail" },
-					// { text: "Browser Vendor", value: "cBrowserVendor" },
-					// { text: "Screen", value: "cScreen" },
-					// { text: "Original Screen", value: "cOriginalScreen" },
-					// { text: "OS", value: "cOs" },
-					// { text: "Timezone", value: "cTimezone" },
-					// { text: "Timezone Name", value: "cTimezoneName" },
-					// { text: "Country Code", value: "cCountryCode" },
-					// { text: "Region Code", value: "cRegionCode" },
-					// { text: "ZIP", value: "cZip" },
-					// { text: "ISP", value: "cIsp" },
-					// { text: "Latitude", value: "cLat" },
-					// { text: "Longitude", value: "cLong" },
-				],
-				headerSearch: [
-					{ text: "IP", value: "cIp" },
-					{ text: "Device Name", value: "cDeviceName" },
-					{ text: "Device Type", value: "cDeviceType" },
-					{ text: "Browser", value: "cBrowser" },
-					{ text: "OS", value: "cOs" },
-					{ text: "Language", value: "cLanguage" },
-					{ text: "Country", value: "cCountry" },
-					{ text: "Region", value: "cRegion" },
-					{ text: "City", value: "cCity" },
-				],
 				sortBy: "cid|desc",
 			};
 		},
@@ -391,6 +353,33 @@
 			...mapGetters({
 				clients: "getClients",
 			}),
+			headerSearch() {
+				return [
+					{ text: this.$t("ip"), value: "cIp" },
+					{ text: this.$t("deviceName"), value: "cDeviceName" },
+					{ text: this.$t("deviceType"), value: "cDeviceType" },
+					{ text: this.$t("browser"), value: "cBrowser" },
+					{ text: this.$t("os"), value: "cOs" },
+					{ text: this.$t("language"), value: "cLanguage" },
+					{ text: this.$t("country"), value: "cCountry" },
+					{ text: this.$t("region"), value: "cRegion" },
+					{ text: this.$t("city"), value: "cCity" },
+				];
+			},
+			headers() {
+				return [
+					{ text: this.$t("ip"), value: "cIp" },
+					{ text: this.$t("deviceName"), value: "cDeviceName" },
+					{ text: this.$t("deviceType"), value: "cDeviceType" },
+					{ text: this.$t("browser"), value: "cBrowser" },
+					{ text: this.$t("os"), value: "cOs" },
+					{ text: this.$t("language"), value: "cLanguage" },
+					{ text: this.$t("country"), value: "cCountry" },
+					{ text: this.$t("region"), value: "cRegion" },
+					{ text: this.$t("city"), value: "cCity" },
+					{ text: this.$t("createdAt"), value: "createdAt" },
+				];
+			},
 		},
 		watch: {
 			clients() {

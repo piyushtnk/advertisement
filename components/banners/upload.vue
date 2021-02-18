@@ -4,14 +4,14 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card elevation="2" outlined tile class="mx-auto">
 					<v-card-text>
-						<div>Register your banner</div>
+						<div>{{ $t("registerYourBanner") }}</div>
 						<div class="text--primary">
 							<form v-on:submit.prevent="submit">
 								<v-row>
 									<v-col cols="12" lg="4" md="4" sm="12">
 										<v-file-input
 											accept="image/*"
-											label="Choose Banner"
+											:label="$t('chooseBanner')"
 											v-model="bannerImage"
 											:error-messages="bannerImageErrors"
 											required
@@ -25,7 +25,7 @@
 											:items="bannerDomains"
 											v-model="bannerUrl"
 											:error-messages="urlErrors"
-											label="Destination URL"
+											:label="$t('destinationURL')"
 											required
 											@input="$v.bannerUrl.$touch()"
 											@blur="$v.bannerUrl.$touch()"
@@ -33,7 +33,7 @@
 											item-value="domainName"
 										></v-select>
 										<nuxt-link to="/system/banner/domain">
-											Add New Domain?
+											{{ $t("addNewDomain") }}
 										</nuxt-link>
 									</v-col>
 
@@ -41,7 +41,7 @@
 										<v-text-field
 											v-model="comment"
 											:error-messages="commentErrors"
-											label="Advertisement Source"
+											:label="$t('adsSource')"
 											required
 											@input="$v.comment.$touch()"
 											@blur="$v.comment.$touch()"
@@ -60,7 +60,7 @@
 							@click="submit"
 							:loading="loading"
 						>
-							Submit
+							{{ $t("submit") }}
 						</v-btn>
 					</v-card-actions>
 				</v-card>

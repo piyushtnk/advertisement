@@ -5,7 +5,7 @@
 				<v-text-field
 					v-model="search"
 					append-icon="mdi-magnify"
-					label="Search"
+					:label="$t('search')"
 					single-line
 					hide-details
 				></v-text-field>
@@ -116,11 +116,6 @@
 		data() {
 			return {
 				search: "",
-				headers: [
-					{ text: "Destination URL", value: "domainName" },
-					{ text: "Created At", value: "createdAt" },
-					{ text: "Actions", value: "actions", sortable: false },
-				],
 				dialog: false,
 				dialogDelete: false,
 				editedIndex: -1,
@@ -137,6 +132,13 @@
 			...mapGetters({
 				bannerDomains: "getBannerDomains",
 			}),
+			headers() {
+				return [
+					{ text: this.$t("destinationURL"), value: "domainName" },
+					{ text: this.$t("createdAt"), value: "createdAt" },
+					{ text: this.$t("actions"), value: "actions", sortable: false },
+				];
+			},
 		},
 		methods: {
 			// Actions area

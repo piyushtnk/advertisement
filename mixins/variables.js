@@ -9,55 +9,28 @@ export default {
 		defaultFilterDate: 1,
 		options: {},
 		loading: true,
-		filterDate: [
-			{
-				state: 7,
-				abbr: "All (From - 26/01/2021)",
-			},
-			{
-				state: 1,
-				abbr: "Today",
-			},
-			{
-				state: 2,
-				abbr: "Yesterday",
-			},
-			{
-				state: 3,
-				abbr: "This Week",
-			},
-			{
-				state: 4,
-				abbr: "Last Week",
-			},
-			{
-				state: 5,
-				abbr: "This Month",
-			},
-			{
-				state: 6,
-				abbr: "Last Month",
-			},
-		],
-		footerProps: {
-			showFirstLastPage: true,
-			firstIcon: 'mdi-arrow-collapse-left',
-			lastIcon: 'mdi-arrow-collapse-right',
-			prevIcon: 'mdi-minus',
-			nextIcon: 'mdi-plus',
-			itemsPerPageOptions: [
-				5,
-				10,
-				15,
-				100,
-				200,
-				500,
-				1000,
-			],
-		},
 		sortBy: 'id|desc',
 	}),
 	computed: {
+		footerProps() {
+			return {
+				showFirstLastPage: true,
+				firstIcon: 'mdi-arrow-collapse-left',
+				lastIcon: 'mdi-arrow-collapse-right',
+				prevIcon: 'mdi-minus',
+				nextIcon: 'mdi-plus',
+				itemsPerPageText: this.$t('rowsPerPage'),
+				itemsPerPageOptions: [
+					5,
+					10,
+					15,
+					100,
+					200,
+					500,
+					1000,
+				],
+			}
+		},
 		dateRangeText() {
 			return this.date.join(" ~ ");
 		},
@@ -67,6 +40,38 @@ export default {
 			} else {
 				return '';
 			}
+		},
+		filterDate() {
+			return [
+				{
+					state: 7,
+					abbr: this.$t('all') + " (From - 26/01/2021)",
+				},
+				{
+					state: 1,
+					abbr: this.$t('today'),
+				},
+				{
+					state: 2,
+					abbr: this.$t('yesterday'),
+				},
+				{
+					state: 3,
+					abbr: this.$t('thisWeek'),
+				},
+				{
+					state: 4,
+					abbr: this.$t('lastWeek'),
+				},
+				{
+					state: 5,
+					abbr: this.$t('thisMonth'),
+				},
+				{
+					state: 6,
+					abbr: this.$t('lastMonth'),
+				},
+			]
 		}
 	},
 	mounted() {
