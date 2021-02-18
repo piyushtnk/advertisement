@@ -1,3 +1,4 @@
+console.log(this);
 export default {
 	data: () => ({
 		search: {
@@ -9,6 +10,36 @@ export default {
 		defaultFilterDate: 1,
 		options: {},
 		loading: true,
+		// filterDate: [
+		// 	{
+		// 		state: 7,
+		// 		abbr: this.$t("all") + " (From - 26/01/2021)",
+		// 	},
+		// 	{
+		// 		state: 1,
+		// 		abbr: this.$t("today"),
+		// 	},
+		// 	{
+		// 		state: 2,
+		// 		abbr: this.$t("yesterday"),
+		// 	},
+		// 	{
+		// 		state: 3,
+		// 		abbr: this.$t("thisWeek"),
+		// 	},
+		// 	{
+		// 		state: 4,
+		// 		abbr: this.$t("lastWeek"),
+		// 	},
+		// 	{
+		// 		state: 5,
+		// 		abbr: this.$t("thisMonth"),
+		// 	},
+		// 	{
+		// 		state: 6,
+		// 		abbr: this.$t("lastMonth"),
+		// 	},
+		// ],
 		sortBy: 'id|desc',
 	}),
 	computed: {
@@ -73,6 +104,9 @@ export default {
 				},
 			]
 		}
+	},
+	created() {
+
 	},
 	mounted() {
 		// this.beforeSearchMiddleware();
