@@ -4,7 +4,7 @@
 		<v-card class="my-5">
 			<v-card-text>
 				<v-row align="center">
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-dialog
 							ref="dialog"
 							v-model="modal"
@@ -51,6 +51,15 @@
 					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
+							v-model="playersType"
+							:items="defaultPlayersType"
+							item-value="key"
+							item-text="value"
+							:label="$t('playerType')"
+						/>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
 							item-value="state"
@@ -67,7 +76,7 @@
 							:label="$t('columnName')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
 							:label="$t('searchText')"
@@ -351,6 +360,15 @@
 		data() {
 			return {
 				sortBy: "id|desc",
+				playersType: 1, // 0 = Other Sources, 1 = Registered Through Banner, 2 = Registered IP viewers but not clicked on banner.
+				defaultPlayersType: [
+					{ key: 0, value: this.$t("otherSources") },
+					{ key: 1, value: this.$t("regThroughBanner") },
+					{
+						key: 2,
+						value: this.$t("regIpViewerButNotClick"),
+					},
+				],
 			};
 		},
 		computed: {
@@ -378,6 +396,8 @@
 					},
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalProfit"), value: "totalresult" },
+					{ text: this.$t("totalBonus"), value: "totalbonus" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
 					{ text: this.$t("country"), value: "country" },
 					// { text: "Language", value: "language" },

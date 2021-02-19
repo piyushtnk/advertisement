@@ -27,6 +27,7 @@
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
+					registerWithUs: value.registerWithUs,
 				});
 			},
 		},
