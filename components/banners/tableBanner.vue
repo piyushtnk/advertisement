@@ -264,6 +264,13 @@
 						<v-icon @click="downloadCode(item)" large color="blue">
 							mdi-code-braces-box
 						</v-icon>
+						<v-icon
+							@click="checkRegisteredPlayers(item)"
+							large
+							color="yellow"
+						>
+							mdi-account-group
+						</v-icon>
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -375,6 +382,12 @@
 				document.body.appendChild(element);
 				element.click();
 				document.body.removeChild(element);
+			},
+
+			checkRegisteredPlayers(row) {
+				this.$router.push(
+					this.localePath(`/system/registered-players?bannerId=${row.id}`)
+				);
 			},
 
 			close() {

@@ -1,4 +1,3 @@
-console.log(this);
 export default {
 	data: () => ({
 		search: {

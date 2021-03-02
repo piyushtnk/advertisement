@@ -2,6 +2,7 @@
 const state = () => ({
 	clients: [],
 	players: [],
+	regPlayers: [],
 	otherPlayers: [],
 	ipClients: []
 });
@@ -108,6 +109,15 @@ const actions = {
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
+	},
+
+	// Registered players listing
+	async getRegisteredPlayers({ commit }, id) {
+		await this.$axios
+			.get(`/player/banner/${id}`)
+			.then(response => {
+				commit("SET_REG_PLAYERS", response.data.data);
+			});
 	}
 };
 
@@ -124,7 +134,10 @@ const mutations = {
 	},
 	SET_IP_CLIENTS(state, response) {
 		state.ipClients = response;
-	}
+	},
+	SET_REG_PLAYERS(state, response) {
+		state.regPlayers = response;
+	},
 };
 
 // Getters
@@ -134,6 +147,9 @@ const getters = {
 	},
 	getPlayers: state => {
 		return state.players;
+	},
+	getRegPlayers: state => {
+		return state.regPlayers;
 	},
 	getOtherPlayers: state => {
 		return state.otherPlayers;
