@@ -23,7 +23,11 @@
 						</v-row>
 						<v-row class="">
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -37,7 +41,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -51,7 +59,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -65,7 +77,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -94,7 +110,11 @@
 						</v-row>
 						<v-row class="">
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -108,7 +128,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -122,7 +146,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -140,7 +168,11 @@
 								</v-card>
 							</v-col>
 							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -169,7 +201,11 @@
 						</v-row>
 						<v-row class="">
 							<v-col cols="12" lg="12" md="12" sm="12">
-								<v-card class="mx-auto" outlined>
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="statistics2Loading"
+								>
 									<v-card-title class="display-1">
 										{{
 											isNull(
@@ -190,139 +226,153 @@
 		</v-row>
 
 		<!-- PC AND Mobile -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/clients?filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.allClients }}
-					</v-card-title>
-					<v-card-text>
-						{{ $t("overallClicksOnBanners") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
+		<v-card class="mx-auto mt-5" elevation="2">
+			<v-card-text>
+				<v-row>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/clients?filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.allClients }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("overallClicksOnBanners") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
 
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/clients?unique=true&filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.uniqueClients }}
-					</v-card-title>
-					<v-card-text>
-						{{ $t("uniqueClicksOnBanners") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/clients?unique=true&filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.uniqueClients }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("uniqueClicksOnBanners") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
 
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/players?filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.registeredPlayersThroughBanners }}
-					</v-card-title>
-					<v-card-text>
-						{{ $t("regPlayersFromBanners") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/players?filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.registeredPlayersThroughBanners }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("regPlayersFromBanners") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
+				</v-row>
 
-		<!-- Registered players, Top-up players and Unique clients  -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/players?topUp=true&filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.topupPlayersCountFromAllSources }}
-					</v-card-title>
-					<v-card-text>
-						{{ $t("topPlayersFromAllSources") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/clients?unique=true&device=pc&filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.clientsFromPcCount }}
-					</v-card-title>
-					<v-card-text
-						>{{ $t("uniqueBannerClicksFromPC") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/clients?unique=true&device=smartphone&filterType=' +
-						filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ statistics.clientsFromMobileCount }}
-					</v-card-title>
-					<v-card-text>
-						{{ $t("uniqueBannerClicksFromMobile") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
+				<!-- Registered players, Top-up players and Unique clients  -->
+				<v-row>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/players?topUp=true&filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.topupPlayersCountFromAllSources }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("topPlayersFromAllSources") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/clients?unique=true&device=pc&filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.clientsFromPcCount }}
+							</v-card-title>
+							<v-card-text
+								>{{ $t("uniqueBannerClicksFromPC") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+							:to="
+								'/system/clients?unique=true&device=smartphone&filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ statistics.clientsFromMobileCount }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("uniqueBannerClicksFromMobile") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
+				</v-row>
 
-		<!-- IP 2 -->
-		<v-row>
-			<v-col cols="12" lg="4" md="4" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:to="
-						'/system/ip?filterType=' + filterType.defaultFilterDate
-					"
-				>
-					<v-card-title class="display-1">
-						{{ ipClients.total }}
-					</v-card-title>
-					<v-card-text> {{ $t("bannerViewers") }} </v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
+				<!-- IP 2 -->
+				<v-row>
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="ipClientsLoading"
+							:to="
+								'/system/ip?filterType=' +
+								filterType.defaultFilterDate
+							"
+						>
+							<v-card-title class="display-1">
+								{{ ipClients.total }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("bannerViewers") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
 
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">
 			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card>
+				<v-card :loading="statistics2Loading">
 					<v-card-title class="subheading font-weight-bold">
 						{{ $t("fromBrowser") }}
 					</v-card-title>
@@ -366,7 +416,7 @@
 				</v-card>
 			</v-col>
 			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card>
+				<v-card :loading="statistics2Loading">
 					<v-card-title class="subheading font-weight-bold">
 						{{ $t("fromOS") }}
 					</v-card-title>
@@ -414,7 +464,11 @@
 		<!-- Top 5 Banner listing -->
 		<v-row class="mt-5">
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:loading="statisticsLoading"
+				>
 					<v-card-title class="display-1">
 						{{ $t("topRecentBannersPer") }}
 					</v-card-title>
@@ -543,6 +597,18 @@
 			filterType: {
 				type: Object,
 			},
+			statistics2Loading: {
+				type: Boolean,
+				default: false,
+			},
+			statisticsLoading: {
+				type: Boolean,
+				default: false,
+			},
+			ipClientsLoading: {
+				type: Boolean,
+				default: false,
+			},
 		},
 		mounted() {
 			this.$store.dispatch("getIpClients", {
@@ -559,6 +625,17 @@
 				statistics2: "getStatistics2",
 				ipClients: "getIpClients",
 			}),
+		},
+		watch: {
+			statistics() {
+				this.$emit("update:statisticsLoading", false);
+			},
+			statistics2() {
+				this.$emit("update:statistics2Loading", false);
+			},
+			ipClients() {
+				this.$emit("update:ipClientsLoading", false);
+			},
 		},
 		methods: {
 			...mapActions(["getIpClients"]),

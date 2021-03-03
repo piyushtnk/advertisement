@@ -4,208 +4,212 @@
 		<v-row>
 			<v-col cols="12">
 				<v-card>
+					<v-card-title>
+						<v-text-field
+							v-model="search"
+							append-icon="mdi-magnify"
+							label="Search"
+							single-line
+							hide-details
+						></v-text-field>
+					</v-card-title>
 					<v-card-text>
 						<v-data-table
 							:headers="headers"
 							:items="players"
-							item-key="id"
+							item-key="playerId"
 							class="elevation-1"
 							:search="search"
 							show-expand
 							single-expand
 							item-expanded
 						>
+							<template v-slot:[`item.firstName`]="{ item }">
+								{{ item.firstName + " " + item.lastName }}
+							</template>
+
 							<template v-slot:expanded-item="{ headers, item }">
 								<td :colspan="headers.length">
 									<v-row no-gutters>
-										<!-- Col 1 -->
 										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>Create
-														Date</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("loginDevice")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.createdate
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Tag
-														Name</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														arrayToText(
-															item.tagsname
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Total
-														Deposit</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.totaldeposit
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Last Withdraw
-														Time</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.lastwithdrawtime
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Created
-														At</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.createdAt
+															item.loginDevice
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
 											</v-list-item>
 										</v-col>
-
-										<!-- Col 2 -->
 										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>Login
-														Time</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("loginPlatform")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.logintime
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Total Deposit
-														Count</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.totaldepositcount
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Last Deposit
-														Time</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.lastdeposittime
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>UL Agent
-														Account</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.ulagentaccount
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title
-														>Updated
-														At</v-list-item-title
-													>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.updatedAt
+															item.loginPlatform
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
 											</v-list-item>
 										</v-col>
-
-										<!-- Col 3 -->
 										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>Registered
-														IP</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("currency")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.regip
+															item.currency
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
 											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>Total
-														Withdraw</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("depositAmount")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.totalwithdraw
+															item.depositAmount
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
 											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>Total Withdraw
-														Count</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("depositAverage")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.totalwithdrawcount
+															item.depositAverage
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
 											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
-													<v-list-item-title
-														>UL Agent
-														ID</v-list-item-title
-													>
+													<v-list-item-title>{{
+														$t("depositCount")
+													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.ulagentid
+															item.depositCount
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("email")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.email
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("firstDepositTime")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.firstDepositTime
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t(
+															"firstWithdrawalTime"
+														)
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.firstWithdrawalTime
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("lastLoginTime")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.lastLoginTime
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("totalBonus")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.totalBonus
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("totalValidBet")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.validBet
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("withdrawAverage")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.withdrawAverage
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
@@ -232,7 +236,6 @@
 		data() {
 			return {
 				search: "",
-				calories: "",
 			};
 		},
 		computed: {
@@ -241,29 +244,20 @@
 			}),
 			headers() {
 				return [
-					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("mobile"), value: "mobile" },
-					{ text: this.$t("registrationTime"), value: "createdate" },
-					{ text: this.$t("ip"), value: "regip" },
-					{ text: this.$t("device"), value: "logindevice" },
-					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
-					{ text: this.$t("totalTopUp"), value: "depositAmount" },
+					{ text: this.$t("userId"), value: "playerId" },
+					{ text: this.$t("name"), value: "firstName" },
+					{ text: this.$t("visitIp"), value: "bannerVisitIp" },
+					{ text: this.$t("registrationIp"), value: "registrationIp" },
 					{
-						text: this.$t("totalTopUpCount"),
-						value: "depositCount",
+						text: this.$t("registrationDate"),
+						value: "registrationDate",
 					},
-					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
+					{ text: this.$t("originSource"), value: "originSource" },
 					{
-						text: this.$t("totalWithdrawalCount"),
-						value: "totalwithdrawcount",
+						text: this.$t("firstVisitTime"),
+						value: "firstVisitTime",
 					},
-					{ text: this.$t("totalClaimed"), value: "totalbonus" },
-					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
-					{ text: this.$t("totalValidBet"), value: "validbet" },
-					{ text: this.$t("country"), value: "country" },
-					// { text: "Language", value: "language" },
-					{ text: this.$t("noOfIp"), value: "logincount" },
+					{ text: this.$t("numberOfVisits"), value: "numberOfVisits" },
 				];
 			},
 		},

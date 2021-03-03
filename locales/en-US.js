@@ -174,7 +174,23 @@ export default async (context, locale) => {
 		registerYourBanner: 'Register Your Banner',
 		areYouSure: 'Are you sure you want to delete this item?',
 		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
-		WindowsPhoneOS: 'Windows Phone OS.'
+		WindowsPhoneOS: 'Windows Phone OS.',
 
+		visitIp: 'Visit Ip',
+		depositAmount: 'Deposit Amount',
+		depositAverage: 'Deposit Average',
+		depositCount: 'Deposit Count',
+		email: 'E-Mail',
+		firstDepositTime: 'First Deposit Time',
+		firstVisitTime: 'First Visit Time',
+		firstWithdrawalTime: 'First Withdrawal Time',
+		lastLoginTime: 'Last Login Time',
+		loginDevice: 'Login Device',
+		loginPlatform: 'Login Platform',
+		originSource: 'Origin Source',
+		registrationDate: 'Registration Date',
+		registrationIp: 'Registration Ip',
+		withdrawAverage: 'Withdrawal Average',
+		numberOfVisits: 'Total Visits',
 	})
 }

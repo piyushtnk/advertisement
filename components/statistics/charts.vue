@@ -64,16 +64,21 @@
 		<!-- Chart World -->
 		<v-row>
 			<v-col cols="12">
-				<v-card class="mx-auto" outlined color="#FDFDFD">
-					<v-list-item three-line>
-						<v-list-item-content>
-							<div class="overline mb-4 text-dark">
-								WORLD CHART
-							</div>
+				<v-card
+					class="mx-auto"
+					:loading="loading"
+					:loader-height="7"
+					shaped
+				>
+					<v-card-text style="background-color: #fdfdfd">
+						<v-list-item three-line>
+							<v-list-item-content>
+								<div class="overline mb-4 text-dark"></div>
 
-							<div id="chartdiv"></div>
-						</v-list-item-content>
-					</v-list-item>
+								<div id="chartdiv"></div>
+							</v-list-item-content>
+						</v-list-item>
+					</v-card-text>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -92,6 +97,7 @@
 				chart: {},
 				date: [],
 				modal: false,
+				loading: true,
 			};
 		},
 		props: {
@@ -101,6 +107,7 @@
 		},
 		created() {
 			this.chartCore.am4core.useTheme(this.chartCore.am4themes_animated);
+			this.chartCore.am4core.useTheme(this.chartCore.am4themes_material);
 		},
 		mounted() {
 			this.chart = this.chartCore.am4core.create(
@@ -217,9 +224,11 @@
 		},
 		watch: {
 			statistics(value) {
+				this.loading = false;
 				this.polygonSeries.data = value.graph;
 			},
 			"filterType.defaultFilterDate"(value) {
+				this.loading = true;
 				this.$emit("childFilterForCounter", { duration: value });
 			},
 		},
@@ -240,5 +249,6 @@
 	#chartdiv {
 		width: 100%;
 		height: 50vh;
+		background-color: "#FDFDFD";
 	}
 </style>

@@ -2,7 +2,11 @@
 	<div>
 		<v-row class="mt-5">
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card
+					class="mx-auto mt-5"
+					outlined
+					:loading="last10MinuteLoading"
+				>
 					<v-card-title class="display-1">
 						{{ $t("last10MinuteBannerList") }}
 					</v-card-title>
@@ -130,6 +134,12 @@
 				defaultFilterDate: 1,
 			};
 		},
+		props: {
+			last10MinuteLoading: {
+				type: Boolean,
+				default: true,
+			},
+		},
 		mounted() {
 			// Hitting parents.
 			this.$emit("childFilterForCounter");
@@ -138,6 +148,11 @@
 			...mapGetters({
 				last10MinuteBanners: "getLast10MinuteBanners",
 			}),
+		},
+		watch: {
+			last10MinuteBanners() {
+				this.$emit("update:last10MinuteLoading", false);
+			},
 		},
 		methods: {
 			getImage(imageName, imageType) {

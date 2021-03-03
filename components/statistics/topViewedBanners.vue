@@ -2,7 +2,7 @@
 	<div>
 		<v-row class="mt-5">
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card class="mx-auto mt-5" outlined>
+				<v-card class="mx-auto mt-5" outlined :loading="topViewLoading">
 					<v-card-title class="display-1">
 						{{ $t("topViewedBannersPerByVisitorIp") }}
 					</v-card-title>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters } from "vuex";
+	import { mapGetters } from "vuex";
 
 	export default {
 		name: "TopViewedBannersComponent",
@@ -129,6 +129,12 @@
 				date: [],
 				defaultFilterDate: 1,
 			};
+		},
+		props: {
+			topViewLoading: {
+				type: Boolean,
+				default: true,
+			},
 		},
 		mounted() {
 			// Hitting parents.
@@ -142,6 +148,11 @@
 			...mapGetters({
 				topViewedBanners: "getTopViewedBanners",
 			}),
+		},
+		watch: {
+			topViewedBanners() {
+				this.$emit("update:topViewLoading", false);
+			},
 		},
 		methods: {
 			getImage(imageName, imageType) {

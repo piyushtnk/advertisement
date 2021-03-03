@@ -24,13 +24,20 @@
 		/>
 
 		<!-- Counter Live -->
-		<CounterComponent :filterType="filterType" />
+		<CounterComponent
+			:filterType="filterType"
+			:statistics2Loading.sync="statistics2Loading"
+			:statisticsLoading.sync="statisticsLoading"
+			:ipClientsLoading.sync="ipClientsLoading"
+		/>
 
 		<!-- Top 10 Banner -->
-		<TopViewedBannersComponent />
+		<TopViewedBannersComponent :topViewLoading.sync="topViewLoading" />
 
 		<!-- Last 10 Minute Banners List -->
-		<Last10MinuteBannersComponent />
+		<Last10MinuteBannersComponent
+			:last10MinuteLoading.sync="last10MinuteLoading"
+		/>
 	</div>
 </template>
 
@@ -78,6 +85,11 @@
 						},
 					],
 				},
+				statistics2Loading: true,
+				statisticsLoading: true,
+				ipClientsLoading: true,
+				topViewLoading: true,
+				last10MinuteLoading: true,
 			};
 		},
 		mounted() {
@@ -105,6 +117,14 @@
 				getLast10MinuteBanners: "getLast10MinuteBanners",
 			}),
 			filterValueForStatistics(value) {
+				// Set loading
+				this.statistics2Loading = true;
+				this.statisticsLoading = true;
+				this.ipClientsLoading = true;
+				this.topViewLoading = true;
+				this.last10MinuteLoading = true;
+
+				// Fire actions
 				this.$store.dispatch("getStatistics", {
 					duration: value.duration,
 					startDate: value.startDate,

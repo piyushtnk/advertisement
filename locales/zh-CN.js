@@ -176,6 +176,23 @@ export default async (context, locale) => {
 		areYouSure: '你确定要删除这个项目吗?',
 
 		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
-		WindowsPhoneOS: 'Windows Phone OS.'
+		WindowsPhoneOS: 'Windows Phone OS.',
+
+		visitIp: '访问叶',
+		depositAmount: '存款金额',
+		depositAverage: '平均存款',
+		depositCount: '存款数量',
+		email: '电子邮件',
+		firstDepositTime: '首次存款时间',
+		firstVisitTime: '首次访问时间',
+		firstWithdrawalTime: '首次提款时间',
+		lastLoginTime: '上次登录时间',
+		loginDevice: '登录设备',
+		loginPlatform: '登录平台',
+		originSource: '来源来源',
+		registrationDate: '登记日期',
+		registrationIp: '注册IP',
+		withdrawAverage: '平均提款',
+		numberOfVisits: '总造访',
 	};
 };
