@@ -135,6 +135,12 @@
 						</a>
 					</template>
 
+					<template v-slot:[`item.apiLink`]="{ item }">
+						<a :href="getApiUrl(item)" target="_blank">
+							{{ getApiUrl(item) }}
+						</a>
+					</template>
+
 					<template v-slot:[`item.api`]="{ item }">
 						<a :href="findImage(item)" target="_blank">
 							{{ findImage(item) }}
@@ -324,6 +330,7 @@
 				return [
 					{ text: this.$t("banner"), value: "uniqueId" },
 					{ text: this.$t("bannerLink"), value: "url" },
+					{ text: this.$t("apiLink"), value: "apiLink" },
 					{ text: this.$t("containerLink"), value: "api" },
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
@@ -345,6 +352,10 @@
 			},
 			getUrl(item) {
 				return window.location.origin + "/" + item.uniqueId;
+			},
+
+			getApiUrl(item) {
+				return `http://999.money/api/image/banner/${item.uniqueId}`;
 			},
 
 			// Actions area

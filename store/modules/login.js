@@ -17,6 +17,8 @@ const actions = {
 				responseData.token = response.headers.token;
 				commit("SET_LOGIN", responseData);
 				commit("SET_LAYOUT_SNACKBAR_TEXT", "Successfully logged in.");
+
+				// Local storing
 				localStorage.token = responseData.token;
 				return true;
 			})

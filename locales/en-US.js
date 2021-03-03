@@ -192,5 +192,6 @@ export default async (context, locale) => {
 		registrationIp: 'Registration Ip',
 		withdrawAverage: 'Withdrawal Average',
 		numberOfVisits: 'Total Visits',
+		apiLink: 'Api Link'
 	})
 }

@@ -194,5 +194,7 @@ export default async (context, locale) => {
 		registrationIp: '注册IP',
 		withdrawAverage: '平均提款',
 		numberOfVisits: '总造访',
+		apiLink: 'api链接'
+
 	};
 };
