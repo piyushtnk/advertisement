@@ -30,9 +30,8 @@ const actions = {
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_TEXT", error.response.data.error, { root: true });
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				throw error.response ? error.response.data.error : error;
 			});
 	},
 
@@ -88,7 +87,7 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: data.sortBy,
+					sort: data.sort,
 					limit: data.limit,
 					page: data.page,
 					search: data.search

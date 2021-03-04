@@ -33,7 +33,7 @@
 					exact
 				>
 					<v-list-item-action>
-						<v-icon>{{ item.icon }}</v-icon>
+						<v-icon :color="item.color">{{ item.icon }}</v-icon>
 					</v-list-item-action>
 					<v-list-item-content>
 						<v-list-item-title v-text="$t(item.title)" />
@@ -116,31 +116,37 @@
 						icon: "mdi-home",
 						title: "layout.dashboard",
 						to: "/system",
+						color: "white",
 					},
 					{
 						icon: "mdi-chart-bar",
 						title: "layout.statistics",
 						to: "/system/statistics",
+						color: "white",
 					},
 					{
 						icon: "mdi-image",
 						title: "layout.banner",
 						to: "/system/banner",
+						color: "white",
 					},
 					{
 						icon: "mdi-account-group",
 						title: "layout.clients",
 						to: "/system/clients",
+						color: "white",
 					},
 					{
 						icon: "mdi-account-arrow-left",
 						title: "layout.players",
 						to: "/system/players",
+						color: "white",
 					},
 					{
 						icon: "mdi-clipboard-file",
 						title: "layout.reports",
 						to: "/system/reports",
+						color: "white",
 					},
 					// {
 					// 	icon: "mdi-account-switch",
@@ -151,6 +157,13 @@
 						icon: "mdi-ip",
 						title: "layout.ipClients",
 						to: "/system/ip",
+						color: "white",
+					},
+					{
+						icon: "mdi-information",
+						title: "layout.information",
+						to: "/system/information",
+						color: "white",
 					},
 				],
 				miniVariant: false,

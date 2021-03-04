@@ -15,7 +15,8 @@ export default async (context, locale) => {
 			statistics: 'Statistics',
 			reports: 'Reports',
 			otherPlayers: 'Other Players',
-			ipClients: 'API IP Clients'
+			ipClients: 'API IP Clients',
+			information: 'Information'
 		},
 		dashboard: {
 			recentInteractionUserGraph: 'Recent interaction users graph',
@@ -176,7 +177,7 @@ export default async (context, locale) => {
 		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
 		WindowsPhoneOS: 'Windows Phone OS.',
 
-		visitIp: 'Visit Ip',
+		firstVisitIp: 'First Visit Ip',
 		depositAmount: 'Deposit Amount',
 		depositAverage: 'Deposit Average',
 		depositCount: 'Deposit Count',
@@ -192,6 +193,18 @@ export default async (context, locale) => {
 		registrationIp: 'Registration Ip',
 		withdrawAverage: 'Withdrawal Average',
 		numberOfVisits: 'Total Visits',
-		apiLink: 'Api Link'
+		apiLink: 'Api Link',
+		agentBy: 'Agent By',
+		firstClickTime: 'First Click Time',
+		bannerId: 'Banner Id',
+		supportedFormat: 'Supported format',
+
+		information: {
+			heading: "Detailed information about every page",
+			clients: "This page contain all the clients/players who clicked on banner it doesn't matter either they are registered with us or not.",
+			players: "This page contain only players who did registered with us or other sources - all players are from b91.com",
+			reports: "This page contain extra information of players in details like total bet, total amount etc.",
+			ipClients: "This page contain all clients or players, who has loaded or viewed our banner image into their device browser."
+		}
 	})
 }

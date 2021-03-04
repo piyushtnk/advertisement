@@ -246,8 +246,8 @@
 											<v-list-item two-line>
 												<v-list-item-content>
 													<v-list-item-title
-														>UL Agent
-														Account</v-list-item-title
+														>Agent
+														By</v-list-item-title
 													>
 													<v-list-item-subtitle>{{
 														fixParameters(
@@ -397,6 +397,7 @@
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("mobile"), value: "mobile" },
 					{ text: this.$t("ip"), value: "regip" },
+					{ text: this.$t("agentBy"), value: "ulagentaccount" },
 					{ text: this.$t("device"), value: "logindevice" },
 					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },

@@ -25,7 +25,11 @@
 							item-expanded
 						>
 							<template v-slot:[`item.firstName`]="{ item }">
-								{{ item.firstName + " " + item.lastName }}
+								{{
+									isNull(item.firstName) +
+									" " +
+									isNull(item.lastName)
+								}}
 							</template>
 
 							<template v-slot:expanded-item="{ headers, item }">
@@ -80,7 +84,7 @@
 														$t("depositAmount")
 													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
-														fixParameters(
+														numberFormat(
 															item.depositAmount
 														)
 													}}</v-list-item-subtitle>
@@ -94,7 +98,7 @@
 														$t("depositAverage")
 													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
-														fixParameters(
+														numberFormat(
 															item.depositAverage
 														)
 													}}</v-list-item-subtitle>
@@ -180,7 +184,7 @@
 														$t("totalBonus")
 													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
-														fixParameters(
+														numberFormat(
 															item.totalBonus
 														)
 													}}</v-list-item-subtitle>
@@ -194,7 +198,7 @@
 														$t("totalValidBet")
 													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
-														fixParameters(
+														numberFormat(
 															item.validBet
 														)
 													}}</v-list-item-subtitle>
@@ -215,6 +219,34 @@
 												</v-list-item-content>
 											</v-list-item>
 										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("agentBy")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.agentAccount
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
+										<v-col lg="4" md="6" sm="12">
+											<v-list-item two-line>
+												<v-list-item-content>
+													<v-list-item-title>{{
+														$t("bannerId")
+													}}</v-list-item-title>
+													<v-list-item-subtitle>{{
+														fixParameters(
+															item.firstViewedBannerId
+														)
+													}}</v-list-item-subtitle>
+												</v-list-item-content>
+											</v-list-item>
+										</v-col>
 									</v-row>
 								</td>
 							</template>
@@ -229,10 +261,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
+	import GlobalMixin from "~/mixins/global";
 
 	export default {
 		name: "TableComponent",
-		mixins: [Variables],
+		mixins: [Variables, GlobalMixin],
 		data() {
 			return {
 				search: "",
@@ -246,17 +279,19 @@
 				return [
 					{ text: this.$t("userId"), value: "playerId" },
 					{ text: this.$t("name"), value: "firstName" },
-					{ text: this.$t("visitIp"), value: "bannerVisitIp" },
+					{ text: this.$t("firstVisitIp"), value: "bannerVisitIp" },
+					{
+						text: this.$t("firstVisitTime"),
+						value: "firstVisitTime",
+					},
+					{ text: this.$t("firstClickTime"), value: "firstVisitTime" },
 					{ text: this.$t("registrationIp"), value: "registrationIp" },
 					{
 						text: this.$t("registrationDate"),
 						value: "registrationDate",
 					},
 					{ text: this.$t("originSource"), value: "originSource" },
-					{
-						text: this.$t("firstVisitTime"),
-						value: "firstVisitTime",
-					},
+
 					{ text: this.$t("numberOfVisits"), value: "numberOfVisits" },
 				];
 			},
@@ -265,11 +300,7 @@
 			const bannerId = this.$route.query.bannerId;
 			this.$store.dispatch("getRegisteredPlayers", bannerId);
 		},
-		methods: {
-			fixParameters(value) {
-				return value ? value : "-";
-			},
-		},
+		methods: {},
 		watch: {},
 	};
 </script>

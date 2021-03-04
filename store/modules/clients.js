@@ -94,7 +94,7 @@ const actions = {
 					duration: data.duration ? data.duration : null,
 					startDate: data.startDate ? data.startDate : null,
 					endDate: data.endDate ? data.endDate : null,
-					sort: data.sortBy,
+					sort: data.sort,
 					limit: data.limit,
 					page: data.page,
 					search: data.search,

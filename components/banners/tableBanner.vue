@@ -232,31 +232,33 @@
 								</v-card-actions>
 							</v-card>
 						</v-dialog>
-						<v-dialog
+						<v-bottom-sheet
 							v-model="dialogDelete"
-							max-width="500px"
-							transition="dialog-top-transition"
+							overlay-color="yellow"
+							:overlay-opacity="0.5"
 						>
-							<v-card color="red">
-								<v-card-title class="headline">{{
-									$t("areYouSure")
-								}}</v-card-title>
-								<v-card-actions>
-									<v-spacer></v-spacer>
-									<v-btn text @click="closeDelete">{{
-										$t("cancel")
-									}}</v-btn>
-									<v-btn
-										text
-										@click="deleteItemConfirm"
-										depressed
-										:loading="loading"
-										>{{ $t("ok") }}</v-btn
-									>
-									<v-spacer></v-spacer>
-								</v-card-actions>
-							</v-card>
-						</v-dialog>
+							<v-sheet class="text-center pt-5" height="300px">
+								<div class="mb-5 text-h4 text-uppercase">
+									{{ $t("areYouSure") }}
+								</div>
+								<v-btn
+									text
+									@click="closeDelete"
+									color="default"
+									>{{ $t("cancel") }}</v-btn
+								>
+								<v-btn
+									text
+									@click="deleteItemConfirm"
+									depressed
+									outlined
+									color="red"
+									class="ml-5"
+									:loading="loading"
+									>{{ $t("ok") }}</v-btn
+								>
+							</v-sheet>
+						</v-bottom-sheet>
 					</template>
 
 					<!-- Actions -->
@@ -328,10 +330,14 @@
 			},
 			headers() {
 				return [
-					{ text: this.$t("banner"), value: "uniqueId" },
-					{ text: this.$t("bannerLink"), value: "url" },
-					{ text: this.$t("apiLink"), value: "apiLink" },
-					{ text: this.$t("containerLink"), value: "api" },
+					{ text: this.$t("banner"), value: "uniqueId", sortable: false },
+					{ text: this.$t("bannerLink"), value: "url", sortable: false },
+					{ text: this.$t("apiLink"), value: "apiLink", sortable: false },
+					{
+						text: this.$t("containerLink"),
+						value: "api",
+						sortable: false,
+					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("clicks"), value: "allClientsCount" },

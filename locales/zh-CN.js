@@ -15,7 +15,8 @@ export default async (context, locale) => {
 			statistics: "统计",
 			reports: "报告",
 			otherPlayers: "其他玩家",
-			ipClients: "API IP 客户"
+			ipClients: "API IP 客户",
+			information: 'Information'
 		},
 		dashboard: {
 			recentInteractionUserGraph: "最近的互动用户图",
@@ -178,7 +179,7 @@ export default async (context, locale) => {
 		WindowsUNKNOWNVer: 'Windows Unknown Ver.',
 		WindowsPhoneOS: 'Windows Phone OS.',
 
-		visitIp: '访问叶',
+		firstVisitIp: '首次访问IP',
 		depositAmount: '存款金额',
 		depositAverage: '平均存款',
 		depositCount: '存款数量',
@@ -194,7 +195,19 @@ export default async (context, locale) => {
 		registrationIp: '注册IP',
 		withdrawAverage: '平均提款',
 		numberOfVisits: '总造访',
-		apiLink: 'api链接'
+		apiLink: 'api链接',
+		agentBy: '代理人',
+		information: '信息',
+		firstClickTime: '首次点击时间',
+		bannerId: '横幅ID',
+		supportedFormat: '支持格式',
 
+		information: {
+			heading: "每页的详细信息",
+			clients: "此页面包含单击横幅的所有客户/玩家，无论他们是否向我们注册都无所谓。",
+			players: "此页面仅包含已向我们或其他来源注册的玩家-所有玩家均来自b91.com",
+			reports: "此页面包含玩家的额外信息，例如总投注，总金额等详细信息。",
+			ipClients: "该页面包含所有已将我们的横幅图片加载或查看到其设备浏览器中的客户端或播放器。"
+		}
 	};
 };

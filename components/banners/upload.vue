@@ -18,6 +18,10 @@
 											@input="$v.bannerImage.$touch()"
 											@blur="$v.bannerImage.$touch()"
 										></v-file-input>
+										<span
+											>{{ $t("supportedFormat") }}: JPEG,
+											JPG, PNG, GIF, WEBP.</span
+										>
 									</v-col>
 
 									<v-col cols="12" lg="4" md="4" sm="12">
@@ -32,9 +36,13 @@
 											item-text="domainName"
 											item-value="domainName"
 										></v-select>
-										<nuxt-link to="/system/banner/domain">
-											{{ $t("addNewDomain") }}
-										</nuxt-link>
+										<span>
+											<nuxt-link
+												to="/system/banner/domain"
+											>
+												{{ $t("addNewDomain") }}
+											</nuxt-link>
+										</span>
 									</v-col>
 
 									<v-col cols="12" lg="4" md="4" sm="12">
