@@ -21,6 +21,7 @@
 		"@sentry/tracing": "^6.0.2",
 		"@sentry/vue": "^6.0.2",
 		"child_process": "^1.0.2",
+		"cookie-universal-nuxt": "^2.1.4",
 		"cookieparser": "^0.1.0",
 		"core-js": "^3.8.3",
 		"fingerprintjs2": "^2.1.2",

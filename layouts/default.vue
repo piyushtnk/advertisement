@@ -45,6 +45,27 @@
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 			<v-toolbar-title v-text="title" />
 			<v-spacer />
+
+			<!-- LoggedIn user -->
+			<v-menu offset-y>
+				<template v-slot:activator="{ on, attrs }">
+					<v-btn icon v-bind="attrs" v-on="on">
+						<v-icon>mdi-account</v-icon>
+					</v-btn>
+				</template>
+				<v-list>
+					<v-list-item>
+						<v-list-item
+							>Welcome,
+							{{
+								$cookie.get("user").firstName +
+								" " +
+								$cookie.get("user").lastName
+							}}
+						</v-list-item>
+					</v-list-item>
+				</v-list>
+			</v-menu>
 			<!-- Language change -->
 			<v-menu offset-y>
 				<template v-slot:activator="{ on, attrs }">
@@ -157,6 +178,12 @@
 						icon: "mdi-ip",
 						title: "layout.ipClients",
 						to: "/system/ip",
+						color: "white",
+					},
+					{
+						icon: "mdi-account-cash",
+						title: "deposit",
+						to: "/system/deposit",
 						color: "white",
 					},
 					{

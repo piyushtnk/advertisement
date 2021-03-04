@@ -185,7 +185,7 @@ export default async (context, locale) => {
 		depositCount: '存款数量',
 		email: '电子邮件',
 		firstDepositTime: '首次存款时间',
-		firstVisitTime: '首次访问时间',
+		firstVisitTime: '首次观看时间',
 		firstWithdrawalTime: '首次提款时间',
 		lastLoginTime: '上次登录时间',
 		loginDevice: '登录设备',
@@ -198,7 +198,7 @@ export default async (context, locale) => {
 		apiLink: 'api链接',
 		agentBy: '代理人',
 		information: '信息',
-		firstClickTime: '首次点击时间',
+		firstClickTime: '首次访问时间',
 		bannerId: '横幅ID',
 		supportedFormat: '支持格式',
 
@@ -208,6 +208,23 @@ export default async (context, locale) => {
 			players: "此页面仅包含已向我们或其他来源注册的玩家-所有玩家均来自b91.com",
 			reports: "此页面包含玩家的额外信息，例如总投注，总金额等详细信息。",
 			ipClients: "该页面包含所有已将我们的横幅图片加载或查看到其设备浏览器中的客户端或播放器。"
-		}
+		},
+
+		deposit: '订金',
+		auditTime: '审核时间',
+		depositId: '存款编号',
+		depositTime: "入金时间",
+		group: '团体',
+		receivedDeposit: '收到定金',
+		remarks: '评论',
+		thirdPartyOrderNo: '第三方订单号',
+		thirdPartyBankCode: '第三方银行代码',
+		thirdPartyPaymentCode: "第三方付款代码",
+		thirdPartyPaymentName: '第三方付款名称',
+		vipId: 'VIP编号',
+		downloadCode: '下载代码',
+		delete: '删除',
+		edit: '编辑',
+		registeredPlayersAlert: '所有这些玩家都可以单击横幅，也可以只是在设备浏览器中查看横幅，然后将其存入他们的帐户。'
 	};
 };

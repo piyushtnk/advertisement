@@ -16,10 +16,13 @@ const actions = {
 				let responseData = response.data.data;
 				responseData.token = response.headers.token;
 				commit("SET_LOGIN", responseData);
-				commit("SET_LAYOUT_SNACKBAR_TEXT", "Successfully logged in.");
+
+				commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+				commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged In successfully.");
 
 				// Local storing
 				localStorage.token = responseData.token;
+				this.$cookie.set('user', responseData)
 				return true;
 			})
 			.catch(error => {

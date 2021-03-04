@@ -4,7 +4,8 @@ const state = () => ({
 	players: [],
 	regPlayers: [],
 	otherPlayers: [],
-	ipClients: []
+	ipClients: [],
+	deposit: [],
 });
 
 // Actions
@@ -111,6 +112,30 @@ const actions = {
 			});
 	},
 
+	// Getting deposit details
+	async getDeposit({ commit }, data) {
+		await this.$axios
+			.get("/deposits/all", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+					sort: data.sort,
+					limit: data.limit,
+					page: data.page,
+					search: data.search,
+				}
+			})
+			.then(response => {
+				commit("SET_DEPOSIT", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
 	// Registered players listing
 	async getRegisteredPlayers({ commit }, id) {
 		await this.$axios
@@ -138,6 +163,9 @@ const mutations = {
 	SET_REG_PLAYERS(state, response) {
 		state.regPlayers = response;
 	},
+	SET_DEPOSIT(state, response) {
+		state.deposit = response;
+	},
 };
 
 // Getters
@@ -156,6 +184,9 @@ const getters = {
 	},
 	getIpClients: state => {
 		return state.ipClients;
+	},
+	getDeposit: state => {
+		return state.deposit;
 	}
 };
 

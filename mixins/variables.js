@@ -74,12 +74,8 @@ export default {
 			]
 		}
 	},
-	created() {
-
-	},
-	mounted() {
-		// this.beforeSearchMiddleware();
-	},
+	created() { },
+	mounted() { },
 	methods: {
 		readDataFromAPI() {
 			this.loading = true;

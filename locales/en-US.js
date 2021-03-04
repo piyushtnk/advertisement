@@ -183,7 +183,7 @@ export default async (context, locale) => {
 		depositCount: 'Deposit Count',
 		email: 'E-Mail',
 		firstDepositTime: 'First Deposit Time',
-		firstVisitTime: 'First Visit Time',
+		firstVisitTime: 'First View Time',
 		firstWithdrawalTime: 'First Withdrawal Time',
 		lastLoginTime: 'Last Login Time',
 		loginDevice: 'Login Device',
@@ -195,7 +195,7 @@ export default async (context, locale) => {
 		numberOfVisits: 'Total Visits',
 		apiLink: 'Api Link',
 		agentBy: 'Agent By',
-		firstClickTime: 'First Click Time',
+		firstClickTime: 'First Visit Time',
 		bannerId: 'Banner Id',
 		supportedFormat: 'Supported format',
 
@@ -205,6 +205,23 @@ export default async (context, locale) => {
 			players: "This page contain only players who did registered with us or other sources - all players are from b91.com",
 			reports: "This page contain extra information of players in details like total bet, total amount etc.",
 			ipClients: "This page contain all clients or players, who has loaded or viewed our banner image into their device browser."
-		}
+		},
+
+		deposit: 'Deposit',
+		auditTime: 'Audit Time',
+		depositId: 'Deposit Id',
+		depositTime: "Deposit Time",
+		group: 'Group',
+		receivedDeposit: 'Received Deposit',
+		remarks: 'Remarks',
+		thirdPartyOrderNo: 'Third Party Order No.',
+		thirdPartyBankCode: 'Third Party Bank Code',
+		thirdPartyPaymentCode: "Third Party Payment Code",
+		thirdPartyPaymentName: 'Third Party Payment Name',
+		vipId: 'VIP Id',
+		downloadCode: 'Download Code',
+		delete: 'Delete',
+		edit: 'Edit',
+		registeredPlayersAlert: 'These all players are either clicked on a banner or just viewed the banner into device browser, and made a deposit into their account.'
 	})
 }

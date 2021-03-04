@@ -263,22 +263,63 @@
 
 					<!-- Actions -->
 					<template v-slot:[`item.actions`]="{ item }">
-						<v-icon @click="editItem(item)" large color="green">
-							mdi-pencil-circle
-						</v-icon>
-						<v-icon @click="deleteItem(item)" large color="red">
-							mdi-delete-circle
-						</v-icon>
-						<v-icon @click="downloadCode(item)" large color="blue">
-							mdi-code-braces-box
-						</v-icon>
-						<v-icon
-							@click="checkRegisteredPlayers(item)"
-							large
-							color="yellow"
-						>
-							mdi-account-group
-						</v-icon>
+						<v-tooltip left color="purple">
+							<template v-slot:activator="{ on, attrs }">
+								<v-icon
+									@click="editItem(item)"
+									large
+									color="green"
+									v-bind="attrs"
+									v-on="on"
+								>
+									mdi-pencil-circle
+								</v-icon>
+							</template>
+							<span>{{ $t("edit") }}</span>
+						</v-tooltip>
+
+						<v-tooltip left color="purple">
+							<template v-slot:activator="{ on, attrs }">
+								<v-icon
+									@click="deleteItem(item)"
+									large
+									color="red"
+									v-bind="attrs"
+									v-on="on"
+								>
+									mdi-delete-circle
+								</v-icon>
+							</template>
+							<span>{{ $t("delete") }}</span>
+						</v-tooltip>
+						<v-tooltip left color="purple">
+							<template v-slot:activator="{ on, attrs }">
+								<v-icon
+									@click="downloadCode(item)"
+									large
+									color="blue"
+									v-bind="attrs"
+									v-on="on"
+								>
+									mdi-code-braces-box
+								</v-icon>
+							</template>
+							<span>{{ $t("downloadCode") }}</span>
+						</v-tooltip>
+						<v-tooltip left color="purple">
+							<template v-slot:activator="{ on, attrs }">
+								<v-icon
+									@click="checkRegisteredPlayers(item)"
+									large
+									color="yellow"
+									v-bind="attrs"
+									v-on="on"
+								>
+									mdi-account-group
+								</v-icon>
+							</template>
+							<span>{{ $t("layout.players") }}</span>
+						</v-tooltip>
 					</template>
 				</v-data-table>
 			</v-card-text>

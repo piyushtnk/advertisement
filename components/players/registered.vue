@@ -282,7 +282,7 @@
 					{ text: this.$t("firstVisitIp"), value: "bannerVisitIp" },
 					{
 						text: this.$t("firstVisitTime"),
-						value: "firstVisitTime",
+						value: "firstBannerViewTime",
 					},
 					{ text: this.$t("firstClickTime"), value: "firstVisitTime" },
 					{ text: this.$t("registrationIp"), value: "registrationIp" },
