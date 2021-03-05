@@ -4,7 +4,7 @@
 		<v-card class="my-5">
 			<v-card-text>
 				<v-row align="center">
-					<v-col cols="12" lg="4" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-dialog
 							ref="dialog"
 							v-model="modal"
@@ -49,7 +49,7 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
@@ -75,7 +75,6 @@
 						></v-text-field>
 					</v-col>
 				</v-row>
-
 				<v-row>
 					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-btn
@@ -101,10 +100,10 @@
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="2" sm="12">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<ExcelDownloadButton
-							:excelData="deposit.data"
-							:fileName="$t('layout.deposit')"
+							:excelData="bets.data"
+							:fileName="$t('layout.bets')"
 							:loading="loading"
 						/>
 					</v-col>
@@ -121,9 +120,9 @@
 							:headers="headers"
 							item-key="id"
 							:options.sync="options"
-							:server-items-length="deposit.total"
-							:pageCount="deposit.totalPages"
-							:items="deposit.data"
+							:server-items-length="bets.total"
+							:pageCount="bets.totalPages"
+							:items="bets.data"
 							:loading="loading"
 							:footer-props="footerProps"
 						>
@@ -148,7 +147,7 @@
 	import Global from "~/mixins/global";
 
 	export default {
-		name: "TableDepositComponent",
+		name: "TableBetsComponent",
 		mixins: [Variables, Global],
 		data() {
 			return {
@@ -157,83 +156,77 @@
 		},
 		computed: {
 			...mapGetters({
-				deposit: "getDeposit",
+				bets: "getBets",
 			}),
 			headers() {
 				return [
 					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
+					{ text: this.$t("name"), value: "currency" },
+					{ text: this.$t("betAmount"), value: "betamount" },
 					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
-					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
-					{ text: this.$t("group"), value: "groupname" },
+					{ text: this.$t("gameId"), value: "gameid" },
+					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
 					{
-						text: this.$t("receivedDeposit"),
-						value: "receiveddepositamt",
+						text: this.$t("gameName"),
+						value: "gamename",
 					},
-					{ text: this.$t("remarks"), value: "remarks" },
+					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
 					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
+						text: this.$t("jpBet"),
+						value: "jpbet",
 					},
 					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
+						text: this.$t("jpWin"),
+						value: "jpwin",
 					},
 					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
+						text: this.$t("odds"),
+						value: "odds",
 					},
-					{
-						text: this.$t("thirdPartyPaymentName"),
-						value: "thirdpartypaymentstaticname",
-					},
+					{ text: this.$t("resultTime"), value: "resulttime" },
+					{ text: this.$t("roundId"), value: "roundid" },
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
+					{ text: this.$t("validBet"), value: "validbet" },
+					{ text: this.$t("winLoss"), value: "winloss" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 			headerSearch() {
 				return [
 					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
+					{ text: this.$t("name"), value: "currency" },
+					{ text: this.$t("betAmount"), value: "betamount" },
 					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
-					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
-					{ text: this.$t("group"), value: "groupname" },
+					{ text: this.$t("gameId"), value: "gameid" },
+					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
 					{
-						text: this.$t("receivedDeposit"),
-						value: "receiveddepositamt",
+						text: this.$t("gameName"),
+						value: "gamename",
 					},
-					{ text: this.$t("remarks"), value: "remarks" },
+					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
 					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
+						text: this.$t("jpBet"),
+						value: "jpbet",
 					},
 					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
+						text: this.$t("jpWin"),
+						value: "jpwin",
 					},
 					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
+						text: this.$t("odds"),
+						value: "odds",
 					},
-					{
-						text: this.$t("thirdPartyPaymentName"),
-						value: "thirdpartypaymentstaticname",
-					},
+					{ text: this.$t("resultTime"), value: "resulttime" },
+					{ text: this.$t("roundId"), value: "roundid" },
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
+					{ text: this.$t("validBet"), value: "validbet" },
+					{ text: this.$t("winLoss"), value: "winloss" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 		},
 		watch: {
-			deposit() {
+			bets() {
 				this.loading = false;
 			},
 		},

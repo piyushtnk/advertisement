@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import TableComponent from "~/components/deposit/depositTable";
+	import TableComponent from "~/components/withdrawals/withdrawalsTable";
 
 	export default {
 		middleware: "authenticate",
@@ -16,7 +16,7 @@
 		data: () => ({}),
 		methods: {
 			filterForDate(value) {
-				this.$store.dispatch("getDeposit", {
+				this.$store.dispatch("getWithdrawals", {
 					duration: value.duration,
 					startDate: value.startDate,
 					endDate: value.endDate,

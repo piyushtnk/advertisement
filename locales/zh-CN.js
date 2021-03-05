@@ -16,7 +16,10 @@ export default async (context, locale) => {
 			reports: "报告",
 			otherPlayers: "其他玩家",
 			ipClients: "API IP 客户",
-			information: 'Information'
+			information: 'Information',
+			deposit: '订金',
+			withdrawals: '退出',
+			bets: '赌注',
 		},
 		dashboard: {
 			recentInteractionUserGraph: "最近的互动用户图",
@@ -210,7 +213,7 @@ export default async (context, locale) => {
 			ipClients: "该页面包含所有已将我们的横幅图片加载或查看到其设备浏览器中的客户端或播放器。"
 		},
 
-		deposit: '订金',
+
 		auditTime: '审核时间',
 		depositId: '存款编号',
 		depositTime: "入金时间",
@@ -225,6 +228,22 @@ export default async (context, locale) => {
 		downloadCode: '下载代码',
 		delete: '删除',
 		edit: '编辑',
-		registeredPlayersAlert: '所有这些玩家都可以单击横幅，也可以只是在设备浏览器中查看横幅，然后将其存入他们的帐户。'
+		registeredPlayersAlert: '所有这些玩家都可以单击横幅，也可以只是在设备浏览器中查看横幅，然后将其存入他们的帐户。',
+		withdrawId: '提款编号',
+		withdrawalAmount: '提款金额',
+		time: '时间',
+		betAmount: '投注金额',
+		gameId: '投注编号',
+		gameGroupId: '游戏群组编号',
+		gameName: '游戏名称',
+		gameProviderId: '游戏提供商ID',
+		jpBet: 'JP投注',
+		jpWin: '太平绅士',
+		odds: '赔率',
+		resultTime: '结果时间',
+		roundId: '回合编号',
+		validBet: '有效投注',
+		winLoss: '赢/输',
+		download: '下载',
 	};
 };

@@ -182,8 +182,20 @@
 					},
 					{
 						icon: "mdi-account-cash",
-						title: "deposit",
+						title: "layout.deposit",
 						to: "/system/deposit",
+						color: "white",
+					},
+					{
+						icon: "mdi-cash-refund",
+						title: "layout.withdrawals",
+						to: "/system/withdrawals",
+						color: "white",
+					},
+					{
+						icon: "mdi-poker-chip",
+						title: "layout.bets",
+						to: "/system/bets",
 						color: "white",
 					},
 					{

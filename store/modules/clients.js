@@ -6,6 +6,8 @@ const state = () => ({
 	otherPlayers: [],
 	ipClients: [],
 	deposit: [],
+	withdrawals: [],
+	bets: []
 });
 
 // Actions
@@ -136,6 +138,54 @@ const actions = {
 			});
 	},
 
+	// Getting withdrawal details
+	async getWithdrawals({ commit }, data) {
+		await this.$axios
+			.get("/withdrawals/all", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+					sort: data.sort,
+					limit: data.limit,
+					page: data.page,
+					search: data.search,
+				}
+			})
+			.then(response => {
+				commit("SET_WITHDRAWALS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// Getting bets details
+	async getBets({ commit }, data) {
+		await this.$axios
+			.get("/bets/all", {
+				params: {
+					duration: data.duration ? data.duration : null,
+					startDate: data.startDate ? data.startDate : null,
+					endDate: data.endDate ? data.endDate : null,
+					sort: data.sort,
+					limit: data.limit,
+					page: data.page,
+					search: data.search,
+				}
+			})
+			.then(response => {
+				commit("SET_BETS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
 	// Registered players listing
 	async getRegisteredPlayers({ commit }, id) {
 		await this.$axios
@@ -166,6 +216,12 @@ const mutations = {
 	SET_DEPOSIT(state, response) {
 		state.deposit = response;
 	},
+	SET_WITHDRAWALS(state, response) {
+		state.withdrawals = response;
+	},
+	SET_BETS(state, response) {
+		state.bets = response;
+	},
 };
 
 // Getters
@@ -187,7 +243,13 @@ const getters = {
 	},
 	getDeposit: state => {
 		return state.deposit;
-	}
+	},
+	getWithdrawals: state => {
+		return state.withdrawals;
+	},
+	getBets: state => {
+		return state.bets;
+	},
 };
 
 // Default export

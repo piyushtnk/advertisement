@@ -75,7 +75,6 @@
 						></v-text-field>
 					</v-col>
 				</v-row>
-
 				<v-row>
 					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-btn
@@ -101,10 +100,10 @@
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="2" sm="12">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<ExcelDownloadButton
-							:excelData="deposit.data"
-							:fileName="$t('layout.deposit')"
+							:excelData="withdrawals.data"
+							:fileName="$t('layout.withdrawals')"
 							:loading="loading"
 						/>
 					</v-col>
@@ -121,9 +120,9 @@
 							:headers="headers"
 							item-key="id"
 							:options.sync="options"
-							:server-items-length="deposit.total"
-							:pageCount="deposit.totalPages"
-							:items="deposit.data"
+							:server-items-length="withdrawals.total"
+							:pageCount="withdrawals.totalPages"
+							:items="withdrawals.data"
 							:loading="loading"
 							:footer-props="footerProps"
 						>
@@ -148,7 +147,7 @@
 	import Global from "~/mixins/global";
 
 	export default {
-		name: "TableDepositComponent",
+		name: "TableWithdrawalsComponent",
 		mixins: [Variables, Global],
 		data() {
 			return {
@@ -157,7 +156,7 @@
 		},
 		computed: {
 			...mapGetters({
-				deposit: "getDeposit",
+				withdrawals: "getWithdrawals",
 			}),
 			headers() {
 				return [
@@ -165,22 +164,16 @@
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
-					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
-					{ text: this.$t("group"), value: "groupname" },
+					{ text: this.$t("withdrawId"), value: "withdrawid" },
+					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
-						text: this.$t("receivedDeposit"),
-						value: "receiveddepositamt",
+						text: this.$t("withdrawal") + " " + this.$t("time"),
+						value: "withdrawaltime",
 					},
-					{ text: this.$t("remarks"), value: "remarks" },
+					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("thirdPartyOrderNo"),
 						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
 					},
 					{
 						text: this.$t("thirdPartyPaymentCode"),
@@ -201,22 +194,13 @@
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
-					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
+					{ text: this.$t("withdrawid"), value: "withdrawid" },
+					{ text: this.$t("withdrawalamt"), value: "withdrawalamt" },
+					{ text: this.$t("withdrawaltime"), value: "withdrawaltime" },
 					{ text: this.$t("group"), value: "groupname" },
-					{
-						text: this.$t("receivedDeposit"),
-						value: "receiveddepositamt",
-					},
-					{ text: this.$t("remarks"), value: "remarks" },
 					{
 						text: this.$t("thirdPartyOrderNo"),
 						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
 					},
 					{
 						text: this.$t("thirdPartyPaymentCode"),
@@ -233,7 +217,7 @@
 			},
 		},
 		watch: {
-			deposit() {
+			withdrawals() {
 				this.loading = false;
 			},
 		},

@@ -16,7 +16,10 @@ export default async (context, locale) => {
 			reports: 'Reports',
 			otherPlayers: 'Other Players',
 			ipClients: 'API IP Clients',
-			information: 'Information'
+			information: 'Information',
+			deposit: 'Deposit',
+			withdrawals: 'Withdrawals',
+			bets: 'Bets',
 		},
 		dashboard: {
 			recentInteractionUserGraph: 'Recent interaction users graph',
@@ -207,7 +210,7 @@ export default async (context, locale) => {
 			ipClients: "This page contain all clients or players, who has loaded or viewed our banner image into their device browser."
 		},
 
-		deposit: 'Deposit',
+
 		auditTime: 'Audit Time',
 		depositId: 'Deposit Id',
 		depositTime: "Deposit Time",
@@ -222,6 +225,22 @@ export default async (context, locale) => {
 		downloadCode: 'Download Code',
 		delete: 'Delete',
 		edit: 'Edit',
-		registeredPlayersAlert: 'These all players are either clicked on a banner or just viewed the banner into device browser, and made a deposit into their account.'
+		registeredPlayersAlert: 'These all players are either clicked on a banner or just viewed the banner into device browser, and made a deposit into their account.',
+		withdrawId: 'Withdrawal Id',
+		withdrawalAmount: 'Withdrawal Amount',
+		time: 'Time',
+		betAmount: 'Bet Amount',
+		gameId: 'Bet Id',
+		gameGroupId: 'Game Group Id',
+		gameName: 'Game Name',
+		gameProviderId: 'Game Provider Id',
+		jpBet: 'JP Bet',
+		jpWin: 'JP Win',
+		odds: 'Odds',
+		resultTime: 'Result Time',
+		roundId: 'Round Id',
+		validBet: 'Valid Bet',
+		winLoss: 'Win/Loss',
+		download: 'Download',
 	})
 }

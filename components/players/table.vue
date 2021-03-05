@@ -4,7 +4,7 @@
 		<v-card class="my-5">
 			<v-card-text>
 				<v-row align="center">
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="4" sm="12">
 						<v-dialog
 							ref="dialog"
 							v-model="modal"
@@ -49,7 +49,7 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="2" md="4" sm="12">
 						<v-select
 							v-model="playersType"
 							:items="defaultPlayersType"
@@ -58,7 +58,7 @@
 							:label="$t('playerType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="2" md="4" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
@@ -67,7 +67,7 @@
 							:label="$t('filterType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="2" md="4" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -76,14 +76,16 @@
 							:label="$t('columnName')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="4" sm="12">
 						<v-text-field
 							v-model="search.value"
 							:label="$t('searchText')"
 							required
 						></v-text-field>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+				</v-row>
+				<v-row>
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-btn
 							color="blue"
 							class="white--text mx-auto"
@@ -95,7 +97,7 @@
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-btn
 							color="red"
 							class="white--text"
@@ -106,6 +108,13 @@
 							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="2" md="2" sm="12">
+						<ExcelDownloadButton
+							:excelData="players.data"
+							:fileName="$t('layout.players')"
+							:loading="loading"
+						/>
 					</v-col>
 				</v-row>
 			</v-card-text>
@@ -366,18 +375,20 @@
 			},
 			headers() {
 				return [
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("mobile"), value: "mobile" },
-					{ text: this.$t("registrationTime"), value: "createdate" },
-					{ text: this.$t("ip"), value: "regip" },
 					{ text: this.$t("device"), value: "logindevice" },
-					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
 					{
 						text: this.$t("totalTopUpCount"),
 						value: "totaldepositcount",
 					},
+					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("ip"), value: "regip" },
+					{ text: this.$t("noOfIp"), value: "logincount" },
+					{ text: this.$t("registrationTime"), value: "createdate" },
 					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
 					{
 						text: this.$t("totalWithdrawalCount"),
@@ -386,9 +397,7 @@
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
-					{ text: this.$t("country"), value: "country" },
 					// { text: "Language", value: "language" },
-					{ text: this.$t("noOfIp"), value: "logincount" },
 				];
 			},
 			headerSearch() {
