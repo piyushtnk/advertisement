@@ -4,7 +4,7 @@
 		<v-card class="my-5">
 			<v-card-text>
 				<v-row align="center">
-					<v-col cols="12" lg="4" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-dialog
 							ref="dialog"
 							v-model="modal"
@@ -49,6 +49,33 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-select
+							v-model="paymentTypeValue"
+							:items="paymentType"
+							item-value="value"
+							item-text="text"
+							:label="$t('paymentType')"
+						/>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-select
+							v-model="sequenceValue"
+							:items="sequence"
+							item-value="value"
+							item-text="text"
+							:label="$t('sequence')"
+						/>
+					</v-col>
+					<v-col cols="12" lg="1" md="3" sm="12">
+						<v-select
+							v-model="thirdPartyPaymentValue"
+							:items="thirdPartyPayment"
+							item-value="value"
+							item-text="text"
+							:label="$t('thirdPartyPayment')"
+						/>
+					</v-col>
 					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
@@ -58,7 +85,7 @@
 							:label="$t('filterType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -67,7 +94,7 @@
 							:label="$t('columnName')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-text-field
 							v-model="search.value"
 							:label="$t('searchText')"
@@ -101,7 +128,7 @@
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="2" sm="12">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<ExcelDownloadButton
 							:excelData="deposit.data"
 							:fileName="$t('layout.deposit')"
@@ -153,6 +180,9 @@
 		data() {
 			return {
 				sortBy: "id|desc",
+				paymentTypeValue: "",
+				sequenceValue: "",
+				thirdPartyPaymentValue: "",
 			};
 		},
 		computed: {
@@ -229,6 +259,28 @@
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
 					{ text: this.$t("vipId"), value: "vipid" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
+				];
+			},
+			paymentType() {
+				return [
+					{ text: this.$t("all"), value: "" },
+					{ text: this.$t("companyDeposit"), value: 8 },
+					{ text: this.$t("debitCard"), value: 4 },
+					{ text: this.$t("viettelPay"), value: 8192 },
+					{ text: this.$t("qrCode"), value: 32768 },
+				];
+			},
+			sequence() {
+				return [
+					{ text: this.$t("all"), value: "" },
+					{ text: this.$t("firstDeposit"), value: 1 },
+					{ text: this.$t("secondDeposit"), value: 2 },
+				];
+			},
+			thirdPartyPayment() {
+				return [
+					{ text: this.$t("all"), value: "" },
+					{ text: this.$t("dtPay"), value: "DT支付" },
 				];
 			},
 		},

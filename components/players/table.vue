@@ -365,6 +365,10 @@
 			}),
 			defaultPlayersType() {
 				return [
+					{
+						key: "",
+						value: this.$t("all"),
+					},
 					{ key: 0, value: this.$t("otherSources") },
 					{ key: 1, value: this.$t("regThroughBanner") },
 					{
