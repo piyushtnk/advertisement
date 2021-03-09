@@ -204,7 +204,7 @@ export default async (context, locale) => {
 		apiLink: "Api Link",
 		agentBy: "Agent By",
 		firstClickTime: "First Visit Time",
-		bannerId: "Banner Id",
+		bannerId: "First Viewed Banner Id",
 		supportedFormat: "Supported format",
 
 		information: {
@@ -261,6 +261,8 @@ export default async (context, locale) => {
 		qrCode: "QR Code",
 		firstDeposit: "1st Deposit",
 		secondDeposit: "2nd Deposit",
-		dtPay: "DT支付"
+		dtPay: "DT支付",
+		views: 'Views',
+		report: 'Report'
 	};
 };

@@ -1,9 +1,10 @@
 // State
 const state = () => ({
 	banners: [],
+	tempBanners: [],
 	bannerDomains: [],
 	topViewedBanners: [],
-	last10MinuteBanners: []
+	last10MinuteBanners: [],
 });
 
 // Actions
@@ -80,8 +81,9 @@ const actions = {
 	},
 
 	// Get all banners
-	async getBanners({ commit }, data) {
-		await this.$axios
+	async getBanners({ commit, dispatch }, data) {
+		const $this = this;
+		await $this.$axios
 			.get("/banners", {
 				params: {
 					duration: data.duration ? data.duration : null,
@@ -94,7 +96,18 @@ const actions = {
 				}
 			})
 			.then(response => {
-				commit("SET_BANNERS", response.data.data);
+				new Promise((resolve, reject) => {
+					response.data.data.data.forEach((value, index, array) => {
+						$this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
+							value.views = countResponse.data.data.bannerViewsCount;
+							if (index === array.length - 1) {
+								resolve();
+							}
+						});
+					});
+				}).then(() => {
+					commit("SET_BANNERS", response.data.data);
+				});
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
@@ -207,7 +220,7 @@ const mutations = {
 	},
 	UPDATE_BANNER_DOMAIN(state, response) {
 		state.bannerDomains = [response, ...state.bannerDomains];
-	}
+	},
 };
 
 // Getters
@@ -223,7 +236,7 @@ const getters = {
 	},
 	getLast10MinuteBanners: state => {
 		return state.last10MinuteBanners;
-	}
+	},
 };
 
 // Default export

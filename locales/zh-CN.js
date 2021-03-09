@@ -201,7 +201,7 @@ export default async (context, locale) => {
 		agentBy: "代理人",
 		information: "信息",
 		firstClickTime: "首次访问时间",
-		bannerId: "横幅ID",
+		bannerId: "首次查看的横幅ID",
 		supportedFormat: "支持格式",
 
 		information: {
@@ -256,6 +256,8 @@ export default async (context, locale) => {
 		qrCode: "二维码",
 		firstDeposit: "第一次存款",
 		secondDeposit: "第二次存款",
-		dtPay: "DT支付"
+		dtPay: "DT支付",
+		views: '观看次数',
+		report: '报告'
 	};
 };

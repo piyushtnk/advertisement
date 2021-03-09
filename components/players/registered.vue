@@ -77,20 +77,7 @@
 												</v-list-item-content>
 											</v-list-item>
 										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("depositAmount")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														numberFormat(
-															item.depositAmount
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
+
 										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
@@ -105,20 +92,7 @@
 												</v-list-item-content>
 											</v-list-item>
 										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("depositCount")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.depositCount
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
+
 										<v-col lg="4" md="6" sm="12">
 											<v-list-item two-line>
 												<v-list-item-content>
@@ -292,7 +266,21 @@
 					},
 					{ text: this.$t("originSource"), value: "originSource" },
 
-					{ text: this.$t("numberOfVisits"), value: "numberOfVisits" },
+					{
+						text: this.$t("numberOfVisits"),
+						value: "numberOfVisits",
+						width: "10",
+					},
+					{
+						text: this.$t("depositAmount"),
+						value: "depositAmount",
+						width: "10",
+					},
+					{
+						text: this.$t("depositCount"),
+						value: "depositCount",
+						width: "10",
+					},
 				];
 			},
 		},

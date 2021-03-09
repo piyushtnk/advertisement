@@ -47,7 +47,8 @@
 
 				var hiddenElement = document.createElement("a");
 				hiddenElement.href =
-					"data:text/csv;charset=utf-8," + encodeURI(columnNames);
+					"data:text/csv;charset=utf-8," +
+					encodeURIComponent("\uFEFF" + columnNames);
 				hiddenElement.target = "_blank";
 				hiddenElement.download = this.fileName + ".csv";
 				hiddenElement.click();

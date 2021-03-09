@@ -49,7 +49,7 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
@@ -58,7 +58,7 @@
 							:label="$t('filterType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -74,7 +74,9 @@
 							required
 						></v-text-field>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+				</v-row>
+				<v-row align="center">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-btn
 							color="blue"
 							class="white--text mx-auto"
@@ -86,7 +88,7 @@
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-btn
 							color="red"
 							class="white--text"
@@ -96,6 +98,19 @@
 						>
 							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-btn
+							color="green"
+							class="white--text"
+							@click="generateReport"
+							block
+							:loading="loading"
+							:disabled="reportDisable"
+						>
+							{{ $t("report") }}
+							<v-icon right dark> mdi-file </v-icon>
 						</v-btn>
 					</v-col>
 				</v-row>
@@ -108,7 +123,6 @@
 				<v-data-table
 					:headers="headers"
 					item-key="id"
-					class="elevation-1"
 					:options.sync="options"
 					:server-items-length="banners.total"
 					:pageCount="banners.totalPages"
@@ -141,7 +155,8 @@
 						</a>
 					</template>
 
-					<template v-slot:[`item.api`]="{ item }">
+					<!-- Official way to edit column - as per documentation only -->
+					<template v-slot:item.api="{ item }">
 						<a :href="findImage(item)" target="_blank">
 							{{ findImage(item) }}
 						</a>
@@ -158,7 +173,13 @@
 								defaultFilterDate
 							"
 						>
-							{{ item.allClientsCount }}
+							{{ numberFormat(item.allClientsCount) }}
+						</v-chip>
+					</template>
+
+					<template v-slot:item.views="{ item }">
+						<v-chip color="purple" class="ma-2">
+							{{ numberFormat(item.views) }}
 						</v-chip>
 					</template>
 
@@ -330,10 +351,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
+	import Global from "~/mixins/global";
 
 	export default {
 		name: "TableBannerComponent",
-		mixins: [Variables],
+		mixins: [Variables, Global],
 		data() {
 			return {
 				defaultFilterDate: 7,
@@ -356,11 +378,13 @@
 				},
 				loading: false,
 				sortBy: "id|desc",
+				reportDisable: true,
 			};
 		},
 		computed: {
 			...mapGetters({
 				banners: "getBanners",
+				getViewsStore: "getViews",
 			}),
 			headerSearch() {
 				return [
@@ -371,17 +395,27 @@
 			},
 			headers() {
 				return [
-					{ text: this.$t("banner"), value: "uniqueId", sortable: false },
-					{ text: this.$t("bannerLink"), value: "url", sortable: false },
+					{
+						text: this.$t("banner"),
+						value: "uniqueId",
+						sortable: false,
+					},
+					{
+						text: this.$t("bannerLink"),
+						value: "url",
+						sortable: false,
+					},
 					{ text: this.$t("apiLink"), value: "apiLink", sortable: false },
 					{
 						text: this.$t("containerLink"),
 						value: "api",
 						sortable: false,
+						width: "10",
 					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("clicks"), value: "allClientsCount" },
+					{ text: this.$t("views"), value: "views" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];
@@ -397,6 +431,7 @@
 				}
 				return path;
 			},
+
 			getUrl(item) {
 				return window.location.origin + "/" + item.uniqueId;
 			},
@@ -479,6 +514,46 @@
 				}
 				this.close();
 			},
+
+			generateReport() {
+				this.loading = true;
+				this.$axios
+					.get("/report/today", {
+						params: {
+							startDate: this.date[0],
+							endDate: this.date[1],
+						},
+					})
+					.then((response) => {
+						const csvString = [
+							...response.data.data.map((item) => [
+								item.agentId,
+								item.comment,
+								item.allClientsCount,
+								item.playerCount,
+								item.convertRate,
+								item.firstDeposit,
+								item.depositAmount,
+								item.withdrawalAmount,
+								item.profit,
+							]),
+						];
+						var csv =
+							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
+						csvString.forEach(function (row) {
+							csv += row.join(",");
+							csv += "\n";
+						});
+						var hiddenElement = document.createElement("a");
+						hiddenElement.href =
+							"data:text/csv;charset=utf-8," +
+							encodeURIComponent("\uFEFF" + csv);
+						hiddenElement.target = "_blank";
+						hiddenElement.download = "banner-reports.csv";
+						hiddenElement.click();
+						this.loading = false;
+					});
+			},
 		},
 		watch: {
 			dialog(val) {
@@ -487,9 +562,15 @@
 			dialogDelete(val) {
 				val || this.closeDelete();
 			},
-			banners() {
+			banners(value) {
 				this.loading = false;
+			},
+			dateRangeText(value) {
+				if (this.date.length == 2) {
+					this.reportDisable = false;
+				}
 			},
 		},
 	};
 </script>
+
