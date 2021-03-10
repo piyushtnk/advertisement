@@ -113,6 +113,19 @@
 							<v-icon right dark> mdi-file </v-icon>
 						</v-btn>
 					</v-col>
+					<v-col cols="12" lg="2" md="3" sm="12">
+						<v-btn
+							color="green"
+							class="white--text"
+							@click="generateAssociatedReport"
+							block
+							:loading="loading"
+							:disabled="reportDisable"
+						>
+							{{ $t("associatedReport") }}
+							<v-icon right dark> mdi-file </v-icon>
+						</v-btn>
+					</v-col>
 				</v-row>
 			</v-card-text>
 		</v-card>
@@ -415,7 +428,7 @@
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("clicks"), value: "allClientsCount" },
-					{ text: this.$t("views"), value: "views" },
+					{ text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];
@@ -517,6 +530,7 @@
 
 			generateReport() {
 				this.loading = true;
+				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
 				this.$axios
 					.get("/report/today", {
 						params: {
@@ -538,18 +552,63 @@
 								item.profit,
 							]),
 						];
-						var csv =
+
+						let csv =
 							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";
 						});
-						var hiddenElement = document.createElement("a");
+						let hiddenElement = document.createElement("a");
 						hiddenElement.href =
 							"data:text/csv;charset=utf-8," +
-							encodeURIComponent("\uFEFF" + csv);
+							encodeURIComponent("\uFEFF" + date + "\n" + csv);
 						hiddenElement.target = "_blank";
-						hiddenElement.download = "banner-reports.csv";
+						hiddenElement.download =
+							"999.money-reports-" + date + ".csv";
+						hiddenElement.click();
+						this.loading = false;
+					});
+			},
+
+			generateAssociatedReport() {
+				this.loading = true;
+				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
+				this.$axios
+					.get("/report/today", {
+						params: {
+							startDate: this.date[0],
+							endDate: this.date[1],
+						},
+					})
+					.then((response) => {
+						const csvString = [
+							...response.data.data.map((item) => [
+								item.agentId,
+								item.comment,
+								item.allClientsCount,
+								item.playerCount,
+								item.convertRate,
+								item.firstDeposit,
+								item.depositAmount,
+								item.withdrawalAmount,
+								item.profit,
+							]),
+						];
+
+						let csv =
+							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
+						csvString.forEach(function (row) {
+							csv += row.join(",");
+							csv += "\n";
+						});
+						let hiddenElement = document.createElement("a");
+						hiddenElement.href =
+							"data:text/csv;charset=utf-8," +
+							encodeURIComponent("\uFEFF" + date + "\n" + csv);
+						hiddenElement.target = "_blank";
+						hiddenElement.download =
+							"999.money-reports-" + date + ".csv";
 						hiddenElement.click();
 						this.loading = false;
 					});
@@ -565,9 +624,11 @@
 			banners(value) {
 				this.loading = false;
 			},
-			dateRangeText(value) {
-				if (this.date.length == 2) {
+			date(value) {
+				if (value.length == 2) {
 					this.reportDisable = false;
+				} else {
+					this.reportDisable = true;
 				}
 			},
 		},

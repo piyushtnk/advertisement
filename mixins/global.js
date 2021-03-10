@@ -6,7 +6,9 @@ export default {
 	mounted() { },
 	methods: {
 		numberFormat(value) {
-			return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			if (value) {
+				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 		},
 
 		fixParameters(value) {

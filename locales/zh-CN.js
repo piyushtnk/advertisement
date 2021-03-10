@@ -258,6 +258,8 @@ export default async (context, locale) => {
 		secondDeposit: "第二次存款",
 		dtPay: "DT支付",
 		views: '观看次数',
-		report: '报告'
+		report: '报告',
+		selectDateRange: '选择日期范围',
+		associatedReport: '相关报告',
 	};
 };

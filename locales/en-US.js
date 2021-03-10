@@ -263,6 +263,8 @@ export default async (context, locale) => {
 		secondDeposit: "2nd Deposit",
 		dtPay: "DT支付",
 		views: 'Views',
-		report: 'Report'
+		report: 'Report',
+		selectDateRange: 'Select date range',
+		associatedReport: 'Associated Report',
 	};
 };
