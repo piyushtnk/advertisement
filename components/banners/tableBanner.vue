@@ -450,7 +450,7 @@
 			},
 
 			getApiUrl(item) {
-				return `http://999.money/api/image/banner/${item.uniqueId}`;
+				return `${process.env.API_URL}image/banner/${item.uniqueId}`;
 			},
 
 			// Actions area

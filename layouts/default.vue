@@ -157,12 +157,12 @@
 						to: "/system/clients",
 						color: "white",
 					},
-					{
-						icon: "mdi-account-arrow-left",
-						title: "layout.players",
-						to: "/system/players",
-						color: "white",
-					},
+					/* {
+							icon: "mdi-account-arrow-left",
+							title: "layout.players",
+							to: "/system/players",
+							color: "white",
+						}, */
 					{
 						icon: "mdi-clipboard-file",
 						title: "layout.reports",
@@ -180,30 +180,30 @@
 						to: "/system/ip",
 						color: "white",
 					},
-					{
-						icon: "mdi-account-cash",
-						title: "layout.deposit",
-						to: "/system/deposit",
-						color: "white",
-					},
-					{
-						icon: "mdi-cash-refund",
-						title: "layout.withdrawals",
-						to: "/system/withdrawals",
-						color: "white",
-					},
-					{
-						icon: "mdi-poker-chip",
-						title: "layout.bets",
-						to: "/system/bets",
-						color: "white",
-					},
-					{
-						icon: "mdi-information",
-						title: "layout.information",
-						to: "/system/information",
-						color: "white",
-					},
+					/* {
+							icon: "mdi-account-cash",
+							title: "layout.deposit",
+							to: "/system/deposit",
+							color: "white",
+						},
+						{
+							icon: "mdi-cash-refund",
+							title: "layout.withdrawals",
+							to: "/system/withdrawals",
+							color: "white",
+						},
+						{
+							icon: "mdi-poker-chip",
+							title: "layout.bets",
+							to: "/system/bets",
+							color: "white",
+						},
+						{
+							icon: "mdi-information",
+							title: "layout.information",
+							to: "/system/information",
+							color: "white",
+						}, */
 				],
 				miniVariant: false,
 				right: true,
