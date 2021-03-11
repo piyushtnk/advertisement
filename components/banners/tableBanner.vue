@@ -567,7 +567,14 @@
 						let hiddenElement = document.createElement("a");
 						hiddenElement.href =
 							"data:text/csv;charset=utf-8," +
-							encodeURIComponent("\uFEFF" + date + "\n" + csv);
+							encodeURIComponent(
+								"\uFEFF" +
+									this.date[0] +
+									" TO " +
+									this.date[1] +
+									"\n" +
+									csv
+							);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
 							process.env.DOMAIN + "-reports-" + date + ".csv";
@@ -580,7 +587,7 @@
 				this.loading = true;
 				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
 				this.$axios
-					.get("/report/today", {
+					.get("/report/associated", {
 						params: {
 							startDate: this.date[0],
 							endDate: this.date[1],
@@ -589,20 +596,19 @@
 					.then((response) => {
 						const csvString = [
 							...response.data.data.map((item) => [
-								item.agentId,
 								item.comment,
-								item.allClientsCount,
-								item.playerCount,
-								item.convertRate,
-								item.firstDeposit,
-								item.depositAmount,
-								item.withdrawalAmount,
-								item.profit,
+								item.agentId,
+								item.directRegisteredPlayers,
+								item.directTopupPlayers,
+								item.directTopupValue,
+								item.associatedPlayers,
+								item.associatedTopupValue,
+								item.totalDepositInfo,
 							]),
 						];
 
 						let csv =
-							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
+							"Ad Source, Agent ID, Direct Registered Players, Direct Top-up Players, Direct Top-up Value, Associated Players, Associated Top-up Value, Total Value\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";
@@ -610,10 +616,20 @@
 						let hiddenElement = document.createElement("a");
 						hiddenElement.href =
 							"data:text/csv;charset=utf-8," +
-							encodeURIComponent("\uFEFF" + date + "\n" + csv);
+							encodeURIComponent(
+								"\uFEFF" +
+									this.date[0] +
+									" TO " +
+									this.date[1] +
+									"\n" +
+									csv
+							);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
-							process.env.DOMAIN + "-reports-" + date + ".csv";
+							process.env.DOMAIN +
+							"-associated-reports-" +
+							date[0] +
+							".csv";
 						hiddenElement.click();
 						this.loading = false;
 					});

@@ -107,7 +107,6 @@ const actions = {
 						});
 					});
 				}).then(() => {
-					console.log('resolved');
 					commit("SET_BANNERS", response.data.data);
 				});
 			})
