@@ -96,19 +96,23 @@ const actions = {
 				}
 			})
 			.then(response => {
-				new Promise((resolve, reject) => {
-					response.data.data.data.forEach((value, index, array) => {
-						$this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
-							value.views = countResponse.data.data.bannerViewsCount;
-							console.log(countResponse);
-							if (index === array.length - 1) {
-								resolve();
-							}
+				if (response.data.data.length > 0) {
+					new Promise((resolve, reject) => {
+						response.data.data.data.forEach((value, index, array) => {
+							$this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
+								value.views = countResponse.data.data.bannerViewsCount;
+								console.log(countResponse);
+								if (index === array.length - 1) {
+									resolve();
+								}
+							});
 						});
+					}).then(() => {
+						commit("SET_BANNERS", response.data.data);
 					});
-				}).then(() => {
+				} else {
 					commit("SET_BANNERS", response.data.data);
-				});
+				}
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
