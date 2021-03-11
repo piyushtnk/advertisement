@@ -6,8 +6,10 @@ export default {
 	mounted() { },
 	methods: {
 		numberFormat(value) {
-			if (value) {
+			if (typeof value == 'number') {
 				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			} else {
+				return value;
 			}
 		},
 
