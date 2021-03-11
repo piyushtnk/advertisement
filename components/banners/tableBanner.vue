@@ -438,7 +438,7 @@
 			findImage(item) {
 				let path = null;
 				try {
-					path = `https://storage.cloud.google.com/advertisement_storage/banner/${item.uniqueId}.${item.imageType}`;
+					path = `${process.env.CLOUD_URL}/banner/${item.uniqueId}.${item.imageType}`;
 				} catch (e) {
 					path = require("~/assets/banner/default.jpg");
 				}

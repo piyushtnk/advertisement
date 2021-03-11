@@ -1,7 +1,9 @@
 import colors from "vuetify/es5/util/colors";
+// require('dotenv').config();
 
 const env = {
-	API_URL: "https://www.999.money/api/"
+	API_URL: process.env.API_URL,
+	CLOUD_URL: process.env.CLOUD_URL
 };
 
 export default {
@@ -94,6 +96,9 @@ export default {
 
 		// Cookie manager
 		['cookie-universal-nuxt', { alias: 'cookie' }],
+
+		// dotenv
+		'@nuxtjs/dotenv',
 	],
 
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)

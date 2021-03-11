@@ -156,7 +156,7 @@
 		},
 		methods: {
 			getImage(imageName, imageType) {
-				return `https://storage.googleapis.com/advertisement_storage/banner/${imageName}.${imageType}`;
+				return `${process.env.CLOUD_URL}/banner/${imageName}.${imageType}`;
 			},
 		},
 	};
