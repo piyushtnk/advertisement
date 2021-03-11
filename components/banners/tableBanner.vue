@@ -481,7 +481,7 @@
 			},
 
 			downloadCode(item) {
-				let fileContent = `<html><head><body><a href="${process.env.DOMAIN}/${item.uniqueId}"><img src="${process.env.API_URL}/api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
+				let fileContent = `<html><head><body><a href="${process.env.DOMAIN}/${item.uniqueId}"><img src="${process.env.API_URL}api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
 				let element = document.createElement("a");
 				element.setAttribute(
 					"href",
@@ -642,7 +642,7 @@
 			dialogDelete(val) {
 				val || this.closeDelete();
 			},
-			banners(value) {				
+			banners(value) {
 				this.loading = false;
 			},
 			date(value) {
