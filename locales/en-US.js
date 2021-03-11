@@ -121,7 +121,7 @@ export default async (context, locale) => {
 		submit: "Submit",
 		updateBanner: "Update Banner",
 		theseAreAllClients:
-			"These are all clients which came through the advertisement banner (999.money)",
+			"These are all clients which came through the advertisement banner",
 
 		ip: "IP",
 		deviceName: "Device name",

@@ -481,7 +481,7 @@
 			},
 
 			downloadCode(item) {
-				let fileContent = `<html><head><body><a href="http://999.money/${item.uniqueId}"><img src="http://999.money/api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
+				let fileContent = `<html><head><body><a href="${process.env.DOMAIN}/${item.uniqueId}"><img src="${process.env.API_URL}/api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
 				let element = document.createElement("a");
 				element.setAttribute(
 					"href",
@@ -570,7 +570,7 @@
 							encodeURIComponent("\uFEFF" + date + "\n" + csv);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
-							"999.money-reports-" + date + ".csv";
+							process.env.DOMAIN + "-reports-" + date + ".csv";
 						hiddenElement.click();
 						this.loading = false;
 					});
@@ -613,7 +613,7 @@
 							encodeURIComponent("\uFEFF" + date + "\n" + csv);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
-							"999.money-reports-" + date + ".csv";
+							process.env.DOMAIN + "-reports-" + date + ".csv";
 						hiddenElement.click();
 						this.loading = false;
 					});
