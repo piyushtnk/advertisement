@@ -642,7 +642,7 @@
 			dialogDelete(val) {
 				val || this.closeDelete();
 			},
-			banners(value) {
+			banners(value) {				
 				this.loading = false;
 			},
 			date(value) {
