@@ -32,7 +32,7 @@
 										{{
 											isNull(
 												statistics2.overallTotalTopupValue
-											) + "K"
+											)
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -86,7 +86,7 @@
 										{{
 											isNull(
 												statistics2.overallTotalTopupValueFromBanners
-											) + "K"
+											)
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -119,7 +119,7 @@
 										{{
 											isNull(
 												statistics2.overallWithdrawalValue
-											) + "K"
+											)
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -177,7 +177,7 @@
 										{{
 											isNull(
 												statistics2.overallWithdrawalValueFromBanners
-											) + "K"
+											)
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -211,7 +211,7 @@
 											isNull(
 												statistics2.overallTotalTopupValue -
 													statistics2.overallWithdrawalValue
-											) + "K"
+											)
 										}}
 									</v-card-title>
 									<v-card-text>
@@ -240,7 +240,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.allClients }}
+								{{ isNull(statistics.allClients) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("overallClicksOnBanners") }}
@@ -259,7 +259,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.uniqueClients }}
+								{{ isNull(statistics.uniqueClients) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("uniqueClicksOnBanners") }}
@@ -278,7 +278,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.registeredPlayersThroughBanners }}
+								{{
+									isNull(
+										statistics.registeredPlayersThroughBanners
+									)
+								}}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("regPlayersFromBanners") }}
@@ -300,7 +304,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.topupPlayersCountFromAllSources }}
+								{{
+									isNull(
+										statistics.topupPlayersCountFromAllSources
+									)
+								}}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("topPlayersFromAllSources") }}
@@ -318,7 +326,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.clientsFromPcCount }}
+								{{ isNull(statistics.clientsFromPcCount) }}
 							</v-card-title>
 							<v-card-text
 								>{{ $t("uniqueBannerClicksFromPC") }}
@@ -336,7 +344,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ statistics.clientsFromMobileCount }}
+								{{ isNull(statistics.clientsFromMobileCount) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("uniqueBannerClicksFromMobile") }}
@@ -358,7 +366,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ ipClients.total }}
+								{{ isNull(ipClients.total) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("bannerViewers") }}
@@ -587,9 +595,11 @@
 
 <script>
 	import { mapActions, mapGetters } from "vuex";
+	import Global from "~/mixins/global";
 
 	export default {
 		name: "CounterComponent",
+		mixins: [Global],
 		data() {
 			return {};
 		},
@@ -650,7 +660,7 @@
 				if (value == null) {
 					return 0;
 				} else {
-					return value.toFixed(2);
+					return this.numberFormat(parseFloat(value.toFixed(2)));
 				}
 			},
 			goToClientTablePageWithBrowserParam(value) {

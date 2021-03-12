@@ -157,22 +157,67 @@
 					</template>
 
 					<template v-slot:[`item.url`]="{ item }">
-						<a :href="getUrl(item)" target="_blank">
-							{{ getUrl(item) }}
-						</a>
+						<v-tooltip top color="primary">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="blue"
+									class="ma-2 white--text"
+									@click="copyGetUrl(item)"
+									small
+								>
+									{{ $t("copy") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ getUrl(item) }}</span>
+						</v-tooltip>
 					</template>
 
 					<template v-slot:[`item.apiLink`]="{ item }">
-						<a :href="getApiUrl(item)" target="_blank">
-							{{ getApiUrl(item) }}
-						</a>
+						<v-tooltip top color="primary">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="blue"
+									class="ma-2 white--text"
+									@click="copyApiUrl(item)"
+									small
+								>
+									{{ $t("copy") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ getApiUrl(item) }}</span>
+						</v-tooltip>
 					</template>
 
 					<!-- Official way to edit column - as per documentation only -->
 					<template v-slot:item.api="{ item }">
-						<a :href="findImage(item)" target="_blank">
-							{{ findImage(item) }}
-						</a>
+						<v-tooltip top color="primary">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="blue"
+									class="ma-2 white--text"
+									@click="copyFindImage(item)"
+									small
+								>
+									{{ $t("copy") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ findImage(item) }}</span>
+						</v-tooltip>
 					</template>
 
 					<template v-slot:[`item.allClientsCount`]="{ item }">
@@ -278,7 +323,7 @@
 								<v-btn
 									text
 									@click="closeDelete"
-									color="default"
+									color="success"
 									>{{ $t("cancel") }}</v-btn
 								>
 								<v-btn
@@ -409,6 +454,11 @@
 			headers() {
 				return [
 					{
+						text: this.$t("id"),
+						value: "id",
+						sortable: false,
+					},
+					{
 						text: this.$t("banner"),
 						value: "uniqueId",
 						sortable: false,
@@ -450,12 +500,32 @@
 				return path;
 			},
 
+			copyFindImage(item) {
+				let path = "";
+				try {
+					path = `${process.env.CLOUD_URL}/banner/${item.uniqueId}.${item.imageType}`;
+				} catch (e) {
+					path = require("~/assets/banner/default.jpg");
+				}
+				this.copyToClipboard(path);
+			},
+
 			getUrl(item) {
 				return window.location.origin + "/" + item.uniqueId;
 			},
 
+			copyGetUrl(item) {
+				const text = window.location.origin + "/" + item.uniqueId;
+				this.copyToClipboard(text);
+			},
+
 			getApiUrl(item) {
 				return `${process.env.API_URL}image/banner/${item.uniqueId}`;
+			},
+
+			copyApiUrl(item) {
+				const text = `${process.env.API_URL}image/banner/${item.uniqueId}`;
+				this.copyToClipboard(text);
 			},
 
 			// Actions area

@@ -173,10 +173,10 @@ export default async (context, locale) => {
 		overallTotalWithdrawalCount: "提款次数",
 		overallWithdrawalCountFromBanner: "（从横幅）提款次数",
 		overallWithdrawalValueFromBanner: "（从横幅）提款总额",
-		totalProfit: "盈利",
+		totalProfit: "预估利润",
 
 		registerYourBanner: "注册广告链接",
-		areYouSure: "你确定要删除这个项目吗?",
+		areYouSure: "你确定吗？ 您要删除此项目，这将永久删除横幅和所有相关数据，所有IP查看器和所有客户端。",
 
 		WindowsUNKNOWNVer: "Windows Unknown Ver.",
 		WindowsPhoneOS: "Windows Phone OS.",
@@ -261,5 +261,7 @@ export default async (context, locale) => {
 		report: '报告',
 		selectDateRange: '选择日期范围',
 		associatedReport: '相关报告',
+		copy: '复制',
+		id: 'ID'
 	};
 };

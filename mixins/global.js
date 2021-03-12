@@ -6,7 +6,7 @@ export default {
 	mounted() { },
 	methods: {
 		numberFormat(value) {
-			if (typeof value == 'number') {
+			if (typeof value == 'number' || typeof value == 'float') {
 				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			} else {
 				return value;
@@ -27,6 +27,15 @@ export default {
 			} else {
 				return value;
 			}
+		},
+
+		copyToClipboard(text) {
+			var dummy = document.createElement("textarea");
+			document.body.appendChild(dummy);
+			dummy.value = text;
+			dummy.select();
+			document.execCommand("copy");
+			document.body.removeChild(dummy);
 		},
 	},
 	watch: {}

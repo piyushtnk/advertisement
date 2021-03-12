@@ -83,42 +83,30 @@ const actions = {
 	// Get all banners
 	async getBanners({ commit, dispatch }, data) {
 		const $this = this;
-		await $this.$axios
-			.get("/banners", {
-				params: {
-					duration: data.duration ? data.duration : null,
-					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null,
-					sort: data.sort,
-					limit: data.limit,
-					page: data.page,
-					search: data.search
-				}
-			})
-			.then(response => {
-				if (response.data.data.length > 0) {
-					new Promise((resolve, reject) => {
-						response.data.data.data.forEach((value, index, array) => {
-							$this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
-								value.views = countResponse.data.data.bannerViewsCount;
-								console.log(countResponse);
-								if (index === array.length - 1) {
-									resolve();
-								}
-							});
-						});
-					}).then(() => {
-						commit("SET_BANNERS", response.data.data);
-					});
-				} else {
-					commit("SET_BANNERS", response.data.data);
-				}
-			})
-			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
-				throw error.response ? error.response.data.error : error;
+		try {
+			let bannerData = await $this.$axios
+				.get("/banners", {
+					params: {
+						duration: data.duration ? data.duration : null,
+						startDate: data.startDate ? data.startDate : null,
+						endDate: data.endDate ? data.endDate : null,
+						sort: data.sort,
+						limit: data.limit,
+						page: data.page,
+						search: data.search
+					}
+				});
+			const promise = bannerData.data.data.data.map(async (value) => {
+				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
+					value.views = countResponse.data.data.bannerViewsCount;
+				});
 			});
+			await Promise.all(promise);
+			commit("SET_BANNERS", bannerData.data.data);
+
+		} catch (error) {
+			console.log('error-', error);
+		}
 	},
 
 	// Get Top 10 Viewed Banners

@@ -178,10 +178,10 @@ export default async (context, locale) => {
 		overallTotalWithdrawalCount: "Overall Total Withdrawal Count (All Sources)",
 		overallWithdrawalCountFromBanner: "Overall Withdrawal Count From Banners",
 		overallWithdrawalValueFromBanner: "Overall Withdrawal Value From Banners",
-		totalProfit: "Total Profit",
+		totalProfit: "Estimated Profit",
 
 		registerYourBanner: "Register Your Banner",
-		areYouSure: "Are you sure you want to delete this item?",
+		areYouSure: "Are you sure? you want to delete this item, This will permanently delete the banner and all related data all IP Viewers, and All clients.",
 		WindowsUNKNOWNVer: "Windows Unknown Ver.",
 		WindowsPhoneOS: "Windows Phone OS.",
 
@@ -266,5 +266,7 @@ export default async (context, locale) => {
 		report: 'Report',
 		selectDateRange: 'Select date range',
 		associatedReport: 'Associated Report',
+		copy: 'Copy',
+		id: 'ID'
 	};
 };
