@@ -99,7 +99,7 @@
 						<v-btn
 							color="red"
 							class="white--text"
-							@click="clearSearchFilter"
+							@click="clearSearchFilter(1)"
 							block
 							:loading="loading"
 						>
@@ -394,7 +394,7 @@
 						text: this.$t("totalWithdrawalCount"),
 						value: "totalwithdrawcount",
 					},
-					{ text: this.$t("totalClaimed"), value: "totalbonus" },
+					// { text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalProfit"), value: "totalresult" },
 					{ text: this.$t("totalBonus"), value: "totalbonus" },
@@ -422,7 +422,7 @@
 						text: this.$t("totalWithdrawalCount"),
 						value: "totalwithdrawcount",
 					},
-					{ text: this.$t("totalClaimed"), value: "totalbonus" },
+					// { text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
 					{ text: this.$t("country"), value: "country" },

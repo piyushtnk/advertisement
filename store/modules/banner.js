@@ -27,6 +27,9 @@ const actions = {
 					root: true
 				});
 				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+
+				response.data.data.allClientsCount = 0;
+				response.data.data.views = 0;
 				commit("PUSH_BANNERS", response.data.data);
 				return true;
 			})

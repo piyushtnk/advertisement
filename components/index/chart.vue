@@ -49,6 +49,15 @@
 					this.$refs.chartdiv,
 					this.chartCore.am4charts.XYChart
 				);
+
+				if (this._i18n.localeProperties.code == "en") {
+					this.chart.locale = this.chartCore.am4lang_en;
+					this.chart.numberFormatter.language.locale = this.chartCore.am4lang_en;
+				} else {
+					this.chart.locale = this.chartCore.am4lang_zh;
+					this.chart.numberFormatter.language.locale = this.chartCore.am4lang_zh;
+				}
+
 				this.chart.background.fill = "#ffffff";
 
 				// Create axes

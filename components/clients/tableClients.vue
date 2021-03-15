@@ -98,7 +98,7 @@
 						<v-btn
 							color="red"
 							class="white--text"
-							@click="clearSearchFilter"
+							@click="clearSearchFilter(1)"
 							block
 							:loading="loading"
 						>
@@ -126,7 +126,19 @@
 							:loading="loading"
 							:footer-props="footerProps"
 						>
-							<template v-slot:expanded-item="{ headers, item }">
+							<template v-slot:[`item.cDeviceName`]="{ item }">
+								{{ $t(removeSpace(item.cDeviceName)) }}
+							</template>
+
+							<template v-slot:[`item.cDeviceType`]="{ item }">
+								{{ $t(removeSpace(item.cDeviceType)) }}
+							</template>
+
+							<template v-slot:[`item.os`]="{ item }">
+								{{ $t(removeSpace(item.os)) }}
+							</template>
+
+							<template v-slot:expanded-ite m="{ headers, item }">
 								<td :colspan="headers.length">
 									<v-row no-gutters>
 										<v-col lg="4" md="6" sm="12">
@@ -340,10 +352,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
+	import Global from "~/mixins/global";
 
 	export default {
 		name: "TableClientsComponent",
-		mixins: [Variables],
+		mixins: [Variables, Global],
 		data() {
 			return {
 				sortBy: "cid|desc",
@@ -357,7 +370,7 @@
 				return [
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("deviceName"), value: "cDeviceName" },
-					{ text: this.$t("deviceType"), value: "cDeviceType" },
+					// { text: this.$t("deviceType"), value: "cDeviceType" },
 					{ text: this.$t("browser"), value: "cBrowser" },
 					{ text: this.$t("os"), value: "cOs" },
 					{ text: this.$t("language"), value: "cLanguage" },
@@ -370,7 +383,7 @@
 				return [
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("deviceName"), value: "cDeviceName" },
-					{ text: this.$t("deviceType"), value: "cDeviceType" },
+					// { text: this.$t("deviceType"), value: "cDeviceType" },
 					{ text: this.$t("browser"), value: "cBrowser" },
 					{ text: this.$t("os"), value: "cOs" },
 					{ text: this.$t("language"), value: "cLanguage" },

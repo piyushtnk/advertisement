@@ -7,6 +7,14 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_dataviz from "@amcharts/amcharts4/themes/dataviz";
 import am4themes_material from "@amcharts/amcharts4/themes/material";
 
+// Language
+import am4geodata_lang_zh from "@amcharts/amcharts4-geodata/lang/cn_ZH";
+import am4geodata_lang_en from "@amcharts/amcharts4-geodata/lang/EN";
+
+// Language text
+import am4lang_en from "@amcharts/amcharts4/lang/en_US";
+import am4lang_zh from "@amcharts/amcharts4/lang/zh_Hans";
+
 
 import Vue from "vue";
 
@@ -19,6 +27,10 @@ Vue.prototype.$am4core = () => {
 		am4themes_animated,
 		am4themes_dark,
 		am4themes_dataviz,
-		am4themes_material
+		am4themes_material,
+		am4geodata_lang_zh,
+		am4geodata_lang_en,
+		am4lang_zh,
+		am4lang_en
 	}
 }

@@ -17,10 +17,73 @@
 			</v-row>
 		</v-alert>
 
+		<!-- Filter section -->
+		<v-card class="my-5">
+			<v-card-text>
+				<v-row>
+					<v-col cols="6">
+						<v-dialog
+							ref="dialog"
+							v-model="modal"
+							@input="(v) => v || whenDialogClosed()"
+							:return-value.sync="date"
+							persistent
+							width="300px"
+							overlay-opacity="0.8"
+						>
+							<template v-slot:activator="{ on, attrs }">
+								<v-text-field
+									v-model="dateRangeText"
+									:label="$t('chooseSpecificDate')"
+									prepend-icon="mdi-calendar"
+									readonly
+									v-bind="attrs"
+									v-on="on"
+								></v-text-field>
+							</template>
+							<v-date-picker
+								v-model="date"
+								scrollable
+								range
+								light
+								:locale="$t('localeType')"
+							>
+								<v-spacer></v-spacer>
+								<v-btn
+									text
+									color="primary"
+									@click="modal = false"
+								>
+									{{ $t("cancel") }}
+								</v-btn>
+								<v-btn
+									text
+									color="primary"
+									@click="$refs.dialog.save(date)"
+								>
+									{{ $t("ok") }}
+								</v-btn>
+							</v-date-picker>
+						</v-dialog>
+					</v-col>
+					<v-col cols="6">
+						<v-select
+							v-model="filterType.defaultFilterDate"
+							:items="filterType.filterDate"
+							item-value="state"
+							item-text="abbr"
+							:label="$t('filterType')"
+						/>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
+
 		<!-- World map -->
 		<ChartsComponent
 			@childFilterForCounter="filterValueForStatistics"
 			:filterType="filterType"
+			:date.sync="date"
 		/>
 
 		<!-- Counter Live -->
@@ -52,12 +115,14 @@
 		middleware: "authenticate",
 		data() {
 			return {
+				date: [],
+				modal: false,
 				filterType: {
 					defaultFilterDate: 1,
 					filterDate: [
 						{
 							state: 7,
-							abbr: this.$t("all") + " (From - 26/01/2021)",
+							abbr: this.$t("all"),
 						},
 						{
 							state: 1,
@@ -102,6 +167,9 @@
 			...mapGetters({
 				getUpdateIntervalTime: "getUpdateIntervalTime",
 			}),
+			dateRangeText() {
+				return this.date.join(" ~ ");
+			},
 		},
 		components: {
 			ChartsComponent: ChartsComponent,

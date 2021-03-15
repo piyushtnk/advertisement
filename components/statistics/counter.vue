@@ -30,7 +30,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
+											isNullValue(
 												statistics2.overallTotalTopupValue
 											)
 										}}
@@ -84,7 +84,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
+											isNullValue(
 												statistics2.overallTotalTopupValueFromBanners
 											)
 										}}
@@ -117,7 +117,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
+											isNullValue(
 												statistics2.overallWithdrawalValue
 											)
 										}}
@@ -208,7 +208,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
+											isNullValue(
 												statistics2.overallTotalTopupValue -
 													statistics2.overallWithdrawalValue
 											)
@@ -660,6 +660,14 @@
 				if (value == null) {
 					return 0;
 				} else {
+					return this.numberFormat(parseFloat(value.toFixed(2)));
+				}
+			},
+			isNullValue(value) {
+				if (value == null) {
+					return 0;
+				} else {
+					value = value * 1000;
 					return this.numberFormat(parseFloat(value.toFixed(2)));
 				}
 			},

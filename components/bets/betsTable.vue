@@ -92,7 +92,7 @@
 						<v-btn
 							color="red"
 							class="white--text"
-							@click="clearSearchFilter"
+							@click="clearSearchFilter(1)"
 							block
 							:loading="loading"
 						>

@@ -37,6 +37,14 @@ export default {
 			document.execCommand("copy");
 			document.body.removeChild(dummy);
 		},
+
+		removeSpace(text) {
+			if (text) {
+				return text.replace(/\s+/g, "");
+			} else {
+				return text;
+			}
+		}
 	},
 	watch: {}
 }

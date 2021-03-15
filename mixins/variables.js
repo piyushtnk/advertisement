@@ -37,7 +37,7 @@ export default {
 			return [
 				{
 					state: 7,
-					abbr: this.$t("all") + " (From - 26/01/2021)"
+					abbr: this.$t("all")
 				},
 				{
 					state: 1,
@@ -144,13 +144,13 @@ export default {
 			defaultObjectParams.search = this.searchByColumn;
 			this.$emit("childFilterForDate", defaultObjectParams);
 		},
-		clearSearchFilter() {
+		clearSearchFilter(param) {
 			this.date = [];
 			this.search = {
 				column: "",
 				value: ""
 			};
-			this.defaultFilterDate = 1;
+			this.defaultFilterDate = param;
 			this.loading = true;
 			this.beforeSearchMiddleware();
 		}

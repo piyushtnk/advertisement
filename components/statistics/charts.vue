@@ -1,66 +1,5 @@
 <template>
 	<div>
-		<v-card class="my-5">
-			<v-card-text>
-				<v-row>
-					<v-col cols="6">
-						<v-dialog
-							ref="dialog"
-							v-model="modal"
-							@input="(v) => v || whenDialogClosed()"
-							:return-value.sync="date"
-							persistent
-							width="300px"
-							overlay-opacity="0.8"
-						>
-							<template v-slot:activator="{ on, attrs }">
-								<v-text-field
-									v-model="dateRangeText"
-									:label="$t('chooseSpecificDate')"
-									prepend-icon="mdi-calendar"
-									readonly
-									v-bind="attrs"
-									v-on="on"
-								></v-text-field>
-							</template>
-							<v-date-picker
-								v-model="date"
-								scrollable
-								range
-								light
-								:locale="$t('localeType')"
-							>
-								<v-spacer></v-spacer>
-								<v-btn
-									text
-									color="primary"
-									@click="modal = false"
-								>
-									{{ $t("cancel") }}
-								</v-btn>
-								<v-btn
-									text
-									color="primary"
-									@click="$refs.dialog.save(date)"
-								>
-									{{ $t("ok") }}
-								</v-btn>
-							</v-date-picker>
-						</v-dialog>
-					</v-col>
-					<v-col cols="6">
-						<v-select
-							v-model="filterType.defaultFilterDate"
-							:items="filterType.filterDate"
-							item-value="state"
-							item-text="abbr"
-							:label="$t('filterType')"
-						/>
-					</v-col>
-				</v-row>
-			</v-card-text>
-		</v-card>
-
 		<!-- Chart World -->
 		<v-row>
 			<v-col cols="12">
@@ -95,14 +34,15 @@
 				heatLegend: {},
 				polygonSeries: {},
 				chart: {},
-				date: [],
-				modal: false,
 				loading: true,
 			};
 		},
 		props: {
 			filterType: {
 				type: Object,
+			},
+			date: {
+				type: Array,
 			},
 		},
 		created() {
@@ -115,6 +55,15 @@
 				this.chartCore.am4maps.MapChart
 			);
 			let $this = this;
+
+			// Language selection
+			if ($this._i18n.localeProperties.code == "en") {
+				$this.chart.locale = $this.chartCore.am4lang_en;
+				$this.chart.geodataNames = $this.chartCore.am4geodata_lang_en;
+			} else {
+				$this.chart.locale = $this.chartCore.am4lang_zh;
+				$this.chart.geodataNames = $this.chartCore.am4geodata_lang_zh;
+			}
 
 			$this.chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
@@ -215,9 +164,6 @@
 				statistics: "getStatistics",
 			}),
 
-			dateRangeText() {
-				return this.date.join(" ~ ");
-			},
 			chartCore() {
 				return this.$am4core();
 			},

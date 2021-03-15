@@ -38,7 +38,7 @@ export default async (context, locale) => {
 			"Be Patient, It'll take some time, Live data are being computed and will be displayed soon",
 		statsMessage2: "All finance data will update on every 30 minutes.",
 		statsMessage3: "Next update remaining time - ",
-		all: "All",
+		all: "All (From - 26/01/2021)",
 		today: "Today",
 		yesterday: "Yesterday",
 		thisWeek: "This week",
@@ -65,6 +65,10 @@ export default async (context, locale) => {
 
 		// Browser list
 		Chrome: "Chrome",
+		PC: 'PC',
+		pc: 'PC',
+		zh: 'ZH',
+		clients: 'Clients',
 		Safari: "Safari",
 		GoogleSearchApp: "Google Search App",
 		Webview: "Webview",
@@ -78,6 +82,8 @@ export default async (context, locale) => {
 
 		// Device list
 		Android: "Android",
+		AndroidMobile: 'Android Mobile',
+		AndroidTablet: 'Android Tablet',
 		iPhone: "iPhone",
 		MacOSX: "MAC OSX",
 		Windows10: "Windows 10",
@@ -89,6 +95,7 @@ export default async (context, locale) => {
 		Linux: "Linux",
 		Windows8: "Windows 8",
 		Vivaldi: "Vivaldi",
+		smartphone: 'Smart Phone',
 
 		topRecentBannersPer: "Top Recent Banners Performance",
 		image: "Image",
@@ -143,7 +150,7 @@ export default async (context, locale) => {
 		totalTopUpCount: "Total Top-up Count",
 		totalWithdrawal: "Total Withdrawal",
 		totalWithdrawalCount: "Total Withdrawal Count",
-		totalClaimed: "Claimed Bonus",
+		totalClaimed: "Total Bonus",
 		totalWinLoss: "Total Win/Loss",
 		totalValidBet: "Total Valid Bet",
 		totalBonus: "Total Bonus",
@@ -236,6 +243,7 @@ export default async (context, locale) => {
 		registeredPlayersAlert:
 			"These all players are either clicked on a banner or just viewed the banner into device browser, and made a deposit into their account.",
 		withdrawId: "Withdrawal Id",
+		withdrawalTime: 'Withdrawal Time',
 		withdrawalAmount: "Withdrawal Amount",
 		time: "Time",
 		betAmount: "Bet Amount",
@@ -267,6 +275,12 @@ export default async (context, locale) => {
 		selectDateRange: 'Select date range',
 		associatedReport: 'Associated Report',
 		copy: 'Copy',
-		id: 'ID'
+		id: 'ID',
+		system: 'System',
+		statistics: 'Statistics',
+		players: 'Players',
+		deposit: 'Deposit',
+		withdrawals: 'Withdrawals',
+		bets: 'Bets'
 	};
 };
