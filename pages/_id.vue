@@ -3,6 +3,8 @@
 </template>
 
 <script>
+	import FingerprintJS from "@fingerprintjs/fingerprintjs";
+
 	export default {
 		layout: "client",
 		data() {
@@ -17,9 +19,16 @@
 				},
 			};
 		},
-		created() {
+		async created() {
 			const $this = this;
-			$this.deviceId();
+
+			// Fingerprint js version 3.0
+			const fp = await FingerprintJS.load();
+			const result = await fp.get();
+			const visitorId = result.visitorId;
+			$this.clientData.deviceId = visitorId;
+
+			// Final call
 			$this.finalize();
 		},
 		computed: {
@@ -34,42 +43,6 @@
 			},
 		},
 		methods: {
-			fingerPrint2() {
-				let $this = this;
-				$this.$fingerPrint2.get(
-					{
-						canvas: true,
-						ie_activex: true,
-						screen_resolution: true,
-					},
-					function (components) {
-						var values = components.map(function (component) {
-							return component.value;
-						});
-						var murmur = $this.$fingerPrint2.x64hash128(
-							values.join(""),
-							31
-						);
-						$this.clientData.deviceId = murmur;
-						return true;
-					}
-				);
-			},
-			async deviceId() {
-				// Device Id
-				var navigator_info = window.navigator;
-				var screen_info = window.screen;
-				var uid = navigator_info.mimeTypes.length;
-				uid += navigator_info.userAgent.replace(/\D+/g, "");
-				uid += navigator_info.plugins.length;
-				uid += screen_info.height || "";
-				uid += screen_info.width || "";
-				uid += screen_info.pixelDepth || "";
-				this.clientData.deviceId = uid;
-
-				// Origin
-				this.clientData.origin = document.referrer;
-			},
 			finalize() {
 				// Check the banner existence
 				const $this = this;
@@ -135,7 +108,7 @@
 										$this.clientData.deviceId
 									),
 									cOs: $this.isNull($this.clientData.info.os()),
-									cOrigin: $this.clientData.origin,
+									cOrigin: "", // Decrypted with fingerprintJs@v2.0
 								})
 								.then(function (response) {
 									window.location.href =
