@@ -45,14 +45,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>
@@ -134,8 +134,12 @@
 								{{ $t(removeSpace(item.cDeviceType)) }}
 							</template>
 
-							<template v-slot:[`item.os`]="{ item }">
-								{{ $t(removeSpace(item.os)) }}
+							<template v-slot:[`item.cOs`]="{ item }">
+								{{ $t(removeSpace(item.cOs)) }}
+							</template>
+
+							<template v-slot:[`item.cCountry`]="{ item }">
+								{{ $t(removeSpace(item.cCountry)) }}
 							</template>
 
 							<template v-slot:expanded-ite m="{ headers, item }">

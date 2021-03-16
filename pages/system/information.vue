@@ -3,7 +3,7 @@
 		<v-row class="">
 			<v-col cols="12">
 				<v-card class="mx-auto">
-					<v-app-bar dark>
+					<v-app-bar>
 						<v-toolbar-title>{{
 							$t("information.heading")
 						}}</v-toolbar-title>
@@ -22,7 +22,7 @@
 								:icon="item.icon"
 								fill-dot
 							>
-								<v-card :color="item.color" dark>
+								<v-card :color="item.color">
 									<v-card-title class="title">
 										{{ item.heading }}
 									</v-card-title>
@@ -50,25 +50,25 @@
 			items() {
 				return [
 					{
-						color: "grey darken-3",
+						color: "white ",
 						icon: "mdi-account-group",
 						heading: this.$t("layout.clients"),
 						content: this.$t("information.clients"),
 					},
 					{
-						color: "grey darken-3",
+						color: "white ",
 						icon: "mdi-account-arrow-left",
 						heading: this.$t("layout.players"),
 						content: this.$t("information.players"),
 					},
 					{
-						color: "grey darken-3",
+						color: "white ",
 						icon: "mdi-clipboard-file",
 						heading: this.$t("layout.reports"),
 						content: this.$t("information.reports"),
 					},
 					{
-						color: "grey darken-3",
+						color: "white ",
 						icon: "mdi-ip",
 						heading: this.$t("layout.ipClients"),
 						content: this.$t("information.ipClients"),

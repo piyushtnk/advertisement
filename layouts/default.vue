@@ -19,12 +19,12 @@
 		<!-- Navigation -->
 		<v-navigation-drawer
 			v-model="drawer"
-			:mini-variant="miniVariant"
+			:mini-variant.sync="miniVariant"
 			:clipped="clipped"
-			fixed
+			floating
 			app
 		>
-			<v-list>
+			<v-list rounded>
 				<v-list-item
 					v-for="(item, i) in items"
 					:key="i"
@@ -40,11 +40,32 @@
 					</v-list-item-content>
 				</v-list-item>
 			</v-list>
+
+			<template v-slot:append>
+				<div class="pa-2">
+					<v-btn block v-on:click="logout">
+						<v-icon>mdi-logout</v-icon> {{ $t("logout") }}
+					</v-btn>
+				</div>
+			</template>
 		</v-navigation-drawer>
 		<v-app-bar :clipped-left="clipped" fixed app>
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 			<v-toolbar-title v-text="title" />
+
 			<v-spacer />
+
+			<!-- Dark mode -->
+			<div class="mt-5">
+				<v-tooltip left>
+					<template v-slot:activator="{ on, attrs }">
+						<div v-bind="attrs" v-on="on">
+							<v-switch v-model="isThemeDark" inset></v-switch>
+						</div>
+					</template>
+					<span>{{ $t("theme") }}</span>
+				</v-tooltip>
+			</div>
 
 			<!-- LoggedIn user -->
 			<v-menu offset-y>
@@ -210,6 +231,7 @@
 				miniVariant: false,
 				right: true,
 				rightDrawer: false,
+				isThemeDark: true,
 			};
 		},
 		methods: {
@@ -260,6 +282,11 @@
 			},
 			title() {
 				return this.$t("layout.systemPanel");
+			},
+		},
+		watch: {
+			isThemeDark(value) {
+				this.$vuetify.theme.dark = value;
 			},
 		},
 	};

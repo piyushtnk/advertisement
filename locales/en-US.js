@@ -1,7 +1,7 @@
 export default async (context, locale) => {
 	return await {
 		welcome: "Welcome",
-		visitors: "All Banner Clicks",
+		visitors: "All Banner Clicks (PV)",
 		chooseSpecificDate: "Choose Specific Date",
 		ok: "Ok",
 		okay: "Okay",
@@ -22,12 +22,14 @@ export default async (context, locale) => {
 			withdrawals: "Withdrawals",
 			bets: "Bets",
 			ip: "IP",
+			zh: 'ZH',
+			domain: 'Domain'
 		},
 		dashboard: {
 			recentInteractionUserGraph: "Recent interaction users graph",
 			recentVisitorThroughBanner: "Recent visitors through banner",
 			liveStatistics: "Live Statistics",
-			actualVisitors: "Unique Banner Clicks",
+			actualVisitors: "Unique Banner Clicks (UV)",
 			registeredVisitors: "Registered Visitors From Banners",
 			registeredBanners: "Banners Added To The System",
 			systemStats: "System Stats",
@@ -47,7 +49,7 @@ export default async (context, locale) => {
 		lastWeek: "Last week",
 		thisMonth: "This month",
 		lastMonth: "Last month",
-		localeType: "en-US",
+		localeType: "en-us",
 		visitorAllOverWorld: "Visitors all over the world",
 		overallTotalTopUpValue: "Overall Total Top-up Value (All Sources)",
 		overallTopUpCount: "Overall Top-up Count (All Sources)",
@@ -231,7 +233,7 @@ export default async (context, locale) => {
 		auditTime: "Audit Time",
 		depositId: "Deposit Id",
 		depositTime: "Deposit Time",
-		group: "Group",
+		group: "Member Level",
 		receivedDeposit: "Received Deposit",
 		remarks: "Remarks",
 		thirdPartyOrderNo: "Third Party Order No.",
@@ -283,5 +285,32 @@ export default async (context, locale) => {
 		deposit: 'Deposit',
 		withdrawals: 'Withdrawals',
 		bets: 'Bets',
+		theme: 'Theme',
+		logout: 'Logout',
+
+		// Country list
+		Vietnam: 'Vietnam',
+		Laos: 'Laos',
+		Indonesia: 'Indonesia',
+		Hongkong: 'Hongkong',
+		Canada: 'Canada',
+		Turkey: 'Turkey',
+		Japan: 'Japan',
+		Malaysia: 'Malaysia',
+		UnitedStates: 'United',
+		Taiwan: 'Taiwan',
+		Bangladesh: 'Bangladesh',
+		Azerbaijan: 'Azerbaijan',
+		Singapore: 'Singapore',
+		SouthKorea: 'South',
+		Thailand: 'Thailand',
+		Australia: 'Australia',
+		Asia: 'Asia',
+		Europe: 'Europe',
+		America: 'America',
+
+		DT支付: 'DTPAY',
+		普通会员: 'Ordinary Member'
+
 	};
 };

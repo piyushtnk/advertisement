@@ -3,7 +3,7 @@
 		<v-row class="mt-6">
 			<v-col cols="12">
 				<v-card class="mx-auto">
-					<v-app-bar dark>
+					<v-app-bar>
 						<v-toolbar-title>{{
 							$t("dashboard.liveStatistics")
 						}}</v-toolbar-title>
@@ -80,7 +80,7 @@
 										stats.visitors
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("visitors") }} (PV)
+										{{ $t("visitors") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -96,7 +96,6 @@
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.actualVisitors") }}
-										(UV)
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -141,7 +140,7 @@
 		<v-row class="mt-6">
 			<v-col cols="12">
 				<v-card class="mx-auto">
-					<v-app-bar dark>
+					<v-app-bar>
 						<v-toolbar-title>{{
 							$t("dashboard.systemStats")
 						}}</v-toolbar-title>

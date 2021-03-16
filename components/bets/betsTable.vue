@@ -37,14 +37,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>
@@ -161,16 +161,19 @@
 			headers() {
 				return [
 					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "currency" },
-					{ text: this.$t("betAmount"), value: "betamount" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("gameId"), value: "gameid" },
-					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
+					// { text: this.$t("name"), value: "currency" },
+					{ text: this.$t("resultTime"), value: "resulttime" },
+					{ text: this.$t("roundId"), value: "roundid" },
+					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
 					{
 						text: this.$t("gameName"),
 						value: "gamename",
 					},
-					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
+					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
+					{ text: this.$t("currency"), value: "currency" },
+					{ text: this.$t("gameId"), value: "gameid" },
+					{ text: this.$t("betAmount"), value: "betamount" },
+					{ text: this.$t("validBet"), value: "validbet" },
 					{
 						text: this.$t("jpBet"),
 						value: "jpbet",
@@ -183,11 +186,8 @@
 						text: this.$t("odds"),
 						value: "odds",
 					},
-					{ text: this.$t("resultTime"), value: "resulttime" },
-					{ text: this.$t("roundId"), value: "roundid" },
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("validBet"), value: "validbet" },
 					{ text: this.$t("winLoss"), value: "winloss" },
+					{ text: this.$t("agentBy"), value: "ulagentaccount" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},

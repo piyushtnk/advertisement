@@ -3,14 +3,14 @@ export default async (context, locale) => {
 		welcome: "欢迎",
 		chooseSpecificDate: "日期",
 		visitors: "横幅广告点击次数",
-		ok: "行",
+		ok: "确定",
 		okay: "好的",
 		cancel: "取消",
 		layout: {
 			system: '系统',
 			clients: "客户",
 			players: "玩家",
-			banner: "广告列表",
+			banner: "横幅广告",
 			systemPanel: "系统面板",
 			dashboard: "首页",
 			statistics: "统计",
@@ -22,12 +22,14 @@ export default async (context, locale) => {
 			withdrawals: "提款记录",
 			bets: "投注记录",
 			ip: "IP 地址",
+			zh: 'ZH',
+			domain: '领域'
 		},
 		dashboard: {
 			recentInteractionUserGraph: "最近的互动用户图",
 			recentVisitorThroughBanner: "通道横幅广告来的客户",
 			liveStatistics: "实时统计",
-			actualVisitors: "实际访客",
+			actualVisitors: "流量",
 			registeredVisitors: "通过横幅广告的新会员",
 			registeredBanners: "新横幅广告",
 			systemStats: "系统统计",
@@ -45,7 +47,7 @@ export default async (context, locale) => {
 		lastWeek: "上周",
 		thisMonth: "本月",
 		lastMonth: "上月",
-		localeType: "zh-CN",
+		localeType: "zh-cn",
 		visitorAllOverWorld: "全世界的游客",
 		overallTotalTopUpValue: "存款总额",
 		overallTopUpCount: "存款次数",
@@ -80,7 +82,7 @@ export default async (context, locale) => {
 		YandexBrowser: "yandex浏览器",
 
 		// Device list
-		Android: "安卓手机",
+		Android: "安卓",
 		AndroidMobile: '安卓手机',
 		AndroidTablet: '安卓药片',
 		iPhone: "苹果手机",
@@ -125,7 +127,7 @@ export default async (context, locale) => {
 		save: "救",
 		submit: "提交",
 		updateBanner: "更新横幅",
-		theseAreAllClients: "通过横幅广告注册客户",
+		theseAreAllClients: "通过横幅广告来注册的客户",
 
 		ip: "IP 地址",
 		deviceName: "登录方式",
@@ -165,7 +167,7 @@ export default async (context, locale) => {
 		currency: "货币",
 		currencyName: "货币名称",
 		europeanUnion: "欧洲联盟",
-		languages: "语言能力",
+		languages: "语言",
 		latitude: "纬度",
 		longitude: "经度",
 		organization: "组织",
@@ -184,7 +186,7 @@ export default async (context, locale) => {
 		overallWithdrawalValueFromBanner: "（从横幅）提款总额",
 		totalProfit: "总毛利",
 
-		registerYourBanner: "注册广告链接",
+		registerYourBanner: "注册横幅广告",
 		areYouSure: "你确定吗？ 您要删除此项目，这将永久删除横幅和所有相关数据，所有IP查看器和所有客户端。",
 
 		WindowsUNKNOWNVer: "Windows Unknown Ver.",
@@ -252,7 +254,7 @@ export default async (context, locale) => {
 		jpWin: "积宝奖金",
 		odds: "赔率",
 		resultTime: "结算时间",
-		roundId: "交易 ID",
+		roundId: "句号 ID",
 		validBet: "有效投注额",
 		winLoss: "赢/输",
 		download: "下载",
@@ -278,5 +280,31 @@ export default async (context, locale) => {
 		deposit: '存款记录',
 		withdrawals: '提款记录',
 		bets: '投注记录',
+		theme: '主题',
+		logout: '登出',
+
+		// Country list
+		Vietnam: '越南',
+		Laos: '老挝',
+		Indonesia: '印尼',
+		Hongkong: '香港',
+		Canada: '加拿大',
+		Turkey: '土耳其',
+		Japan: '日本',
+		Malaysia: '马来西亚',
+		UnitedStates: '美国',
+		Taiwan: '台湾',
+		Bangladesh: '孟加拉国',
+		Azerbaijan: '阿塞拜疆',
+		Singapore: '新加坡',
+		SouthKorea: '韩国',
+		Thailand: '泰国',
+		Australia: '澳大利亚',
+		Asia: '亚洲',
+		Europe: '欧洲',
+		America: '美国',
+
+		DT支付: 'DT支付',
+		普通会员: '普通会员'
 	};
 };

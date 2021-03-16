@@ -37,14 +37,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>

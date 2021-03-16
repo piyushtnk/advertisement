@@ -37,14 +37,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>
@@ -161,6 +161,20 @@
 									isNull(item.lastname)
 								}}
 							</template>
+
+							<template
+								v-slot:[`item.thirdpartypaymentstaticname`]="{
+									item,
+								}"
+							>
+								{{
+									$t(
+										removeSpace(
+											item.thirdpartypaymentstaticname
+										)
+									)
+								}}
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -191,13 +205,13 @@
 			}),
 			headers() {
 				return [
+					{ text: this.$t("depositTime"), value: "deposittime" },
+					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("currency"), value: "currency" },
 					{ text: this.$t("depositId"), value: "depositid" },
 					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
 					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("receivedDeposit"),
@@ -212,10 +226,10 @@
 						text: this.$t("thirdPartyBankCode"),
 						value: "thirdpartypaymentbankcode",
 					},
-					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
-					},
+					// {
+					// 	text: this.$t("thirdPartyPaymentCode"),
+					// 	value: "thirdpartypaymentcode",
+					// },
 					{
 						text: this.$t("thirdPartyPaymentName"),
 						value: "thirdpartypaymentstaticname",

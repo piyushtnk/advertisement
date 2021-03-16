@@ -37,14 +37,14 @@
 									color="primary"
 									@click="modal = false"
 								>
-									Cancel
+									{{ $t("cancel") }}
 								</v-btn>
 								<v-btn
 									text
 									color="primary"
 									@click="$refs.dialog.save(date)"
 								>
-									OK
+									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>
 						</v-dialog>
@@ -133,6 +133,10 @@
 									isNull(item.lastname)
 								}}
 							</template>
+
+							<template v-slot:[`item.groupname`]="{ item }">
+								{{ $t(item.groupname) }}
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -160,16 +164,16 @@
 			}),
 			headers() {
 				return [
-					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("withdrawId"), value: "withdrawid" },
-					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
 						text: this.$t("withdrawalTime"),
 						value: "withdrawaltime",
 					},
+					{ text: this.$t("auditTime"), value: "audittime" },
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
+					{ text: this.$t("currency"), value: "currency" },
+					{ text: this.$t("withdrawId"), value: "withdrawid" },
+					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("thirdPartyOrderNo"),
