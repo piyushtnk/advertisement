@@ -107,7 +107,9 @@
 									:href="item.href"
 									:disabled="item.disabled"
 								>
-									{{ $t(item.text.toUpperCase()) }}
+									{{
+										$t("layout." + item.text).toUpperCase()
+									}}
 								</v-breadcrumbs-item>
 							</template>
 						</v-breadcrumbs>

@@ -194,9 +194,9 @@
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("withdrawid"), value: "withdrawid" },
-					{ text: this.$t("withdrawalamt"), value: "withdrawalamt" },
-					{ text: this.$t("withdrawaltime"), value: "withdrawaltime" },
+					{ text: this.$t("withdrawId"), value: "withdrawid" },
+					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
+					{ text: this.$t("withdrawalTime"), value: "withdrawaltime" },
 					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("thirdPartyOrderNo"),

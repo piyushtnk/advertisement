@@ -7,6 +7,7 @@ export default async (context, locale) => {
 		okay: "好的",
 		cancel: "取消",
 		layout: {
+			system: '系统',
 			clients: "客户",
 			players: "玩家",
 			banner: "广告列表",
@@ -19,7 +20,8 @@ export default async (context, locale) => {
 			information: "信息",
 			deposit: "存款记录",
 			withdrawals: "提款记录",
-			bets: "投注记录"
+			bets: "投注记录",
+			ip: "IP 地址",
 		},
 		dashboard: {
 			recentInteractionUserGraph: "最近的互动用户图",
@@ -271,11 +273,10 @@ export default async (context, locale) => {
 		associatedReport: '相关报表',
 		copy: '复制',
 		id: 'ID',
-		system: '系统',
 		statistics: '统计',
 		players: '玩家',
 		deposit: '存款记录',
 		withdrawals: '提款记录',
-		bets: '投注记录'
+		bets: '投注记录',
 	};
 };

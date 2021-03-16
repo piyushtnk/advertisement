@@ -7,6 +7,7 @@ export default async (context, locale) => {
 		okay: "Okay",
 		cancel: "Cancel",
 		layout: {
+			system: 'System',
 			players: "Players",
 			clients: "Clients",
 			banner: "Banner",
@@ -19,7 +20,8 @@ export default async (context, locale) => {
 			information: "Information",
 			deposit: "Deposit",
 			withdrawals: "Withdrawals",
-			bets: "Bets"
+			bets: "Bets",
+			ip: "IP",
 		},
 		dashboard: {
 			recentInteractionUserGraph: "Recent interaction users graph",
@@ -276,11 +278,10 @@ export default async (context, locale) => {
 		associatedReport: 'Associated Report',
 		copy: 'Copy',
 		id: 'ID',
-		system: 'System',
 		statistics: 'Statistics',
 		players: 'Players',
 		deposit: 'Deposit',
 		withdrawals: 'Withdrawals',
-		bets: 'Bets'
+		bets: 'Bets',
 	};
 };
