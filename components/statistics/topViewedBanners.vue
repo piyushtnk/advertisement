@@ -18,7 +18,7 @@
 											{{ $t("origin") }}
 										</th>
 										<th class="text-left">
-											{{ $t("redirectionURL") }}
+											{{ $t("destinationURL") }}
 										</th>
 										<th class="text-left">
 											{{ $t("clicks") }}
