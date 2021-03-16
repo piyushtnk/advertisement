@@ -119,7 +119,6 @@ export default async (context, locale) => {
 		filterType: "Filter type",
 		columnName: "Column name",
 		bannerLink: "Banner link",
-		destinationURL: "Destinaton URL",
 		advertisementSource: "Advertisement Source",
 		searchText: "Search Text",
 		search: "Search",
@@ -308,9 +307,11 @@ export default async (context, locale) => {
 		Asia: 'Asia',
 		Europe: 'Europe',
 		America: 'America',
+		HongKong: ' Hong Kong',
+		Georgia: 'Georgia',
+		Philippines: 'Philippines',
 
 		DT支付: 'DTPAY',
 		普通会员: 'Ordinary Member'
-
 	};
 };

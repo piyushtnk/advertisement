@@ -115,7 +115,6 @@ export default async (context, locale) => {
 		filterType: "时间",
 		columnName: "搜索方式",
 		bannerLink: "横幅广告链接",
-		destinationURL: "终点网址",
 		advertisementSource: "广告来源",
 		searchText: "搜寻文字",
 		search: "搜索",
@@ -303,6 +302,9 @@ export default async (context, locale) => {
 		Asia: '亚洲',
 		Europe: '欧洲',
 		America: '美国',
+		HongKong: ' 香港',
+		Georgia: '格鲁吉亚',
+		Philippines: '菲律宾',
 
 		DT支付: 'DT支付',
 		普通会员: '普通会员'
