@@ -126,7 +126,7 @@ export default async (context, locale) => {
 		save: "救",
 		submit: "提交",
 		updateBanner: "更新横幅",
-		theseAreAllClients: " 这些是点击广告横幅的人的信息",
+		theseAreAllClients: "这些是点击广告横幅的人的信息",
 
 		ip: "IP 地址",
 		deviceName: "登录方式",
@@ -181,8 +181,8 @@ export default async (context, locale) => {
 		profitInformation: "毛利记录",
 		overallTotalWithdrawalValue: "提款总额",
 		overallTotalWithdrawalCount: "提款次数",
-		overallWithdrawalCountFromBanner: "提款总额 （通过横幅广告）",
-		overallWithdrawalValueFromBanner: "（从横幅）提款总额",
+		overallWithdrawalCountFromBanner: "提款次数 （通过横幅广告）",
+		overallWithdrawalValueFromBanner: "提款总额 （通过横幅广告）",
 		totalProfit: "总毛利",
 
 		registerYourBanner: "注册横幅广告",
@@ -305,8 +305,14 @@ export default async (context, locale) => {
 		HongKong: ' 香港',
 		Georgia: '格鲁吉亚',
 		Philippines: '菲律宾',
+		NewZealand: '新西兰',
+		Myanmar: '缅甸',
+		France: '法国',
+		Russia: '俄罗斯',
 
 		DT支付: 'DT支付',
-		普通会员: '普通会员'
+		普通会员: '普通会员',
+		新会员: '新会员',
+		普通会员: '普通会员',
 	};
 };

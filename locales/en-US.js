@@ -310,8 +310,15 @@ export default async (context, locale) => {
 		HongKong: ' Hong Kong',
 		Georgia: 'Georgia',
 		Philippines: 'Philippines',
+		NewZealand: 'New Zealand',
+		Myanmar: 'Myanmar',
+		France: 'France',
+		Russia: 'Russia',
+
 
 		DT支付: 'DTPAY',
-		普通会员: 'Ordinary Member'
+		普通会员: 'Ordinary Member',
+		新会员: 'New',
+		普通会员: ' Ordinary',
 	};
 };
