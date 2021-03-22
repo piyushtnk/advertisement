@@ -236,7 +236,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/clients?filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -255,7 +255,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/clients?unique=true&filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -274,7 +274,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/players?filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -300,7 +300,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/players?topUp=true&filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -322,7 +322,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/clients?unique=true&device=pc&filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -340,7 +340,7 @@
 							:loading="statisticsLoading"
 							:to="
 								'/system/clients?unique=true&device=smartphone&filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -362,7 +362,7 @@
 							:loading="ipClientsLoading"
 							:to="
 								'/system/ip?filterType=' +
-								filterType.defaultFilterDate
+								defaultFilterDateProps
 							"
 						>
 							<v-card-title class="display-1">
@@ -568,14 +568,14 @@
 										</td>
 										<td>
 											<v-chip
+												outlined
 												class="ma-2"
 												color="green"
-												text-color="white"
 												:to="
 													'/system/clients?bannerId=' +
 													item.id +
 													'&filterType=' +
-													filterType.defaultFilterDate
+													defaultFilterDateProps
 												"
 											>
 												{{ item.count }}
@@ -604,8 +604,8 @@
 			return {};
 		},
 		props: {
-			filterType: {
-				type: Object,
+			defaultFilterDateProps: {
+				type: Number,
 			},
 			statistics2Loading: {
 				type: Boolean,
@@ -676,7 +676,7 @@
 					"/system/clients?browser=" +
 						value +
 						"&filterType=" +
-						this.filterType.defaultFilterDate
+						this.defaultFilterDateProps
 				);
 			},
 			goToClientTablePageWithOsParam(value) {
@@ -684,7 +684,7 @@
 					"/system/clients?os=" +
 						value +
 						"&filterType=" +
-						this.filterType.defaultFilterDate
+						this.defaultFilterDateProps
 				);
 			},
 		},

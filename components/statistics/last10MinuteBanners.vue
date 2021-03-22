@@ -98,9 +98,9 @@
 										</td>
 										<td>
 											<v-chip
+												outlined
 												class="ma-2"
 												color="green"
-												text-color="white"
 												:to="
 													'/system/clients?bannerId=' +
 													item.id +

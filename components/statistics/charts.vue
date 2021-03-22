@@ -38,8 +38,8 @@
 			};
 		},
 		props: {
-			filterType: {
-				type: Object,
+			defaultFilterDateProps: {
+				type: Number,
 			},
 			date: {
 				type: Array,
@@ -121,7 +121,7 @@
 
 			// Hitting parents.
 			this.$emit("childFilterForCounter", {
-				duration: this.filterType.defaultFilterDate,
+				duration: this.defaultFilterDateProps,
 				startDate: this.date[0],
 				endDate: this.date[1],
 			});
@@ -173,7 +173,7 @@
 				this.loading = false;
 				this.polygonSeries.data = value.graph;
 			},
-			"filterType.defaultFilterDate"(value) {
+			defaultFilterDateProps(value) {
 				this.loading = true;
 				this.$emit("childFilterForCounter", { duration: value });
 			},

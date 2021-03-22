@@ -9,7 +9,7 @@
 					{{ $t("statsMessage2") }}
 				</v-col>
 				<v-col class="shrink">
-					<v-btn elevation="2" outlined
+					<v-btn elevation="2" outlined depressed color="primary"
 						>{{ $t("statsMessage3") }}
 						{{ getUpdateIntervalTime }}</v-btn
 					>
@@ -68,8 +68,8 @@
 					</v-col>
 					<v-col cols="6">
 						<v-select
-							v-model="filterType.defaultFilterDate"
-							:items="filterType.filterDate"
+							v-model="defaultFilterDate"
+							:items="filterDate"
 							item-value="state"
 							item-text="abbr"
 							:label="$t('filterType')"
@@ -82,13 +82,13 @@
 		<!-- World map -->
 		<ChartsComponent
 			@childFilterForCounter="filterValueForStatistics"
-			:filterType="filterType"
+			:defaultFilterDateProps="defaultFilterDate"
 			:date.sync="date"
 		/>
 
 		<!-- Counter Live -->
 		<CounterComponent
-			:filterType="filterType"
+			:defaultFilterDateProps="defaultFilterDate"
 			:statistics2Loading.sync="statistics2Loading"
 			:statisticsLoading.sync="statisticsLoading"
 			:ipClientsLoading.sync="ipClientsLoading"
@@ -119,39 +119,6 @@
 			return {
 				date: [],
 				modal: false,
-				filterType: {
-					defaultFilterDate: 1,
-					filterDate: [
-						{
-							state: 7,
-							abbr: this.$t("all"),
-						},
-						{
-							state: 1,
-							abbr: this.$t("today"),
-						},
-						{
-							state: 2,
-							abbr: this.$t("yesterday"),
-						},
-						{
-							state: 3,
-							abbr: this.$t("thisWeek"),
-						},
-						{
-							state: 4,
-							abbr: this.$t("lastWeek"),
-						},
-						{
-							state: 5,
-							abbr: this.$t("thisMonth"),
-						},
-						{
-							state: 6,
-							abbr: this.$t("lastMonth"),
-						},
-					],
-				},
 				statistics2Loading: true,
 				statisticsLoading: true,
 				ipClientsLoading: true,

@@ -21,7 +21,7 @@
 											{{ $t("destinationURL") }}
 										</th>
 										<th class="text-left">
-											{{ $t("clicks") }}
+											{{ $t("views") }}
 										</th>
 										<th class="text-left">
 											{{ $t("createdAt") }}
@@ -94,9 +94,9 @@
 										</td>
 										<td>
 											<v-chip
+												outlined
 												class="ma-2"
 												color="green"
-												text-color="white"
 												:to="
 													'/system/ip?bannerId=' +
 													item.id +

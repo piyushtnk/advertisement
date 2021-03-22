@@ -223,6 +223,7 @@
 
 					<template v-slot:[`item.allClientsCount`]="{ item }">
 						<v-chip
+							outlined
 							color="green"
 							class="ma-2"
 							:to="
@@ -237,7 +238,7 @@
 					</template>
 
 					<template v-slot:item.views="{ item }">
-						<v-chip color="purple" class="ma-2">
+						<v-chip outlined color="purple" class="ma-2">
 							{{ numberFormat(item.views) }}
 						</v-chip>
 					</template>
