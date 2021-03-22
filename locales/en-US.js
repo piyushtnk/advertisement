@@ -8,8 +8,8 @@ export default async (context, locale) => {
 		cancel: "Cancel",
 		layout: {
 			system: 'System',
-			players: "Players",
-			clients: "Clients",
+			players: "Member",
+			clients: "Ads Click",
 			banner: "Banner",
 			systemPanel: "System Panel",
 			dashboard: "Dashboard",
@@ -101,7 +101,7 @@ export default async (context, locale) => {
 		Vivaldi: "Vivaldi",
 		smartphone: 'Smart Phone',
 
-		topRecentBannersPer: "Top Recent Banners Performance",
+		topRecentBannersPer: "Top Recent Banners Performance - Selected Date wise.",
 		image: "Image",
 		origin: "Origin",
 		redirectionURL: "Redirection URL",
@@ -131,7 +131,7 @@ export default async (context, locale) => {
 		submit: "Submit",
 		updateBanner: "Update Banner",
 		theseAreAllClients:
-			"These are all clients which came through the advertisement banner",
+			"This is the list of people who click on the advertisement banners",
 
 		ip: "IP",
 		deviceName: "Device name",

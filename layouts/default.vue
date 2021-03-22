@@ -25,8 +25,43 @@
 			app
 		>
 			<v-list rounded>
-				<v-list-item
+				<v-list-group
+					no-action
+					sub-group
 					v-for="(item, i) in items"
+					:key="i"
+					:to="localePath(item.to)"
+					router
+					exact
+					v-if="item.children"
+				>
+					<template v-slot:activator>
+						<v-list-item-content>
+							<v-list-item-title>{{
+								$t(item.title)
+							}}</v-list-item-title>
+						</v-list-item-content>
+					</template>
+
+					<v-list-item
+						v-for="(itemChild, iChild) in item.children"
+						:key="iChild"
+						:to="localePath(itemChild.to)"
+						router
+						exact
+					>
+						<v-list-item-title
+							v-text="$t(itemChild.title)"
+						></v-list-item-title>
+
+						<v-list-item-icon>
+							<v-icon v-text="itemChild.icon"></v-icon>
+						</v-list-item-icon>
+					</v-list-item>
+				</v-list-group>
+
+				<v-list-item
+					v-else
 					:key="i"
 					:to="localePath(item.to)"
 					router
@@ -191,6 +226,26 @@
 						title: "layout.reports",
 						to: "/system/reports",
 						color: "",
+						children: [
+							{
+								icon: "mdi-account-cash",
+								title: "layout.deposit",
+								to: "/system/deposit",
+								color: "",
+							},
+							{
+								icon: "mdi-cash-refund",
+								title: "layout.withdrawals",
+								to: "/system/withdrawals",
+								color: "",
+							},
+							{
+								icon: "mdi-poker-chip",
+								title: "layout.bets",
+								to: "/system/bets",
+								color: "",
+							},
+						],
 					},
 					// {
 					// 	icon: "mdi-account-switch",
@@ -203,24 +258,7 @@
 						to: "/system/ip",
 						color: "",
 					},
-					{
-						icon: "mdi-account-cash",
-						title: "layout.deposit",
-						to: "/system/deposit",
-						color: "",
-					},
-					{
-						icon: "mdi-cash-refund",
-						title: "layout.withdrawals",
-						to: "/system/withdrawals",
-						color: "",
-					},
-					{
-						icon: "mdi-poker-chip",
-						title: "layout.bets",
-						to: "/system/bets",
-						color: "",
-					},
+
 					{
 						icon: "mdi-information",
 						title: "layout.information",

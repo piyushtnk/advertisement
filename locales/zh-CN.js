@@ -8,8 +8,8 @@ export default async (context, locale) => {
 		cancel: "取消",
 		layout: {
 			system: '系统',
-			clients: "客户",
-			players: "玩家",
+			clients: "广告点击人数",
+			players: "会员管理",
 			banner: "横幅广告",
 			systemPanel: "系统面板",
 			dashboard: "首页",
@@ -126,7 +126,7 @@ export default async (context, locale) => {
 		save: "救",
 		submit: "提交",
 		updateBanner: "更新横幅",
-		theseAreAllClients: "通过横幅广告来注册的客户",
+		theseAreAllClients: " 这些是点击广告横幅的人的信息",
 
 		ip: "IP 地址",
 		deviceName: "登录方式",

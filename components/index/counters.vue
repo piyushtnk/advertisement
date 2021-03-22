@@ -89,7 +89,7 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									to="/system/clients"
+									to="/system/clients?unique=true"
 								>
 									<v-card-title class="display-3">{{
 										stats.uniqueVisitors

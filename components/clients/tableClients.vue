@@ -372,6 +372,7 @@
 			}),
 			headerSearch() {
 				return [
+					{ text: this.$t("adsSource"), value: "bannerSource" },
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("deviceName"), value: "cDeviceName" },
 					// { text: this.$t("deviceType"), value: "cDeviceType" },
@@ -385,6 +386,7 @@
 			},
 			headers() {
 				return [
+					{ text: this.$t("adsSource"), value: "bannerSource" },
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("deviceName"), value: "cDeviceName" },
 					// { text: this.$t("deviceType"), value: "cDeviceType" },

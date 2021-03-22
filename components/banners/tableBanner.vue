@@ -82,6 +82,7 @@
 							class="white--text mx-auto"
 							@click="beforeSearchMiddleware"
 							block
+							:disabled="disableSearch"
 							:loading="loading"
 						>
 							{{ $t("search") }}
@@ -434,6 +435,7 @@
 					comment: "",
 					bannerImage: [],
 				},
+				disableSearch: true,
 				loading: false,
 				sortBy: "id|desc",
 				reportDisable: true,
@@ -720,6 +722,13 @@
 					this.reportDisable = false;
 				} else {
 					this.reportDisable = true;
+				}
+			},
+			"search.value"(value) {
+				if (value.length >= 1) {
+					this.disableSearch = false;
+				} else {
+					this.disableSearch = true;
 				}
 			},
 		},

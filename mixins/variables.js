@@ -156,11 +156,11 @@ export default {
 		}
 	},
 	watch: {
+		deep: true,
 		defaultFilterDate(value) {
 			this.defaultFilterDate = value;
 			this.date = [];
 		},
-		deep: true,
 		options: {
 			handler(filter) {
 				if (filter.sortBy.length > 0) {
