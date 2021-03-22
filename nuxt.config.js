@@ -17,6 +17,8 @@ export default {
 	ssr: false,
 	loading: { color: '#3B8070' },
 	components: true,
+	telemetry: false, // Are you interested in participating.
+
 	/* router: {
 		// middleware: ["authenticate", "notAuthenticate"]		
 	}, */
