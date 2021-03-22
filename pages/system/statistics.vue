@@ -110,9 +110,11 @@
 	import CounterComponent from "~/components/statistics/counter";
 	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
 	import Last10MinuteBannersComponent from "~/components/statistics/last10MinuteBanners";
+	import VariablesMixin from "~/mixins/variables";
 
 	export default {
 		middleware: "authenticate",
+		mixins: [VariablesMixin],
 		data() {
 			return {
 				date: [],

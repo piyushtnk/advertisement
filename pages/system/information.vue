@@ -22,7 +22,7 @@
 								:icon="item.icon"
 								fill-dot
 							>
-								<v-card :color="item.color">
+								<v-card :color="item.color" outlined>
 									<v-card-title class="title">
 										{{ item.heading }}
 									</v-card-title>
@@ -50,25 +50,25 @@
 			items() {
 				return [
 					{
-						color: "white ",
+						color: "",
 						icon: "mdi-account-group",
 						heading: this.$t("layout.clients"),
 						content: this.$t("information.clients"),
 					},
 					{
-						color: "white ",
+						color: "",
 						icon: "mdi-account-arrow-left",
 						heading: this.$t("layout.players"),
 						content: this.$t("information.players"),
 					},
 					{
-						color: "white ",
+						color: "",
 						icon: "mdi-clipboard-file",
 						heading: this.$t("layout.reports"),
 						content: this.$t("information.reports"),
 					},
 					{
-						color: "white ",
+						color: "",
 						icon: "mdi-ip",
 						heading: this.$t("layout.ipClients"),
 						content: this.$t("information.ipClients"),
