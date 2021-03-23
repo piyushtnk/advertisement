@@ -4,11 +4,15 @@ export default {
 			column: "",
 			value: ""
 		},
-		date: [],
-		modal: false,
+		date: [
+			new Date().toJSON().slice(0, 10).replace(/-/g, "-"),
+			new Date().toJSON().slice(0, 10).replace(/-/g, "-")
+		],
 		defaultFilterDate: 1,
+		modal: false,
 		options: {},
 		loading: true,
+		dateRangeText: new Date().toJSON().slice(0, 10).replace(/-/g, "-") + " ~ " + new Date().toJSON().slice(0, 10).replace(/-/g, "-"),
 		sortBy: "id|desc"
 	}),
 	computed: {
@@ -22,9 +26,6 @@ export default {
 				itemsPerPageText: this.$t("rowsPerPage"),
 				itemsPerPageOptions: [5, 10, 15, 100, 200, 500, 1000]
 			};
-		},
-		dateRangeText() {
-			return this.date.join(" ~ ");
 		},
 		searchByColumn() {
 			if (this.search.column != "" && this.search.value != "") {
@@ -131,7 +132,7 @@ export default {
 
 			// Deposit Table
 			if (this.paymentTypeValue) {
-				defaultObjectParams.depositPaymentType = this.paymentTypeValue;
+				defaultObjectParams.depositPaymentTypeEnum = 'COMPANY_DEPOSIT'
 			}
 			if (this.sequenceValue) {
 				defaultObjectParams.sequence = this.sequenceValue;
@@ -145,21 +146,58 @@ export default {
 			this.$emit("childFilterForDate", defaultObjectParams);
 		},
 		clearSearchFilter(param) {
-			this.date = [];
 			this.search = {
 				column: "",
 				value: ""
 			};
 			this.defaultFilterDate = param;
 			this.loading = true;
+
+			// Deposit table
+			if (this.paymentTypeValue) {
+				this.paymentTypeValue = ''
+			}
+
+			// Final search
 			this.beforeSearchMiddleware();
 		}
 	},
 	watch: {
 		deep: true,
 		defaultFilterDate(value) {
-			this.defaultFilterDate = value;
-			this.date = [];
+			this.date[1] = this.$moment().format('YYYY-MM-DD');
+			switch (value) {
+				case 1:
+					this.date[0] = this.$moment().format('YYYY-MM-DD');
+					break;
+				case 2:
+					this.date[0] = this.$moment().subtract(1, 'days').format('YYYY-MM-DD');
+					this.date[1] = this.$moment().subtract(1, 'days').format('YYYY-MM-DD');
+					break;
+				case 3:
+					this.date[0] = this.$moment().startOf('week').format('YYYY-MM-DD');
+					break;
+				case 4:
+					this.date[0] = this.$moment().subtract(7, 'days').startOf('week').format('YYYY-MM-DD');
+					this.date[0] = this.$moment().subtract(7, 'days').endOf('week').format('YYYY-MM-DD');
+					break;
+				case 5:
+					this.date[0] = this.$moment().startOf('month').format('YYYY-MM-DD');
+					break;
+				case 6:
+					this.date[0] = this.$moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD');
+					this.date[1] = this.$moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
+					break;
+				case 7:
+					this.date[0] = this.$moment('2021-01-26').format('YYYY-MM-DD');
+					break;
+
+				default:
+					this.date[0] = this.$moment().format('YYYY-MM-DD');
+					this.date[1] = this.$moment().format('YYYY-MM-DD');
+					break;
+			};
+			this.dateRangeText = this.date.join(" ~ ");
 		},
 		options: {
 			handler(filter) {
@@ -169,6 +207,7 @@ export default {
 				}
 				this.readDataFromAPI();
 			}
-		}
+		},
+
 	}
 };

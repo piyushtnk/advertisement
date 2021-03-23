@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- Filter Area -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="4" sm="12">
@@ -123,7 +123,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-text>
 						<v-data-table
 							:items-per-page="10"
@@ -381,6 +381,11 @@
 				return [
 					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
 					{ text: this.$t("userId"), value: "playerid" },
+					{
+						text: this.$t("levelName"),
+						value: "levelName",
+						sortable: false,
+					},
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("mobile"), value: "mobile" },
 					{ text: this.$t("device"), value: "logindevice" },

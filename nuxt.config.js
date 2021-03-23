@@ -101,6 +101,10 @@ export default {
 
 		// dotenv
 		'@nuxtjs/dotenv',
+
+		['@nuxtjs/moment', {
+			defaultTimezone: 'Asia/Singapore'
+		}]
 	],
 
 	// Axios module configuration (https://go.nuxtjs.dev/config-axios)

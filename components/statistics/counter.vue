@@ -3,7 +3,7 @@
 		<!-- Finance Details - Deposit -->
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card class="mx-auto" elevation="2">
+				<v-card class="mx-auto" elevation="2" outlined>
 					<v-list-item two-line>
 						<v-list-item-content>
 							<div class="overline">
@@ -226,7 +226,7 @@
 		</v-row>
 
 		<!-- PC AND Mobile -->
-		<v-card class="mx-auto mt-5" elevation="2">
+		<v-card class="mx-auto mt-5" elevation="2" outlined>
 			<v-card-text>
 				<v-row>
 					<v-col cols="12" lg="4" md="4" sm="12">
@@ -380,7 +380,7 @@
 		<!-- Table for Browser and OS -->
 		<v-row class="mt-5">
 			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card :loading="statistics2Loading">
+				<v-card :loading="statistics2Loading" outlined>
 					<v-card-title class="subheading font-weight-bold">
 						{{ $t("fromBrowser") }}
 					</v-card-title>
@@ -620,14 +620,7 @@
 				default: false,
 			},
 		},
-		mounted() {
-			this.$store.dispatch("getIpClients", {
-				duration: 1,
-				sort: "id|desc",
-				limit: 1,
-				page: 1,
-			});
-		},
+		mounted() {},
 		computed: {
 			...mapGetters({
 				statisticsOsAndBrowser: "getStatisticsOfOsAndBrowser",
@@ -648,7 +641,6 @@
 			},
 		},
 		methods: {
-			...mapActions(["getIpClients"]),
 			getRealPercentage(value) {
 				let number = value * 100;
 				return Number.parseFloat(number).toPrecision(2) + "%";

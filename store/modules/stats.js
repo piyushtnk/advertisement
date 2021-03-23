@@ -23,11 +23,7 @@ const actions = {
 	async getStatistics({ commit }, data) {
 		await this.$axios
 			.get("/stats/banners/1", {
-				params: {
-					duration: data.duration ? data.duration : null,
-					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null
-				}
+				params: data
 			})
 			.then(response => {
 				commit("SET_STATISTICS", response.data.data);
@@ -43,11 +39,7 @@ const actions = {
 	async getStatistics2({ commit }, data) {
 		await this.$axios
 			.get("/stats/banners/2", {
-				params: {
-					duration: data.duration ? data.duration : null,
-					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null
-				}
+				params: data
 			})
 			.then(response => {
 				commit("SET_STATISTICS_2", response.data.data);

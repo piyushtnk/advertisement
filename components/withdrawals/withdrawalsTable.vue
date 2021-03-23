@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- Filter Area -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="4" md="3" sm="12">
@@ -114,7 +114,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-text>
 						<v-data-table
 							:headers="headers"
@@ -136,6 +136,20 @@
 
 							<template v-slot:[`item.groupname`]="{ item }">
 								{{ $t(item.groupname) }}
+							</template>
+
+							<template
+								v-slot:[`item.thirdpartypaymentstaticname`]="{
+									item,
+								}"
+							>
+								{{
+									$t(
+										removeSpace(
+											item.thirdpartypaymentstaticname
+										)
+									)
+								}}
 							</template>
 						</v-data-table>
 					</v-card-text>
@@ -171,51 +185,40 @@
 					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("withdrawId"), value: "withdrawid" },
-					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{ text: this.$t("group"), value: "groupname" },
-					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
-					},
+					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
 						text: this.$t("thirdPartyPaymentName"),
 						value: "thirdpartypaymentstaticname",
 					},
+					{
+						text: this.$t("thirdPartyOrderNo"),
+						value: "thirdpartyorderno",
+					},
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 			headerSearch() {
 				return [
+					{
+						text: this.$t("withdrawalTime"),
+						value: "withdrawaltime",
+					},
+					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("withdrawId"), value: "withdrawid" },
-					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
-					{ text: this.$t("withdrawalTime"), value: "withdrawaltime" },
 					{ text: this.$t("group"), value: "groupname" },
-					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
-					},
+					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
 						text: this.$t("thirdPartyPaymentName"),
 						value: "thirdpartypaymentstaticname",
 					},
+					{
+						text: this.$t("thirdPartyOrderNo"),
+						value: "thirdpartyorderno",
+					},
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},

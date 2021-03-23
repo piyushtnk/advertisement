@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- Filter Area -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -49,7 +49,7 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="paymentTypeValue"
 							:items="paymentType"
@@ -58,7 +58,7 @@
 							:label="$t('paymentType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="sequenceValue"
 							:items="sequence"
@@ -67,7 +67,7 @@
 							:label="$t('sequence')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="1" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="thirdPartyPaymentValue"
 							:items="thirdPartyPayment"
@@ -76,7 +76,10 @@
 							:label="$t('thirdPartyPayment')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+				</v-row>
+
+				<v-row align="center">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
@@ -85,7 +88,7 @@
 							:label="$t('filterType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -101,9 +104,7 @@
 							required
 						></v-text-field>
 					</v-col>
-				</v-row>
 
-				<v-row>
 					<v-col cols="12" lg="2" md="2" sm="12">
 						<v-btn
 							color="blue"
@@ -142,7 +143,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-text>
 						<v-data-table
 							:headers="headers"
@@ -162,17 +163,35 @@
 								}}
 							</template>
 
+							<template v-slot:[`item.groupname`]="{ item }">
+								{{ $t(item.groupname) }}
+							</template>
+
 							<template
 								v-slot:[`item.thirdpartypaymentstaticname`]="{
 									item,
 								}"
 							>
 								{{
-									$t(
-										removeSpace(
-											item.thirdpartypaymentstaticname
-										)
-									)
+									item.thirdpartypaymentstaticname != null
+										? isNull(item.depositPaymentTypeEnum) +
+										  " " +
+										  $t(
+												removeSpace(
+													item.thirdpartypaymentstaticname
+												)
+										  )
+										: item.caccountbankname +
+										  " " +
+										  item.caccountbankaccountname
+								}}
+							</template>
+
+							<template v-slot:[`item.remarks`]="{ item }">
+								{{
+									item.thirdpartypaymentstaticname != null
+										? item.remarks
+										: item.postscript
 								}}
 							</template>
 						</v-data-table>
@@ -197,6 +216,13 @@
 				paymentTypeValue: "",
 				sequenceValue: "",
 				thirdPartyPaymentValue: "",
+				paymentType: [
+					{ text: this.$t("all"), value: "" },
+					{ text: this.$t("companyDeposit"), value: 8 },
+					{ text: this.$t("debitCard"), value: 4 },
+					{ text: this.$t("viettelPay"), value: 8192 },
+					{ text: this.$t("qrCode"), value: 32768 },
+				],
 			};
 		},
 		computed: {
@@ -209,79 +235,40 @@
 					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
+					{ text: this.$t("group"), value: "groupname" }, // member level
 					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("receivedDeposit"),
 						value: "receiveddepositamt",
 					},
-					{ text: this.$t("remarks"), value: "remarks" },
-					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
-					},
-					// {
-					// 	text: this.$t("thirdPartyPaymentCode"),
-					// 	value: "thirdpartypaymentcode",
-					// },
 					{
 						text: this.$t("thirdPartyPaymentName"),
 						value: "thirdpartypaymentstaticname",
 					},
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
+					{ text: this.$t("remarks"), value: "remarks" },
+					{ text: this.$t("agentBy"), value: "ulagentaccount" }, // source url
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 			headerSearch() {
 				return [
+					{ text: this.$t("depositTime"), value: "deposittime" },
+					{ text: this.$t("auditTime"), value: "audittime" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("auditTime"), value: "audittime" },
-					{ text: this.$t("currency"), value: "currency" },
-					{ text: this.$t("depositId"), value: "depositid" },
+					{ text: this.$t("group"), value: "groupname" }, // member level
 					{ text: this.$t("depositAmount"), value: "depositamt" },
-					{ text: this.$t("depositTime"), value: "deposittime" },
-					{ text: this.$t("group"), value: "groupname" },
 					{
 						text: this.$t("receivedDeposit"),
 						value: "receiveddepositamt",
-					},
-					{ text: this.$t("remarks"), value: "remarks" },
-					{
-						text: this.$t("thirdPartyOrderNo"),
-						value: "thirdpartyorderno",
-					},
-					{
-						text: this.$t("thirdPartyBankCode"),
-						value: "thirdpartypaymentbankcode",
-					},
-					{
-						text: this.$t("thirdPartyPaymentCode"),
-						value: "thirdpartypaymentcode",
 					},
 					{
 						text: this.$t("thirdPartyPaymentName"),
 						value: "thirdpartypaymentstaticname",
 					},
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("vipId"), value: "vipid" },
+					{ text: this.$t("remarks"), value: "remarks" },
+					{ text: this.$t("agentBy"), value: "ulagentaccount" }, // source url
 					{ text: this.$t("createdAt"), value: "createdAt" },
-				];
-			},
-			paymentType() {
-				return [
-					{ text: this.$t("all"), value: "" },
-					{ text: this.$t("companyDeposit"), value: 8 },
-					{ text: this.$t("debitCard"), value: 4 },
-					{ text: this.$t("viettelPay"), value: 8192 },
-					{ text: this.$t("qrCode"), value: 32768 },
 				];
 			},
 			sequence() {

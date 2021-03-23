@@ -2,8 +2,8 @@
 	<div>
 		<v-row class="mt-6">
 			<v-col cols="12">
-				<v-card class="mx-auto">
-					<v-app-bar>
+				<v-card class="mx-auto" outlined>
+					<v-app-bar flat>
 						<v-toolbar-title>{{
 							$t("dashboard.liveStatistics")
 						}}</v-toolbar-title>
@@ -45,7 +45,6 @@
 										></v-text-field>
 									</template>
 									<v-date-picker
-										onCh
 										v-model="date"
 										scrollable
 										range
@@ -77,7 +76,7 @@
 									to="/system/clients"
 								>
 									<v-card-title class="display-3">{{
-										stats.visitors
+										numberFormat(stats.visitors)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("visitors") }}
@@ -92,7 +91,7 @@
 									to="/system/clients?unique=true"
 								>
 									<v-card-title class="display-3">{{
-										stats.uniqueVisitors
+										numberFormat(stats.uniqueVisitors)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.actualVisitors") }}
@@ -107,7 +106,7 @@
 									to="/system/players"
 								>
 									<v-card-title class="display-3">{{
-										stats.registeredVisitors
+										numberFormat(stats.registeredVisitors)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.registeredVisitors") }}
@@ -123,7 +122,7 @@
 									to="/system/banner"
 								>
 									<v-card-title class="display-3">{{
-										stats.banners
+										numberFormat(stats.banners)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.registeredBanners") }}
@@ -139,8 +138,8 @@
 		<!-- 2nd box -->
 		<v-row class="mt-6">
 			<v-col cols="12">
-				<v-card class="mx-auto">
-					<v-app-bar>
+				<v-card class="mx-auto" outlined>
+					<v-app-bar flat>
 						<v-toolbar-title>{{
 							$t("dashboard.systemStats")
 						}}</v-toolbar-title>
@@ -195,43 +194,39 @@
 <script>
 	import { mapGetters } from "vuex";
 	import VariablesMixin from "~/mixins/variables";
+	import GlobalMixin from "~/mixins/global";
 
 	export default {
 		name: "CountersComponent",
 		data: () => ({
-			date: [],
 			modal: false,
 		}),
-		mixins: [VariablesMixin],
+		mixins: [VariablesMixin, GlobalMixin],
 		computed: {
 			...mapGetters({
 				dashboard: "getDashboard",
 				stats: "getStats",
 			}),
-			dateRangeText() {
-				return this.date.join(" ~ ");
-			},
 		},
 		mounted() {
-			this.$emit("childFilterForCounter", {
-				counter: this.defaultFilterDate,
-				startDate: this.date[0],
-				endDate: this.date[1],
-			});
+			this.callParentEvent();
 		},
 		methods: {
+			callParentEvent() {
+				this.$emit("childFilterForDate", {
+					startDate: this.date[0],
+					endDate: this.date[1],
+				});
+			},
 			whenDialogClosed() {
 				if (this.date.length == 2) {
-					this.$emit("childFilterForCounter", {
-						startDate: this.date[0],
-						endDate: this.date[1],
-					});
+					this.callParentEvent();
 				}
 			},
 		},
 		watch: {
 			defaultFilterDate(value) {
-				this.$emit("childFilterForCounter", { counter: value });
+				this.callParentEvent();
 			},
 		},
 	};

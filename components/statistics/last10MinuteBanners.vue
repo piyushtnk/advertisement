@@ -140,10 +140,7 @@
 				default: true,
 			},
 		},
-		mounted() {
-			// Hitting parents.
-			this.$emit("childFilterForCounter");
-		},
+		mounted() {},
 		computed: {
 			...mapGetters({
 				last10MinuteBanners: "getLast10MinuteBanners",

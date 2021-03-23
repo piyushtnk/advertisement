@@ -1,8 +1,5 @@
 <template>
 	<div>
-		<!-- Uploading banner -->
-		<UploadComponent />
-
 		<!-- Banner list -->
 		<TableComponent @childFilterForDate="filterForDate" />
 	</div>
@@ -10,8 +7,7 @@
 
 <script>
 	import { mapActions } from "vuex";
-	import UploadComponent from "~/components/banners/upload";
-	import TableComponent from "~/components/banners/tableBanner";
+	import TableComponent from "~/components/banners/performance";
 
 	export default {
 		middleware: "authenticate",
@@ -19,17 +15,18 @@
 			return {};
 		},
 		components: {
-			UploadComponent: UploadComponent,
 			TableComponent: TableComponent,
 		},
 		computed: {},
 		methods: {
 			...mapActions({
-				getBanners: "getBanners",
+				getBanners: "getBannersPerf",
 				getBannerDomains: "getBannerDomains",
 			}),
 			filterForDate(value) {
-				this.$store.dispatch("getBanners", {
+				this.$store.dispatch("getBannersPerf", {
+					startDate: value.startDate,
+					endDate: value.endDate,
 					sort: value.sort,
 					limit: value.limit,
 					page: value.page,

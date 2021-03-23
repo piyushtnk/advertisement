@@ -19,15 +19,14 @@
 			// ...mapActions({ getClients: "getClients" }),
 			filterForDate(value) {
 				this.$store.dispatch("getClients", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-					sortBy: value.sortBy,
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+					sort: value.sortBy,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
 					unique: value.unique,
-					topUp: value.topUp,
+					topup: value.topUp,
 					bannerId: value.bannerId,
 				});
 			},

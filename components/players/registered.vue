@@ -3,7 +3,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-title>
 						<v-text-field
 							v-model="search"

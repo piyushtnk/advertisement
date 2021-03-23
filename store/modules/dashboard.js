@@ -36,11 +36,7 @@ const actions = {
 	async getStats({ commit }, data) {
 		await this.$axios
 			.get("/stats", {
-				params: {
-					duration: data.filterForCounter ? data.filterForCounter : null,
-					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null
-				}
+				params: data
 			})
 			.then(response => {
 				commit("SET_STATS", response.data.data);

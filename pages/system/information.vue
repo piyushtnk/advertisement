@@ -2,8 +2,8 @@
 	<div>
 		<v-row class="">
 			<v-col cols="12">
-				<v-card class="mx-auto">
-					<v-app-bar>
+				<v-card class="mx-auto" outlined>
+					<v-app-bar flat>
 						<v-toolbar-title>{{
 							$t("information.heading")
 						}}</v-toolbar-title>

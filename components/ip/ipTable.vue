@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<!-- Filter Area -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -105,7 +105,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-text>
 						<v-data-table
 							:headers="headers"
@@ -160,7 +160,7 @@
 					{ text: this.$t("region"), value: "region" },
 					{ text: this.$t("regionCode"), value: "region_code" },
 					{ text: this.$t("timezone"), value: "timezone" },
-					{ text: this.$t("registrationDate"), value: "createdAt" },
+					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 			headerSearch() {

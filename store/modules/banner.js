@@ -1,6 +1,7 @@
 // State
 const state = () => ({
 	banners: [],
+	bannersPerf: [],
 	tempBanners: [],
 	bannerDomains: [],
 	topViewedBanners: [],
@@ -84,20 +85,12 @@ const actions = {
 	},
 
 	// Get all banners
-	async getBanners({ commit, dispatch }, data) {
+	async getBanners({ commit }, data) {
 		const $this = this;
 		try {
 			let bannerData = await $this.$axios
 				.get("/banners", {
-					params: {
-						duration: data.duration ? data.duration : null,
-						startDate: data.startDate ? data.startDate : null,
-						endDate: data.endDate ? data.endDate : null,
-						sort: data.sort,
-						limit: data.limit,
-						page: data.page,
-						search: data.search
-					}
+					params: data
 				});
 			const promise = bannerData.data.data.data.map(async (value) => {
 				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
@@ -112,15 +105,32 @@ const actions = {
 		}
 	},
 
+	// Get all banners performance
+	async getBannersPerf({ commit }, data) {
+		const $this = this;
+		try {
+			let bannerData = await $this.$axios
+				.get("/banners/performance", {
+					params: data
+				});
+			const promise = bannerData.data.data.data.map(async (value) => {
+				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
+					value.views = countResponse.data.data.bannerViewsCount;
+				});
+			});
+			await Promise.all(promise);
+			commit("SET_BANNERS_PERF", bannerData.data.data);
+
+		} catch (error) {
+			console.log('error-', error);
+		}
+	},
+
 	// Get Top 10 Viewed Banners
 	async getTopViewedBanners({ commit }, data) {
 		await this.$axios
 			.get("/topviewbanners", {
-				params: {
-					duration: data.duration ? data.duration : null,
-					startDate: data.startDate ? data.startDate : null,
-					endDate: data.endDate ? data.endDate : null,
-				}
+				params: data
 			})
 			.then(response => {
 				commit("SET_TOP_ViEWED_BANNERS", response.data.data);
@@ -199,6 +209,9 @@ const mutations = {
 	SET_BANNERS(state, response) {
 		state.banners = response;
 	},
+	SET_BANNERS_PERF(state, response) {
+		state.bannersPerf = response;
+	},
 	PUSH_BANNERS(state, response) {
 		state.banners.data.unshift(response);
 	},
@@ -223,6 +236,9 @@ const mutations = {
 const getters = {
 	getBanners: state => {
 		return state.banners;
+	},
+	getBannersPerf: state => {
+		return state.bannersPerf;
 	},
 	getTopViewedBanners: state => {
 		return state.topViewedBanners;

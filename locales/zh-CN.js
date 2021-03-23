@@ -10,7 +10,9 @@ export default async (context, locale) => {
 			system: '系统',
 			clients: "广告点击人数",
 			players: "会员管理",
-			banner: "横幅广告",
+			banner: "横幅广告管理",
+			bannerPerf: "横幅广告效果",
+			performance: "表现",
 			systemPanel: "系统面板",
 			dashboard: "首页",
 			statistics: "统计",
@@ -208,7 +210,7 @@ export default async (context, locale) => {
 		withdrawAverage: "平均提款",
 		numberOfVisits: "总造访",
 		apiLink: "api链接",
-		agentBy: "代理人",
+		agentBy: "来源网址",
 		information: "信息",
 		firstClickTime: "首次访问时间",
 		bannerId: "首次查看的横幅ID",
@@ -247,6 +249,7 @@ export default async (context, locale) => {
 		betAmount: "投注额",
 		gameId: "投注 ID",
 		gameGroupId: "游戏分类",
+		gameType: "游戏类型",
 		gameName: "游戏",
 		gameProviderId: "游戏商",
 		jpBet: "积宝投注",
@@ -311,8 +314,8 @@ export default async (context, locale) => {
 		Russia: '俄罗斯',
 
 		DT支付: 'DT支付',
-		普通会员: '普通会员',
 		新会员: '新会员',
 		普通会员: '普通会员',
+		levelName: '组别层及'
 	};
 };

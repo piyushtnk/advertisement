@@ -17,10 +17,9 @@
 		methods: {
 			filterForDate(value) {
 				this.$store.dispatch("getBets", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-					sort: value.sortBy,
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+					sort: value.sort,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,

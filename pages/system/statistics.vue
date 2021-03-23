@@ -18,7 +18,7 @@
 		</v-alert>
 
 		<!-- Filter section -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row>
 					<v-col cols="6">
@@ -81,8 +81,7 @@
 
 		<!-- World map -->
 		<ChartsComponent
-			@childFilterForCounter="filterValueForStatistics"
-			:defaultFilterDateProps="defaultFilterDate"
+			@childFilterForCounter="loadChartSeparately"
 			:date.sync="date"
 		/>
 
@@ -117,7 +116,6 @@
 		mixins: [VariablesMixin],
 		data() {
 			return {
-				date: [],
 				modal: false,
 				statistics2Loading: true,
 				statisticsLoading: true,
@@ -131,13 +129,17 @@
 			setInterval(function () {
 				$this.$store.dispatch("getUpdateIntervalTime");
 			}, 1000);
+			this.filterValueForStatistics();
 		},
 		computed: {
 			...mapGetters({
 				getUpdateIntervalTime: "getUpdateIntervalTime",
 			}),
-			dateRangeText() {
-				return this.date.join(" ~ ");
+			optionsParam() {
+				return {
+					startDate: this.date[0],
+					endDate: this.date[1],
+				};
 			},
 		},
 		components: {
@@ -153,7 +155,16 @@
 				getTopViewedBanners: "getTopViewedBanners",
 				getLast10MinuteBanners: "getLast10MinuteBanners",
 			}),
-			filterValueForStatistics(value) {
+			whenDialogClosed() {
+				if (this.date.length == 2) {
+					this.filterValueForStatistics();
+				}
+			},
+			loadChartSeparately() {
+				this.$store.dispatch("getStatistics", this.optionsParam);
+			},
+
+			filterValueForStatistics() {
 				// Set loading
 				this.statistics2Loading = true;
 				this.statisticsLoading = true;
@@ -161,38 +172,29 @@
 				this.topViewLoading = true;
 				this.last10MinuteLoading = true;
 
-				// Fire actions
-				this.$store.dispatch("getStatistics", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-				});
-
-				this.$store.dispatch("getStatistics2", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-				});
+				// Statistics part 1 and 2 api
+				this.$store.dispatch("getStatistics", this.optionsParam);
+				this.$store.dispatch("getStatistics2", this.optionsParam);
 
 				// top viewed banners
-				this.$store.dispatch("getTopViewedBanners", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-				});
+				this.$store.dispatch("getTopViewedBanners", this.optionsParam);
 
 				// top viewed banners
 				this.$store.dispatch("getLast10MinuteBanners");
 
 				// top viewed banners
-				this.$store.dispatch("getIpClients", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-					sort: "id|desc",
-					limit: 1,
-					page: 1,
-					search: "",
+				this.optionsParam.sort = "id|desc";
+				this.optionsParam.limit = 1;
+				this.optionsParam.page = 1;
+				this.optionsParam.search = "";
+				this.$store.dispatch("getIpClients", this.optionsParam);
+			},
+		},
+		watch: {
+			defaultFilterDate() {
+				this.filterValueForStatistics({
+					startDate: this.date[0],
+					endDate: this.date[1],
 				});
 			},
 		},

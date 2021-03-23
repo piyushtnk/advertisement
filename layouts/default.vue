@@ -210,6 +210,12 @@
 						color: "",
 					},
 					{
+						icon: "mdi-flash-alert",
+						title: "layout.bannerPerf",
+						to: "/system/banner/performance",
+						color: "",
+					},
+					{
 						icon: "mdi-account-group",
 						title: "layout.clients",
 						to: "/system/clients",

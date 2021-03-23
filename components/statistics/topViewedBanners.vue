@@ -136,14 +136,7 @@
 				default: true,
 			},
 		},
-		mounted() {
-			// Hitting parents.
-			this.$emit("childFilterForCounter", {
-				duration: this.defaultFilterDate,
-				startDate: this.date[0],
-				endDate: this.date[1],
-			});
-		},
+		mounted() {},
 		computed: {
 			...mapGetters({
 				topViewedBanners: "getTopViewedBanners",

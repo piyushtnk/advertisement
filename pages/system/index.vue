@@ -4,7 +4,7 @@
 		<ChartComponent />
 
 		<!-- Counters area -->
-		<CountersComponent @childFilterForCounter="filterForCounter" />
+		<CountersComponent @childFilterForDate="filterForCounter" />
 	</div>
 </template>
 
@@ -25,9 +25,8 @@
 			...mapActions({ getDashboard: "getDashboard", getStats: "getStats" }),
 			filterForCounter(value) {
 				this.$store.dispatch("getStats", {
-					filterForCounter: value.counter,
-					startDate: value.startDate,
-					endDate: value.endDate,
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
 				});
 			},
 		},

@@ -20,15 +20,14 @@
 			...mapActions({ getPlayers: "getPlayers" }),
 			filterForDate(value) {
 				this.$store.dispatch("getPlayers", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-					sortBy: value.sortBy,
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+					sort: value.sortBy,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
-					registerWithUs: value.registerWithUs,
-					topUp: value.topUp,
+					registerus: value.registerWithUs,
+					topup: value.topUp,
 				});
 			},
 		},

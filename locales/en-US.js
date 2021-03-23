@@ -10,7 +10,9 @@ export default async (context, locale) => {
 			system: 'System',
 			players: "Member",
 			clients: "Ads Click",
-			banner: "Banner",
+			banner: "Banner Management",
+			bannerPerf: "Banner Performance",
+			performance: "Performance",
 			systemPanel: "System Panel",
 			dashboard: "Dashboard",
 			statistics: "Statistics",
@@ -212,7 +214,7 @@ export default async (context, locale) => {
 		withdrawAverage: "Withdrawal Average",
 		numberOfVisits: "Total Visits",
 		apiLink: "Api Link",
-		agentBy: "Agent By",
+		agentBy: "Source URL",
 		firstClickTime: "First Visit Time",
 		bannerId: "First Viewed Banner Id",
 		supportedFormat: "Supported format",
@@ -233,7 +235,7 @@ export default async (context, locale) => {
 		depositId: "Deposit Id",
 		depositTime: "Deposit Time",
 		group: "Member Level",
-		receivedDeposit: "Received Deposit",
+		receivedDeposit: "Actual Received",
 		remarks: "Remarks",
 		thirdPartyOrderNo: "Third Party Order No.",
 		thirdPartyBankCode: "Third Party Bank Code",
@@ -252,6 +254,7 @@ export default async (context, locale) => {
 		betAmount: "Bet Amount",
 		gameId: "Bet Id",
 		gameGroupId: "Game Group Id",
+		gameType: "Game Type",
 		gameName: "Game Name",
 		gameProviderId: "Game Provider Id",
 		jpBet: "JP Bet",
@@ -317,8 +320,8 @@ export default async (context, locale) => {
 
 
 		DT支付: 'DTPAY',
-		普通会员: 'Ordinary Member',
+		普通会员: 'Ordinary',
 		新会员: 'New',
-		普通会员: ' Ordinary',
+		levelName: 'Member Level'
 	};
 };

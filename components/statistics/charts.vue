@@ -8,6 +8,7 @@
 					:loading="loading"
 					:loader-height="7"
 					shaped
+					outlined
 				>
 					<v-card-text style="background-color: #fdfdfd">
 						<v-list-item three-line>
@@ -38,9 +39,6 @@
 			};
 		},
 		props: {
-			defaultFilterDateProps: {
-				type: Number,
-			},
 			date: {
 				type: Array,
 			},
@@ -120,21 +118,9 @@
 			$this.polygonSeries.exclude = ["AQ"];
 
 			// Hitting parents.
-			this.$emit("childFilterForCounter", {
-				duration: this.defaultFilterDateProps,
-				startDate: this.date[0],
-				endDate: this.date[1],
-			});
+			this.$emit("childFilterForCounter");
 		},
 		methods: {
-			whenDialogClosed() {
-				if (this.date.length == 2) {
-					this.$emit("childFilterForCounter", {
-						startDate: this.date[0],
-						endDate: this.date[1],
-					});
-				}
-			},
 			chartHeat() {
 				this.heatLegend = this.chart.chartContainer.createChild(
 					this.chartCore.am4maps.HeatLegend
@@ -172,10 +158,6 @@
 			statistics(value) {
 				this.loading = false;
 				this.polygonSeries.data = value.graph;
-			},
-			defaultFilterDateProps(value) {
-				this.loading = true;
-				this.$emit("childFilterForCounter", { duration: value });
 			},
 		},
 		beforeDestroy() {

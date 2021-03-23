@@ -9,7 +9,7 @@
 		</v-row>
 
 		<!-- Filter Area -->
-		<v-card class="my-5">
+		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -113,7 +113,7 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card>
+				<v-card outlined>
 					<v-card-text>
 						<v-data-table
 							:items-per-page="10"
