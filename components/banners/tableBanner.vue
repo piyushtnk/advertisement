@@ -73,7 +73,6 @@
 							@click="generateReport"
 							block
 							:loading="loading"
-							:disabled="reportDisable"
 						>
 							{{ $t("report") }}
 							<v-icon right dark> mdi-file </v-icon>
@@ -86,7 +85,6 @@
 							@click="generateAssociatedReport"
 							block
 							:loading="loading"
-							:disabled="reportDisable"
 						>
 							{{ $t("associatedReport") }}
 							<v-icon right dark> mdi-file </v-icon>
@@ -431,7 +429,7 @@
 		mixins: [Variables, Global],
 		data() {
 			return {
-				defaultFilterDate: 7,
+				defaultFilterDate: 1,
 				dialog: false,
 				dialogDelete: false,
 				editedIndex: -1,
@@ -451,7 +449,6 @@
 				},
 				loading: false,
 				sortBy: "id|desc",
-				reportDisable: true,
 			};
 		},
 		computed: {
@@ -729,14 +726,6 @@
 			},
 			banners(value) {
 				this.loading = false;
-			},
-			date(value) {
-				console.log(value);
-				if (value.length == 2) {
-					this.reportDisable = false;
-				} else {
-					this.reportDisable = true;
-				}
 			},
 		},
 	};
