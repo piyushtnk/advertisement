@@ -24,7 +24,7 @@ export default {
 				prevIcon: "mdi-minus",
 				nextIcon: "mdi-plus",
 				itemsPerPageText: this.$t("rowsPerPage"),
-				itemsPerPageOptions: [5, 10, 15, 100, 200, 500, 1000]
+				itemsPerPageOptions: [10, 50, 100, 500]
 			};
 		},
 		searchByColumn() {
@@ -88,7 +88,8 @@ export default {
 		},
 		beforeSearchMiddleware(value) {
 			this.loading = true;
-			let defaultObjectParams = {
+			let defaultObjectParams = {};
+			defaultObjectParams = {
 				duration: this.defaultFilterDate,
 				startDate: this.date[0],
 				endDate: this.date[1],
@@ -138,7 +139,11 @@ export default {
 				defaultObjectParams.sequence = this.sequenceValue;
 			}
 			if (this.thirdPartyPaymentValue) {
-				defaultObjectParams.platform = this.thirdPartyPaymentValue;
+				if (this.thirdPartyPaymentValue == 'DTPAY') {
+					defaultObjectParams.thirdpartypaymentcode = this.thirdPartyPaymentValue;
+				} else {
+					defaultObjectParams.depositPaymentTypeEnum = this.thirdPartyPaymentValue;
+				}
 			}
 
 			// Dynamic Search Object
@@ -153,11 +158,16 @@ export default {
 			this.defaultFilterDate = param;
 			this.loading = true;
 
-			// Deposit table
-			if (this.paymentTypeValue) {
-				this.paymentTypeValue = ''
+			// Deposit table filter clear
+			if (this.thirdPartyPaymentValue) {
+				this.thirdPartyPaymentValue = '';
 			}
-
+			if (this.sequenceValue) {
+				this.sequenceValue = '';
+			}
+			if (this.paymentTypeValue) {
+				this.paymentTypeValue = '';
+			}
 			// Final search
 			this.beforeSearchMiddleware();
 		},
@@ -210,9 +220,6 @@ export default {
 				}
 				this.readDataFromAPI();
 			},
-			date(value) {
-				console.log('coming-2', value);
-			}
 		},
 
 	}

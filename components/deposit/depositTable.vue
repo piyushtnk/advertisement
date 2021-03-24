@@ -167,6 +167,20 @@
 								{{ $t(item.groupname) }}
 							</template>
 
+							<template v-slot:[`item.depositamt`]="{ item }">
+								{{ numberFormat(parseInt(item.depositamt)) }}
+							</template>
+
+							<template
+								v-slot:[`item.receiveddepositamt`]="{ item }"
+							>
+								{{
+									numberFormat(
+										parseInt(item.receiveddepositamt)
+									)
+								}}
+							</template>
+
 							<template
 								v-slot:[`item.thirdpartypaymentstaticname`]="{
 									item,
@@ -193,6 +207,24 @@
 										? item.remarks
 										: item.postscript
 								}}
+							</template>
+
+							<template slot="body.append">
+								<tr>
+									<th colspan="5">Total</th>
+									<th>
+										{{
+											numberFormat(sumField("depositamt"))
+										}}
+									</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("receiveddepositamt")
+											)
+										}}
+									</th>
+								</tr>
 							</template>
 						</v-data-table>
 					</v-card-text>
@@ -281,8 +313,22 @@
 			thirdPartyPayment() {
 				return [
 					{ text: this.$t("all"), value: "" },
-					{ text: this.$t("dtPay"), value: "DT支付" },
+					{ text: this.$t("dtPay"), value: "DTPAY" },
+					{ text: this.$t("momo"), value: "MOMOPAY" },
+					{ text: this.$t("viettelPay"), value: "VIETTELPAY" },
 				];
+			},
+		},
+		methods: {
+			sumField(key) {
+				if (this.deposit.data) {
+					return this.deposit.data.reduce(
+						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						0
+					);
+				} else {
+					return "";
+				}
 			},
 		},
 		watch: {

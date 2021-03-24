@@ -231,11 +231,14 @@ export default async (context, locale) => {
 		depositTime: "存款时间",
 		group: "层级组别",
 		receivedDeposit: "公司实收",
+		receivedAmount: "公司实收",
 		remarks: "存款备注",
 		thirdPartyOrderNo: "第三方订单号",
 		thirdPartyBankCode: "第三方银行代码",
 		thirdPartyPaymentCode: "第三方付款代码",
-		thirdPartyPaymentName: "第三方平台",
+		thirdPartyPaymentName: "收款资讯",
+		withdrawalChannel: "提款方式",
+		bankTransfer: '银行支付',
 		vipId: "VIP ID",
 		downloadCode: "下载代码",
 		delete: "删除",
@@ -261,7 +264,7 @@ export default async (context, locale) => {
 		winLoss: "赢/输",
 		download: "下载",
 
-		paymentType: "付款方式",
+		paymentType: "支付类型",
 		sequence: "存款次数",
 		thirdPartyPayment: "第三方平台",
 		companyDeposit: "公司存款",
@@ -318,6 +321,11 @@ export default async (context, locale) => {
 		普通会员: '普通会员',
 		levelName: '组别层及',
 
-		generateYourReport: '生成您的报告'
+		generateYourReport: '生成您的报告',
+		withdrawalChart: '提款表',
+		depositChart: '存款表',
+		新会员新会员: '新会员 - 新会员',
+		普通会员普通会员: '普通会员 - 普通会员',
+		momo: 'MOMO'
 	};
 };

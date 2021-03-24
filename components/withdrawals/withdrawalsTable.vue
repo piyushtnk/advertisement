@@ -138,18 +138,54 @@
 								{{ $t(item.groupname) }}
 							</template>
 
+							<template v-slot:[`item.withdrawalamt`]="{ item }">
+								{{ numberFormat(parseInt(item.withdrawalamt)) }}
+							</template>
+
+							<template
+								v-slot:[`item.actualwithdrawalamt`]="{ item }"
+							>
+								{{
+									numberFormat(
+										parseInt(item.actualwithdrawalamt)
+									)
+								}}
+							</template>
+
 							<template
 								v-slot:[`item.thirdpartypaymentstaticname`]="{
 									item,
 								}"
 							>
 								{{
-									$t(
-										removeSpace(
-											item.thirdpartypaymentstaticname
-										)
-									)
+									item.thirdpartypaymentstaticname
+										? $t(
+												removeSpace(
+													item.thirdpartypaymentstaticname
+												)
+										  )
+										: $t("bankTransfer")
 								}}
+							</template>
+
+							<template slot="body.append">
+								<tr>
+									<th colspan="5">Total</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("withdrawalamt")
+											)
+										}}
+									</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("actualwithdrawalamt")
+											)
+										}}
+									</th>
+								</tr>
 							</template>
 						</v-data-table>
 					</v-card-text>
@@ -188,7 +224,11 @@
 					{ text: this.$t("group"), value: "groupname" },
 					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
-						text: this.$t("thirdPartyPaymentName"),
+						text: this.$t("receivedAmount"),
+						value: "actualwithdrawalamt",
+					},
+					{
+						text: this.$t("withdrawalChannel"),
 						value: "thirdpartypaymentstaticname",
 					},
 					{
@@ -211,7 +251,11 @@
 					{ text: this.$t("group"), value: "groupname" },
 					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{
-						text: this.$t("thirdPartyPaymentName"),
+						text: this.$t("receivedAmount"),
+						value: "actualwithdrawalamt",
+					},
+					{
+						text: this.$t("withdrawalChannel"),
 						value: "thirdpartypaymentstaticname",
 					},
 					{
@@ -221,6 +265,18 @@
 					{ text: this.$t("agentBy"), value: "ulagentaccount" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
+			},
+		},
+		methods: {
+			sumField(key) {
+				if (this.withdrawals.data) {
+					return this.withdrawals.data.reduce(
+						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						0
+					);
+				} else {
+					return "";
+				}
 			},
 		},
 		watch: {

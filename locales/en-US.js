@@ -236,11 +236,14 @@ export default async (context, locale) => {
 		depositTime: "Deposit Time",
 		group: "Member Level",
 		receivedDeposit: "Actual Received",
+		receivedAmount: "Actual Received",
 		remarks: "Remarks",
 		thirdPartyOrderNo: "Third Party Order No.",
 		thirdPartyBankCode: "Third Party Bank Code",
 		thirdPartyPaymentCode: "Third Party Payment Code",
-		thirdPartyPaymentName: "Third Party Payment Name",
+		thirdPartyPaymentName: "Deposit Channel",
+		withdrawalChannel: "Withdrawal Channel",
+		bankTransfer: 'Bank Transfer',
 		vipId: "VIP Id",
 		downloadCode: "Download Code",
 		delete: "Delete",
@@ -266,9 +269,9 @@ export default async (context, locale) => {
 		winLoss: "Win/Loss",
 		download: "Download",
 
-		paymentType: "Payment Type",
+		paymentType: "Deposit Channel",
 		sequence: "Sequence",
-		thirdPartyPayment: "Third Party Payment",
+		thirdPartyPayment: "Third Party Platform",
 		companyDeposit: "Company Deposit",
 		debitCard: "Debit Card",
 		viettelPay: "Viettel Pay",
@@ -324,6 +327,11 @@ export default async (context, locale) => {
 		新会员: 'New',
 		levelName: 'Member Level',
 
-		generateYourReport: 'Generate Your Report'
+		generateYourReport: 'Generate Your Report',
+		withdrawalChart: 'Withdrawal Chart',
+		depositChart: 'Deposit Chart',
+		新会员新会员: 'New',
+		普通会员普通会员: 'Ordinary',
+		momo: 'MOMO'
 	};
 };

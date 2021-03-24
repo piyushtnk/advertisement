@@ -6,6 +6,8 @@ const state = () => ({
 		liveAdmins: 0,
 		banners: 0,
 	},
+	chartWithdrawal: [0, 1],
+	chartDeposit: [0, 1],
 	stats: {
 		banners: 0,
 		visitors: 0,
@@ -22,6 +24,42 @@ const actions = {
 			.get("/dashboard")
 			.then(response => {
 				commit("SET_DASHBOARD", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, {
+					root: true
+				});
+				commit("SET_SNACKBAR_VISIBLE", true, {
+					root: true
+				});
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+	async getChartWithdrawal({ commit }, data) {
+		await this.$axios
+			.get("/withdrawal/chart", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_CHART_WITHDRAWAL", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, {
+					root: true
+				});
+				commit("SET_SNACKBAR_VISIBLE", true, {
+					root: true
+				});
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+	async getChartDeposit({ commit }, data) {
+		await this.$axios
+			.get("/deposits/chart", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_CHART_DEPOSIT", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, {
@@ -76,6 +114,12 @@ const mutations = {
 	},
 	SET_INTERVAL_TIME(state, response) {
 		state.updateIntervalTime = response;
+	},
+	SET_CHART_WITHDRAWAL(state, response) {
+		state.chartWithdrawal = response;
+	},
+	SET_CHART_DEPOSIT(state, response) {
+		state.chartDeposit = response;
 	}
 };
 
@@ -89,6 +133,12 @@ const getters = {
 	},
 	getUpdateIntervalTime: state => {
 		return state.updateIntervalTime;
+	},
+	getChartWithdrawal: state => {
+		return state.chartWithdrawal;
+	},
+	getChartDeposit: state => {
+		return state.chartDeposit;
 	}
 };
 

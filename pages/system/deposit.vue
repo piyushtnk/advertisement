@@ -24,6 +24,7 @@
 					page: value.page,
 					search: value.search,
 					depositPaymentTypeEnum: value.depositPaymentTypeEnum,
+					thirdpartypaymentcode: value.thirdpartypaymentcode,
 					sequence: value.sequence,
 					platform: value.platform,
 				});

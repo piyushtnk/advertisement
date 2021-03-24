@@ -85,6 +85,12 @@
 			:date.sync="date"
 		/>
 
+		<!-- Chart withdrawal -->
+		<ChartWithdrawalComponent />
+
+		<!-- Chart deposit -->
+		<ChartDepositComponent />
+
 		<!-- Counter Live -->
 		<CounterComponent
 			:defaultFilterDateProps="defaultFilterDate"
@@ -105,7 +111,12 @@
 
 <script>
 	import { mapActions, mapGetters } from "vuex";
+
+	// chart import
 	import ChartsComponent from "~/components/statistics/charts";
+	import ChartWithdrawalComponent from "~/components/statistics/chart-withdrawal";
+	import ChartDepositComponent from "~/components/statistics/chart-deposit";
+
 	import CounterComponent from "~/components/statistics/counter";
 	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
 	import Last10MinuteBannersComponent from "~/components/statistics/last10MinuteBanners";
@@ -142,6 +153,8 @@
 			CounterComponent: CounterComponent,
 			TopViewedBannersComponent: TopViewedBannersComponent,
 			Last10MinuteBannersComponent: Last10MinuteBannersComponent,
+			ChartWithdrawalComponent: ChartWithdrawalComponent,
+			ChartDepositComponent: ChartDepositComponent,
 		},
 		methods: {
 			...mapActions({
@@ -171,6 +184,10 @@
 				// Statistics part 1 and 2 api
 				this.optionsParam.startDate = this.date[0];
 				this.optionsParam.endDate = this.date[1];
+
+				// chart withdrawal
+				this.$store.dispatch("getChartWithdrawal", this.optionsParam);
+				this.$store.dispatch("getChartDeposit", this.optionsParam);
 				this.$store.dispatch("getStatistics", this.optionsParam);
 				this.$store.dispatch("getStatistics2", this.optionsParam);
 

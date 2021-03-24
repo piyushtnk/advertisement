@@ -44,7 +44,8 @@ export default {
 			} else {
 				return text;
 			}
-		}
+		},
+
 	},
 	watch: {}
 }

@@ -23,6 +23,7 @@
 			:clipped="clipped"
 			floating
 			app
+			class="border"
 		>
 			<v-list rounded>
 				<v-list-group

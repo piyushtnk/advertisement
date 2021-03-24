@@ -139,6 +139,24 @@
 							single-expand
 							item-expanded
 						>
+							<template v-slot:[`item.levelName`]="{ item }">
+								{{ $t(removeSpaceAndComma(item.levelName)) }}
+							</template>
+
+							<template v-slot:[`item.totaldeposit`]="{ item }">
+								{{ numberFormat(item.totaldeposit) }} ({{
+									numberFormat(item.totaldepositcount)
+								}})
+							</template>
+
+							<template
+								v-slot:[`item.totalWithdrawal`]="{ item }"
+							>
+								{{ numberFormat(item.totalWithdrawal) }} ({{
+									numberFormat(item.totalwithdrawcount)
+								}})
+							</template>
+
 							<template v-slot:expanded-item="{ headers, item }">
 								<td :colspan="headers.length">
 									<v-row no-gutters>
@@ -338,6 +356,52 @@
 									</v-row>
 								</td>
 							</template>
+
+							<!-- Fixed footer -->
+							<template slot="body.append">
+								<tr>
+									<th colspan="5">Total</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("totaldeposit")
+											)
+										}}
+										({{
+											numberFormat(
+												sumField("totaldepositcount")
+											)
+										}})
+									</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("totalWithdrawal")
+											)
+										}}
+										({{
+											numberFormat(
+												sumField("totalwithdrawcount")
+											)
+										}})
+									</th>
+									<th>
+										{{
+											numberFormat(sumField("totalbonus"))
+										}}
+									</th>
+									<th>
+										{{
+											numberFormat(
+												sumField("totalwinloss")
+											)
+										}}
+									</th>
+									<th>
+										{{ numberFormat(sumField("validbet")) }}
+									</th>
+								</tr>
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -349,10 +413,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
+	import Global from "~/mixins/global";
 
 	export default {
 		name: "TableComponent",
-		mixins: [Variables],
+		mixins: [Variables, Global],
 		data() {
 			return {
 				sortBy: "id|desc",
@@ -379,22 +444,35 @@
 			},
 			headers() {
 				return [
-					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("registrationTime"), value: "createdate" },
 					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
 					{
 						text: this.$t("levelName"),
 						value: "levelName",
 						sortable: false,
 					},
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("mobile"), value: "mobile" },
-					{ text: this.$t("device"), value: "logindevice" },
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
+					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
+					{ text: this.$t("totalClaimed"), value: "totalbonus" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalValidBet"), value: "validbet" },
+					{ text: this.$t("noOfIp"), value: "logincount" },
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("ip"), value: "regip" },
+				];
+			},
+			headerSearch() {
+				return [
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
 					{
-						text: this.$t("totalTopUpCount"),
-						value: "totaldepositcount",
+						text: this.$t("levelName"),
+						value: "levelName",
+						sortable: false,
 					},
-					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
 					{ text: this.$t("ip"), value: "regip" },
 					{ text: this.$t("noOfIp"), value: "logincount" },
 					{ text: this.$t("registrationTime"), value: "createdate" },
@@ -406,39 +484,29 @@
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
-					// { text: "Language", value: "language" },
-				];
-			},
-			headerSearch() {
-				return [
-					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("name"), value: "firstname" },
-					{ text: this.$t("mobile"), value: "mobile" },
-					{ text: this.$t("ip"), value: "regip" },
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("device"), value: "logindevice" },
-					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
-					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
-					{
-						text: this.$t("totalTopUpCount"),
-						value: "totaldepositcount",
-					},
-					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
-					{
-						text: this.$t("totalWithdrawalCount"),
-						value: "totalwithdrawcount",
-					},
-					{ text: this.$t("totalClaimed"), value: "totalbonus" },
-					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
-					{ text: this.$t("totalValidBet"), value: "validbet" },
-					{ text: this.$t("country"), value: "country" },
-					{ text: this.$t("noOfIp"), value: "logincount" },
 				];
 			},
 		},
 		methods: {
 			fixParameters(value) {
 				return value ? value : "-";
+			},
+			removeSpaceAndComma(text) {
+				if (text) {
+					return text.replace(/[- ]+/g, "");
+				} else {
+					return text;
+				}
+			},
+			sumField(key) {
+				if (this.players.data) {
+					return this.players.data.reduce(
+						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						0
+					);
+				} else {
+					return "";
+				}
 			},
 		},
 		watch: {
