@@ -1,7 +1,15 @@
 <template>
 	<div>
-		<!-- Filter Area -->
-		<v-card class="my-5" outlined>
+		<!-- Report section -->
+		<v-card class="my-5 max-auto" outlined elevation="2" outlined>
+			<v-list-item two-line>
+				<v-list-item-content>
+					<div class="overline">
+						{{ $t("generateYourReport") }}
+					</div>
+				</v-list-item-content>
+			</v-list-item>
+
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -59,48 +67,6 @@
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-select
-							v-model="search.column"
-							:items="headerSearch"
-							item-value="value"
-							item-text="text"
-							:label="$t('columnName')"
-						/>
-					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-text-field
-							v-model="search.value"
-							:label="$t('searchText')"
-							required
-						></v-text-field>
-					</v-col>
-				</v-row>
-				<v-row align="center">
-					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-btn
-							color="blue"
-							class="white--text mx-auto"
-							@click="beforeSearchMiddleware"
-							block
-							:loading="loading"
-						>
-							{{ $t("search") }}
-							<v-icon right dark> mdi-account-search </v-icon>
-						</v-btn>
-					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-btn
-							color="red"
-							class="white--text"
-							@click="clearSearchFilter(7)"
-							block
-							:loading="loading"
-						>
-							{{ $t("clear") }}
-							<v-icon right dark> mdi-trash-can </v-icon>
-						</v-btn>
-					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-btn
 							color="green"
 							class="white--text"
@@ -124,6 +90,54 @@
 						>
 							{{ $t("associatedReport") }}
 							<v-icon right dark> mdi-file </v-icon>
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
+
+		<!-- Filter Area -->
+		<v-card class="my-5" outlined>
+			<v-card-text>
+				<v-row align="center">
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-select
+							v-model="search.column"
+							:items="headerSearch"
+							item-value="value"
+							item-text="text"
+							:label="$t('columnName')"
+						/>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-text-field
+							v-model="search.value"
+							:label="$t('searchText')"
+							required
+						></v-text-field>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="blue"
+							class="white--text mx-auto"
+							@click="beforeSearchMiddleware"
+							block
+							:loading="loading"
+						>
+							{{ $t("search") }}
+							<v-icon right dark> mdi-account-search </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="red"
+							class="white--text"
+							@click="clearSearchFilter(7)"
+							block
+							:loading="loading"
+						>
+							{{ $t("clear") }}
+							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
 				</v-row>
@@ -717,6 +731,7 @@
 				this.loading = false;
 			},
 			date(value) {
+				console.log(value);
 				if (value.length == 2) {
 					this.reportDisable = false;
 				} else {

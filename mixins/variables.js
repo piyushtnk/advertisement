@@ -197,6 +197,7 @@ export default {
 					this.date[1] = this.$moment().format('YYYY-MM-DD');
 					break;
 			};
+			console.log(this.date);
 			this.dateRangeText = this.date.join(" ~ ");
 		},
 		options: {

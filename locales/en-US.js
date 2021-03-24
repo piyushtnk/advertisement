@@ -322,6 +322,8 @@ export default async (context, locale) => {
 		DT支付: 'DTPAY',
 		普通会员: 'Ordinary',
 		新会员: 'New',
-		levelName: 'Member Level'
+		levelName: 'Member Level',
+
+		generateYourReport: 'Generate Your Report'
 	};
 };

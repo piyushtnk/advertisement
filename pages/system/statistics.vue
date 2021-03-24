@@ -122,6 +122,7 @@
 				ipClientsLoading: true,
 				topViewLoading: true,
 				last10MinuteLoading: true,
+				optionsParam: {},
 			};
 		},
 		mounted() {
@@ -135,12 +136,6 @@
 			...mapGetters({
 				getUpdateIntervalTime: "getUpdateIntervalTime",
 			}),
-			optionsParam() {
-				return {
-					startDate: this.date[0],
-					endDate: this.date[1],
-				};
-			},
 		},
 		components: {
 			ChartsComponent: ChartsComponent,
@@ -173,6 +168,8 @@
 				this.last10MinuteLoading = true;
 
 				// Statistics part 1 and 2 api
+				this.optionsParam.startDate = this.date[0];
+				this.optionsParam.endDate = this.date[1];
 				this.$store.dispatch("getStatistics", this.optionsParam);
 				this.$store.dispatch("getStatistics2", this.optionsParam);
 
@@ -192,10 +189,7 @@
 		},
 		watch: {
 			defaultFilterDate() {
-				this.filterValueForStatistics({
-					startDate: this.date[0],
-					endDate: this.date[1],
-				});
+				this.filterValueForStatistics();
 			},
 		},
 	};

@@ -316,6 +316,8 @@ export default async (context, locale) => {
 		DT支付: 'DT支付',
 		新会员: '新会员',
 		普通会员: '普通会员',
-		levelName: '组别层及'
+		levelName: '组别层及',
+
+		generateYourReport: '生成您的报告'
 	};
 };
