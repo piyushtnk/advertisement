@@ -185,6 +185,7 @@
 
 <script>
 	export default {
+		name: "defaultLayout",
 		data() {
 			return {
 				clipped: false,
