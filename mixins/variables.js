@@ -76,7 +76,7 @@ export default {
 		},
 		whenDialogClosed() {
 			if (this.date.length == 2) {
-				this.defaultFilterDate = null;
+				this.showDateText();
 			}
 		},
 		arrayToText(value) {
@@ -160,6 +160,9 @@ export default {
 
 			// Final search
 			this.beforeSearchMiddleware();
+		},
+		showDateText() {
+			this.dateRangeText = this.date.join(" ~ ");
 		}
 	},
 	watch: {
@@ -197,7 +200,7 @@ export default {
 					this.date[1] = this.$moment().format('YYYY-MM-DD');
 					break;
 			};
-			this.dateRangeText = this.date.join(" ~ ");
+			this.showDateText();
 		},
 		options: {
 			handler(filter) {
@@ -206,6 +209,9 @@ export default {
 					this.sortBy = filter.sortBy[0] + "|" + sortType;
 				}
 				this.readDataFromAPI();
+			},
+			date(value) {
+				console.log('coming-2', value);
 			}
 		},
 

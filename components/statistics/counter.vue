@@ -578,7 +578,7 @@
 													defaultFilterDateProps
 												"
 											>
-												{{ item.count }}
+												{{ numberFormat(item.count) }}
 											</v-chip>
 										</td>
 										<td>{{ item.createdAt }}</td>
@@ -594,7 +594,7 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters } from "vuex";
+	import { mapGetters } from "vuex";
 	import Global from "~/mixins/global";
 
 	export default {

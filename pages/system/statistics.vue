@@ -152,6 +152,7 @@
 			}),
 			whenDialogClosed() {
 				if (this.date.length == 2) {
+					this.showDateText();
 					this.filterValueForStatistics();
 				}
 			},

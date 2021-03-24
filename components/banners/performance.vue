@@ -1,7 +1,15 @@
 <template>
 	<div>
-		<!-- Filter Area -->
-		<v-card class="my-5" outlined>
+		<!-- Report section -->
+		<v-card class="my-5 max-auto" outlined elevation="2" outlined>
+			<v-list-item two-line>
+				<v-list-item-content>
+					<div class="overline">
+						{{ $t("generateYourReport") }}
+					</div>
+				</v-list-item-content>
+			</v-list-item>
+
 			<v-card-text>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
@@ -59,6 +67,38 @@
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="green"
+							class="white--text"
+							@click="generateReport"
+							block
+							:loading="loading"
+						>
+							{{ $t("report") }}
+							<v-icon right dark> mdi-file </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="green"
+							class="white--text"
+							@click="generateAssociatedReport"
+							block
+							:loading="loading"
+						>
+							{{ $t("associatedReport") }}
+							<v-icon right dark> mdi-file </v-icon>
+						</v-btn>
+					</v-col>
+				</v-row>
+			</v-card-text>
+		</v-card>
+
+		<!-- Filter Area -->
+		<v-card class="my-5" outlined>
+			<v-card-text>
+				<v-row align="center">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -74,9 +114,7 @@
 							required
 						></v-text-field>
 					</v-col>
-				</v-row>
-				<v-row align="center">
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-btn
 							color="blue"
 							class="white--text mx-auto"
@@ -88,7 +126,7 @@
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="2" md="3" sm="12">
+					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-btn
 							color="red"
 							class="white--text"
@@ -213,6 +251,109 @@
 					path = require("~/assets/banner/default.jpg");
 				}
 				return path;
+			},
+
+			// Report functions
+			generateReport() {
+				this.loading = true;
+				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
+				this.$axios
+					.get("/report/today", {
+						params: {
+							startDate: this.date[0],
+							endDate: this.date[1],
+						},
+					})
+					.then((response) => {
+						const csvString = [
+							...response.data.data.map((item) => [
+								item.agentId,
+								item.comment,
+								item.allClientsCount,
+								item.playerCount,
+								item.convertRate,
+								item.firstDeposit,
+								item.depositAmount,
+								item.withdrawalAmount,
+								item.profit,
+							]),
+						];
+
+						let csv =
+							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
+						csvString.forEach(function (row) {
+							csv += row.join(",");
+							csv += "\n";
+						});
+						let hiddenElement = document.createElement("a");
+						hiddenElement.href =
+							"data:text/csv;charset=utf-8," +
+							encodeURIComponent(
+								"\uFEFF" +
+									this.date[0] +
+									" TO " +
+									this.date[1] +
+									"\n" +
+									csv
+							);
+						hiddenElement.target = "_blank";
+						hiddenElement.download =
+							process.env.DOMAIN + "-reports-" + date + ".csv";
+						hiddenElement.click();
+						this.loading = false;
+					});
+			},
+
+			generateAssociatedReport() {
+				this.loading = true;
+				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
+				this.$axios
+					.get("/report/associated", {
+						params: {
+							startDate: this.date[0],
+							endDate: this.date[1],
+						},
+					})
+					.then((response) => {
+						const csvString = [
+							...response.data.data.map((item) => [
+								item.comment,
+								item.agentId,
+								item.directRegisteredPlayers,
+								item.directTopupPlayers,
+								item.directTopupValue,
+								item.associatedPlayers,
+								item.associatedTopupValue,
+								item.totalDepositInfo,
+							]),
+						];
+
+						let csv =
+							"Ad Source, Agent ID, Direct Registered Players, Direct Top-up Players, Direct Top-up Value, Associated Players, Associated Top-up Value, Total Value\n";
+						csvString.forEach(function (row) {
+							csv += row.join(",");
+							csv += "\n";
+						});
+						let hiddenElement = document.createElement("a");
+						hiddenElement.href =
+							"data:text/csv;charset=utf-8," +
+							encodeURIComponent(
+								"\uFEFF" +
+									this.date[0] +
+									" TO " +
+									this.date[1] +
+									"\n" +
+									csv
+							);
+						hiddenElement.target = "_blank";
+						hiddenElement.download =
+							process.env.DOMAIN +
+							"-associated-reports-" +
+							date[0] +
+							".csv";
+						hiddenElement.click();
+						this.loading = false;
+					});
 			},
 		},
 		watch: {

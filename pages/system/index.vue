@@ -15,6 +15,7 @@
 	import ChartComponent from "~/components/index/chart";
 
 	export default {
+		name: "Index",
 		middleware: "authenticate",
 		components: {
 			CountersComponent: CountersComponent,

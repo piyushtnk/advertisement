@@ -108,7 +108,11 @@
 													defaultFilterDate
 												"
 											>
-												{{ item.totalClients }}
+												{{
+													numberFormat(
+														item.totalClients
+													)
+												}}
 											</v-chip>
 										</td>
 										<td>{{ item.createdAt }}</td>
@@ -124,10 +128,12 @@
 </template>
 
 <script>
+	import Global from "~/mixins/global";
 	import { mapGetters } from "vuex";
 
 	export default {
 		name: "TopViewedBannersComponent",
+		mixins: [Global],
 		data() {
 			return {
 				date: [],
