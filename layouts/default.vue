@@ -277,7 +277,6 @@
 				miniVariant: false,
 				right: true,
 				rightDrawer: false,
-				isThemeDark: true,
 			};
 		},
 		methods: {
@@ -289,6 +288,15 @@
 			},
 		},
 		computed: {
+			isThemeDark: {
+				get() {
+					return this.$cookie.get("dark");
+				},
+				set(value) {
+					this.$cookie.set("dark", value);
+					this.$vuetify.theme.dark = value;
+				},
+			},
 			snackbarText() {
 				return this.$store.state.Default.snackbarText;
 			},
@@ -328,11 +336,6 @@
 			},
 			title() {
 				return this.$t("layout.systemPanel");
-			},
-		},
-		watch: {
-			isThemeDark(value) {
-				this.$vuetify.theme.dark = value;
 			},
 		},
 	};

@@ -19,5 +19,5 @@ export default ({ app, store }) => {
 			return `/${link}`;
 		}
 		return `/${app.i18n.locale}/${link}`;
-	}
+	};
 }

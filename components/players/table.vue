@@ -144,17 +144,24 @@
 							</template>
 
 							<template v-slot:[`item.totaldeposit`]="{ item }">
-								{{ numberFormat(item.totaldeposit) }} ({{
-									numberFormat(item.totaldepositcount)
-								}})
+								{{ numberFormat(item.totaldeposit) }}
+							</template>
+
+							<template
+								v-slot:[`item.totaldepositcount`]="{ item }"
+							>
+								{{ numberFormat(item.totaldepositcount) }}
 							</template>
 
 							<template
 								v-slot:[`item.totalWithdrawal`]="{ item }"
 							>
-								{{ numberFormat(item.totalWithdrawal) }} ({{
-									numberFormat(item.totalwithdrawcount)
-								}})
+								{{ numberFormat(item.totalWithdrawal) }}
+							</template>
+							<template
+								v-slot:[`item.totalwithdrawcount`]="{ item }"
+							>
+								{{ numberFormat(item.totalwithdrawcount) }}
 							</template>
 
 							<template v-slot:expanded-item="{ headers, item }">
@@ -367,11 +374,13 @@
 												sumField("totaldeposit")
 											)
 										}}
-										({{
+									</th>
+									<th>
+										{{
 											numberFormat(
 												sumField("totaldepositcount")
 											)
-										}})
+										}}
 									</th>
 									<th>
 										{{
@@ -379,11 +388,13 @@
 												sumField("totalWithdrawal")
 											)
 										}}
-										({{
+									</th>
+									<th>
+										{{
 											numberFormat(
 												sumField("totalwithdrawcount")
 											)
-										}})
+										}}
 									</th>
 									<th>
 										{{
@@ -453,7 +464,15 @@
 						sortable: false,
 					},
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
+					{
+						text: this.$t("totalTopUpCount"),
+						value: "totaldepositcount",
+					},
 					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawalCount"),
+						value: "totalwithdrawcount",
+					},
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
@@ -501,7 +520,7 @@
 			sumField(key) {
 				if (this.players.data) {
 					return this.players.data.reduce(
-						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						(a, b) => parseFloat(a) + (parseFloat(b[key]) || 0),
 						0
 					);
 				} else {

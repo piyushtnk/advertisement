@@ -323,7 +323,7 @@
 			sumField(key) {
 				if (this.deposit.data) {
 					return this.deposit.data.reduce(
-						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						(a, b) => parseFloat(a) + (parseFloat(b[key]) || 0),
 						0
 					);
 				} else {

@@ -6,4 +6,7 @@ export default function (context) {
 		localStorage.token = '';
 		return context.redirect(context.app.localePath('/login'));
 	}
+
+	// Set new theme
+	context.$vuetify.theme.dark = context.$cookie.get('dark');
 }

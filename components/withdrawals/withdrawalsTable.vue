@@ -271,7 +271,7 @@
 			sumField(key) {
 				if (this.withdrawals.data) {
 					return this.withdrawals.data.reduce(
-						(a, b) => parseInt(a) + (parseInt(b[key]) || 0),
+						(a, b) => parseFloat(a) + (parseFloat(b[key]) || 0),
 						0
 					);
 				} else {

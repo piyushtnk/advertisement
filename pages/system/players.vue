@@ -11,6 +11,7 @@
 	import TableComponent from "~/components/players/table";
 
 	export default {
+		name: "players",
 		middleware: "authenticate",
 		components: {
 			TableComponent: TableComponent,

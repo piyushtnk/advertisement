@@ -123,6 +123,7 @@
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {
+		name: "statistics",
 		middleware: "authenticate",
 		mixins: [VariablesMixin],
 		data() {

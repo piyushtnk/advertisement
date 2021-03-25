@@ -9,6 +9,7 @@
 	import TableComponent from "~/components/deposit/depositTable";
 
 	export default {
+		name: "deposit",
 		middleware: "authenticate",
 		components: {
 			TableComponent: TableComponent,
