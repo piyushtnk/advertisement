@@ -67,38 +67,6 @@
 						/>
 					</v-col>
 					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-btn
-							color="green"
-							class="white--text"
-							@click="generateReport"
-							block
-							:loading="loading"
-						>
-							{{ $t("report") }}
-							<v-icon right dark> mdi-file </v-icon>
-						</v-btn>
-					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
-						<v-btn
-							color="green"
-							class="white--text"
-							@click="generateAssociatedReport"
-							block
-							:loading="loading"
-						>
-							{{ $t("associatedReport") }}
-							<v-icon right dark> mdi-file </v-icon>
-						</v-btn>
-					</v-col>
-				</v-row>
-			</v-card-text>
-		</v-card>
-
-		<!-- Filter Area -->
-		<v-card class="my-5" outlined>
-			<v-card-text>
-				<v-row align="center">
-					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -136,6 +104,30 @@
 						>
 							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="green"
+							class="white--text"
+							@click="generateReport"
+							block
+							:loading="loading"
+						>
+							{{ $t("report") }}
+							<v-icon right dark> mdi-file </v-icon>
+						</v-btn>
+					</v-col>
+					<v-col cols="12" lg="3" md="3" sm="12">
+						<v-btn
+							color="purple"
+							class="white--text"
+							@click="generateAssociatedReport"
+							block
+							:loading="loading"
+						>
+							{{ $t("associatedReport") }}
+							<v-icon right dark> mdi-file </v-icon>
 						</v-btn>
 					</v-col>
 				</v-row>
@@ -205,7 +197,7 @@
 		mixins: [Variables, Global],
 		data() {
 			return {
-				defaultFilterDate: 7,
+				defaultFilterDate: 1,
 				loading: false,
 				sortBy: "id|desc",
 			};
@@ -253,7 +245,7 @@
 				return path;
 			},
 
-			// Report functions
+			// Generate report
 			generateReport() {
 				this.loading = true;
 				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
@@ -272,21 +264,35 @@
 								item.comment,
 								item.allClientsCount,
 								item.registeredPlayers,
-								item.convertRate,
-								item.firstDeposit,
-								item.firstDepositCount,
-								item.firstWithdrawal,
-								item.firstWithdrawalCount,
-								item.totalDeposits,
-								item.totalDepositCount,
-								item.totalWithdrawals,
-								item.totalWithdrawalCount,
-								item.profit,
+								item.convertRateOfDirectPlayers,
+								item.firstDepositOfDirectPlayers,
+								item.firstDepositCountOfDirectPlayers,
+								item.totalDepositsOfDirectPlayers,
+								item.totalDepositCountOfDirectPlayers,
+								item.firstWithdrawalOfDirectPlayers,
+								item.firstWithdrawalCountOfDirectPlayers,
+								item.totalWithdrawalsOfDirectPlayers,
+								item.totalWithdrawalCountOfDirectPlayers,
+								item.profitOfDirectPlayers,
+								item.firstDepositOfAssociatedPlayers,
+								item.firstDepositCountOfAssociatedPlayers,
+								item.totalDepositsOfAssociatedPlayers,
+								item.totalDepositCountOfAssociatedPlayers,
+								item.firstWithdrawalOfAssociatedPlayers,
+								item.firstWithdrawalCountOfAssociatedPlayers,
+								item.totalWithdrawalsOfAssociatedPlayers,
+								item.totalWithdrawalCountOfAssociatedPlayers,
+								item.profitOfAssociatedPlayers,
+								item.associatedPlayers,
+								item.convertRateOfAssociatedPlayers,
+								item.totalDepositAmount,
+								item.totalProfit,
+								item.totalWithdrawalAmount,
 							]),
 						];
 
 						let csv =
-							"Banner Id, URL, Website, Clicks, Register, Covert Rate, First Deposit, First Deposit Count, First Withdrawal, First Withdrawal Count, Total Deposit, Total Deposit Count, Total Withdrawal, Total Withdrawal Count, Profit\n";
+							"Banner Id, URL, Website, Clicks, Direct Registered Players, Covert Rate Direct Players, First Deposit Direct Players, First Deposit Count Direct Players, Total Deposit Direct Players, Total Deposit Count Direct Players, First Withdrawal Direct Players, First Withdrawal Count Direct Players, Total Withdrawal Direct Players, Total Withdrawal Count Direct Players, Profit Direct Players, First Deposit Associated Players, First Deposit Count Associated Players, Total Deposit Associated Players, Total Deposit Count Associated Players, First Withdrawal Associated Players, First Withdrawal Count Associated Players, Total Withdrawal Associated Players, Total Withdrawal Count Associated Players, Profit Associated Players, Associated Players, Convert Rate Associated Players, Total Deposit Amount(Associated+Direct), Total Profit(Associated+Direct), Total Withdrawal Amount(Associated+Direct)\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";
@@ -310,6 +316,7 @@
 					});
 			},
 
+			// Generate associated report.
 			generateAssociatedReport() {
 				this.loading = true;
 				let date = new Date().toJSON().slice(0, 10).replace(/-/g, ".");
