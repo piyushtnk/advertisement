@@ -267,20 +267,26 @@
 					.then((response) => {
 						const csvString = [
 							...response.data.data.map((item) => [
+								item.id,
 								item.agentId,
 								item.comment,
 								item.allClientsCount,
-								item.playerCount,
+								item.registeredPlayers,
 								item.convertRate,
 								item.firstDeposit,
-								item.depositAmount,
-								item.withdrawalAmount,
+								item.firstDepositCount,
+								item.firstWithdrawal,
+								item.firstWithdrawalCount,
+								item.totalDeposits,
+								item.totalDepositCount,
+								item.totalWithdrawals,
+								item.totalWithdrawalCount,
 								item.profit,
 							]),
 						];
 
 						let csv =
-							"URL, Website, Clicks, Register, Covert Rate, First Deposit, Deposit, Withdraw, Profit\n";
+							"Banner Id, URL, Website, Clicks, Register, Covert Rate, First Deposit, First Deposit Count, First Withdrawal, First Withdrawal Count, Total Deposit, Total Deposit Count, Total Withdrawal, Total Withdrawal Count, Profit\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";
