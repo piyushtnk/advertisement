@@ -45,6 +45,7 @@ export default async (context, locale) => {
 		statsMessage2: "All finance data will update on every 30 minutes.",
 		statsMessage3: "Next update remaining time - ",
 		all: "All (From - 26/01/2021)",
+		allSingle: "All",
 		today: "Today",
 		yesterday: "Yesterday",
 		thisWeek: "This week",
@@ -320,6 +321,24 @@ export default async (context, locale) => {
 		Myanmar: 'Myanmar',
 		France: 'France',
 		Russia: 'Russia',
+		Macao: 'Macao',
+		Netherlands: 'Netherlands',
+		China: 'China',
+		Germany: 'Germany',
+		Croatia: 'Croatia',
+		Cambodia: 'Cambodia',
+		India: 'India',
+		Mongolia: 'Mongolia',
+		Argentina: 'Argentina',
+		UnitedKingdom: 'UnitedKingdom',
+		Ukraine: 'Ukraine',
+		Iraq: 'Iraq',
+		Pakistan: 'Pakistan',
+		Kyrgyzstan: 'Kyrgyzstan',
+		Brunei: 'Brunei',
+		Bulgaria: 'Bulgaria',
+		Ukraine: 'Ukraine',
+		Ukraine: 'Ukraine',
 
 
 		DT支付: 'DTPAY',
@@ -346,6 +365,7 @@ export default async (context, locale) => {
 		totalWithdraw: 'Total Withdraw',
 		totalWithdrawCount: 'Total Withdraw Count',
 		withdrawAvg: 'Withdraw Average',
-		uniqueClicks: 'Unique Clicks'
+		uniqueClicks: 'Unique Clicks',
+		actualAmount: 'Actual Amount'
 	};
 };

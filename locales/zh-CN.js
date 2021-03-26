@@ -43,6 +43,7 @@ export default async (context, locale) => {
 		statsMessage2: "所有财务数据每30分钟更新一次",
 		statsMessage3: "更新剩余时间",
 		all: "全部 （从 1月26号起）",
+		allSingle: "全部",
 		today: "今天",
 		yesterday: "昨天",
 		thisWeek: "本周",
@@ -315,6 +316,24 @@ export default async (context, locale) => {
 		Myanmar: '缅甸',
 		France: '法国',
 		Russia: '俄罗斯',
+		Macao: '澳门',
+		Netherlands: '荷兰',
+		China: '中国',
+		Germany: '德国',
+		Croatia: '克罗地亚',
+		Cambodia: '柬埔寨',
+		India: '印度',
+		Mongolia: '蒙古',
+		Argentina: '阿根廷',
+		UnitedKingdom: '英国',
+		Ukraine: '乌克兰',
+		Iraq: '伊拉克',
+		Pakistan: '乌克兰',
+		Kyrgyzstan: '吉尔吉斯斯坦',
+		Brunei: '文莱',
+		Bulgaria: '保加利亚',
+		Ukraine: '乌克兰',
+		Ukraine: '乌克兰',
 
 		DT支付: 'DT支付',
 		新会员: '新会员',
@@ -340,6 +359,7 @@ export default async (context, locale) => {
 		totalWithdraw: '总提款',
 		totalWithdrawCount: '总提款数',
 		withdrawAvg: '平均提款',
-		uniqueClicks: '唯一点击'
+		uniqueClicks: '唯一点击',
+		actualAmount: '实际金额'
 	};
 };

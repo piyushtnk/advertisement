@@ -7,7 +7,7 @@ export default {
 	methods: {
 		numberFormat(value) {
 			if (typeof value == 'number' || typeof value == 'float') {
-				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				return value.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			} else {
 				return value;
 			}
