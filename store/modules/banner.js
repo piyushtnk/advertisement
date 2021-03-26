@@ -114,9 +114,7 @@ const actions = {
 					params: data
 				});
 			const promise = bannerData.data.data.data.map(async (value) => {
-				await $this.$axios.get("/ipview/banner/" + value.id, {
-					params: data
-				}).then((countResponse) => {
+				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
 					value.views = countResponse.data.data.bannerViewsCount;
 				});
 			});
