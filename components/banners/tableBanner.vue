@@ -290,7 +290,7 @@
 							</template>
 							<span>{{ $t("delete") }}</span>
 						</v-tooltip>
-						<v-tooltip left color="purple">
+						<!-- <v-tooltip left color="purple">
 							<template v-slot:activator="{ on, attrs }">
 								<v-icon
 									@click="downloadCode(item)"
@@ -303,7 +303,7 @@
 								</v-icon>
 							</template>
 							<span>{{ $t("downloadCode") }}</span>
-						</v-tooltip>
+						</v-tooltip> -->
 						<v-tooltip left color="purple">
 							<template v-slot:activator="{ on, attrs }">
 								<v-icon

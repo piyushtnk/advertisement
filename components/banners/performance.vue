@@ -165,12 +165,7 @@
 							outlined
 							color="green"
 							class="ma-2"
-							:to="
-								'/system/clients?bannerId=' +
-								item.id +
-								'&filterType=' +
-								defaultFilterDate
-							"
+							:to="`/system/clients?bannerId=${item.id}&filterType=${defaultFilterDate}&unique=true`"
 						>
 							{{ numberFormat(item.allClientsCount) }}
 						</v-chip>
@@ -193,7 +188,7 @@
 	import Global from "~/mixins/global";
 
 	export default {
-		name: "TableBannerComponent",
+		name: "PerformanceComponent",
 		mixins: [Variables, Global],
 		data() {
 			return {
@@ -210,7 +205,7 @@
 			headerSearch() {
 				return [
 					{ text: this.$t("bannerLink"), value: "uniqueId" },
-					{ text: this.$t("destinationURL"), value: "redirectUrl" },
+					// { text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 				];
 			},
@@ -226,9 +221,9 @@
 						value: "uniqueId",
 						sortable: false,
 					},
-					{ text: this.$t("destinationURL"), value: "redirectUrl" },
+					// { text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
-					{ text: this.$t("clicks"), value: "allClientsCount" },
+					{ text: this.$t("uniqueClicks"), value: "allClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
@@ -278,7 +273,7 @@
 						];
 
 						let csv =
-							"Banner Id, URL, Website, Clicks, Register, Covert Rate, First Deposit, First Deposit Count, First Withdrawal, First Withdrawal Count, Total Deposit, Total Deposit Count, Total Withdrawal, Total Withdrawal Count, Profit\n";
+							"Banner Id, URL, Website, Unique Clicks, Register, Covert Rate, First Deposit, First Deposit Count, First Withdrawal, First Withdrawal Count, Total Deposit, Total Deposit Count, Total Withdrawal, Total Withdrawal Count, Profit\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";
@@ -349,7 +344,7 @@
 						];
 
 						let csv =
-							"Banner Id, URL, Website, Clicks, Direct Registered Players, Covert Rate Direct Players, First Deposit Direct Players, First Deposit Count Direct Players, Total Deposit Direct Players, Total Deposit Count Direct Players, First Withdrawal Direct Players, First Withdrawal Count Direct Players, Total Withdrawal Direct Players, Total Withdrawal Count Direct Players, Profit Direct Players, First Deposit Associated Players, First Deposit Count Associated Players, Total Deposit Associated Players, Total Deposit Count Associated Players, First Withdrawal Associated Players, First Withdrawal Count Associated Players, Total Withdrawal Associated Players, Total Withdrawal Count Associated Players, Profit Associated Players, Associated Players, Convert Rate Associated Players, Total Deposit Amount(Associated+Direct), Total Profit(Associated+Direct), Total Withdrawal Amount(Associated+Direct)\n";
+							"Banner Id, URL, Website, Unique Clicks, Direct Registered Players, Covert Rate Direct Players, First Deposit Direct Players, First Deposit Count Direct Players, Total Deposit Direct Players, Total Deposit Count Direct Players, First Withdrawal Direct Players, First Withdrawal Count Direct Players, Total Withdrawal Direct Players, Total Withdrawal Count Direct Players, Profit Direct Players, First Deposit Associated Players, First Deposit Count Associated Players, Total Deposit Associated Players, Total Deposit Count Associated Players, First Withdrawal Associated Players, First Withdrawal Count Associated Players, Total Withdrawal Associated Players, Total Withdrawal Count Associated Players, Profit Associated Players, Associated Players, Convert Rate Associated Players, Total Deposit Amount(Associated+Direct), Total Profit(Associated+Direct), Total Withdrawal Amount(Associated+Direct)\n";
 						csvString.forEach(function (row) {
 							csv += row.join(",");
 							csv += "\n";

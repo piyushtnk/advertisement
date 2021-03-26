@@ -91,6 +91,9 @@
 		<!-- Chart deposit -->
 		<ChartDepositComponent />
 
+		<!-- Regular users -->
+		<RegularPlayersComponent />
+
 		<!-- Counter Live -->
 		<CounterComponent
 			:defaultFilterDateProps="defaultFilterDate"
@@ -118,6 +121,7 @@
 	import ChartDepositComponent from "~/components/statistics/chart-deposit";
 
 	import CounterComponent from "~/components/statistics/counter";
+	import RegularPlayersComponent from "~/components/statistics/regular-players";
 	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
 	import Last10MinuteBannersComponent from "~/components/statistics/last10MinuteBanners";
 	import VariablesMixin from "~/mixins/variables";
@@ -156,6 +160,7 @@
 			Last10MinuteBannersComponent: Last10MinuteBannersComponent,
 			ChartWithdrawalComponent: ChartWithdrawalComponent,
 			ChartDepositComponent: ChartDepositComponent,
+			RegularPlayersComponent: RegularPlayersComponent,
 		},
 		methods: {
 			...mapActions({
@@ -191,6 +196,9 @@
 				this.$store.dispatch("getChartDeposit", this.optionsParam);
 				this.$store.dispatch("getStatistics", this.optionsParam);
 				this.$store.dispatch("getStatistics2", this.optionsParam);
+
+				// Regular players
+				this.$store.dispatch("getRegularPlayers", this.optionsParam);
 
 				// top viewed banners
 				this.$store.dispatch("getTopViewedBanners", this.optionsParam);

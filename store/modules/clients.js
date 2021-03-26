@@ -7,7 +7,8 @@ const state = () => ({
 	ipClients: [],
 	deposit: [],
 	withdrawals: [],
-	bets: []
+	bets: [],
+	regularPlayers: []
 });
 
 // Actions
@@ -137,7 +138,24 @@ const actions = {
 		await this.$axios.get(`/player/banner/${id}`).then(response => {
 			commit("SET_REG_PLAYERS", response.data.data);
 		});
-	}
+	},
+
+	// Regular Players
+	// Getting bets details
+	async getRegularPlayers({ commit }, data) {
+		await this.$axios
+			.get("/regular/players", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_REGULAR_PLAYERS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
 };
 
 // Mutations
@@ -165,7 +183,10 @@ const mutations = {
 	},
 	SET_BETS(state, response) {
 		state.bets = response;
-	}
+	},
+	SET_REGULAR_PLAYERS(state, response) {
+		state.regularPlayers = response;
+	},
 };
 
 // Getters
@@ -193,7 +214,10 @@ const getters = {
 	},
 	getBets: state => {
 		return state.bets;
-	}
+	},
+	getRegularPlayers: state => {
+		return state.regularPlayers;
+	},
 };
 
 // Default export

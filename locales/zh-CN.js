@@ -326,6 +326,20 @@ export default async (context, locale) => {
 		depositChart: '存款表',
 		新会员新会员: '新会员 - 新会员',
 		普通会员普通会员: '普通会员 - 普通会员',
-		momo: 'MOMO'
+		momo: 'MOMO',
+		regularPlayers: '普通玩家',
+		averageTopupCount: '平均充值数',
+		depositAvg: '平均存款',
+		loginCount: '登录数',
+		cashbackBonus: '现金返还奖金',
+		topUpCount: '充值计数',
+		totalBetAmount: '总投注金额',
+		totalDeposit: '存款总额',
+		totalDepositCount: '存款总数',
+		totalResult: '总结果',
+		totalWithdraw: '总提款',
+		totalWithdrawCount: '总提款数',
+		withdrawAvg: '平均提款',
+		uniqueClicks: '唯一点击'
 	};
 };

@@ -29,7 +29,23 @@ export default {
 		},
 		searchByColumn() {
 			if (this.search.column != "" && this.search.value != "") {
-				return this.search.column + "|" + this.search.value;
+				let column, value = '';
+				column = this.search.column;
+				// Deposit tab
+				if (this.search.column == 'groupname') {
+					if (this.search.value == 'Ordinary' || this.search.value == '普通会员') {
+						value = '普通会员';
+					} else if (this.search.value == 'New' || this.search.value == '新会员') {
+						value = '新会员';
+					} else {
+						value = this.search.value;
+					}
+
+				} else {
+					// Other tabs					
+					value = this.search.value;
+				}
+				return column + "|" + value;
 			} else {
 				return "";
 			}

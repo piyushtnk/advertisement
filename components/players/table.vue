@@ -476,14 +476,14 @@
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
+					{ text: this.$t("ip"), value: "regip" },
 					{ text: this.$t("noOfIp"), value: "logincount" },
 					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
-					{ text: this.$t("ip"), value: "regip" },
 				];
 			},
 			headerSearch() {
 				return [
-					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
+					{ text: this.$t("registrationTime"), value: "createdate" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
 					{
@@ -492,9 +492,10 @@
 						sortable: false,
 					},
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
-					{ text: this.$t("ip"), value: "regip" },
-					{ text: this.$t("noOfIp"), value: "logincount" },
-					{ text: this.$t("registrationTime"), value: "createdate" },
+					{
+						text: this.$t("totalTopUpCount"),
+						value: "totaldepositcount",
+					},
 					{ text: this.$t("totalWithdrawal"), value: "totalwithdraw" },
 					{
 						text: this.$t("totalWithdrawalCount"),
@@ -503,6 +504,9 @@
 					{ text: this.$t("totalClaimed"), value: "totalbonus" },
 					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
 					{ text: this.$t("totalValidBet"), value: "validbet" },
+					{ text: this.$t("ip"), value: "regip" },
+					{ text: this.$t("noOfIp"), value: "logincount" },
+					{ text: this.$t("sourceURL"), value: "ulagentaccount" },
 				];
 			},
 		},

@@ -27,7 +27,7 @@
 				this.$store.dispatch("getBannersPerf", {
 					startDate: value.startDate,
 					endDate: value.endDate,
-					sort: value.sort,
+					sort: value.sortBy,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,

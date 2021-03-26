@@ -249,7 +249,7 @@
 				sequenceValue: "",
 				thirdPartyPaymentValue: "",
 				paymentType: [
-					{ text: this.$t("all"), value: "" },
+					// { text: this.$t("all"), value: "" },
 					{ text: this.$t("companyDeposit"), value: 8 },
 					{ text: this.$t("debitCard"), value: 4 },
 					{ text: this.$t("viettelPay"), value: 8192 },
@@ -305,14 +305,14 @@
 			},
 			sequence() {
 				return [
-					{ text: this.$t("all"), value: "" },
+					// { text: this.$t("all"), value: "" },
 					{ text: this.$t("firstDeposit"), value: 1 },
 					{ text: this.$t("secondDeposit"), value: 2 },
 				];
 			},
 			thirdPartyPayment() {
 				return [
-					{ text: this.$t("all"), value: "" },
+					// { text: this.$t("all"), value: "" },
 					{ text: this.$t("dtPay"), value: "DTPAY" },
 					{ text: this.$t("momo"), value: "MOMOPAY" },
 					{ text: this.$t("viettelPay"), value: "VIETTELPAY" },

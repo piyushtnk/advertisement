@@ -332,6 +332,20 @@ export default async (context, locale) => {
 		depositChart: 'Deposit Chart',
 		新会员新会员: 'New',
 		普通会员普通会员: 'Ordinary',
-		momo: 'MOMO'
+		momo: 'MOMO',
+		regularPlayers: 'Regular Players',
+		averageTopupCount: 'Average Top-Up Count',
+		depositAvg: 'Deposit Average',
+		loginCount: 'Login Count',
+		cashbackBonus: 'Cashback Bonus',
+		topUpCount: 'Top-Up Count',
+		totalBetAmount: 'Total Bet Amount',
+		totalDeposit: 'Total Deposit',
+		totalDepositCount: 'Total Deposit Count',
+		totalResult: 'Total Result',
+		totalWithdraw: 'Total Withdraw',
+		totalWithdrawCount: 'Total Withdraw Count',
+		withdrawAvg: 'Withdraw Average',
+		uniqueClicks: 'Unique Clicks'
 	};
 };
