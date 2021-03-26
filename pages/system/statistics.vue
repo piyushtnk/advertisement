@@ -91,9 +91,6 @@
 		<!-- Chart deposit -->
 		<ChartDepositComponent />
 
-		<!-- Regular users -->
-		<RegularPlayersComponent />
-
 		<!-- Counter Live -->
 		<CounterComponent
 			:defaultFilterDateProps="defaultFilterDate"
@@ -109,6 +106,9 @@
 		<Last10MinuteBannersComponent
 			:last10MinuteLoading.sync="last10MinuteLoading"
 		/>
+
+		<!-- Regular users -->
+		<RegularPlayersComponent />
 	</div>
 </template>
 
