@@ -13,6 +13,14 @@ export default {
 			}
 		},
 
+		staticNumberFormat(value) {
+			if (typeof value == 'number' || typeof value == 'float') {
+				return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			} else {
+				return value;
+			}
+		},
+
 		fixParameters(value) {
 			if (value == null || value == 'null') {
 				return '-';

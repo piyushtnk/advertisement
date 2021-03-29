@@ -150,13 +150,13 @@
 								defaultFilterDate
 							"
 						>
-							{{ numberFormat(item.allClientsCount) }}
+							{{ staticNumberFormat(item.allClientsCount) }}
 						</v-chip>
 					</template>
 
 					<template v-slot:item.views="{ item }">
 						<v-chip outlined color="purple" class="ma-2">
-							{{ numberFormat(item.views) }}
+							{{ staticNumberFormat(item.views) }}
 						</v-chip>
 					</template>
 
@@ -304,7 +304,7 @@
 							</template>
 							<span>{{ $t("downloadCode") }}</span>
 						</v-tooltip> -->
-						<v-tooltip left color="purple">
+						<!-- <v-tooltip left color="purple">
 							<template v-slot:activator="{ on, attrs }">
 								<v-icon
 									@click="checkRegisteredPlayers(item)"
@@ -317,7 +317,7 @@
 								</v-icon>
 							</template>
 							<span>{{ $t("layout.players") }}</span>
-						</v-tooltip>
+						</v-tooltip> -->
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -483,11 +483,11 @@
 				document.body.removeChild(element);
 			},
 
-			checkRegisteredPlayers(row) {
-				this.$router.push(
-					this.localePath(`/system/registered-players?bannerId=${row.id}`)
-				);
-			},
+			// checkRegisteredPlayers(row) {
+			// 	this.$router.push(
+			// 		this.localePath(`/system/registered-players?bannerId=${row.id}`)
+			// 	);
+			// },
 
 			close() {
 				this.dialog = false;

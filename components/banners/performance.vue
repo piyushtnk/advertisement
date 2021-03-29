@@ -167,14 +167,32 @@
 							class="ma-2"
 							:to="`/system/clients?bannerId=${item.id}&filterType=${defaultFilterDate}&unique=true`"
 						>
-							{{ numberFormat(item.allClientsCount) }}
+							{{ staticNumberFormat(item.allClientsCount) }}
 						</v-chip>
 					</template>
 
 					<template v-slot:item.views="{ item }">
 						<v-chip outlined color="purple" class="ma-2">
-							{{ numberFormat(item.views) }}
+							{{ staticNumberFormat(item.views) }}
 						</v-chip>
+					</template>
+
+					<!-- Actions -->
+					<template v-slot:[`item.actions`]="{ item }">
+						<v-tooltip left color="purple">
+							<template v-slot:activator="{ on, attrs }">
+								<v-icon
+									@click="checkRegisteredPlayers(item)"
+									large
+									color="yellow"
+									v-bind="attrs"
+									v-on="on"
+								>
+									mdi-account-group
+								</v-icon>
+							</template>
+							<span>{{ $t("directMembers") }}</span>
+						</v-tooltip>
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -226,6 +244,7 @@
 					{ text: this.$t("uniqueClicks"), value: "allClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
+					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];
 			},
 		},
@@ -369,6 +388,13 @@
 						hiddenElement.click();
 						this.loading = false;
 					});
+			},
+			checkRegisteredPlayers(row) {
+				this.$router.push(
+					this.localePath(
+						`/system/direct-players-list?bannerId=${row.id}`
+					)
+				);
 			},
 		},
 		watch: {

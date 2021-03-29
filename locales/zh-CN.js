@@ -360,6 +360,19 @@ export default async (context, locale) => {
 		totalWithdrawCount: '总提款数',
 		withdrawAvg: '平均提款',
 		uniqueClicks: '唯一点击',
-		actualAmount: '实际金额'
+		actualAmount: '实际金额',
+		regIp: '注册IP',
+		manualBonus: '手动奖金',
+		directMembers: '直接会员',
+		AssociatedMembers: '准会员',
+		directRegisteredPlayersCount: '直接注册玩家数',
+		firstDepositCountOfDirectPlayers: '直接玩家的第一笔存款',
+		firstDepositOfDirectPlayers: '直接玩家的第一笔存款',
+		firstWithdrawalCountOfDirectPlayers: '直接玩家的首次提款数',
+		firstWithdrawalOfDirectPlayers: '首次退出直接玩家',
+		totalDepositCountOfDirectPlayers: '直接玩家存款总额',
+		totalDepositsOfDirectPlayers: '直接玩家总存款',
+		totalWithdrawalCountOfDirectPlayers: '直接玩家总抽签数',
+		totalWithdrawalsOfDirectPlayers: '直接玩家总提款'
 	};
 };

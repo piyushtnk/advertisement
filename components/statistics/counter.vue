@@ -652,7 +652,7 @@
 				if (value == null) {
 					return 0;
 				} else {
-					return this.numberFormat(parseFloat(value.toFixed(2)));
+					return this.staticNumberFormat(parseInt(value));
 				}
 			},
 			isNullValue(value) {
@@ -660,7 +660,7 @@
 					return 0;
 				} else {
 					value = value * 1000;
-					return this.numberFormat(parseFloat(value.toFixed(2)));
+					return this.numberFormat(parseFloat(value));
 				}
 			},
 			goToClientTablePageWithBrowserParam(value) {

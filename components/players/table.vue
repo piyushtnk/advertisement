@@ -377,7 +377,7 @@
 									</th>
 									<th>
 										{{
-											numberFormat(
+											staticNumberFormat(
 												sumField("totaldepositcount")
 											)
 										}}
@@ -391,7 +391,7 @@
 									</th>
 									<th>
 										{{
-											numberFormat(
+											staticNumberFormat(
 												sumField("totalwithdrawcount")
 											)
 										}}

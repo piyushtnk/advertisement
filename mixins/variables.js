@@ -31,8 +31,7 @@ export default {
 			if (this.search.column != "" && this.search.value != "") {
 				let column, value = '';
 				column = this.search.column;
-				// Deposit tab
-				if (this.search.column == 'groupname') {
+				if (this.search.column == 'groupname') { // Deposit table
 					if (this.search.value == 'Ordinary' || this.search.value == '普通会员') {
 						value = '普通会员';
 					} else if (this.search.value == 'New' || this.search.value == '新会员') {
@@ -41,8 +40,16 @@ export default {
 						value = this.search.value;
 					}
 
-				} else {
-					// Other tabs					
+
+				} else if (this.search.column == 'thirdpartypaymentstaticname') { // Withdrawal table
+					if (this.search.value.match(/dt/g)) {
+						value = 'DT支付';
+					} else if (this.search.value.match(/bank/g)) {
+						value = ' ';
+					} else {
+						value = this.search.value;
+					}
+				} else { // Other tabs					
 					value = this.search.value;
 				}
 				return column + "|" + value;

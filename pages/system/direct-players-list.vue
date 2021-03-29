@@ -14,26 +14,28 @@
 <script>
 	import { mapActions } from "vuex";
 
-	import TableComponent from "~/components/ip/ipTable";
+	import TableComponent from "~/components/players/registered";
 
 	export default {
-		name: "ip",
+		name: "directPlayersList",
 		middleware: "authenticate",
 		components: {
 			TableComponent: TableComponent,
 		},
 		data: () => ({}),
 		methods: {
-			// ...mapActions({ getIpClients: "getIpClients" }),
+			...mapActions({ getIpClients: "getRegisteredPlayers" }),
 			filterForDate(value) {
-				this.$store.dispatch("getIpClients", {
-					startDate: value.startDate ? value.startDate : null,
-					endDate: value.endDate ? value.endDate : null,
-					sort: value.sort,
-					limit: value.limit,
-					page: value.page,
-					search: value.search,
-					bannerId: value.bannerId,
+				this.$store.dispatch("getRegisteredPlayers", {
+					id: this.$route.query.bannerId,
+					param: {
+						startDate: value.startDate ? value.startDate : null,
+						endDate: value.endDate ? value.endDate : null,
+						sort: value.sort,
+						limit: value.limit,
+						page: value.page,
+						search: value.search,
+					},
 				});
 			},
 		},

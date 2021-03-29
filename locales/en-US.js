@@ -366,6 +366,19 @@ export default async (context, locale) => {
 		totalWithdrawCount: 'Total Withdraw Count',
 		withdrawAvg: 'Withdraw Average',
 		uniqueClicks: 'Unique Clicks',
-		actualAmount: 'Actual Amount'
+		actualAmount: 'Actual Payment',
+		regIp: 'Registration IP',
+		manualBonus: 'Manual Bonus',
+		directMembers: 'Direct Members',
+		AssociatedMembers: 'Associated Members',
+		directRegisteredPlayersCount: 'Direct Registered Players Count',
+		firstDepositCountOfDirectPlayers: 'First Deposit Count Of Direct Players',
+		firstDepositOfDirectPlayers: 'First Deposit Of Direct Players',
+		firstWithdrawalCountOfDirectPlayers: 'First Withdrawal Count Of Direct Players',
+		firstWithdrawalOfDirectPlayers: 'First Withdrawal Of Direct Players',
+		totalDepositCountOfDirectPlayers: 'Total Deposit Count Of Direct Players',
+		totalDepositsOfDirectPlayers: 'Total Deposit Of Direct Players',
+		totalWithdrawalCountOfDirectPlayers: 'Total WIthdrawal Count Of Direct Players',
+		totalWithdrawalsOfDirectPlayers: 'Total Withdrawal Of Direct Players',
 	};
 };

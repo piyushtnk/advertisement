@@ -225,10 +225,6 @@
 					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{ text: this.$t("actualAmount"), value: "paidamt" },
 					{
-						text: this.$t("receivedAmount"),
-						value: "actualwithdrawalamt",
-					},
-					{
 						text: this.$t("withdrawalChannel"),
 						value: "thirdpartypaymentstaticname",
 					},
@@ -252,10 +248,6 @@
 					{ text: this.$t("group"), value: "groupname" },
 					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
 					{ text: this.$t("actualAmount"), value: "paidamt" },
-					{
-						text: this.$t("receivedAmount"),
-						value: "actualwithdrawalamt",
-					},
 					{
 						text: this.$t("withdrawalChannel"),
 						value: "thirdpartypaymentstaticname",

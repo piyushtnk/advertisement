@@ -83,7 +83,7 @@
 			);
 			var polygonTemplate = $this.polygonSeries.mapPolygons.template;
 			polygonTemplate.tooltipText =
-				"{name}: {value.value.formatNumber('#.0')}";
+				"{name}: {value.value.formatNumber('#.0')}\nRegistered Users: 0\nTop-up Mobile: 0\nTop-up Desktop: 0";
 			$this.polygonSeries.heatRules.push({
 				property: "fill",
 				target: $this.polygonSeries.mapPolygons.template,

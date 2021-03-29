@@ -134,8 +134,10 @@ const actions = {
 	},
 
 	// Registered players listing
-	async getRegisteredPlayers({ commit }, id) {
-		await this.$axios.get(`/player/banner/${id}`).then(response => {
+	async getRegisteredPlayers({ commit }, data) {
+		await this.$axios.get(`/direct/players/${data.id}`, {
+			params: data.param
+		}).then(response => {
 			commit("SET_REG_PLAYERS", response.data.data);
 		});
 	},
