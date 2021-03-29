@@ -250,6 +250,46 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("id") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.id }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="3" md="3" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("advertisementSource") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.comment }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("destinationURL") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.redirectUrl }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("banner") }} {{ $t("createdAt") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.createdAt }}
+					</v-card-text>
+				</v-card>
+			</v-col>
 		</v-row>
 
 		<!-- Table Listing -->
@@ -472,9 +512,11 @@
 					"data:text/csv;charset=utf-8," +
 					encodeURIComponent(
 						"\uFEFF" +
+							"Report Date," +
 							this.date[0] +
 							" TO " +
 							this.date[1] +
+							"\n" +
 							"\n" +
 							"Direct Registered Players Count," +
 							this.players.directRegisteredPlayersCount +
@@ -502,6 +544,20 @@
 							"\n" +
 							"Total Withdrawal Of Direct Player," +
 							this.players.totalWithdrawalsOfDirectPlayers +
+							"\n" +
+							"\n" +
+							"Banner ID," +
+							this.players.banner.id +
+							"\n" +
+							"Advertisement Source," +
+							this.players.banner.comment +
+							"\n" +
+							"Redirect URL," +
+							this.players.banner.comment +
+							"\n" +
+							"Banner Creation Date," +
+							this.players.banner.createdAt +
+							"\n" +
 							"\n" +
 							csv
 					);
