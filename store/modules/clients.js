@@ -2,7 +2,11 @@
 const state = () => ({
 	clients: [],
 	players: [],
-	regPlayers: [],
+	regPlayers: {
+		banner: {
+			id: '',
+		}
+	},
 	otherPlayers: [],
 	ipClients: [],
 	deposit: [],
