@@ -179,20 +179,38 @@
 
 					<!-- Actions -->
 					<template v-slot:[`item.actions`]="{ item }">
-						<v-tooltip left color="purple">
-							<template v-slot:activator="{ on, attrs }">
-								<v-icon
-									@click="checkRegisteredPlayers(item)"
-									large
-									color="yellow"
-									v-bind="attrs"
-									v-on="on"
-								>
-									mdi-account-group
-								</v-icon>
-							</template>
-							<span>{{ $t("directMembers") }}</span>
-						</v-tooltip>
+						<div>
+							<v-tooltip left color="purple">
+								<template v-slot:activator="{ on, attrs }">
+									<v-icon
+										@click="checkRegisteredPlayers(item)"
+										large
+										color="yellow"
+										v-bind="attrs"
+										v-on="on"
+									>
+										mdi-account-group
+									</v-icon>
+								</template>
+								<span>{{ $t("directMembers") }}</span>
+							</v-tooltip>
+						</div>
+						<div>
+							<v-tooltip left color="purple">
+								<template v-slot:activator="{ on, attrs }">
+									<v-icon
+										@click="checkAssociatedPlayers(item)"
+										large
+										color="light-blue lighten-3"
+										v-bind="attrs"
+										v-on="on"
+									>
+										mdi-account-group
+									</v-icon>
+								</template>
+								<span>{{ $t("assMembers") }}</span>
+							</v-tooltip>
+						</div>
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -393,6 +411,13 @@
 				this.$router.push(
 					this.localePath(
 						`/system/direct-players-list?bannerId=${row.id}`
+					)
+				);
+			},
+			checkAssociatedPlayers(row) {
+				this.$router.push(
+					this.localePath(
+						`/system/ass-direct-players-list?bannerId=${row.id}`
 					)
 				);
 			},

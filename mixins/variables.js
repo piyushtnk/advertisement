@@ -156,17 +156,13 @@ export default {
 
 			// Deposit Table
 			if (this.paymentTypeValue) {
-				defaultObjectParams.depositPaymentTypeEnum = 'COMPANY_DEPOSIT'
+				defaultObjectParams.depositPaymentTypeEnum = this.paymentTypeValue;
 			}
 			if (this.sequenceValue) {
 				defaultObjectParams.sequence = this.sequenceValue;
 			}
 			if (this.thirdPartyPaymentValue) {
-				if (this.thirdPartyPaymentValue == 'DTPAY') {
-					defaultObjectParams.thirdpartypaymentcode = this.thirdPartyPaymentValue;
-				} else {
-					defaultObjectParams.depositPaymentTypeEnum = this.thirdPartyPaymentValue;
-				}
+				defaultObjectParams.thirdpartypaymentstaticname = this.thirdPartyPaymentValue;
 			}
 
 			// Dynamic Search Object

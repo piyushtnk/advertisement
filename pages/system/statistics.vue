@@ -163,12 +163,12 @@
 			RegularPlayersComponent: RegularPlayersComponent,
 		},
 		methods: {
-			...mapActions({
-				getStatistics: "getStatistics",
-				getStatistics2: "getStatistics2",
-				getTopViewedBanners: "getTopViewedBanners",
-				getLast10MinuteBanners: "getLast10MinuteBanners",
-			}),
+			// ...mapActions({
+			// 	getStatistics: "getStatistics",
+			// 	getStatistics2: "getStatistics2",
+			// 	getTopViewedBanners: "getTopViewedBanners",
+			// 	getLast10MinuteBanners: "getLast10MinuteBanners",
+			// }),
 			whenDialogClosed() {
 				if (this.date.length == 2) {
 					this.showDateText();

@@ -7,6 +7,11 @@ const state = () => ({
 			id: '',
 		}
 	},
+	assRegPlayers: {
+		banner: {
+			id: '',
+		}
+	},
 	otherPlayers: [],
 	ipClients: [],
 	deposit: [],
@@ -146,6 +151,15 @@ const actions = {
 		});
 	},
 
+	// Associated Registered players listing
+	async getAssociatedRegisteredPlayers({ commit }, data) {
+		await this.$axios.get(`/associated/players/${data.id}`, {
+			params: data.param
+		}).then(response => {
+			commit("SET_ASS_REG_PLAYERS", response.data.data);
+		});
+	},
+
 	// Regular Players
 	// Getting bets details
 	async getRegularPlayers({ commit }, data) {
@@ -178,9 +192,6 @@ const mutations = {
 	SET_IP_CLIENTS(state, response) {
 		state.ipClients = response;
 	},
-	SET_REG_PLAYERS(state, response) {
-		state.regPlayers = response;
-	},
 	SET_DEPOSIT(state, response) {
 		state.deposit = response;
 	},
@@ -193,6 +204,12 @@ const mutations = {
 	SET_REGULAR_PLAYERS(state, response) {
 		state.regularPlayers = response;
 	},
+	SET_REG_PLAYERS(state, response) { // Regular players
+		state.regPlayers = response;
+	},
+	SET_ASS_REG_PLAYERS(state, response) { // Associated regular players
+		state.assRegPlayers = response;
+	},
 };
 
 // Getters
@@ -203,8 +220,11 @@ const getters = {
 	getPlayers: state => {
 		return state.players;
 	},
-	getRegPlayers: state => {
+	getRegPlayers: state => { // Regular players
 		return state.regPlayers;
+	},
+	getAssRegPlayers: state => { // Associated register players
+		return state.assRegPlayers;
 	},
 	getOtherPlayers: state => {
 		return state.otherPlayers;

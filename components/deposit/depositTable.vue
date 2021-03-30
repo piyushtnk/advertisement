@@ -214,13 +214,15 @@
 									<th colspan="5">Total</th>
 									<th>
 										{{
-											numberFormat(sumField("depositamt"))
+											numberFormat(
+												deposit.totalDepositAmount
+											)
 										}}
 									</th>
 									<th>
 										{{
 											numberFormat(
-												sumField("receiveddepositamt")
+												deposit.receivedDepositAmount
 											)
 										}}
 									</th>
@@ -250,10 +252,11 @@
 				thirdPartyPaymentValue: "",
 				paymentType: [
 					// { text: this.$t("all"), value: "" },
-					{ text: this.$t("companyDeposit"), value: 8 },
-					{ text: this.$t("debitCard"), value: 4 },
-					{ text: this.$t("viettelPay"), value: 8192 },
-					{ text: this.$t("qrCode"), value: 32768 },
+					{ text: this.$t("companyDeposit"), value: "COMPANY_DEPOSIT" },
+					{ text: this.$t("debitCard"), value: "DEBIT_CARD" },
+					{ text: this.$t("momo"), value: "MOMOPAY" },
+					{ text: this.$t("viettelPay"), value: "VIETTELPAY" },
+					{ text: this.$t("qrCode"), value: "QR_BANK" },
 				],
 			};
 		},
@@ -313,23 +316,21 @@
 			thirdPartyPayment() {
 				return [
 					// { text: this.$t("all"), value: "" },
-					{ text: this.$t("dtPay"), value: "DTPAY" },
-					{ text: this.$t("momo"), value: "MOMOPAY" },
-					{ text: this.$t("viettelPay"), value: "VIETTELPAY" },
+					{ text: this.$t("dtPay"), value: "DT支付" },
 				];
 			},
 		},
 		methods: {
-			sumField(key) {
-				if (this.deposit.data) {
-					return this.deposit.data.reduce(
-						(a, b) => parseFloat(a) + (parseFloat(b[key]) || 0),
-						0
-					);
-				} else {
-					return "";
-				}
-			},
+			// sumField(key) {
+			// 	if (this.deposit.data) {
+			// 		return this.deposit.data.reduce(
+			// 			(a, b) => parseFloat(a) + (parseFloat(b[key]) || 0),
+			// 			0
+			// 		);
+			// 	} else {
+			// 		return "";
+			// 	}
+			// },
 		},
 		watch: {
 			deposit() {

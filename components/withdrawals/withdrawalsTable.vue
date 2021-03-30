@@ -174,14 +174,14 @@
 									<th>
 										{{
 											numberFormat(
-												sumField("withdrawalamt")
+												withdrawals.totalWithdrawalAmount
 											)
 										}}
 									</th>
 									<th>
 										{{
 											numberFormat(
-												sumField("actualwithdrawalamt")
+												withdrawals.actualWithdrawalAmount
 											)
 										}}
 									</th>

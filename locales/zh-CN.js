@@ -373,6 +373,7 @@ export default async (context, locale) => {
 		totalDepositCountOfDirectPlayers: '直接玩家存款总额',
 		totalDepositsOfDirectPlayers: '直接玩家总存款',
 		totalWithdrawalCountOfDirectPlayers: '直接玩家总抽签数',
-		totalWithdrawalsOfDirectPlayers: '直接玩家总提款'
+		totalWithdrawalsOfDirectPlayers: '直接玩家总提款',
+		assMembers: '准会员'
 	};
 };

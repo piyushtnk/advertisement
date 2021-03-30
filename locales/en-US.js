@@ -380,5 +380,6 @@ export default async (context, locale) => {
 		totalDepositsOfDirectPlayers: 'Total Deposit Of Direct Players',
 		totalWithdrawalCountOfDirectPlayers: 'Total WIthdrawal Count Of Direct Players',
 		totalWithdrawalsOfDirectPlayers: 'Total Withdrawal Of Direct Players',
+		assMembers: 'Associated Members'
 	};
 };
