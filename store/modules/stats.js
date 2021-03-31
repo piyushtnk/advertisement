@@ -1,13 +1,12 @@
 // State
 const state = () => ({
-	statsInfo: {
-		graph: [
-			{
-				id: "LA",
-				value: 0
-			}
-		]
-	},
+	graph: [
+		{
+			id: "LA",
+			value: 0
+		}
+	],
+	statsInfo: {},
 	statsInfoTwo: {
 		overallTopupCount: 0,
 		overallTopupCountFromBanners: 0,
@@ -19,6 +18,22 @@ const state = () => ({
 
 // Actions
 const actions = {
+	async getGraph({ commit }, data) {
+		await this.$axios
+			.get("/stats/heatmap", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_GRAPH", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+
 	// Get all stats - 1 
 	async getStatistics({ commit }, data) {
 		await this.$axios
@@ -64,7 +79,10 @@ const mutations = {
 	},
 	SET_STATISTICS_2: (state, response) => {
 		state.statsInfoTwo = response;
-	}
+	},
+	SET_GRAPH: (state, response) => {
+		state.graph = response;
+	},
 };
 
 // Getters
@@ -77,6 +95,9 @@ const getters = {
 	},
 	getStatisticsOfOsAndBrowser: state => {
 		return state.osAndBrowser;
+	},
+	getGraph: state => {
+		return state.graph;
 	}
 };
 

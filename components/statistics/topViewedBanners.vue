@@ -105,7 +105,7 @@
 												"
 											>
 												{{
-													numberFormat(
+													staticNumberFormat(
 														item.clientCount
 													)
 												}}

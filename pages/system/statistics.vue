@@ -83,6 +83,8 @@
 		<ChartsComponent
 			@childFilterForCounter="loadChartSeparately"
 			:date.sync="date"
+			:chartFilter.sync="chartFilter"
+			:chartFilterValue.sync="chartFilterValue"
 		/>
 
 		<!-- Chart withdrawal -->
@@ -138,6 +140,29 @@
 				ipClientsLoading: true,
 				topViewLoading: true,
 				last10MinuteLoading: true,
+				chartFilterValue: "clicks",
+				chartFilter: [
+					{
+						text: this.$i18n.t("clicks"),
+						value: "clicks",
+					},
+					{
+						text: this.$i18n.t("registered"),
+						value: "registered",
+					},
+					{
+						text: this.$i18n.t("topUpCount"),
+						value: "topupCount",
+					},
+					{
+						text: this.$i18n.t("topUpDesktopCount"),
+						value: "topupDesktopCount",
+					},
+					{
+						text: this.$i18n.t("topUpMobileCount"),
+						value: "topupMobileCount",
+					},
+				],
 				optionsParam: {},
 			};
 		},
@@ -175,8 +200,13 @@
 					this.filterValueForStatistics();
 				}
 			},
-			loadChartSeparately() {
-				this.$store.dispatch("getStatistics", this.optionsParam);
+			loadChartSeparately(value) {
+				this.optionsParam.startDate = this.date[0];
+				this.optionsParam.endDate = this.date[1];
+				this.$store.dispatch("getGraph", {
+					...this.optionsParam,
+					map: value, // Default value
+				});
 			},
 
 			filterValueForStatistics() {
@@ -190,6 +220,12 @@
 				// Statistics part 1 and 2 api
 				this.optionsParam.startDate = this.date[0];
 				this.optionsParam.endDate = this.date[1];
+
+				// Graph
+				this.$store.dispatch("getGraph", {
+					...this.optionsParam,
+					map: this.chartFilterValue, // Default value
+				});
 
 				// chart withdrawal
 				this.$store.dispatch("getChartWithdrawal", this.optionsParam);

@@ -76,7 +76,7 @@
 									to="/system/clients"
 								>
 									<v-card-title class="display-3">{{
-										numberFormat(stats.visitors)
+										staticNumberFormat(stats.visitors)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("visitors") }}
@@ -91,7 +91,7 @@
 									to="/system/clients?unique=true"
 								>
 									<v-card-title class="display-3">{{
-										numberFormat(stats.uniqueVisitors)
+										staticNumberFormat(stats.uniqueVisitors)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.actualVisitors") }}
@@ -106,7 +106,9 @@
 									to="/system/players"
 								>
 									<v-card-title class="display-3">{{
-										numberFormat(stats.registeredVisitors)
+										staticNumberFormat(
+											stats.registeredVisitors
+										)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.registeredVisitors") }}
@@ -122,7 +124,7 @@
 									to="/system/banner"
 								>
 									<v-card-title class="display-3">{{
-										numberFormat(stats.banners)
+										staticNumberFormat(stats.banners)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("dashboard.registeredBanners") }}

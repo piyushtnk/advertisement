@@ -390,5 +390,11 @@ export default async (context, locale) => {
 		totalDepositsOfAssociatedPlayers: 'Total Deposits Of Associated Players',
 		totalWithdrawalCountOfAssociatedPlayers: 'Total Withdrawal Count Of Associated Players',
 		totalWithdrawalsOfAssociatedPlayers: 'Total Withdrawals Of Associated Players',
+		chartFilter: 'Chart Filter',
+		clicks: 'Clicks',
+		registered: 'Registered',
+		topUpCount: 'Top-Up Count',
+		topUpDesktopCount: 'Top-Up Desktop Count',
+		topUpMobileCount: 'Top-Up Mobile Count'
 	};
 };

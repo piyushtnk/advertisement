@@ -10,11 +10,18 @@
 					shaped
 					outlined
 				>
+					<v-select
+						v-model="chartFilterValueChildren"
+						:items="chartFilter"
+						item-value="value"
+						item-text="text"
+						class="ma-3"
+						:label="$t('chartFilter')"
+					/>
 					<v-card-text style="background-color: #fdfdfd">
 						<v-list-item three-line>
 							<v-list-item-content>
 								<div class="overline mb-4 text-dark"></div>
-
 								<div id="chartdiv"></div>
 							</v-list-item-content>
 						</v-list-item>
@@ -36,11 +43,18 @@
 				polygonSeries: {},
 				chart: {},
 				loading: true,
+				chartFilterValueChildren: this.chartFilterValue,
 			};
 		},
 		props: {
 			date: {
 				type: Array,
+			},
+			chartFilter: {
+				type: Array,
+			},
+			chartFilterValue: {
+				type: String,
 			},
 		},
 		created() {
@@ -83,7 +97,7 @@
 			);
 			var polygonTemplate = $this.polygonSeries.mapPolygons.template;
 			polygonTemplate.tooltipText =
-				"{name}: {value.value.formatNumber('#.0')}\nRegistered Users: {registeredPlayers}";
+				"{name}: {value.value.formatNumber('#.0')}";
 			$this.polygonSeries.heatRules.push({
 				property: "fill",
 				target: $this.polygonSeries.mapPolygons.template,
@@ -111,14 +125,14 @@
 			$this.chart.zoomControl = new this.chartCore.am4maps.ZoomControl();
 			$this.chart.zoomControl.valign = "top";
 
-			// World statistics data from api.
-			$this.polygonSeries.data = $this.statistics.graph;
+			// World chartHeatMap data from api.
+			$this.polygonSeries.data = $this.chartHeatMap;
 
 			// excludes Antarctica
 			$this.polygonSeries.exclude = ["AQ"];
 
 			// Hitting parents.
-			this.$emit("childFilterForCounter");
+			// this.$emit("childFilterForCounter", this.chartFilterValue);
 		},
 		methods: {
 			chartHeat() {
@@ -147,7 +161,7 @@
 		},
 		computed: {
 			...mapGetters({
-				statistics: "getStatistics",
+				chartHeatMap: "getGraph",
 			}),
 
 			chartCore() {
@@ -155,9 +169,13 @@
 			},
 		},
 		watch: {
-			statistics(value) {
+			chartHeatMap(value) {
 				this.loading = false;
-				this.polygonSeries.data = value.graph;
+				this.polygonSeries.data = value;
+			},
+			chartFilterValueChildren(value) {
+				this.loading = true;
+				this.$emit("childFilterForCounter", value);
 			},
 		},
 		beforeDestroy() {

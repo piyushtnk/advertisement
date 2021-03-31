@@ -578,7 +578,11 @@
 													defaultFilterDateProps
 												"
 											>
-												{{ numberFormat(item.count) }}
+												{{
+													staticNumberFormat(
+														item.count
+													)
+												}}
 											</v-chip>
 										</td>
 										<td>{{ item.createdAt }}</td>

@@ -109,7 +109,7 @@
 												"
 											>
 												{{
-													numberFormat(
+													staticNumberFormat(
 														item.totalClients
 													)
 												}}

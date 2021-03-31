@@ -384,5 +384,11 @@ export default async (context, locale) => {
 		totalDepositsOfAssociatedPlayers: '关联玩家存款总额',
 		totalWithdrawalCountOfAssociatedPlayers: '相关玩家的总提款数',
 		totalWithdrawalsOfAssociatedPlayers: '相关球员的总提款',
+		chartFilter: '图表过滤器',
+		clicks: '点击次数',
+		registered: '挂号的',
+		topUpCount: '充值计数',
+		topUpDesktopCount: '充值桌面计数',
+		topUpMobileCount: '充值手机数'
 	};
 };
