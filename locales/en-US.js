@@ -380,6 +380,15 @@ export default async (context, locale) => {
 		totalDepositsOfDirectPlayers: 'Total Deposit Of Direct Players',
 		totalWithdrawalCountOfDirectPlayers: 'Total WIthdrawal Count Of Direct Players',
 		totalWithdrawalsOfDirectPlayers: 'Total Withdrawal Of Direct Players',
-		assMembers: 'Associated Members'
+		assMembers: 'Associated Members',
+		associatedPlayersCount: 'Associated Players Count',
+		firstDepositCountOfAssociatedPlayers: 'First Deposit Count Of Associated Players',
+		firstDepositOfAssociatedPlayers: 'First Deposit Of Associated Players',
+		firstWithdrawalCountOfAssociatedPlayers: 'First Withdrawal Count Of Associated Players',
+		firstWithdrawalOfAssociatedPlayers: 'First Withdrawal Of Associated Players',
+		totalDepositCountOfAssociatedPlayers: 'Total Deposit Count Of Associated Players',
+		totalDepositsOfAssociatedPlayers: 'Total Deposits Of Associated Players',
+		totalWithdrawalCountOfAssociatedPlayers: 'Total Withdrawal Count Of Associated Players',
+		totalWithdrawalsOfAssociatedPlayers: 'Total Withdrawals Of Associated Players',
 	};
 };
