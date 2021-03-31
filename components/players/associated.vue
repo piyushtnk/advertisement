@@ -127,14 +127,10 @@
 			<v-col cols="12" lg="3" md="3" sm="12">
 				<v-card class="mx-auto" outlined>
 					<v-card-title class="display-1">
-						{{
-							staticNumberFormat(
-								players.directRegisteredPlayersCount
-							)
-						}}
+						{{ staticNumberFormat(players.associatedPlayersCount) }}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("directRegisteredPlayersCount") }}
+						{{ $t("associatedPlayersCount") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -143,12 +139,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.firstDepositCountOfDirectPlayers
+								players.firstDepositCountOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("firstDepositCountOfDirectPlayers") }}
+						{{ $t("firstDepositCountOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -157,12 +153,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.firstDepositOfDirectPlayers
+								players.firstDepositOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("firstDepositOfDirectPlayers") }}
+						{{ $t("firstDepositOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -171,12 +167,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.firstWithdrawalCountOfDirectPlayers
+								players.firstWithdrawalCountOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("firstWithdrawalCountOfDirectPlayers") }}
+						{{ $t("firstWithdrawalCountOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -185,12 +181,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.firstWithdrawalOfDirectPlayers
+								players.firstWithdrawalOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("firstWithdrawalOfDirectPlayers") }}
+						{{ $t("firstWithdrawalOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -199,12 +195,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.totalDepositCountOfDirectPlayers
+								players.totalDepositCountOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("totalDepositCountOfDirectPlayers") }}
+						{{ $t("totalDepositCountOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -213,12 +209,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.totalDepositsOfDirectPlayers
+								players.totalDepositsOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("totalDepositsOfDirectPlayers") }}
+						{{ $t("totalDepositsOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -227,12 +223,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.totalWithdrawalCountOfDirectPlayers
+								players.totalWithdrawalCountOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("totalWithdrawalCountOfDirectPlayers") }}
+						{{ $t("totalWithdrawalCountOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -241,12 +237,12 @@
 					<v-card-title class="display-1">
 						{{
 							staticNumberFormat(
-								players.totalWithdrawalsOfDirectPlayers
+								players.totalWithdrawalsOfAssociatedPlayers
 							)
 						}}
 					</v-card-title>
 					<v-card-text>
-						{{ $t("totalWithdrawalsOfDirectPlayers") }}
+						{{ $t("totalWithdrawalsOfAssociatedPlayers") }}
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -303,7 +299,7 @@
 							:options.sync="options"
 							:server-items-length="players.total"
 							:pageCount="players.totalPages"
-							:items="players.directRegisteredPlayersList"
+							:items="players.associatedPlayersList"
 							:loading="loading"
 							class="elevation-1"
 							:footer-props="footerProps"
