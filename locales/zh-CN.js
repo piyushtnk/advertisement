@@ -374,6 +374,15 @@ export default async (context, locale) => {
 		totalDepositsOfDirectPlayers: '直接玩家总存款',
 		totalWithdrawalCountOfDirectPlayers: '直接玩家总抽签数',
 		totalWithdrawalsOfDirectPlayers: '直接玩家总提款',
-		assMembers: '准会员'
+		assMembers: '准会员',
+		associatedPlayersCount: '关联玩家数',
+		firstDepositCountOfAssociatedPlayers: '关联玩家的首次存款计数',
+		firstDepositOfAssociatedPlayers: '关联玩家的首次存款',
+		firstWithdrawalCountOfAssociatedPlayers: '关联玩家的首次提款数',
+		firstWithdrawalOfAssociatedPlayers: '首次退出相关玩家',
+		totalDepositCountOfAssociatedPlayers: '关联玩家的总存款数',
+		totalDepositsOfAssociatedPlayers: '关联玩家存款总额',
+		totalWithdrawalCountOfAssociatedPlayers: '相关玩家的总提款数',
+		totalWithdrawalsOfAssociatedPlayers: '相关球员的总提款',
 	};
 };
