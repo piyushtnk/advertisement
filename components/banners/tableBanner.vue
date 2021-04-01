@@ -400,7 +400,7 @@
 					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
-					{ text: this.$t("clicks"), value: "allClientsCount" },
+					{ text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },

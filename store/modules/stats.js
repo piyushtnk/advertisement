@@ -6,6 +6,7 @@ const state = () => ({
 			value: 0
 		}
 	],
+	winLoss: 0,
 	statsInfo: {},
 	statsInfoTwo: {
 		overallTopupCount: 0,
@@ -18,6 +19,23 @@ const state = () => ({
 
 // Actions
 const actions = {
+	// Get win loss
+	async getWinLoss({ commit }, data) {
+		await this.$axios
+			.get("/stats/winloss", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_WIN_LOSS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
+
+	// get graph
 	async getGraph({ commit }, data) {
 		await this.$axios
 			.get("/stats/heatmap", {
@@ -83,6 +101,9 @@ const mutations = {
 	SET_GRAPH: (state, response) => {
 		state.graph = response;
 	},
+	SET_WIN_LOSS: (state, response) => {
+		state.winLoss = response.winloss;
+	},
 };
 
 // Getters
@@ -98,6 +119,9 @@ const getters = {
 	},
 	getGraph: state => {
 		return state.graph;
+	},
+	getWinLoss: state => {
+		return state.winLoss;
 	}
 };
 

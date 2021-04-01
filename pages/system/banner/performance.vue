@@ -20,7 +20,6 @@
 		computed: {},
 		methods: {
 			...mapActions({
-				getBanners: "getBannersPerf",
 				getBannerDomains: "getBannerDomains",
 			}),
 			filterForDate(value) {

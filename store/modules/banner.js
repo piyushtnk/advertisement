@@ -114,8 +114,29 @@ const actions = {
 					params: data
 				});
 			const promise = bannerData.data.data.data.map(async (value) => {
+				// For views count
 				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
 					value.views = countResponse.data.data.bannerViewsCount;
+				});
+				// For calculating direct registered players
+				await $this.$axios.get("/direct/players/" + value.id, {
+					params: {
+						startDate: data.startDate,
+						endDate: data.endDate
+					}
+				}).then((playerCountResponse) => {
+					value.directRegisteredPlayersCount = playerCountResponse.data.data.directRegisteredPlayersCount;
+					value.firstDepositCountOfDirectPlayers = playerCountResponse.data.data.firstDepositCountOfDirectPlayers;
+				});
+				// For calculating associated registered players
+				await $this.$axios.get("/associated/players/" + value.id, {
+					params: {
+						startDate: data.startDate,
+						endDate: data.endDate
+					}
+				}).then((playerCountResponse) => {
+					value.associatedPlayersCount = playerCountResponse.data.data.associatedPlayersCount;
+					value.firstDepositCountOfAssociatedPlayers = playerCountResponse.data.data.firstDepositCountOfAssociatedPlayers;
 				});
 			});
 			await Promise.all(promise);

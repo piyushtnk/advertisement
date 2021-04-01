@@ -177,6 +177,52 @@
 						</v-chip>
 					</template>
 
+					<!-- direct players -->
+					<template
+						v-slot:item.directRegisteredPlayersCount="{ item }"
+					>
+						<v-chip outlined color="yellow" class="ma-2">
+							{{
+								staticNumberFormat(
+									item.directRegisteredPlayersCount
+								)
+							}}
+						</v-chip>
+					</template>
+					<template
+						v-slot:item.firstDepositCountOfDirectPlayers="{ item }"
+					>
+						<v-chip outlined color="yellow" class="ma-2">
+							{{
+								staticNumberFormat(
+									item.firstDepositCountOfDirectPlayers
+								)
+							}}
+						</v-chip>
+					</template>
+
+					<!-- associated players -->
+					<template v-slot:item.associatedPlayersCount="{ item }">
+						<v-chip outlined color="blue" class="ma-2">
+							{{
+								staticNumberFormat(item.associatedPlayersCount)
+							}}
+						</v-chip>
+					</template>
+					<template
+						v-slot:item.firstDepositCountOfAssociatedPlayers="{
+							item,
+						}"
+					>
+						<v-chip outlined color="blue" class="ma-2">
+							{{
+								staticNumberFormat(
+									item.firstDepositCountOfAssociatedPlayers
+								)
+							}}
+						</v-chip>
+					</template>
+
 					<!-- Actions -->
 					<template v-slot:[`item.actions`]="{ item }">
 						<div>
@@ -261,6 +307,26 @@
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("uniqueClicks"), value: "allClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
+					{
+						text: this.$t("directRegisteredPlayersCount"),
+						value: "directRegisteredPlayersCount",
+						sortable: false,
+					},
+					{
+						text: this.$t("firstDepositCountOfDirectPlayers"),
+						value: "firstDepositCountOfDirectPlayers",
+						sortable: false,
+					},
+					{
+						text: this.$t("associatedPlayersCount"),
+						value: "associatedPlayersCount",
+						sortable: false,
+					},
+					{
+						text: this.$t("firstDepositCountOfAssociatedPlayers"),
+						value: "firstDepositCountOfAssociatedPlayers",
+						sortable: false,
+					},
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];
@@ -424,6 +490,7 @@
 		},
 		watch: {
 			banners(value) {
+				console.log(value);
 				this.loading = false;
 			},
 			date(value) {

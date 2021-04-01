@@ -373,6 +373,21 @@
 							</v-card-text>
 						</v-card>
 					</v-col>
+
+					<v-col cols="12" lg="4" md="4" sm="12">
+						<v-card
+							class="mx-auto mt-5"
+							outlined
+							:loading="statisticsLoading"
+						>
+							<v-card-title class="display-1">
+								{{ isNull(winLoss) }}
+							</v-card-title>
+							<v-card-text>
+								{{ $t("winLoss") }}
+							</v-card-text>
+						</v-card>
+					</v-col>
 				</v-row>
 			</v-card-text>
 		</v-card>
@@ -631,6 +646,7 @@
 				statistics: "getStatistics",
 				statistics2: "getStatistics2",
 				ipClients: "getIpClients",
+				winLoss: "getWinLoss",
 			}),
 		},
 		watch: {

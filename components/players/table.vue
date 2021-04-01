@@ -150,7 +150,7 @@
 							<template
 								v-slot:[`item.totaldepositcount`]="{ item }"
 							>
-								{{ numberFormat(item.totaldepositcount) }}
+								{{ staticNumberFormat(item.totaldepositcount) }}
 							</template>
 
 							<template
@@ -161,7 +161,9 @@
 							<template
 								v-slot:[`item.totalwithdrawcount`]="{ item }"
 							>
-								{{ numberFormat(item.totalwithdrawcount) }}
+								{{
+									staticNumberFormat(item.totalwithdrawcount)
+								}}
 							</template>
 
 							<template v-slot:expanded-item="{ headers, item }">

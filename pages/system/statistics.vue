@@ -221,6 +221,9 @@
 				this.optionsParam.startDate = this.date[0];
 				this.optionsParam.endDate = this.date[1];
 
+				// Win Loss
+				this.$store.dispatch("getWinLoss", this.optionsParam);
+
 				// Graph
 				this.$store.dispatch("getGraph", {
 					...this.optionsParam,
