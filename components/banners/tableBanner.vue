@@ -138,7 +138,7 @@
 						</v-tooltip>
 					</template>
 
-					<template v-slot:[`item.allClientsCount`]="{ item }">
+					<template v-slot:[`item.uniqueClientsCount`]="{ item }">
 						<v-chip
 							outlined
 							color="green"
@@ -150,7 +150,7 @@
 								defaultFilterDate
 							"
 						>
-							{{ staticNumberFormat(item.allClientsCount) }}
+							{{ staticNumberFormat(item.uniqueClientsCount) }}
 						</v-chip>
 					</template>
 
