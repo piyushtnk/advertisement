@@ -160,14 +160,14 @@
 						</div>
 					</template>
 
-					<template v-slot:[`item.allClientsCount`]="{ item }">
+					<template v-slot:[`item.uniqueClientsCount`]="{ item }">
 						<v-chip
 							outlined
 							color="green"
 							class="ma-2"
 							:to="`/system/clients?bannerId=${item.id}&filterType=${defaultFilterDate}&unique=true`"
 						>
-							{{ staticNumberFormat(item.allClientsCount) }}
+							{{ staticNumberFormat(item.uniqueClientsCount) }}
 						</v-chip>
 					</template>
 
@@ -305,7 +305,7 @@
 					},
 					// { text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
-					{ text: this.$t("uniqueClicks"), value: "allClientsCount" },
+					{ text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
 					{
 						text: this.$t("directRegisteredPlayersCount"),
