@@ -91,10 +91,22 @@ export default {
 		}
 	},
 	created() { },
-	mounted() { },
+	mounted() {
+		// When date parameter is passed to the url.
+		if (this.$route.query.startDate) {
+			this.date[0] = this.$route.query.startDate;
+			this.date[1] = this.$route.query.endDate;
+		}
+	},
 	methods: {
-		readDataFromAPI() {
+		readDataFromAPI(firstTimeLoadData) {
 			this.loading = true;
+
+			// When date parameter is passed to the url.
+			if (firstTimeLoadData.length) {
+				this.date[0] = firstTimeLoadData.startDate;
+				this.date[1] = firstTimeLoadData.endDate;
+			}
 			this.beforeSearchMiddleware(this.$route.query);
 		},
 		whenDialogClosed() {
@@ -120,6 +132,9 @@ export default {
 				limit: this.options.itemsPerPage,
 				page: this.options.page
 			};
+
+			// Format date
+			this.showDateText();
 
 			// Route: system/clients parameters
 			if (value) {
@@ -237,7 +252,7 @@ export default {
 					const sortType = filter.sortDesc[0] == true ? "desc" : "asc";
 					this.sortBy = filter.sortBy[0] + "|" + sortType;
 				}
-				this.readDataFromAPI();
+				this.readDataFromAPI(this.$route.query);
 			},
 		},
 

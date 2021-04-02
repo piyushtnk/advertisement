@@ -400,6 +400,7 @@ export default async (context, locale) => {
 		registered: 'Registered',
 		topUpCount: 'Top-Up Count',
 		topUpDesktopCount: 'Top-Up Desktop Count',
-		topUpMobileCount: 'Top-Up Mobile Count'
+		topUpMobileCount: 'Top-Up Mobile Count',
+		loginIp: 'Login Ip'
 	};
 };

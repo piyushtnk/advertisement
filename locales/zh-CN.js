@@ -394,6 +394,7 @@ export default async (context, locale) => {
 		registered: '挂号的',
 		topUpCount: '充值计数',
 		topUpDesktopCount: '充值桌面计数',
-		topUpMobileCount: '充值手机数'
+		topUpMobileCount: '充值手机数',
+		loginIp: '登入IP'
 	};
 };

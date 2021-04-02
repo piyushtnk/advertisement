@@ -12,8 +12,6 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
-
 	import TableComponent from "~/components/players/registered";
 
 	export default {
@@ -24,7 +22,6 @@
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getIpClients: "getRegisteredPlayers" }),
 			filterForDate(value) {
 				this.$store.dispatch("getRegisteredPlayers", {
 					id: this.$route.query.bannerId,

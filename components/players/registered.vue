@@ -1,5 +1,47 @@
 <template>
 	<div>
+		<v-row class="mb-2">
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("id") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.id }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="3" md="3" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("advertisementSource") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.comment }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("destinationURL") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.redirectUrl }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("banner") }} {{ $t("createdAt") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.createdAt }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
 		<!-- Report section -->
 		<v-card class="my-5 max-auto" outlined elevation="2" outlined>
 			<v-list-item two-line>
@@ -247,46 +289,6 @@
 					</v-card-title>
 					<v-card-text>
 						{{ $t("totalWithdrawalsOfDirectPlayers") }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("id") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.id }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="3" md="3" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("advertisementSource") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.comment }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("destinationURL") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.redirectUrl }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("banner") }} {{ $t("createdAt") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.createdAt }}
 					</v-card-text>
 				</v-card>
 			</v-col>

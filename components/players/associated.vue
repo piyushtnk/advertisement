@@ -1,5 +1,47 @@
 <template>
 	<div>
+		<v-row class="mb-2">
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("id") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.id }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="3" md="3" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("advertisementSource") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.comment }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("destinationURL") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.redirectUrl }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+			<v-col cols="12" lg="2" md="2" sm="12">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("banner") }} {{ $t("createdAt") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.createdAt }}
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
 		<!-- Report section -->
 		<v-card class="my-5 max-auto" outlined elevation="2" outlined>
 			<v-list-item two-line>
@@ -246,46 +288,6 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("id") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.id }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="3" md="3" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("advertisementSource") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.comment }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("destinationURL") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.redirectUrl }}
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("banner") }} {{ $t("createdAt") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.createdAt }}
-					</v-card-text>
-				</v-card>
-			</v-col>
 		</v-row>
 
 		<!-- Table Listing -->
@@ -336,11 +338,11 @@
 											<v-list-item two-line>
 												<v-list-item-content>
 													<v-list-item-title>{{
-														$t("createdAt")
+														$t("registeredDate")
 													}}</v-list-item-title>
 													<v-list-item-subtitle>{{
 														fixParameters(
-															item.createdAt
+															item.createdate
 														)
 													}}</v-list-item-subtitle>
 												</v-list-item-content>
@@ -439,6 +441,11 @@
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("registrationIp"), value: "regip" },
+					{ text: this.$t("loginIp"), value: "associatedloginip" },
+					{
+						text: this.$t("firstDepositTime"),
+						value: "firstdeposittime",
+					},
 					{
 						text: this.$t("totalBetAmount"),
 						value: "totalbetamount",

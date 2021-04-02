@@ -476,21 +476,20 @@
 			checkRegisteredPlayers(row) {
 				this.$router.push(
 					this.localePath(
-						`/system/direct-players-list?bannerId=${row.id}`
+						`/system/direct-players-list?bannerId=${row.id}&startDate=${this.date[0]}&endDate=${this.date[1]}`
 					)
 				);
 			},
 			checkAssociatedPlayers(row) {
 				this.$router.push(
 					this.localePath(
-						`/system/ass-direct-players-list?bannerId=${row.id}`
+						`/system/ass-direct-players-list?bannerId=${row.id}&startDate=${this.date[0]}&endDate=${this.date[1]}`
 					)
 				);
 			},
 		},
 		watch: {
 			banners(value) {
-				console.log(value);
 				this.loading = false;
 			},
 			date(value) {
