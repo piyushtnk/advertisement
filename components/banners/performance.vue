@@ -238,7 +238,7 @@
 										mdi-account-group
 									</v-icon>
 								</template>
-								<span>{{ $t("directMembers") }}</span>
+								<span>{{ $t("directPlayers") }}</span>
 							</v-tooltip>
 						</div>
 						<div>
@@ -254,7 +254,7 @@
 										mdi-account-group
 									</v-icon>
 								</template>
-								<span>{{ $t("assMembers") }}</span>
+								<span>{{ $t("assPlayers") }}</span>
 							</v-tooltip>
 						</div>
 					</template>
@@ -308,22 +308,22 @@
 					{ text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
 					{ text: this.$t("views"), value: "views", sortable: false },
 					{
-						text: this.$t("directRegisteredPlayersCount"),
+						text: this.$t("directPlayers"),
 						value: "directRegisteredPlayersCount",
 						sortable: false,
 					},
 					{
-						text: this.$t("firstDepositCountOfDirectPlayers"),
+						text: this.$t("firstDepositCountDP"),
 						value: "firstDepositCountOfDirectPlayers",
 						sortable: false,
 					},
 					{
-						text: this.$t("associatedPlayersCount"),
+						text: this.$t("associatedPlayers"),
 						value: "associatedPlayersCount",
 						sortable: false,
 					},
 					{
-						text: this.$t("firstDepositCountOfAssociatedPlayers"),
+						text: this.$t("firstDepositCountAP"),
 						value: "firstDepositCountOfAssociatedPlayers",
 						sortable: false,
 					},

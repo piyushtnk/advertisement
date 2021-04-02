@@ -111,7 +111,7 @@
 										)
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("dashboard.registeredVisitors") }}
+										{{ $t("directPlayers") }}
 										(RV)
 									</v-card-text>
 								</v-card>
