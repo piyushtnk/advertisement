@@ -225,18 +225,25 @@
 
 					<!-- Actions -->
 					<template v-slot:[`item.actions`]="{ item }">
-						<div>
+						<div class="my-2">
 							<v-tooltip left color="purple">
 								<template v-slot:activator="{ on, attrs }">
-									<v-icon
-										@click="checkRegisteredPlayers(item)"
-										large
-										color="yellow"
+									<v-btn
 										v-bind="attrs"
 										v-on="on"
+										target="_blank"
+										:href="
+											localePath(
+												`/system/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=directPlayers`
+											)
+										"
+										fab
+										small
 									>
-										mdi-account-group
-									</v-icon>
+										<v-icon color="yellow">
+											mdi-account-group
+										</v-icon>
+									</v-btn>
 								</template>
 								<span>{{ $t("directPlayers") }}</span>
 							</v-tooltip>
@@ -244,15 +251,22 @@
 						<div>
 							<v-tooltip left color="purple">
 								<template v-slot:activator="{ on, attrs }">
-									<v-icon
-										@click="checkAssociatedPlayers(item)"
-										large
-										color="light-blue lighten-3"
+									<v-btn
 										v-bind="attrs"
 										v-on="on"
+										small
+										target="_blank"
+										:href="
+											localePath(
+												`/system/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=assPlayers`
+											)
+										"
+										fab
 									>
-										mdi-account-group
-									</v-icon>
+										<v-icon color="light-blue lighten-3">
+											mdi-account-group
+										</v-icon>
+									</v-btn>
 								</template>
 								<span>{{ $t("assPlayers") }}</span>
 							</v-tooltip>
@@ -472,20 +486,6 @@
 						hiddenElement.click();
 						this.loading = false;
 					});
-			},
-			checkRegisteredPlayers(row) {
-				this.$router.push(
-					this.localePath(
-						`/system/direct-players-list?bannerId=${row.id}&startDate=${this.date[0]}&endDate=${this.date[1]}`
-					)
-				);
-			},
-			checkAssociatedPlayers(row) {
-				this.$router.push(
-					this.localePath(
-						`/system/ass-direct-players-list?bannerId=${row.id}&startDate=${this.date[0]}&endDate=${this.date[1]}`
-					)
-				);
 			},
 		},
 		watch: {

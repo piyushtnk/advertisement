@@ -366,6 +366,7 @@ export default async (context, locale) => {
 		directMembers: '直接会员',
 		AssociatedMembers: '准会员',
 		directRegisteredPlayersCount: '直接注册玩家数',
+		allDirectRegisteredPlayersCount: '所有注册玩家数',
 		directPlayers: '直接玩家',
 		associatedPlayers: '相关球员',
 		firstDepositCountDP: '第一笔存款数（DP）',
@@ -395,6 +396,16 @@ export default async (context, locale) => {
 		topUpCount: '充值计数',
 		topUpDesktopCount: '充值桌面计数',
 		topUpMobileCount: '充值手机数',
-		loginIp: '登入IP'
+		loginIp: '登入IP',
+
+		playersCount: '玩家人数',
+		allPlayersCount: '所有玩家计数',
+		firstDepositValue: '首次存款价值',
+		firstDepositCount: '首次存款计数',
+		totalDepositValue: '总存款值',
+		firstWithdrawalValue: '首次提款价值',
+		firstWithdrawalCount: '首次提款计数',
+		totalWithdrawalValue: '总提款价值',
+		check: '查看'
 	};
 };

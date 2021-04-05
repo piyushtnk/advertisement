@@ -118,25 +118,29 @@ const actions = {
 				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
 					value.views = countResponse.data.data.bannerViewsCount;
 				});
+
 				// For calculating direct registered players
-				await $this.$axios.get("/direct/players/" + value.id, {
+				await $this.$axios.get("/players/banner/" + value.id, {
 					params: {
 						startDate: data.startDate,
-						endDate: data.endDate
+						endDate: data.endDate,
+						type: 'direct'
 					}
 				}).then((playerCountResponse) => {
-					value.directRegisteredPlayersCount = playerCountResponse.data.data.directRegisteredPlayersCount;
-					value.firstDepositCountOfDirectPlayers = playerCountResponse.data.data.firstDepositCountOfDirectPlayers;
+					value.directRegisteredPlayersCount = playerCountResponse.data.data.allPlayersCount;
+					value.firstDepositCountOfDirectPlayers = playerCountResponse.data.data.firstDepositCount;
 				});
+
 				// For calculating associated registered players
-				await $this.$axios.get("/associated/players/" + value.id, {
+				await $this.$axios.get("/players/banner/" + value.id, {
 					params: {
 						startDate: data.startDate,
-						endDate: data.endDate
+						endDate: data.endDate,
+						type: 'associated'
 					}
 				}).then((playerCountResponse) => {
-					value.associatedPlayersCount = playerCountResponse.data.data.associatedPlayersCount;
-					value.firstDepositCountOfAssociatedPlayers = playerCountResponse.data.data.firstDepositCountOfAssociatedPlayers;
+					value.associatedPlayersCount = playerCountResponse.data.data.playersCount;
+					value.firstDepositCountOfAssociatedPlayers = playerCountResponse.data.data.firstDepositCount;
 				});
 			});
 			await Promise.all(promise);

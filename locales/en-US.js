@@ -371,7 +371,8 @@ export default async (context, locale) => {
 		manualBonus: 'Manual Bonus',
 		directMembers: 'Direct Members',
 		AssociatedMembers: 'Associated Members',
-		directRegisteredPlayersCount: 'Direct Registered Players Count',
+		directRegisteredPlayersCount: 'Registered Players Count',
+		allDirectRegisteredPlayersCount: 'All Registered Players Count',
 		directPlayers: 'Direct Players',
 		associatedPlayers: 'Associated Players',
 		firstDepositCountDP: '1st Deposit Count(DP)',
@@ -401,6 +402,16 @@ export default async (context, locale) => {
 		topUpCount: 'Top-Up Count',
 		topUpDesktopCount: 'Top-Up Desktop Count',
 		topUpMobileCount: 'Top-Up Mobile Count',
-		loginIp: 'Login Ip'
+		loginIp: 'Login Ip',
+
+		playersCount: 'Player Count',
+		allPlayersCount: 'All Players Count',
+		firstDepositValue: 'First Deposit Value',
+		firstDepositCount: 'First Deposit Count',
+		totalDepositValue: 'Total Deposit Value',
+		firstWithdrawalValue: 'First Withdrawal Value',
+		firstWithdrawalCount: 'First Withdrawal Count',
+		totalWithdrawalValue: 'Total Withdrawal Value',
+		check: 'Check'
 	};
 };

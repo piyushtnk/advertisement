@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import TableComponent from "~/components/players/registered";
+	import TableComponent from "~/components/players/bannerPlayerList";
 
 	export default {
 		name: "directPlayersList",
@@ -17,7 +17,7 @@
 		data: () => ({}),
 		methods: {
 			filterForDate(value) {
-				this.$store.dispatch("getRegisteredPlayers", {
+				this.$store.dispatch("getBannerRegisteredPlayers", {
 					id: this.$route.query.bannerId,
 					param: {
 						startDate: value.startDate ? value.startDate : null,
@@ -26,6 +26,10 @@
 						limit: value.limit,
 						page: value.page,
 						search: value.search,
+						type:
+							this.$route.query.type == "directPlayers"
+								? "direct"
+								: "associated",
 					},
 				});
 			},

@@ -12,6 +12,11 @@ const state = () => ({
 			id: '',
 		}
 	},
+	bannerRegPlayers: {
+		banner: {
+			id: '',
+		}
+	},
 	otherPlayers: [],
 	ipClients: [],
 	deposit: [],
@@ -142,7 +147,7 @@ const actions = {
 			});
 	},
 
-	// Registered players listing
+	// Registered players listing -- Decrypted.
 	async getRegisteredPlayers({ commit }, data) {
 		await this.$axios.get(`/direct/players/${data.id}`, {
 			params: data.param
@@ -157,6 +162,14 @@ const actions = {
 			params: data.param
 		}).then(response => {
 			commit("SET_ASS_REG_PLAYERS", response.data.data);
+		});
+	},
+
+	async getBannerRegisteredPlayers({ commit }, data) {
+		await this.$axios.get(`/players/banner/${data.id}`, {
+			params: data.param
+		}).then(response => {
+			commit("SET_BANNER_REG_PLAYERS", response.data.data);
 		});
 	},
 
@@ -210,6 +223,9 @@ const mutations = {
 	SET_ASS_REG_PLAYERS(state, response) { // Associated regular players
 		state.assRegPlayers = response;
 	},
+	SET_BANNER_REG_PLAYERS(state, response) { // Regular players
+		state.bannerRegPlayers = response;
+	},
 };
 
 // Getters
@@ -225,6 +241,9 @@ const getters = {
 	},
 	getAssRegPlayers: state => { // Associated register players
 		return state.assRegPlayers;
+	},
+	getBannerRegPlayers: state => { // Regular players
+		return state.bannerRegPlayers;
 	},
 	getOtherPlayers: state => {
 		return state.otherPlayers;
