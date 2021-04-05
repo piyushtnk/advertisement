@@ -4,7 +4,7 @@
 		<v-card class="my-5" outlined>
 			<v-card-text>
 				<v-row align="center">
-					<v-col cols="12" lg="3" md="4" sm="12">
+					<v-col cols="12" lg="2" md="4" sm="12">
 						<v-dialog
 							ref="dialog"
 							v-model="modal"
@@ -76,7 +76,16 @@
 							:label="$t('columnName')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="3" md="4" sm="12">
+					<v-col cols="12" lg="2" md="4" sm="12">
+						<v-select
+							v-model="vipId"
+							:items="groupLevels"
+							item-value="vipid"
+							item-text="vipname"
+							:label="$t('group')"
+						/>
+					</v-col>
+					<v-col cols="12" lg="2" md="4" sm="12">
 						<v-text-field
 							v-model="search.value"
 							:label="$t('searchText')"
@@ -435,11 +444,13 @@
 			return {
 				sortBy: "id|desc",
 				playersType: 1, // 0 = Other Sources, 1 = Registered Through Banner, 2 = Registered IP viewers but not clicked on banner.
+				vipId: "",
 			};
 		},
 		computed: {
 			...mapGetters({
 				players: "getPlayers",
+				groupLevels: "getGroupLevels",
 			}),
 			defaultPlayersType() {
 				return [
@@ -488,11 +499,6 @@
 					{ text: this.$t("registrationTime"), value: "createdate" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("name"), value: "firstname" },
-					{
-						text: this.$t("levelName"),
-						value: "levelName",
-						sortable: false,
-					},
 					{ text: this.$t("totalTopUp"), value: "totaldeposit" },
 					{
 						text: this.$t("totalTopUpCount"),

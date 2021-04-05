@@ -18,7 +18,7 @@
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getPlayers: "getPlayers" }),
+			...mapActions({ groupLevels: "groupLevels" }),
 			filterForDate(value) {
 				this.$store.dispatch("getPlayers", {
 					startDate: value.startDate ? value.startDate : null,
@@ -29,8 +29,12 @@
 					search: value.search,
 					registerus: value.registerWithUs,
 					topup: value.topUp,
+					vipid: value.vipId,
 				});
 			},
+		},
+		mounted() {
+			this.groupLevels();
 		},
 	};
 </script>

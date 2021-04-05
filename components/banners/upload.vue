@@ -4,11 +4,13 @@
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card elevation="2" outlined tile class="mx-auto">
 					<v-card-text>
-						<div>{{ $t("registerYourBanner") }}</div>
+						<div class="text-uppercase">
+							{{ $t("registerYourBanner") }}
+						</div>
 						<div class="text--primary">
 							<form v-on:submit.prevent="submit">
 								<v-row>
-									<v-col cols="12" lg="4" md="4" sm="12">
+									<v-col cols="12" lg="3" md="3" sm="12">
 										<v-file-input
 											accept="image/*"
 											:label="$t('chooseBanner')"
@@ -24,7 +26,7 @@
 										>
 									</v-col>
 
-									<v-col cols="12" lg="4" md="4" sm="12">
+									<v-col cols="12" lg="3" md="3" sm="12">
 										<v-select
 											:items="bannerDomains"
 											v-model="bannerUrl"
@@ -45,7 +47,7 @@
 										</span>
 									</v-col>
 
-									<v-col cols="12" lg="4" md="4" sm="12">
+									<v-col cols="12" lg="3" md="3" sm="12">
 										<v-text-field
 											v-model="comment"
 											:error-messages="commentErrors"
@@ -53,6 +55,17 @@
 											required
 											@input="$v.comment.$touch()"
 											@blur="$v.comment.$touch()"
+										></v-text-field>
+									</v-col>
+
+									<v-col cols="12" lg="3" md="3" sm="12">
+										<v-text-field
+											v-model="cost"
+											:error-messages="costErrors"
+											:label="$t('cost')"
+											required
+											@input="$v.cost.$touch()"
+											@blur="$v.cost.$touch()"
 										></v-text-field>
 									</v-col>
 								</v-row>
@@ -88,6 +101,7 @@
 			bannerImage: null,
 			bannerUrl: null,
 			comment: null,
+			cost: 0,
 			loading: false,
 		}),
 		mixins: [validationMixin],
@@ -95,6 +109,7 @@
 			bannerImage: { required },
 			bannerUrl: { required },
 			comment: { required },
+			cost: { required },
 		},
 		computed: {
 			...mapGetters({
@@ -119,6 +134,12 @@
 				!this.$v.comment.required && errors.push("Comment is required.");
 				return errors;
 			},
+			costErrors() {
+				const errors = [];
+				if (!this.$v.cost.$dirty) return errors;
+				!this.$v.cost.required && errors.push("Cost is required.");
+				return errors;
+			},
 		},
 		methods: {
 			submit() {
@@ -133,6 +154,7 @@
 						image: $this.bannerImage,
 						url: $this.bannerUrl,
 						comment: $this.comment,
+						cost: $this.cost,
 					};
 					if ($this.$store.dispatch("uploadBanner", editedObject)) {
 						$this.loading = false;

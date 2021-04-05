@@ -167,7 +167,7 @@
 			>
 				<v-card class="mx-auto" outlined>
 					<v-card-title class="display-1">
-						{{ staticNumberFormat(player) }}
+						{{ diffCountVsValue(player, index) }}
 					</v-card-title>
 					<v-card-text>
 						{{ $t(index) }}
@@ -476,6 +476,20 @@
 					this.tableItems = this.players.allPlayersList;
 				} else if (index == "playersCount") {
 					this.tableItems = this.players.playersList;
+				}
+			},
+
+			diffCountVsValue(player, index) {
+				if (
+					index == "firstDepositValue" ||
+					index == "firstWithdrawalValue" ||
+					index == "totalDepositValue" ||
+					index == "totalWithdrawalValue"
+				) {
+					player = player * 1000;
+					return this.staticNumberFormat(player);
+				} else {
+					return this.staticNumberFormat(player);
 				}
 			},
 		},

@@ -406,6 +406,8 @@ export default async (context, locale) => {
 		firstWithdrawalValue: '首次提款价值',
 		firstWithdrawalCount: '首次提款计数',
 		totalWithdrawalValue: '总提款价值',
-		check: '查看'
+		check: '查看',
+		cost: '成本',
+		filter: '筛选'
 	};
 };

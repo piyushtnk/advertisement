@@ -168,6 +168,9 @@ export default {
 			if (this.playersType >= 0) {
 				defaultObjectParams.registerWithUs = this.playersType;
 			}
+			if (this.vipId) {
+				defaultObjectParams.vipId = this.vipId;
+			}
 
 			// Deposit Table
 			if (this.paymentTypeValue) {

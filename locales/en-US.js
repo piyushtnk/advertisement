@@ -412,6 +412,8 @@ export default async (context, locale) => {
 		firstWithdrawalValue: 'First Withdrawal Value',
 		firstWithdrawalCount: 'First Withdrawal Count',
 		totalWithdrawalValue: 'Total Withdrawal Value',
-		check: 'Check'
+		check: 'Check',
+		cost: 'Cost',
+		filter: 'Filter'
 	};
 };

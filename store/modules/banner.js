@@ -16,6 +16,7 @@ const actions = {
 		formData.append("banner", data.image);
 		formData.append("redirectUrl", data.url);
 		formData.append("comment", data.comment);
+		formData.append("cost", data.cost);
 
 		await this.$axios
 			.post("/banner", formData, {
@@ -48,6 +49,7 @@ const actions = {
 		}
 		formData.append("redirectUrl", data.redirectUrl);
 		formData.append("comment", data.comment);
+		formData.append("cost", data.cost);
 
 		await this.$axios
 			.put("/banner/" + data.uniqueId, formData, {

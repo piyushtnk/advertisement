@@ -3,6 +3,9 @@
 		<!-- Filter Area -->
 		<v-card class="my-5" outlined>
 			<v-card-text>
+				<div class="text-uppercase">
+					{{ $t("filter") }}
+				</div>
 				<v-row align="center">
 					<v-col cols="12" lg="3" md="3" sm="12">
 						<v-select
@@ -160,6 +163,12 @@
 						</v-chip>
 					</template>
 
+					<template v-slot:item.cost="{ item }">
+						<v-chip outlined color="yellow" class="ma-2">
+							{{ staticNumberFormat(item.cost ? item.cost : 0) }}
+						</v-chip>
+					</template>
+
 					<!-- Dialog Box -->
 					<template v-slot:top class="m-0 p-0">
 						<v-dialog
@@ -204,6 +213,12 @@
 															'advertisementSource'
 														)
 													"
+												></v-text-field>
+											</v-col>
+											<v-col cols="12" sm="12" md="12">
+												<v-text-field
+													v-model="editedItem.cost"
+													:label="$t('cost')"
 												></v-text-field>
 											</v-col>
 										</v-row>
@@ -290,34 +305,6 @@
 							</template>
 							<span>{{ $t("delete") }}</span>
 						</v-tooltip>
-						<!-- <v-tooltip left color="purple">
-							<template v-slot:activator="{ on, attrs }">
-								<v-icon
-									@click="downloadCode(item)"
-									large
-									color="blue"
-									v-bind="attrs"
-									v-on="on"
-								>
-									mdi-code-braces-box
-								</v-icon>
-							</template>
-							<span>{{ $t("downloadCode") }}</span>
-						</v-tooltip> -->
-						<!-- <v-tooltip left color="purple">
-							<template v-slot:activator="{ on, attrs }">
-								<v-icon
-									@click="checkRegisteredPlayers(item)"
-									large
-									color="yellow"
-									v-bind="attrs"
-									v-on="on"
-								>
-									mdi-account-group
-								</v-icon>
-							</template>
-							<span>{{ $t("layout.players") }}</span>
-						</v-tooltip> -->
 					</template>
 				</v-data-table>
 			</v-card-text>
@@ -345,6 +332,7 @@
 					redirectUrl: "",
 					comment: "",
 					bannerImage: [],
+					cost: 0,
 				},
 				defaultItem: {
 					uniqueId: "",
@@ -352,6 +340,7 @@
 					redirectUrl: "",
 					comment: "",
 					bannerImage: [],
+					cost: 0,
 				},
 				loading: false,
 				sortBy: "id|desc",
@@ -400,8 +389,9 @@
 					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
-					{ text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
-					{ text: this.$t("views"), value: "views", sortable: false },
+					{ text: this.$t("cost"), value: "cost" },
+					// { text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
+					// { text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];

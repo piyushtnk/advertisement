@@ -5,6 +5,7 @@ import Dashboard from "./modules/dashboard";
 import Banner from "./modules/banner";
 import Clients from "./modules/clients";
 import Stats from "./modules/stats";
+import Options from "./modules/options";
 
 const createStore = () => {
 	return new Vuex.Store({
@@ -15,6 +16,7 @@ const createStore = () => {
 			Banner,
 			Clients,
 			Stats,
+			Options
 		}
 	});
 };
