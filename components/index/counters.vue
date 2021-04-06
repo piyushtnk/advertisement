@@ -103,24 +103,6 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									to="/system/players"
-								>
-									<v-card-title class="display-3">{{
-										staticNumberFormat(
-											stats.registeredVisitors
-										)
-									}}</v-card-title>
-									<v-card-text>
-										{{ $t("directPlayers") }}
-										(RV)
-									</v-card-text>
-								</v-card>
-							</v-col>
-
-							<v-col cols="12" lg="6" md="6" sm="12">
-								<v-card
-									class="mx-auto"
-									outlined
 									to="/system/banner"
 								>
 									<v-card-title class="display-3">{{

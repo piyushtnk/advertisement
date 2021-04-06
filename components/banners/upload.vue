@@ -93,7 +93,7 @@
 <script>
 	import { mapGetters } from "vuex";
 	import { validationMixin } from "vuelidate";
-	import { required } from "vuelidate/lib/validators";
+	import { required, numeric } from "vuelidate/lib/validators";
 
 	export default {
 		name: "UploadComponent",
@@ -109,7 +109,7 @@
 			bannerImage: { required },
 			bannerUrl: { required },
 			comment: { required },
-			cost: { required },
+			cost: { numeric },
 		},
 		computed: {
 			...mapGetters({
@@ -137,7 +137,7 @@
 			costErrors() {
 				const errors = [];
 				if (!this.$v.cost.$dirty) return errors;
-				!this.$v.cost.required && errors.push("Cost is required.");
+				!this.$v.cost.numeric && errors.push("Cost should be in numbers.");
 				return errors;
 			},
 		},
