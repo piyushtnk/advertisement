@@ -10,14 +10,6 @@
 					shaped
 					outlined
 				>
-					<v-select
-						v-model="chartFilterValueChildren"
-						:items="chartFilter"
-						item-value="value"
-						item-text="text"
-						class="ma-3"
-						:label="$t('chartFilter')"
-					/>
 					<v-card-text style="background-color: #fdfdfd">
 						<v-list-item three-line>
 							<v-list-item-content>
@@ -43,18 +35,11 @@
 				polygonSeries: {},
 				chart: {},
 				loading: true,
-				chartFilterValueChildren: this.chartFilterValue,
 			};
 		},
 		props: {
 			date: {
 				type: Array,
-			},
-			chartFilter: {
-				type: Array,
-			},
-			chartFilterValue: {
-				type: String,
 			},
 		},
 		created() {
@@ -158,7 +143,7 @@
 		},
 		computed: {
 			...mapGetters({
-				chartHeatMap: "getGraph",
+				chartHeatMap: "getWorldChart",
 			}),
 
 			chartCore() {
@@ -169,10 +154,6 @@
 			chartHeatMap(value) {
 				this.loading = false;
 				this.polygonSeries.data = value;
-			},
-			chartFilterValueChildren(value) {
-				this.loading = true;
-				this.$emit("childFilterForCounter", value);
 			},
 		},
 		beforeDestroy() {

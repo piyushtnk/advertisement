@@ -8,11 +8,11 @@
 
 					<!-- Chart Details -->
 					<v-card-title>
-						{{ $t("dashboard.recentInteractionUserGraph") }}
+						{{ $t("dashboardText.recentInteractionUserGraph") }}
 					</v-card-title>
 
 					<v-card-subtitle>
-						{{ $t("dashboard.recentVisitorThroughBanner") }}
+						{{ $t("dashboardText.recentVisitorThroughBanner") }}
 					</v-card-subtitle>
 				</v-card>
 			</v-col>
@@ -30,7 +30,7 @@
 		}),
 		computed: {
 			...mapGetters({
-				dashboard: "getDashboard",
+				dashboard: "getDashboardGraph",
 			}),
 			chartCore() {
 				return this.$am4core();

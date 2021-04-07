@@ -6,28 +6,30 @@ export default async (context, locale) => {
 		ok: "确定",
 		okay: "好的",
 		cancel: "取消",
-		layout: {
-			system: '系统',
-			clients: "广告点击人数",
-			players: "会员管理",
-			banner: "横幅广告管理",
-			bannerPerf: "横幅广告效果",
-			performance: "表现",
-			systemPanel: "系统面板",
-			dashboard: "首页",
-			statistics: "统计",
-			reports: "报表",
-			otherPlayers: "其他玩家",
-			ipClients: "API IP 客户",
-			information: "信息",
-			deposit: "存款记录",
-			withdrawals: "提款记录",
-			bets: "投注记录",
-			ip: "IP 地址",
-			zh: 'ZH',
-			domain: '领域'
-		},
-		dashboard: {
+		system: '系统',
+		adsClick: "广告点击人数",
+		member: "会员管理",
+		bannerManagement: "横幅广告管理",
+		bannerPerf: "横幅广告效果",
+		performance: "表现",
+		systemPanel: "系统面板",
+		dashboard: "首页",
+		statistics: "统计",
+		reports: "报表",
+		otherPlayers: "其他玩家",
+		ipClients: "API IP 客户",
+		information: "信息",
+		deposit: "存款记录",
+		withdrawals: "提款记录",
+		bets: "投注记录",
+		ip: "IP 地址",
+		zh: 'ZH',
+		domain: '领域',
+		charts: '图表',
+		adsStatistics: '广告统计',
+		adsCharts: '广告图表',
+
+		dashboardText: {
 			recentInteractionUserGraph: "最近的互动用户图",
 			recentVisitorThroughBanner: "通道横幅广告来的客户",
 			liveStatistics: "实时统计",
@@ -212,12 +214,9 @@ export default async (context, locale) => {
 		numberOfVisits: "总造访",
 		apiLink: "api链接",
 		agentBy: "来源网址",
-		information: "信息",
-		firstClickTime: "首次访问时间",
-		bannerId: "首次查看的横幅ID",
-		supportedFormat: "支持格式",
 
-		information: {
+		information: "信息",
+		informationText: {
 			heading: "每页的详细信息",
 			clients:
 				"此页面包含单击横幅的所有客户/玩家，无论他们是否向我们注册都无所谓。",
@@ -227,6 +226,9 @@ export default async (context, locale) => {
 				"该页面包含所有已将我们的横幅图片加载或查看到其设备浏览器中的客户端或播放器。"
 		},
 
+		firstClickTime: "首次访问时间",
+		bannerId: "首次查看的横幅ID",
+		supportedFormat: "支持格式",
 		auditTime: "审核时间",
 		depositId: "存款 ID",
 		depositTime: "存款时间",
@@ -408,6 +410,13 @@ export default async (context, locale) => {
 		totalWithdrawalValue: '总提款价值',
 		check: '查看',
 		cost: '成本',
-		filter: '筛选'
+		filter: '筛选',
+		topClickWiseBannersList: '顶部点击明智的横幅列表',
+		bonusHunter: '红利猎人',
+		topUpValue: '充值',
+		withdrawalCount: '提款计数',
+		allSources: '所有来源',
+		fromBanners: '从横幅',
+		clickToCheck: '点击查看'
 	};
 };

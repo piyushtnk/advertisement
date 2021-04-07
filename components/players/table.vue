@@ -121,7 +121,7 @@
 					<v-col cols="12" lg="2" md="2" sm="12">
 						<ExcelDownloadButton
 							:excelData="players.data"
-							:fileName="$t('layout.players')"
+							:fileName="$t('players')"
 							:loading="loading"
 						/>
 					</v-col>
@@ -144,9 +144,11 @@
 							:items="players.data"
 							:loading="loading"
 							:footer-props="footerProps"
+							@click:row="handleClick"
 							show-expand
 							single-expand
 							item-expanded
+							class="row-pointer"
 						>
 							<template v-slot:[`item.levelName`]="{ item }">
 								{{ $t(removeSpaceAndComma(item.levelName)) }}
@@ -539,6 +541,13 @@
 					return "";
 				}
 			},
+
+			// On row click
+			handleClick(row) {
+				this.$router.push(
+					this.localePath(`/system/player/${row.playerid}`)
+				);
+			},
 		},
 		watch: {
 			players() {
@@ -547,3 +556,8 @@
 		},
 	};
 </script>
+<style lang="css" scoped>
+	.row-pointer >>> tbody tr :hover {
+		cursor: pointer;
+	}
+</style>

@@ -1,11 +1,18 @@
 import Vuex from "vuex";
+
+// Ads store
 import Default from "./modules/default";
 import Login from "./modules/login";
 import Dashboard from "./modules/dashboard";
 import Banner from "./modules/banner";
 import Clients from "./modules/clients";
-import Stats from "./modules/stats";
-import Options from "./modules/options";
+
+// B91
+import B91Charts from "./modules/b91/charts";
+import B91Players from "./modules/b91/players";
+import Options from "./modules/b91/options";
+import Stats from "./modules/b91/stats";
+
 
 const createStore = () => {
 	return new Vuex.Store({
@@ -16,7 +23,9 @@ const createStore = () => {
 			Banner,
 			Clients,
 			Stats,
-			Options
+			Options,
+			B91Charts,
+			B91Players
 		}
 	});
 };

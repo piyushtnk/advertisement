@@ -7,14 +7,14 @@ const state = () => ({
 		}
 	],
 	winLoss: 0,
-	statsInfo: {},
-	statsInfoTwo: {
+	statsInfoCounter: {},
+	statisticsTopUpOverall: {
 		overallTopupCount: 0,
 		overallTopupCountFromBanners: 0,
 		overallTotalTopupValue: 0,
 		overallTotalTopupValueFromBanners: 0
 	},
-	osAndBrowser: []
+	bonusHunters: [],
 });
 
 // Actions
@@ -30,7 +30,6 @@ const actions = {
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
 	},
@@ -38,7 +37,7 @@ const actions = {
 	// get graph
 	async getGraph({ commit }, data) {
 		await this.$axios
-			.get("/stats/heatmap", {
+			.get("/stats/heatmap/" + data.endpoint, {
 				params: data
 			})
 			.then(response => {
@@ -46,57 +45,64 @@ const actions = {
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 
 	// Get all stats - 1 
-	async getStatistics({ commit }, data) {
+	async getStatisticsCounter({ commit }, data) {
 		await this.$axios
-			.get("/stats/banners/1", {
+			.get("/stats/players/overall", {
 				params: data
 			})
 			.then(response => {
-				commit("SET_STATISTICS", response.data.data);
+				commit("SET_STATISTICS_COUNTER", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get all stats - 2
-	async getStatistics2({ commit }, data) {
+	async getStatisticsTopUpOverall({ commit }, data) {
 		await this.$axios
-			.get("/stats/banners/2", {
+			.get("/stats/topup/overall", {
 				params: data
 			})
 			.then(response => {
-				commit("SET_STATISTICS_2", response.data.data);
+				commit("SET_STATISTICS_TOP_UP_OVERALL", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
-	}
+	},
+
+	// bonus hunters
+	async bonusHunters({ commit }, data) {
+		await this.$axios
+			.get("/bonushunters", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_BONUS_HUNTERS", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
+	},
 };
 
 // Mutations
 const mutations = {
-	SET_STATISTICS: (state, response) => {
-		state.statsInfo = response;
-		state.osAndBrowser =
-		{
-			browser: response.browserType,
-			os: response.osType
-		};
+	SET_STATISTICS_COUNTER: (state, response) => {
+		state.statsInfoCounter = response;
 	},
-	SET_STATISTICS_2: (state, response) => {
-		state.statsInfoTwo = response;
+	SET_STATISTICS_TOP_UP_OVERALL: (state, response) => {
+		state.statisticsTopUpOverall = response;
 	},
 	SET_GRAPH: (state, response) => {
 		state.graph = response;
@@ -104,25 +110,28 @@ const mutations = {
 	SET_WIN_LOSS: (state, response) => {
 		state.winLoss = response.winloss;
 	},
+	SET_BONUS_HUNTERS: (state, response) => {
+		state.bonusHunters = response;
+	},
 };
 
 // Getters
 const getters = {
-	getStatistics: state => {
-		return state.statsInfo;
+	getStatisticsCounter: state => {
+		return state.statsInfoCounter;
 	},
-	getStatistics2: state => {
-		return state.statsInfoTwo;
-	},
-	getStatisticsOfOsAndBrowser: state => {
-		return state.osAndBrowser;
+	getStatisticsTopUpOverall: state => {
+		return state.statisticsTopUpOverall;
 	},
 	getGraph: state => {
 		return state.graph;
 	},
 	getWinLoss: state => {
 		return state.winLoss;
-	}
+	},
+	getBonusHunters: state => {
+		return state.bonusHunters;
+	},
 };
 
 // Default export

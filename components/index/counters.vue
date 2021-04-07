@@ -5,7 +5,7 @@
 				<v-card class="mx-auto" outlined>
 					<v-app-bar flat>
 						<v-toolbar-title>{{
-							$t("dashboard.liveStatistics")
+							$t("dashboardText.liveStatistics")
 						}}</v-toolbar-title>
 						<v-spacer></v-spacer>
 						<v-row>
@@ -69,14 +69,16 @@
 								</v-dialog>
 							</v-col>
 
-							<v-col cols="12" lg="6" md="6" sm="12">
+							<v-col cols="12" lg="4" md="4" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
 									to="/system/clients"
 								>
 									<v-card-title class="display-3">{{
-										staticNumberFormat(stats.visitors)
+										staticNumberFormat(
+											bannerClickOverall.allClients
+										)
 									}}</v-card-title>
 									<v-card-text>
 										{{ $t("visitors") }}
@@ -84,86 +86,53 @@
 								</v-card>
 							</v-col>
 
-							<v-col cols="12" lg="6" md="6" sm="12">
+							<v-col cols="12" lg="4" md="4" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
 									to="/system/clients?unique=true"
 								>
 									<v-card-title class="display-3">{{
-										staticNumberFormat(stats.uniqueVisitors)
+										staticNumberFormat(
+											bannerClickOverall.uniqueClients
+										)
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("dashboard.actualVisitors") }}
+										{{ $t("dashboardText.actualVisitors") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
 
-							<v-col cols="12" lg="6" md="6" sm="12">
+							<v-col cols="12" lg="4" md="4" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
 									to="/system/banner"
 								>
 									<v-card-title class="display-3">{{
-										staticNumberFormat(stats.banners)
+										staticNumberFormat(
+											bannerCount.allBannersCount
+										)
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("dashboard.registeredBanners") }}
-									</v-card-text>
-								</v-card>
-							</v-col>
-						</v-row>
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
-
-		<!-- 2nd box -->
-		<v-row class="mt-6">
-			<v-col cols="12">
-				<v-card class="mx-auto" outlined>
-					<v-app-bar flat>
-						<v-toolbar-title>{{
-							$t("dashboard.systemStats")
-						}}</v-toolbar-title>
-					</v-app-bar>
-
-					<v-card-text>
-						<v-row>
-							<v-col cols="12" lg="4" md="6" sm="12">
-								<v-card
-									class="mx-auto"
-									outlined
-									to="/system/banner"
-								>
-									<v-card-title class="display-3">{{
-										dashboard.banners
-									}}</v-card-title>
-									<v-card-text>
-										{{ $t("layout.banner") }}
+										{{
+											$t(
+												"dashboardText.registeredBanners"
+											)
+										}}
 									</v-card-text>
 								</v-card>
 							</v-col>
 
-							<v-col cols="12" lg="4" md="6" sm="12">
+							<v-col cols="12" lg="4" md="4" sm="12">
 								<v-card class="mx-auto" outlined>
 									<v-card-title class="display-3">{{
-										dashboard.admins
+										staticNumberFormat(
+											dashboardAllAdminCount.allAdminsCount
+										)
 									}}</v-card-title>
 									<v-card-text>
-										{{ $t("dashboard.admins") }}
-									</v-card-text>
-								</v-card>
-							</v-col>
-
-							<v-col cols="12" lg="4" md="6" sm="12">
-								<v-card class="mx-auto" outlined>
-									<v-card-title class="display-3">{{
-										dashboard.liveAdmins
-									}}</v-card-title>
-									<v-card-text>
-										{{ $t("dashboard.loggedInAdmins") }}
+										{{ $t("dashboardText.admins") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -188,11 +157,13 @@
 		mixins: [VariablesMixin, GlobalMixin],
 		computed: {
 			...mapGetters({
-				dashboard: "getDashboard",
-				stats: "getStats",
+				bannerCount: "getDashboardAllBannerCount",
+				bannerClickOverall: "getStatisticsBannerClicksOverall",
+				dashboardAllAdminCount: "getDashboardAllAdminCount",
 			}),
 		},
 		mounted() {
+			this.defaultFilterDate = 7;
 			this.callParentEvent();
 		},
 		methods: {

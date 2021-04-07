@@ -1,94 +1,49 @@
 // State
 const state = () => ({
-	dashboard: {
-		graph: [0, 1],
-		admins: 0,
-		liveAdmins: 0,
-		banners: 0,
-	},
-	chartWithdrawal: [0, 1],
-	chartDeposit: [0, 1],
-	stats: {
-		banners: 0,
-		visitors: 0,
-		uniqueVisitors: 0,
-		registeredVisitors: 0
-	},
-	updateIntervalTime: ''
+	dashboardGraph: [0, 1],
+	dashboardAllBannerCount: 0,
+	updateIntervalTime: '',
+	dashboardAllAdminCount: 0
 });
 
 // Actions
 const actions = {
-	async getDashboard({ commit }) {
+
+	// Get dashboard graph
+	async dashboardGraph({ commit }) {
 		await this.$axios
-			.get("/dashboard")
+			.get("/stats/clicks/lastweek")
 			.then(response => {
-				commit("SET_DASHBOARD", response.data.data);
+				commit("SET_DASHBOARD_GRAPH", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, {
 					root: true
 				});
-				commit("SET_SNACKBAR_VISIBLE", true, {
-					root: true
-				});
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
-	async getChartWithdrawal({ commit }, data) {
+
+	// Get dashboard graph
+	async dashboardAllBannerCount({ commit }, data) {
 		await this.$axios
-			.get("/withdrawal/chart", {
+			.get("/stats/banners/count", {
 				params: data
 			})
 			.then(response => {
-				commit("SET_CHART_WITHDRAWAL", response.data.data);
+				commit("SET_DASHBOARD_ALL_BANNER_COUNT", response.data.data);
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, {
 					root: true
 				});
-				commit("SET_SNACKBAR_VISIBLE", true, {
-					root: true
-				});
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
-	async getChartDeposit({ commit }, data) {
-		await this.$axios
-			.get("/deposits/chart", {
-				params: data
-			})
-			.then(response => {
-				commit("SET_CHART_DEPOSIT", response.data.data);
-			})
-			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
-				commit("SET_SNACKBAR_VISIBLE", true, {
-					root: true
-				});
-				throw error.response ? error.response.data.error : error;
-			});
-	},
-	async getStats({ commit }, data) {
-		await this.$axios
-			.get("/stats", {
-				params: data
-			})
-			.then(response => {
-				commit("SET_STATS", response.data.data);
-			})
-			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
-				commit("SET_SNACKBAR_VISIBLE", true, {
-					root: true
-				});
-				throw error.response ? error.response.data.error : error;
-			});
-	},
+
+	// Statistics page interval time.
 	getUpdateIntervalTime({ commit }) {
 		let now = new Date();
 		let minutes = now.getMinutes();
@@ -100,46 +55,58 @@ const actions = {
 			let data = (30 - minutes >= 10 ? 30 - minutes : '0' + 30 - minutes) + ":" + ((60 - seconds) >= 10 ? (60 - seconds) : '0' + (60 - seconds));
 			commit('SET_INTERVAL_TIME', data);
 		}
-	}
+	},
+
+	// Statistics admin count
+	async dashboardAllAdminCount({ commit }, data) {
+		await this.$axios
+			.get("/admins/count/all", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_DASHBOARD_ALL_ADMIN_COUNT", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, {
+					root: true
+				});
+
+				throw error.response ? error.response.data.error : error;
+			});
+	},
 
 };
 
 // Mutations
 const mutations = {
-	SET_DASHBOARD(state, response) {
-		state.dashboard = response;
+	SET_DASHBOARD_GRAPH(state, response) {
+		state.dashboardGraph = response;
 	},
-	SET_STATS(state, response) {
-		state.stats = response;
+	SET_DASHBOARD_ALL_BANNER_COUNT(state, response) {
+		state.dashboardAllBannerCount = response;
+	},
+	SET_DASHBOARD_ALL_ADMIN_COUNT(state, response) {
+		state.dashboardAllAdminCount = response;
 	},
 	SET_INTERVAL_TIME(state, response) {
 		state.updateIntervalTime = response;
 	},
-	SET_CHART_WITHDRAWAL(state, response) {
-		state.chartWithdrawal = response;
-	},
-	SET_CHART_DEPOSIT(state, response) {
-		state.chartDeposit = response;
-	}
 };
 
 // Getters
 const getters = {
-	getDashboard: state => {
-		return state.dashboard;
+	getDashboardGraph: state => {
+		return state.dashboardGraph;
 	},
-	getStats: state => {
-		return state.stats;
+	getDashboardAllBannerCount: state => {
+		return state.dashboardAllBannerCount;
+	},
+	getDashboardAllAdminCount: state => {
+		return state.dashboardAllAdminCount;
 	},
 	getUpdateIntervalTime: state => {
 		return state.updateIntervalTime;
 	},
-	getChartWithdrawal: state => {
-		return state.chartWithdrawal;
-	},
-	getChartDeposit: state => {
-		return state.chartDeposit;
-	}
 };
 
 // Default export

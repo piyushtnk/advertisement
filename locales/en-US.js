@@ -6,28 +6,42 @@ export default async (context, locale) => {
 		ok: "Ok",
 		okay: "Okay",
 		cancel: "Cancel",
-		layout: {
-			system: 'System',
-			players: "Member",
-			clients: "Ads Click",
-			banner: "Banner Management",
-			bannerPerf: "Banner Performance",
-			performance: "Performance",
-			systemPanel: "System Panel",
-			dashboard: "Dashboard",
-			statistics: "Statistics",
-			reports: "Reports",
-			otherPlayers: "Other Players",
-			ipClients: "API IP Clients",
-			information: "Information",
-			deposit: "Deposit",
-			withdrawals: "Withdrawals",
-			bets: "Bets",
-			ip: "IP",
-			zh: 'ZH',
-			domain: 'Domain'
+		system: 'System',
+		member: "Member",
+		adsClick: "Ads Click",
+		bannerManagement: "Banner Management",
+		bannerPerf: "Banner Performance",
+		performance: "Performance",
+		systemPanel: "System Panel",
+		dashboard: "Dashboard",
+		statistics: "Statistics",
+		reports: "Reports",
+		otherPlayers: "Other Players",
+		ipClients: "API IP Clients",
+		adsCharts: 'Ads Chart',
+
+		information: "Information",
+		informationText: {
+			heading: "Detailed information about every page",
+			clients:
+				"This page contain all the clients/players who clicked on banner it doesn't matter either they are registered with us or not.",
+			players:
+				"This page contain only players who did registered with us or other sources - all players are from b91.com",
+			reports:
+				"This page contain extra information of players in details like total bet, total amount etc.",
+			ipClients:
+				"This page contain all clients or players, who has loaded or viewed our banner image into their device browser."
 		},
-		dashboard: {
+
+		deposit: "Deposit",
+		withdrawals: "Withdrawals",
+		bets: "Bets",
+		ip: "IP",
+		zh: 'ZH',
+		domain: 'Domain',
+		charts: 'Charts',
+		adsStatistics: 'Ads Statistics',
+		dashboardText: {
 			recentInteractionUserGraph: "Recent interaction users graph",
 			recentVisitorThroughBanner: "Recent visitors through banner",
 			liveStatistics: "Live Statistics",
@@ -219,19 +233,6 @@ export default async (context, locale) => {
 		firstClickTime: "First Visit Time",
 		bannerId: "First Viewed Banner Id",
 		supportedFormat: "Supported format",
-
-		information: {
-			heading: "Detailed information about every page",
-			clients:
-				"This page contain all the clients/players who clicked on banner it doesn't matter either they are registered with us or not.",
-			players:
-				"This page contain only players who did registered with us or other sources - all players are from b91.com",
-			reports:
-				"This page contain extra information of players in details like total bet, total amount etc.",
-			ipClients:
-				"This page contain all clients or players, who has loaded or viewed our banner image into their device browser."
-		},
-
 		auditTime: "Audit Time",
 		depositId: "Deposit Id",
 		depositTime: "Deposit Time",
@@ -414,6 +415,13 @@ export default async (context, locale) => {
 		totalWithdrawalValue: 'Total Withdrawal Value',
 		check: 'Check',
 		cost: 'Cost',
-		filter: 'Filter'
+		filter: 'Filter',
+		topClickWiseBannersList: 'Top Click Wise Banner List',
+		bonusHunter: 'Bonus Hunter',
+		topUpValue: 'Top-up Value',
+		withdrawalCount: 'Withdrawal Count',
+		allSources: 'All Sources',
+		fromBanners: 'From Banners',
+		clickToCheck: 'Click To Check'
 	};
 };

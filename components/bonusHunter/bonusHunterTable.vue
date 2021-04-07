@@ -49,7 +49,7 @@
 							</v-date-picker>
 						</v-dialog>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="defaultFilterDate"
 							:items="filterDate"
@@ -58,7 +58,7 @@
 							:label="$t('filterType')"
 						/>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col cols="12" lg="2" md="3" sm="12">
 						<v-select
 							v-model="search.column"
 							:items="headerSearch"
@@ -74,9 +74,7 @@
 							required
 						></v-text-field>
 					</v-col>
-				</v-row>
-				<v-row>
-					<v-col cols="12" lg="2" md="2" sm="12">
+					<v-col cols="12" lg="1" md="3" sm="12">
 						<v-btn
 							color="blue"
 							class="white--text mx-auto"
@@ -88,7 +86,7 @@
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="2" md="2" sm="12">
+					<v-col cols="12" lg="1" md="3" sm="12">
 						<v-btn
 							color="red"
 							class="white--text"
@@ -99,13 +97,6 @@
 							{{ $t("clear") }}
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
-					</v-col>
-					<v-col cols="12" lg="2" md="2" sm="12">
-						<ExcelDownloadButton
-							:excelData="bets.data"
-							:fileName="$t('bets')"
-							:loading="loading"
-						/>
 					</v-col>
 				</v-row>
 			</v-card-text>
@@ -120,19 +111,12 @@
 							:headers="headers"
 							item-key="id"
 							:options.sync="options"
-							:server-items-length="bets.total"
-							:pageCount="bets.totalPages"
-							:items="bets.data"
+							:server-items-length="bonusHunter.total"
+							:pageCount="bonusHunter.totalPages"
+							:items="bonusHunter.data"
 							:loading="loading"
 							:footer-props="footerProps"
 						>
-							<template v-slot:[`item.firstname`]="{ item }">
-								{{
-									isNull(item.firstname) +
-									" " +
-									isNull(item.lastname)
-								}}
-							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -144,53 +128,78 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
-	import Global from "~/mixins/global";
 
 	export default {
-		name: "TableBetsComponent",
-		mixins: [Variables, Global],
+		name: "BonusHunterTable",
+		mixins: [Variables],
 		data() {
 			return {
 				sortBy: "id|desc",
 			};
 		},
 		computed: {
-			...mapGetters({
-				bets: "getBets",
-			}),
+			...mapGetters({ bonusHunter: "getBonusHunters" }),
 			headers() {
 				return [
+					// { text: "ASN", value: "asn" },
 					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("resultTime"), value: "resulttime" },
-					{ text: this.$t("roundId"), value: "roundid" },
-					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
-					{ text: this.$t("gameType"), value: "producttypeid" },
-					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
-					{ text: this.$t("betAmount"), value: "betamount" },
+					{ text: this.$t("balance"), value: "balance" },
+					{ text: this.$t("bannerId"), value: "bannerid" },
+					{ text: this.$t("cashbackBonus"), value: "cashbackbonus" },
+					{ text: this.$t("depositAvg"), value: "depositavg" },
+					{ text: this.$t("cashbackBonus"), value: "depositbonus" },
+					{ text: this.$t("loginCount"), value: "logincount" },
+					{ text: this.$t("regIp"), value: "regip" },
+					{ text: this.$t("loginIp"), value: "loginip" },
+					{ text: this.$t("totalBetAmount"), value: "totalbetamount" },
+					{ text: this.$t("totalBonus"), value: "totalbonus" },
+					{ text: this.$t("totalDeposit"), value: "totaldeposit" },
+					{ text: this.$t("totalResult"), value: "totalresult" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalWithdraw"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawCount"),
+						value: "totalwithdrawcount",
+					},
 					{ text: this.$t("validBet"), value: "validbet" },
-					{ text: this.$t("winLoss"), value: "winloss" },
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
+					{ text: this.$t("withdrawAvg"), value: "withdrawavg" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
 			},
 			headerSearch() {
 				return [
-					{ text: this.$t("userId"), value: "playerid" },
-					{ text: this.$t("resultTime"), value: "resulttime" },
-					{ text: this.$t("roundId"), value: "roundid" },
-					{ text: this.$t("gameProviderId"), value: "gameproviderid" },
-					{ text: this.$t("gameType"), value: "producttypeid" },
-					{ text: this.$t("gameGroupId"), value: "gamegroupid" },
-					{ text: this.$t("betAmount"), value: "betamount" },
-					{ text: this.$t("validBet"), value: "validbet" },
-					{ text: this.$t("winLoss"), value: "winloss" },
-					{ text: this.$t("agentBy"), value: "ulagentaccount" },
-					{ text: this.$t("createdAt"), value: "createdAt" },
+					// { text: "ASN", value: "asn" },
+					{ text: this.$t("city"), value: "city" },
+					{ text: this.$t("continentCode"), value: "continent_code" },
+					{ text: this.$t("country"), value: "country" },
+					{ text: this.$t("countryCode"), value: "country_code" },
+					{ text: this.$t("currency"), value: "currency" },
+					{ text: this.$t("currencyName"), value: "currency_name" },
+					{ text: this.$t("europeanUnion"), value: "eu" },
+					{ text: this.$t("ip"), value: "ip" },
+					{ text: this.$t("languages"), value: "languages" },
+					{ text: this.$t("latitude"), value: "latitude" },
+					{ text: this.$t("longitude"), value: "latitude" },
+					{ text: this.$t("organization"), value: "org" },
+					{ text: this.$t("postal"), value: "postal" },
+					{ text: this.$t("region"), value: "region" },
+					{ text: this.$t("regionCode"), value: "region_code" },
+					{ text: this.$t("timezone"), value: "timezone" },
 				];
 			},
 		},
+		methods: {
+			isNull(value) {
+				if (value == "" || value == null || value == "null") {
+					return "-";
+				} else {
+					return value;
+				}
+			},
+		},
 		watch: {
-			bets() {
+			bonusHunter(v) {
+				console.log(v);
 				this.loading = false;
 			},
 		},

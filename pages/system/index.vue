@@ -13,27 +13,36 @@
 
 	import CountersComponent from "~/components/index/counters";
 	import ChartComponent from "~/components/index/chart";
+	import VariablesMixin from "~/mixins/variables";
 
 	export default {
 		name: "Index",
 		middleware: "authenticate",
+		mixins: [VariablesMixin],
 		components: {
 			CountersComponent: CountersComponent,
 			ChartComponent: ChartComponent,
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getDashboard: "getDashboard", getStats: "getStats" }),
+			...mapActions(["dashboardGraph"]),
 			filterForCounter(value) {
-				this.$store.dispatch("getStats", {
+				this.$store.dispatch("getStatisticsBannerClicksOverall", {
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+				});
+				this.$store.dispatch("dashboardAllBannerCount", {
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+				});
+				this.$store.dispatch("dashboardAllAdminCount", {
 					startDate: value.startDate ? value.startDate : null,
 					endDate: value.endDate ? value.endDate : null,
 				});
 			},
 		},
 		mounted() {
-			this.getDashboard();
-			// this.getStats({ filterForCounter: 1, startDate: null, endDate: null });
+			this.dashboardGraph();
 		},
 	};
 </script>

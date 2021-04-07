@@ -15,7 +15,6 @@ const actions = {
 			})
 			.catch(error => {
 				commit("SET_SNACKBAR_TEXT", error, { root: true });
-				commit("SET_SNACKBAR_VISIBLE", true, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
 	},

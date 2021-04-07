@@ -21,6 +21,11 @@ export default {
 			}
 		},
 
+		// Convert to VND currency
+		convertToVND(amount) {
+			return amount * 1000;
+		},
+
 		fixParameters(value) {
 			if (value == null || value == 'null') {
 				return '-';
@@ -34,6 +39,22 @@ export default {
 				return ' ';
 			} else {
 				return value;
+			}
+		},
+
+		isNullNumber(value) {
+			if (value == null) {
+				return 0;
+			} else {
+				return this.staticNumberFormat(parseInt(value));
+			}
+		},
+
+		isNullValue(value) {
+			if (value == null) {
+				return 0;
+			} else {
+				return this.numberFormat(this.convertToVND(parseFloat(value)));
 			}
 		},
 

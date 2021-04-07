@@ -1,22 +1,5 @@
 <template>
 	<div>
-		<v-alert text type="info">
-			{{ $t("statsMessage") }}
-		</v-alert>
-		<v-alert text type="warning">
-			<v-row>
-				<v-col class="grow">
-					{{ $t("statsMessage2") }}
-				</v-col>
-				<v-col class="shrink">
-					<v-btn elevation="2" outlined depressed color="primary"
-						>{{ $t("statsMessage3") }}
-						{{ getUpdateIntervalTime }}</v-btn
-					>
-				</v-col>
-			</v-row>
-		</v-alert>
-
 		<!-- Filter section -->
 		<v-card class="my-5" outlined>
 			<v-card-text>
@@ -79,24 +62,35 @@
 			</v-card-text>
 		</v-card>
 
-		<!-- Counter Live -->
-		<CounterComponent
-			:defaultFilterDateProps="defaultFilterDate"
-			:overallLoading.sync="overallLoading"
-			:statisticsLoading.sync="statisticsLoading"
-			:ipClientsLoading.sync="ipClientsLoading"
+		<!-- Top 10 Banner -->
+		<TopViewedBannersComponent :topViewLoading.sync="topViewLoading" />
+
+		<!-- Last 10 Minute Banners List -->
+		<Last10MinuteBannersComponent
+			:last10MinuteLoading.sync="last10MinuteLoading"
 		/>
 
-		<!-- Regular users -->
-		<RegularPlayersComponent />
+		<!-- Top click wise banner listing -->
+		<TopClickWiseBannerComponent
+			:defaultFilterDateProps="defaultFilterDate"
+			:topClickWiseViewBannerLoading.sync="topClickWiseViewBannerLoading"
+		/>
+
+		<!-- Counter Live -->
+		<OSAndBrowserComponent
+			:defaultFilterDateProps="defaultFilterDate"
+			:pcInfoLoading.sync="pcInfoLoading"
+		/>
 	</div>
 </template>
 
 <script>
 	import { mapGetters } from "vuex";
 
-	import CounterComponent from "~/components/statistics/counter";
-	import RegularPlayersComponent from "~/components/statistics/regular-players";
+	import OSAndBrowserComponent from "~/components/statistics/osAndBrowserCounter";
+	import TopViewedBannersComponent from "~/components/statistics/topViewedBanners";
+	import TopClickWiseBannerComponent from "~/components/statistics/topClickWiseBanner";
+	import Last10MinuteBannersComponent from "~/components/statistics/last10MinuteBanners";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {
@@ -106,8 +100,8 @@
 		data() {
 			return {
 				modal: false,
-				overallLoading: true,
-				statisticsLoading: true,
+				pcInfoLoading: true,
+				topClickWiseViewBannerLoading: true,
 				ipClientsLoading: true,
 				topViewLoading: true,
 				last10MinuteLoading: true,
@@ -115,20 +109,14 @@
 			};
 		},
 		mounted() {
-			let $this = this;
-			setInterval(function () {
-				$this.$store.dispatch("getUpdateIntervalTime");
-			}, 1000);
 			this.filterValueForStatistics();
 		},
-		computed: {
-			...mapGetters({
-				getUpdateIntervalTime: "getUpdateIntervalTime",
-			}),
-		},
+		computed: {},
 		components: {
-			CounterComponent: CounterComponent,
-			RegularPlayersComponent: RegularPlayersComponent,
+			OSAndBrowserComponent: OSAndBrowserComponent,
+			TopViewedBannersComponent: TopViewedBannersComponent,
+			Last10MinuteBannersComponent: Last10MinuteBannersComponent,
+			TopClickWiseBannerComponent: TopClickWiseBannerComponent,
 		},
 		methods: {
 			whenDialogClosed() {
@@ -140,8 +128,8 @@
 
 			filterValueForStatistics() {
 				// Set loading
-				this.overallLoading = true;
-				this.statisticsLoading = true;
+				this.pcInfoLoading = true;
+				this.topClickWiseViewBannerLoading = true;
 				this.ipClientsLoading = true;
 				this.topViewLoading = true;
 				this.last10MinuteLoading = true;
@@ -150,31 +138,18 @@
 				this.optionsParam.startDate = this.date[0];
 				this.optionsParam.endDate = this.date[1];
 
-				// Win Loss
-				this.$store.dispatch("getWinLoss", this.optionsParam);
-
-				// chart withdrawal
-				this.$store.dispatch("getStatisticsCounter", this.optionsParam);
-				this.$store.dispatch(
-					"getStatisticsTopUpOverall",
-					this.optionsParam
-				);
-
-				this.$store.dispatch(
-					"getStatisticsBannerClicksOverall",
-					this.optionsParam
-				);
-				this.$store.dispatch("clicksCountFromPC", this.optionsParam);
-				this.$store.dispatch("clicksCountFromMobile", this.optionsParam);
-				// Regular players
-				this.$store.dispatch("getRegularPlayers", this.optionsParam);
+				// top viewed banners
+				this.$store.dispatch("getTopViewedBanners", this.optionsParam);
 
 				// top viewed banners
-				this.optionsParam.sort = "id|desc";
-				this.optionsParam.limit = 1;
-				this.optionsParam.page = 1;
-				this.optionsParam.search = "";
-				this.$store.dispatch("getIpClients", this.optionsParam);
+				this.$store.dispatch("getLast10MinuteBanners");
+
+				// Top click wise banner
+				this.$store.dispatch("topClickWiseBanners", this.optionsParam);
+
+				// Click wise browser and os
+				this.$store.dispatch("clicksByBrowser", this.optionsParam);
+				this.$store.dispatch("clicksByOS", this.optionsParam);
 			},
 		},
 		watch: {

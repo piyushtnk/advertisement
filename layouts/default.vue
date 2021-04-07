@@ -25,11 +25,70 @@
 			app
 			class="border"
 		>
+			<!-- Ads Menu -->
 			<v-list rounded>
+				<!-- B91 menu -->
 				<v-list-group
 					no-action
 					sub-group
-					v-for="(item, i) in items"
+					v-for="(item, i) in adsMenu"
+					:key="i"
+					:to="localePath(item.to)"
+					router
+					exact
+					v-if="item.children"
+				>
+					<template v-slot:activator>
+						<v-list-item-content>
+							<v-list-item-title>{{
+								$t(item.title)
+							}}</v-list-item-title>
+						</v-list-item-content>
+					</template>
+
+					<v-list-item
+						v-for="(itemChild, iChild) in item.children"
+						:key="iChild"
+						:to="localePath(itemChild.to)"
+						router
+						exact
+					>
+						<v-list-item-title
+							v-text="$t(itemChild.title)"
+						></v-list-item-title>
+
+						<v-list-item-icon>
+							<v-icon v-text="itemChild.icon"></v-icon>
+						</v-list-item-icon>
+					</v-list-item>
+				</v-list-group>
+
+				<v-list-item
+					v-else
+					:key="i"
+					:to="localePath(item.to)"
+					router
+					exact
+				>
+					<v-list-item-action>
+						<v-icon :color="item.color">{{ item.icon }}</v-icon>
+					</v-list-item-action>
+					<v-list-item-content>
+						<v-list-item-title v-text="$t(item.title)" />
+					</v-list-item-content>
+				</v-list-item>
+			</v-list>
+
+			<!-- Divider -->
+			<v-divider></v-divider>
+
+			<!-- Clients menu -->
+			<v-list rounded>
+				<!-- B91 menu -->
+				<v-list-group
+					no-action
+					sub-group
+					v-for="(item, i) in clientMenu"
 					:key="i"
 					:to="localePath(item.to)"
 					router
@@ -164,9 +223,7 @@
 									:href="item.href"
 									:disabled="item.disabled"
 								>
-									{{
-										$t("layout." + item.text).toUpperCase()
-									}}
+									{{ $t(item.text).toUpperCase() }}
 								</v-breadcrumbs-item>
 							</template>
 						</v-breadcrumbs>
@@ -192,84 +249,104 @@
 				clipped: false,
 				drawer: false,
 				fixed: false,
-				items: [
+				adsMenu: [
 					{
 						icon: "mdi-home",
-						title: "layout.dashboard",
+						title: "dashboard",
 						to: "/system",
 						color: "",
 					},
 					{
-						icon: "mdi-chart-bar",
-						title: "layout.statistics",
-						to: "/system/statistics",
-						color: "",
-					},
-					{
 						icon: "mdi-image",
-						title: "layout.banner",
+						title: "bannerManagement",
 						to: "/system/banner",
 						color: "",
 					},
 					{
-						icon: "mdi-flash-alert",
-						title: "layout.bannerPerf",
-						to: "/system/banner/performance",
-						color: "",
-					},
-					{
 						icon: "mdi-account-group",
-						title: "layout.clients",
+						title: "adsClick",
 						to: "/system/clients",
 						color: "",
 					},
 					{
+						icon: "mdi-chart-line",
+						title: "adsCharts",
+						to: "/system/ads-charts",
+						color: "",
+					},
+					{
+						icon: "mdi-graph",
+						title: "adsStatistics",
+						to: "/system/ads-statistics",
+						color: "",
+					},
+				],
+				clientMenu: [
+					{
+						icon: "mdi-chart-areaspline",
+						title: "charts",
+						to: "/system/charts",
+						color: "",
+					},
+					{
+						icon: "mdi-chart-bar",
+						title: "statistics",
+						to: "/system/statistics",
+						color: "",
+					},
+					{
+						icon: "mdi-flash-alert",
+						title: "bannerPerf",
+						to: "/system/banner/performance",
+						color: "",
+					},
+					{
 						icon: "mdi-account-arrow-left",
-						title: "layout.players",
+						title: "member",
 						to: "/system/players",
 						color: "",
 					},
 					{
 						icon: "mdi-clipboard-file",
-						title: "layout.reports",
+						title: "reports",
 						to: "/system/reports",
 						color: "",
 						children: [
 							{
 								icon: "mdi-account-cash",
-								title: "layout.deposit",
+								title: "deposit",
 								to: "/system/deposit",
 								color: "",
 							},
 							{
 								icon: "mdi-cash-refund",
-								title: "layout.withdrawals",
+								title: "withdrawals",
 								to: "/system/withdrawals",
 								color: "",
 							},
 							{
 								icon: "mdi-poker-chip",
-								title: "layout.bets",
+								title: "bets",
 								to: "/system/bets",
 								color: "",
 							},
 						],
 					},
-					// {
-					// 	icon: "mdi-account-switch",
-					// 	title: "layout.otherPlayers",
-					// 	to: "/system/other-players",
-					// },
 					{
 						icon: "mdi-ip",
-						title: "layout.ipClients",
+						title: "ipClients",
 						to: "/system/ip",
 						color: "",
 					},
-
+					{
+						icon: "mdi-cash-lock",
+						title: "bonusHunter",
+						to: "/system/bonus-hunter",
+						color: "",
+					},
 					{
 						icon: "mdi-information",
-						title: "layout.information",
+						title: "information",
 						to: "/system/information",
 						color: "",
 					},
@@ -335,7 +412,7 @@
 				);
 			},
 			title() {
-				return this.$t("layout.systemPanel");
+				return this.$t("systemPanel");
 			},
 		},
 	};

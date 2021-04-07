@@ -1,14 +1,15 @@
 <template>
 	<div>
+		<!-- Top 5 Banner listing -->
 		<v-row class="mt-5">
 			<v-col cols="12" lg="12" md="12" sm="12">
 				<v-card
 					class="mx-auto mt-5"
 					outlined
-					:loading="last10MinuteLoading"
+					:loading="topClickWiseViewBannerLoading"
 				>
 					<v-card-title class="display-1">
-						{{ $t("last10MinuteBannerList") }}
+						{{ $t("topClickWiseBannersList") }}
 					</v-card-title>
 					<v-card-text>
 						<v-simple-table fixed-header dense>
@@ -25,7 +26,7 @@
 											{{ $t("destinationURL") }}
 										</th>
 										<th class="text-left">
-											{{ $t("views") }}
+											{{ $t("clicks") }}
 										</th>
 										<th class="text-left">
 											{{ $t("createdAt") }}
@@ -34,8 +35,8 @@
 								</thead>
 								<tbody>
 									<tr
-										v-for="item in last10MinuteBanners.data"
-										:key="item.id"
+										v-for="item in topClickWiseBanners"
+										:key="item.uniqueId"
 									>
 										<td class="pa-2">
 											<a
@@ -105,12 +106,12 @@
 													'/system/clients?bannerId=' +
 													item.id +
 													'&filterType=' +
-													defaultFilterDate
+													defaultFilterDateProps
 												"
 											>
 												{{
 													staticNumberFormat(
-														item.totalViews
+														item.count
 													)
 												}}
 											</v-chip>
@@ -128,33 +129,33 @@
 </template>
 
 <script>
-	import Global from "~/mixins/global";
 	import { mapGetters } from "vuex";
+	import Global from "~/mixins/global";
 
 	export default {
-		name: "TopViewedBannersComponent",
+		name: "topClickWiseBannerComponent",
 		mixins: [Global],
 		data() {
-			return {
-				date: [],
-				defaultFilterDate: 1,
-			};
+			return {};
 		},
 		props: {
-			last10MinuteLoading: {
+			defaultFilterDateProps: {
+				type: Number,
+			},
+			topClickWiseViewBannerLoading: {
 				type: Boolean,
-				default: true,
+				default: false,
 			},
 		},
 		mounted() {},
 		computed: {
 			...mapGetters({
-				last10MinuteBanners: "getLast10MinuteBanners",
+				topClickWiseBanners: "getTopClickWiseBanners",
 			}),
 		},
 		watch: {
-			last10MinuteBanners() {
-				this.$emit("update:last10MinuteLoading", false);
+			topClickWiseBanners() {
+				this.$emit("update:topClickWiseViewBannerLoading", false);
 			},
 		},
 		methods: {
@@ -164,3 +165,9 @@
 		},
 	};
 </script>
+
+<style scoped>
+	tr {
+		cursor: pointer;
+	}
+</style>

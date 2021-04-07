@@ -183,7 +183,7 @@
 							color="teal accent-4"
 							@click="showTableData(index)"
 						>
-							{{ $t("check") }}
+							{{ $t("clickToCheck") }}
 						</v-btn>
 					</v-card-actions>
 				</v-card>
@@ -423,25 +423,39 @@
 							"Direct Registered Players Count," +
 							this.players.allDirectRegisteredPlayersCount +
 							"\n" +
-							"First Deposit Count Of Direct Players," +
+							"First Deposit Count Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.firstDepositCountOfDirectPlayers +
 							"\n" +
-							"First Deposit Of Direct Players," +
+							"First Deposit Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.firstDepositOfDirectPlayers +
 							"\n" +
-							"First Withdrawal Count Of Direct Players," +
+							"First Withdrawal Count Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.firstWithdrawalCountOfDirectPlayers +
 							"\n" +
-							"First Withdrawal Of Direct Players," +
+							"First Withdrawal Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.firstWithdrawalOfDirectPlayers +
 							"\n" +
-							"Total Deposit Count Of Direct Players," +
+							"Total Deposit Count Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.totalDepositCountOfDirectPlayers +
 							"\n" +
-							"Total Deposit Of Direct Players," +
+							"Total Deposit Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.totalDepositsOfDirectPlayers +
 							"\n" +
-							"Total WIthdrawal Count Of Direct Players," +
+							"Total WIthdrawal Count Of " +
+							this.$t($route.query.type) +
+							"," +
 							this.players.totalWithdrawalCountOfDirectPlayers +
 							"\n" +
 							"Total Withdrawal Of Direct Player," +

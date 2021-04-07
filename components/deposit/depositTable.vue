@@ -132,7 +132,7 @@
 					<v-col cols="12" lg="2" md="2" sm="12">
 						<ExcelDownloadButton
 							:excelData="deposit.data"
-							:fileName="$t('layout.deposit')"
+							:fileName="$t('deposit')"
 							:loading="loading"
 						/>
 					</v-col>

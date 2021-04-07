@@ -26,17 +26,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statistics2.overallTotalTopupValue
+												statisticsTopUpOverall.overallTotalTopupValue
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("overallTotalTopUpValue") }}
+										{{ $t("totalDeposit") }}
+										({{ $t("allSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -44,17 +45,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
-												statistics2.overallTopupCount
+											isNullNumber(
+												statisticsTopUpOverall.overallTopupCount
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("overallTopUpCount") }}
+										{{ $t("depositCount") }}
+										({{ $t("allSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -62,17 +64,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
-												statistics2.overallTopupCountFromBanners
+											isNullNumber(
+												statisticsTopUpOverall.overallTopupCountFromBanners
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("overallTopUpCountFromBanners") }}
+										{{ $t("depositCount") }}
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -80,21 +83,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statistics2.overallTotalTopupValueFromBanners
+												statisticsTopUpOverall.overallTotalTopupValueFromBanners
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{
-											$t(
-												"overallTotalTopUpValueFromBanners"
-											)
-										}}
+										{{ $t("totalDeposit") }}
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -113,17 +113,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statistics2.overallWithdrawalValue
+												statisticsTopUpOverall.overallWithdrawalValue
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("overallTotalWithdrawalValue") }}
+										{{ $t("totalWithdrawal") }}
+										({{ $t("allSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -131,17 +132,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
-												statistics2.overallWithdrawalCount
+											isNullNumber(
+												statisticsTopUpOverall.overallWithdrawalCount
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("overallTotalWithdrawalCount") }}
+										{{ $t("withdrawalCount") }}
+										({{ $t("allSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -149,21 +151,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
-											isNull(
-												statistics2.overallWithdrawalCountFromBanners
+											isNullNumber(
+												statisticsTopUpOverall.overallWithdrawalCountFromBanners
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{
-											$t(
-												"overallWithdrawalCountFromBanner"
-											)
-										}}
+										{{ $t("withdrawalCount") }}
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -171,21 +170,18 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statistics2.overallWithdrawalValueFromBanners
+												statisticsTopUpOverall.overallWithdrawalValueFromBanners
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{
-											$t(
-												"overallWithdrawalValueFromBanner"
-											)
-										}}
+										{{ $t("totalWithdrawal") }}
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -204,13 +200,13 @@
 								<v-card
 									class="mx-auto"
 									outlined
-									:loading="statistics2Loading"
+									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statistics2.overallTotalTopupValue -
-													statistics2.overallWithdrawalValue
+												statisticsTopUpOverall.overallTotalTopupValue -
+													statisticsTopUpOverall.overallWithdrawalValue
 											)
 										}}
 									</v-card-title>
@@ -240,7 +236,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(statistics.allClients) }}
+								{{
+									isNullNumber(
+										getStatisticsBannerClicksOverall.allClients
+									)
+								}}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("overallClicksOnBanners") }}
@@ -259,7 +259,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(statistics.uniqueClients) }}
+								{{
+									isNullNumber(
+										getStatisticsBannerClicksOverall.uniqueClients
+									)
+								}}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("uniqueClicksOnBanners") }}
@@ -279,8 +283,8 @@
 						>
 							<v-card-title class="display-1">
 								{{
-									isNull(
-										statistics.registeredPlayersThroughBanners
+									isNullNumber(
+										statisticsCounter.registeredPlayersThroughBanners
 									)
 								}}
 							</v-card-title>
@@ -305,8 +309,8 @@
 						>
 							<v-card-title class="display-1">
 								{{
-									isNull(
-										statistics.topupPlayersCountFromAllSources
+									isNullNumber(
+										statisticsCounter.topupPlayersCountFromAllSources
 									)
 								}}
 							</v-card-title>
@@ -326,7 +330,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(statistics.clientsFromPcCount) }}
+								{{
+									isNullNumber(
+										clicksCountFromPC.clicksCountFromPc
+									)
+								}}
 							</v-card-title>
 							<v-card-text
 								>{{ $t("uniqueBannerClicksFromPC") }}
@@ -344,7 +352,11 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(statistics.clientsFromMobileCount) }}
+								{{
+									isNullNumber(
+										clicksCountFromMobile.clicksCountFromMobile
+									)
+								}}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("uniqueBannerClicksFromMobile") }}
@@ -366,7 +378,7 @@
 							"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(ipClients.total) }}
+								{{ isNullNumber(ipClients.total) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("bannerViewers") }}
@@ -381,7 +393,7 @@
 							:loading="statisticsLoading"
 						>
 							<v-card-title class="display-1">
-								{{ isNull(winLoss) }}
+								{{ isNullNumber(winLoss) }}
 							</v-card-title>
 							<v-card-text>
 								{{ $t("winLoss") }}
@@ -391,224 +403,6 @@
 				</v-row>
 			</v-card-text>
 		</v-card>
-
-		<!-- Table for Browser and OS -->
-		<v-row class="mt-5">
-			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card :loading="statistics2Loading" outlined>
-					<v-card-title class="subheading font-weight-bold">
-						{{ $t("fromBrowser") }}
-					</v-card-title>
-					<v-card-text>
-						<v-simple-table @click="alert('okay')">
-							<template v-slot:default>
-								<thead>
-									<tr>
-										<th class="text-left">Browser</th>
-										<th class="text-left">
-											{{ $t("clicks") }}
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr
-										v-for="item in statisticsOsAndBrowser.browser"
-										:key="item.key"
-										@click="
-											goToClientTablePageWithBrowserParam(
-												item.browserType
-											)
-										"
-									>
-										<td>
-											{{
-												$t(
-													item.browserType.replace(
-														/\s+/g,
-														""
-													)
-												)
-											}}
-										</td>
-										<td>{{ item.count }}</td>
-									</tr>
-								</tbody>
-							</template>
-						</v-simple-table>
-					</v-card-text>
-				</v-card>
-			</v-col>
-			<v-col cols="12" lg="6" md="6" sm="12">
-				<v-card :loading="statistics2Loading">
-					<v-card-title class="subheading font-weight-bold">
-						{{ $t("fromOS") }}
-					</v-card-title>
-					<v-card-text>
-						<v-simple-table>
-							<template v-slot:default>
-								<thead>
-									<tr>
-										<th class="text-left">OS</th>
-										<th class="text-left">
-											{{ $t("clicks") }}
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr
-										v-for="item in statisticsOsAndBrowser.os"
-										:key="item.key"
-										@click="
-											goToClientTablePageWithOsParam(
-												item.osType
-											)
-										"
-									>
-										<td>
-											{{
-												$t(
-													item.osType
-														.replace(/\s+/g, "")
-														.split(".")
-														.join("")
-												)
-											}}
-										</td>
-										<td>{{ item.count }}</td>
-									</tr>
-								</tbody>
-							</template>
-						</v-simple-table>
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
-
-		<!-- Top 5 Banner listing -->
-		<v-row class="mt-5">
-			<v-col cols="12" lg="12" md="12" sm="12">
-				<v-card
-					class="mx-auto mt-5"
-					outlined
-					:loading="statisticsLoading"
-				>
-					<v-card-title class="display-1">
-						{{ $t("topRecentBannersPer") }}
-					</v-card-title>
-					<v-card-text>
-						<v-simple-table fixed-header dense>
-							<template v-slot:default>
-								<thead>
-									<tr>
-										<th class="text-left">
-											{{ $t("image") }}
-										</th>
-										<th class="text-left">
-											{{ $t("origin") }}
-										</th>
-										<th class="text-left">
-											{{ $t("destinationURL") }}
-										</th>
-										<th class="text-left">
-											{{ $t("clicks") }}
-										</th>
-										<th class="text-left">
-											{{ $t("createdAt") }}
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr
-										v-for="item in statistics.topBanners"
-										:key="item.uniqueId"
-									>
-										<td class="pa-2">
-											<a
-												:href="
-													getImage(
-														item.uniqueId,
-														item.imageType
-													)
-												"
-												target="_blank"
-											>
-												<v-img
-													:src="
-														getImage(
-															item.uniqueId,
-															item.imageType
-														)
-													"
-													:lazy-src="
-														getImage(
-															item.uniqueId,
-															item.imageType
-														)
-													"
-													class="grey lighten-2"
-													width="200"
-													height="100"
-												>
-													<template
-														v-slot:placeholder
-													>
-														<v-row
-															class="fill-height ma-0"
-															align="center"
-															justify="center"
-														>
-															<v-progress-circular
-																indeterminate
-																color="grey lighten-5"
-															></v-progress-circular>
-														</v-row>
-													</template>
-												</v-img>
-											</a>
-										</td>
-										<td>
-											{{
-												item.comment
-													? item.comment
-													: "No Info Provided"
-											}}
-										</td>
-										<td>
-											<a
-												:href="item.redirectUrl"
-												target="_blank"
-											>
-												{{ item.redirectUrl }}
-											</a>
-										</td>
-										<td>
-											<v-chip
-												outlined
-												class="ma-2"
-												color="green"
-												:to="
-													'/system/clients?bannerId=' +
-													item.id +
-													'&filterType=' +
-													defaultFilterDateProps
-												"
-											>
-												{{
-													staticNumberFormat(
-														item.count
-													)
-												}}
-											</v-chip>
-										</td>
-										<td>{{ item.createdAt }}</td>
-									</tr>
-								</tbody>
-							</template>
-						</v-simple-table>
-					</v-card-text>
-				</v-card>
-			</v-col>
-		</v-row>
 	</div>
 </template>
 
@@ -626,7 +420,7 @@
 			defaultFilterDateProps: {
 				type: Number,
 			},
-			statistics2Loading: {
+			overallLoading: {
 				type: Boolean,
 				default: false,
 			},
@@ -642,19 +436,22 @@
 		mounted() {},
 		computed: {
 			...mapGetters({
-				statisticsOsAndBrowser: "getStatisticsOfOsAndBrowser",
-				statistics: "getStatistics",
-				statistics2: "getStatistics2",
+				statisticsCounter: "getStatisticsCounter",
+				statisticsTopUpOverall: "getStatisticsTopUpOverall",
+				getStatisticsBannerClicksOverall:
+					"getStatisticsBannerClicksOverall",
 				ipClients: "getIpClients",
 				winLoss: "getWinLoss",
+				clicksCountFromPC: "getClicksCountFromPC",
+				clicksCountFromMobile: "getClicksCountFromMobile",
 			}),
 		},
 		watch: {
-			statistics() {
+			statisticsCounter() {
 				this.$emit("update:statisticsLoading", false);
 			},
-			statistics2() {
-				this.$emit("update:statistics2Loading", false);
+			statisticsTopUpOverall() {
+				this.$emit("update:overallLoading", false);
 			},
 			ipClients() {
 				this.$emit("update:ipClientsLoading", false);
@@ -667,37 +464,6 @@
 			},
 			getImage(imageName, imageType) {
 				return `${process.env.CLOUD_URL}/banner/${imageName}.${imageType}`;
-			},
-			isNull(value) {
-				if (value == null) {
-					return 0;
-				} else {
-					return this.staticNumberFormat(parseInt(value));
-				}
-			},
-			isNullValue(value) {
-				if (value == null) {
-					return 0;
-				} else {
-					value = value * 1000;
-					return this.numberFormat(parseFloat(value));
-				}
-			},
-			goToClientTablePageWithBrowserParam(value) {
-				this.$router.replace(
-					"/system/clients?browser=" +
-						value +
-						"&filterType=" +
-						this.defaultFilterDateProps
-				);
-			},
-			goToClientTablePageWithOsParam(value) {
-				this.$router.replace(
-					"/system/clients?os=" +
-						value +
-						"&filterType=" +
-						this.defaultFilterDateProps
-				);
 			},
 		},
 	};

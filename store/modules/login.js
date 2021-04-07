@@ -16,8 +16,6 @@ const actions = {
 				let responseData = response.data.data;
 				responseData.token = response.headers.token;
 				commit("SET_LOGIN", responseData);
-
-				commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
 				commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged In successfully.");
 
 				// Local storing
@@ -26,7 +24,7 @@ const actions = {
 				return true;
 			})
 			.catch(error => {
-				commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+
 				if (error.response) {
 					commit("SET_LAYOUT_SNACKBAR_TEXT", error.response.data.error);
 
@@ -39,7 +37,7 @@ const actions = {
 	logout: ({ commit }) => {
 		localStorage.clear();
 		commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged out successfully.");
-		commit("SET_LAYOUT_SNACKBAR_VISIBLE", true);
+
 		return true;
 	}
 };
