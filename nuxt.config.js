@@ -56,7 +56,15 @@ export default {
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
 		// https://go.nuxtjs.dev/axios
-		"@nuxtjs/axios",
+		// Axios module configuration (https://go.nuxtjs.dev/config-axios)
+		["@nuxtjs/axios", {
+			baseURL: env.API_URL,
+			debug: process.env.NODE_ENV == "development" ? true : false,
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json"
+			}
+		}],
 		// https://go.nuxtjs.dev/pwa
 		"@nuxtjs/pwa",
 		// https://go.nuxtjs.dev/content
@@ -107,15 +115,6 @@ export default {
 		}]
 	],
 
-	// Axios module configuration (https://go.nuxtjs.dev/config-axios)
-	axios: {
-		baseURL: env.API_URL,
-		debug: process.env.NODE_ENV == "development" ? true : false,
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json"
-		}
-	},
 
 	// Content module configuration (https://go.nuxtjs.dev/config-content)
 	content: {},

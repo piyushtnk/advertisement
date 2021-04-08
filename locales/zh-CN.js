@@ -55,7 +55,7 @@ export default async (context, locale) => {
 		localeType: "zh-cn",
 		visitorAllOverWorld: "全世界的游客",
 		overallTotalTopUpValue: "存款总额",
-		overallTopUpCount: "存款次数",
+		overallTopUpCount: "总人数",
 		overallTopUpCountFromBanners: "存款次数 （通过横幅广告）",
 		overallTotalTopUpValueFromBanners: "存款总额 （通过横幅广告）",
 		overallClicksOnBanners: "横幅广告的点击次数",
@@ -413,10 +413,13 @@ export default async (context, locale) => {
 		filter: '筛选',
 		topClickWiseBannersList: '顶部点击明智的横幅列表',
 		bonusHunter: '红利猎人',
+		overall: '全面的',
 		topUpValue: '充值',
 		withdrawalCount: '提款计数',
 		allSources: '所有来源',
 		fromBanners: '从横幅',
-		clickToCheck: '点击查看'
+		clickToCheck: '点击查看',
+		totalTopUpValue: '总充值'
+
 	};
 };

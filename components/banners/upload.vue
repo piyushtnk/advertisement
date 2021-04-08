@@ -60,6 +60,7 @@
 
 									<v-col cols="12" lg="3" md="3" sm="12">
 										<v-text-field
+											disabled
 											v-model="cost"
 											:error-messages="costErrors"
 											:label="$t('cost')"

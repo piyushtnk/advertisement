@@ -35,6 +35,7 @@
 					search: value.search,
 					isActive: 1,
 				});
+				this.$store.dispatch("currency");
 			},
 		},
 		mounted() {

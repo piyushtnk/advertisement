@@ -173,7 +173,7 @@
 					<template v-slot:top class="m-0 p-0">
 						<v-dialog
 							v-model="dialog"
-							max-width="500px"
+							max-width="50%"
 							transition="dialog-bottom-transition"
 						>
 							<v-card>
@@ -216,10 +216,57 @@
 												></v-text-field>
 											</v-col>
 											<v-col cols="12" sm="12" md="12">
-												<v-text-field
-													v-model="editedItem.cost"
-													:label="$t('cost')"
-												></v-text-field>
+												<v-row>
+													<v-col cols="3">
+														<SingleDatePickerComponent
+															:date.sync="
+																bannerCost
+															"
+														/>
+													</v-col>
+													<v-col cols="3">
+														<SingleDatePickerComponent
+															:date.sync="
+																bannerCost
+															"
+														/>
+													</v-col>
+													<v-col cols="3">
+														<v-select
+															:items="currency"
+															v-model="
+																editedItem.cost
+															"
+															:label="
+																$t('currency')
+															"
+															item-text="value"
+															item-value="id"
+														></v-select>
+													</v-col>
+													<v-col cols="2">
+														<v-text-field
+															v-model="
+																editedItem.cost
+															"
+															:label="$t('cost')"
+														>
+														</v-text-field>
+													</v-col>
+													<v-col cols="1">
+														<v-btn
+															class="ma-2"
+															outlined
+															fab
+															small
+															color="green"
+														>
+															<v-icon
+																>mdi-plus</v-icon
+															>
+														</v-btn>
+													</v-col>
+												</v-row>
 											</v-col>
 										</v-row>
 									</v-container>
@@ -316,10 +363,12 @@
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
 	import Global from "~/mixins/global";
+	import SingleDatePickerComponent from "~/components/SingleDatePicker";
 
 	export default {
 		name: "TableBannerComponent",
 		mixins: [Variables, Global],
+		components: { SingleDatePickerComponent: SingleDatePickerComponent },
 		data() {
 			return {
 				defaultFilterDate: 1,
@@ -332,7 +381,7 @@
 					redirectUrl: "",
 					comment: "",
 					bannerImage: [],
-					cost: 0,
+					cost: [],
 				},
 				defaultItem: {
 					uniqueId: "",
@@ -340,8 +389,9 @@
 					redirectUrl: "",
 					comment: "",
 					bannerImage: [],
-					cost: 0,
+					cost: [],
 				},
+				bannerCost: "",
 				loading: false,
 				sortBy: "id|desc",
 			};
@@ -350,6 +400,7 @@
 			...mapGetters({
 				banners: "getBanners",
 				getViewsStore: "getViews",
+				currency: "getCurrency",
 			}),
 			headerSearch() {
 				return [
@@ -510,6 +561,9 @@
 				}
 				this.close();
 			},
+			addCostRow() {
+				console.log("added");
+			},
 		},
 		watch: {
 			dialog(val) {
@@ -520,6 +574,9 @@
 			},
 			banners(value) {
 				this.loading = false;
+			},
+			bannerCost(value) {
+				console.log("value", value);
 			},
 		},
 	};

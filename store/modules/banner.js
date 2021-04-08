@@ -19,8 +19,8 @@ const state = () => ({
 	worldChart: [{
 		id: "LA",
 		value: 0
-	}]
-
+	}],
+	currency: []
 });
 
 // Actions
@@ -348,7 +348,28 @@ const actions = {
 			});
 	},
 
-
+	// Get all currency listing
+	// clicks from mobile
+	async currency({ commit }, data) {
+		commit("SET_CURRENCY", [{
+			id: 1,
+			value: 'VND'
+		}, {
+			id: 2,
+			value: 'INR'
+		}]);
+		// await this.$axios
+		// 	.get("/currency", {
+		// 		params: data
+		// 	})
+		// 	.then(response => {
+		// 		commit("SET_CURRENCY", response.data.data);
+		// 	})
+		// 	.catch(error => {
+		// 		commit("SET_SNACKBAR_TEXT", error, { root: true });
+		// 		throw error.response ? error.response.data.error : error;
+		// 	});
+	},
 };
 
 // Mutations
@@ -398,6 +419,9 @@ const mutations = {
 	SET_TOP_CLICK_WISE_BANNERS: (state, response) => {
 		state.topClickWiseBanners = response;
 	},
+	SET_CURRENCY: (state, response) => {
+		state.currency = response;
+	},
 };
 
 // Getters
@@ -441,6 +465,9 @@ const getters = {
 	getWorldChart: state => {
 		return state.worldChart;
 	},
+	getCurrency: state => {
+		return state.currency;
+	}
 };
 
 // Default export

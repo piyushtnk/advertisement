@@ -47,7 +47,7 @@
 				// Check the banner existence
 				const $this = this;
 				$this.$axios
-					.get("/client/banner/" + $this.$route.params.id)
+					.get("/banner/" + $this.$route.params.id)
 					.then(function (response) {
 						if (response.data.data) {
 							// Main device detail

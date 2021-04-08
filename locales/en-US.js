@@ -69,7 +69,7 @@ export default async (context, locale) => {
 		localeType: "en-us",
 		visitorAllOverWorld: "Visitors all over the world",
 		overallTotalTopUpValue: "Overall Total Top-up Value (All Sources)",
-		overallTopUpCount: "Overall Top-up Count (All Sources)",
+		overallTopUpCount: "Overall Top-up Count",
 		overallTopUpCountFromBanners: "Overall Top-up Count From Banner",
 		overallTotalTopUpValueFromBanners:
 			"Overall Total Top-up Value From Banners",
@@ -418,10 +418,12 @@ export default async (context, locale) => {
 		filter: 'Filter',
 		topClickWiseBannersList: 'Top Click Wise Banner List',
 		bonusHunter: 'Bonus Hunter',
+		overall: 'Overall',
 		topUpValue: 'Top-up Value',
 		withdrawalCount: 'Withdrawal Count',
 		allSources: 'All Sources',
 		fromBanners: 'From Banners',
-		clickToCheck: 'Click To Check'
+		clickToCheck: 'Click To Check',
+		totalTopUpValue: 'Total Top-Up Value'
 	};
 };
