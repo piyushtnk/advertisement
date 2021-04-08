@@ -6,7 +6,7 @@ const config = axios.create({
 	headers: {
 		Accept: "application/json",
 		"Content-Type": "application/json",
-		Authorization: `Bearer ${this.$cookie.get('token')}`
+		// Authorization: `Bearer ${this.$cookie.get('token')}`
 	}
 });
 export default config;
