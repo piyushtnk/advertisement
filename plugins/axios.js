@@ -1,6 +1,6 @@
 export default function (context) {
 	context.$axios.onRequest(config => {
-		config.headers.common["Authorization"] = `Bearer ${localStorage.token}`;
+		config.headers.common["Authorization"] = `Bearer ${context.$cookie.get('token')}`;
 	});
 	context.$axios.onError(error => {
 		//   Show the snackbar message.

@@ -19,11 +19,11 @@
 		middleware: "authenticate",
 		data() {
 			return {
-				token: localStorage.token,
+				token: this.$cookie.get("token"),
 			};
 		},
 		mounted() {
-			if (localStorage.token) {
+			if (this.$cookie.get("token")) {
 				this.$router.push(this.localePath("/system"));
 			} else {
 				this.$router.push(this.localePath("/login"));

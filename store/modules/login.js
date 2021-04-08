@@ -19,7 +19,7 @@ const actions = {
 				commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged In successfully.");
 
 				// Local storing
-				localStorage.token = responseData.token;
+				this.$cookie.set('token', responseData.token)
 				this.$cookie.set('user', responseData)
 				return true;
 			})
@@ -34,8 +34,8 @@ const actions = {
 				return false;
 			});
 	},
-	logout: ({ commit }) => {
-		localStorage.clear();
+	logout({ commit }) {
+		this.$cookie.removeAll();
 		commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged out successfully.");
 
 		return true;
