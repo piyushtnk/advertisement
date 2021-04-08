@@ -18,9 +18,12 @@
 		layout: "login",
 		middleware: "authenticate",
 		data() {
-			return {
-				token: this.$cookie.get("token"),
-			};
+			return {};
+		},
+		computed: {
+			token() {
+				return this.$cookie.get("token");
+			},
 		},
 		mounted() {
 			if (this.$cookie.get("token")) {
