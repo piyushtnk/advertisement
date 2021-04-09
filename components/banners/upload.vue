@@ -47,7 +47,7 @@
 										</span>
 									</v-col>
 
-									<v-col cols="12" lg="3" md="3" sm="12">
+									<v-col cols="12" lg="6" md="6" sm="12">
 										<v-text-field
 											v-model="comment"
 											:error-messages="commentErrors"
@@ -59,8 +59,32 @@
 									</v-col>
 
 									<v-col cols="12" lg="3" md="3" sm="12">
+										<v-select
+											:items="currency"
+											v-model="currencyCode"
+											:label="$t('currency')"
+											item-text="value"
+											item-value="value"
+										></v-select>
+									</v-col>
+
+									<v-col cols="12" lg="3" md="3" sm="12">
+										<SingleDatePicker
+											:date.sync="startDate"
+											:label="'startDate'"
+										/>
+									</v-col>
+
+									<v-col cols="12" lg="3" md="3" sm="12">
+										<SingleDatePicker
+											:date.sync="endDate"
+											:label="'endDate'"
+											:minDate="startDate"
+										/>
+									</v-col>
+
+									<v-col cols="12" lg="3" md="3" sm="12">
 										<v-text-field
-											disabled
 											v-model="cost"
 											:error-messages="costErrors"
 											:label="$t('cost')"
@@ -95,6 +119,7 @@
 	import { mapGetters } from "vuex";
 	import { validationMixin } from "vuelidate";
 	import { required, numeric } from "vuelidate/lib/validators";
+	import SingleDatePicker from "~/components/SingleDatePicker";
 
 	export default {
 		name: "UploadComponent",
@@ -104,8 +129,12 @@
 			comment: null,
 			cost: 0,
 			loading: false,
+			currencyCode: "",
+			startDate: new Date().toISOString().substr(0, 10),
+			endDate: new Date().toISOString().substr(0, 10),
 		}),
 		mixins: [validationMixin],
+		components: { SingleDatePicker: SingleDatePicker },
 		validations: {
 			bannerImage: { required },
 			bannerUrl: { required },
@@ -116,6 +145,7 @@
 			...mapGetters({
 				dashboard: "getDashboard",
 				bannerDomains: "getBannerDomains",
+				currency: "getCurrency",
 			}),
 			bannerImageErrors() {
 				const errors = [];
@@ -152,9 +182,12 @@
 					return false;
 				} else {
 					let editedObject = {
-						image: $this.bannerImage,
-						url: $this.bannerUrl,
+						banner: $this.bannerImage,
+						redirectUrl: $this.bannerUrl,
 						comment: $this.comment,
+						currencyCode: $this.currencyCode,
+						startDate: $this.startDate,
+						endDate: $this.endDate,
 						cost: $this.cost,
 					};
 					if ($this.$store.dispatch("uploadBanner", editedObject)) {

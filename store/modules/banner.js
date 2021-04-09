@@ -28,10 +28,9 @@ const actions = {
 	// upload banner
 	async uploadBanner({ commit }, data) {
 		let formData = new FormData();
-		formData.append("banner", data.image);
-		formData.append("redirectUrl", data.url);
-		formData.append("comment", data.comment);
-		formData.append("cost", data.cost);
+		for (var key in data) {
+			formData.append(key, data[key]);
+		}
 
 		await this.$axios
 			.post("/banner", formData, {
@@ -44,9 +43,7 @@ const actions = {
 					root: true
 				});
 
-
-				response.data.data.allClientsCount = 0;
-				response.data.data.views = 0;
+				response.data.data.cost = data.cost;
 				commit("PUSH_BANNERS", response.data.data);
 				return true;
 			})
@@ -125,8 +122,8 @@ const actions = {
 					params: data
 				});
 			const promise = bannerData.data.data.data.map(async (value) => {
-				await $this.$axios.get("/ipview/banner/" + value.id).then((countResponse) => {
-					value.views = countResponse.data.data.bannerViewsCount;
+				await $this.$axios.get("/bannercost/all/banner/" + value.id).then((costResponse) => {
+					value.cost = costResponse.data.data;
 				});
 			});
 			await Promise.all(promise);

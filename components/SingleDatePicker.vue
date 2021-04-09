@@ -4,15 +4,15 @@
 			ref="menu"
 			v-model="menu"
 			:close-on-content-click="false"
-			:return-value.sync="date"
+			:return-value.sync="currentDate"
 			transition="scale-transition"
 			offset-y
 			min-width="auto"
 		>
 			<template v-slot:activator="{ on, attrs }">
 				<v-text-field
-					v-model="date"
-					:label="$t('chooseSpecificDate')"
+					v-model="currentDate"
+					:label="$t(label)"
 					prepend-icon="mdi-calendar"
 					readonly
 					v-bind="attrs"
@@ -20,7 +20,8 @@
 				></v-text-field>
 			</template>
 			<v-date-picker
-				v-model="date"
+				v-model="currentDate"
+				:min="minimumDate"
 				:locale="$t('localeType')"
 				no-title
 				scrollable
@@ -29,7 +30,11 @@
 				<v-btn text color="primary" @click="menu = false">
 					{{ $t("cancel") }}
 				</v-btn>
-				<v-btn text color="primary" @click="$refs.menu.save(date)">
+				<v-btn
+					text
+					color="primary"
+					@click="$refs.menu.save(currentDate)"
+				>
 					{{ $t("ok") }}
 				</v-btn>
 			</v-date-picker>
@@ -43,9 +48,11 @@
 		data() {
 			return {
 				menu: false,
+				currentDate: this.date,
+				minimumDate: this.minDate,
 			};
 		},
-		props: ["date"],
+		props: ["date", "label", "minDate"],
 		computed: {},
 		methods: {},
 		watch: {},

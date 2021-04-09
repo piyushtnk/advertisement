@@ -141,32 +141,27 @@
 						</v-tooltip>
 					</template>
 
-					<template v-slot:[`item.uniqueClientsCount`]="{ item }">
-						<v-chip
-							outlined
-							color="green"
-							class="ma-2"
-							:to="
-								'/system/clients?bannerId=' +
-								item.id +
-								'&filterType=' +
-								defaultFilterDate
-							"
-						>
-							{{ staticNumberFormat(item.uniqueClientsCount) }}
-						</v-chip>
-					</template>
-
-					<template v-slot:item.views="{ item }">
-						<v-chip outlined color="purple" class="ma-2">
-							{{ staticNumberFormat(item.views) }}
-						</v-chip>
-					</template>
-
 					<template v-slot:item.cost="{ item }">
-						<v-chip outlined color="yellow" class="ma-2">
-							{{ staticNumberFormat(item.cost ? item.cost : 0) }}
-						</v-chip>
+						<div
+							v-for="(costItem, index) in item.cost"
+							:key="index"
+						>
+							<div class="my-2">
+								<v-chip class="ma-2" color="green" outlined>
+									{{ costItem.startDate }} -
+									{{ costItem.endDate }}
+								</v-chip>
+								<v-chip class="ma-2" color="yellow" outlined>
+									({{ costItem.currencyCode }}
+									{{
+										staticNumberFormat(
+											costItem.cost ? costItem.cost : 0
+										)
+									}})
+								</v-chip>
+							</div>
+							<v-divider></v-divider>
+						</div>
 					</template>
 
 					<!-- Dialog Box -->
@@ -441,8 +436,6 @@
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("cost"), value: "cost" },
-					// { text: this.$t("uniqueClicks"), value: "uniqueClientsCount" },
-					// { text: this.$t("views"), value: "views", sortable: false },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 					{ text: this.$t("actions"), value: "actions", sortable: false },
 				];

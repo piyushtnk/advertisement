@@ -419,7 +419,8 @@ export default async (context, locale) => {
 		allSources: '所有来源',
 		fromBanners: '从横幅',
 		clickToCheck: '点击查看',
-		totalTopUpValue: '总充值'
-
+		totalTopUpValue: '总充值',
+		startDate: '开始日期',
+		endDate: '结束日期',
 	};
 };

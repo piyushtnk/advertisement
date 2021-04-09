@@ -8,11 +8,11 @@ const state = () => ({
 	],
 	winLoss: 0,
 	statsInfoCounter: {},
-	statisticsTopUpOverall: {
-		overallTopupCount: 0,
-		overallTopupCountFromBanners: 0,
-		overallTotalTopupValue: 0,
-		overallTotalTopupValueFromBanners: 0
+	statisticsCashOverall: {
+		topup: {},
+		withdrawal: {},
+		profit: {},
+		percentage: {}
 	},
 	bonusHunters: [],
 });
@@ -102,7 +102,7 @@ const mutations = {
 		state.statsInfoCounter = response;
 	},
 	SET_STATISTICS_TOP_UP_OVERALL: (state, response) => {
-		state.statisticsTopUpOverall = response;
+		state.statisticsCashOverall = response;
 	},
 	SET_GRAPH: (state, response) => {
 		state.graph = response;
@@ -121,7 +121,7 @@ const getters = {
 		return state.statsInfoCounter;
 	},
 	getStatisticsTopUpOverall: state => {
-		return state.statisticsTopUpOverall;
+		return state.statisticsCashOverall;
 	},
 	getGraph: state => {
 		return state.graph;

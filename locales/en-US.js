@@ -424,6 +424,8 @@ export default async (context, locale) => {
 		allSources: 'All Sources',
 		fromBanners: 'From Banners',
 		clickToCheck: 'Click To Check',
-		totalTopUpValue: 'Total Top-Up Value'
+		totalTopUpValue: 'Total Top-Up Value',
+		startDate: 'Start Date',
+		endDate: 'End Date',
 	};
 };

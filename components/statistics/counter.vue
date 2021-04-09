@@ -31,7 +31,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallTotalTopupValue
+												statisticsCashOverall.topup
+													.overallTotalTopupValue
 											)
 										}}
 									</v-card-title>
@@ -50,7 +51,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallTopupCount
+												statisticsCashOverall.topup
+													.overallTotalTopupCount
 											)
 										}}
 									</v-card-title>
@@ -69,7 +71,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallTotalTopupCountFromDirectPlayers
+												statisticsCashOverall.topup
+													.overallTotalTopupCountFromDirectPlayers
 											)
 										}}
 									</v-card-title>
@@ -88,7 +91,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallTotalTopupCountFromAssociatedPlayers
+												statisticsCashOverall.topup
+													.overallTotalTopupCountFromAssociatedPlayers
 											)
 										}}
 									</v-card-title>
@@ -107,7 +111,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallTotalTopupValueFromDirectPlayers
+												statisticsCashOverall.topup
+													.overallTotalTopupValueFromDirectPlayers
 											)
 										}}
 									</v-card-title>
@@ -126,7 +131,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallTotalTopupValueFromAssociatedPlayers
+												statisticsCashOverall.topup
+													.overallTotalTopupValueFromAssociatedPlayers
 											)
 										}}
 									</v-card-title>
@@ -147,7 +153,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNull(
-												statisticsTopUpOverall.percentageTopupValueFromDirectPlayers
+												statisticsCashOverall.percentage
+													.percentageTopupValueFromDirectPlayers
 											)
 										}}%
 									</v-card-title>
@@ -166,7 +173,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNull(
-												statisticsTopUpOverall.percentageTopupValueFromFromAssociatedPlayer
+												statisticsCashOverall.percentage
+													.percentageTopupValueFromAssociatedPlayer
 											)
 										}}%
 									</v-card-title>
@@ -185,7 +193,28 @@
 									<v-card-title class="display-1">
 										{{
 											isNull(
-												statisticsTopUpOverall.totalOverallTopupCountFromBanners
+												statisticsCashOverall.percentage
+													.percentageTotalTopupValueFromBanners
+											)
+										}}%
+									</v-card-title>
+									<v-card-text>
+										{{ $t("topUpValue") }}
+										({{ $t("fromBanners") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statisticsCashOverall.topup
+													.totalOverallTopupCountFromBanners
 											)
 										}}
 									</v-card-title>
@@ -204,7 +233,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.totalOverallTopupValueFromBanners
+												statisticsCashOverall.topup
+													.totalOverallTopupValueFromBanners
 											)
 										}}
 									</v-card-title>
@@ -212,6 +242,48 @@
 										{{ $t("overall") }}
 										{{ $t("topUpValue") }}
 										({{ $t("fromBanners") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullValue(
+												statisticsCashOverall.topup
+													.totalOverallTopupValueFromOtherSources
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("overall") }}
+										{{ $t("topUpValue") }}
+										({{ $t("otherSources") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullNumber(
+												statisticsCashOverall.topup
+													.totalOverallTopupCountFromOtherSources
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("overall") }}
+										{{ $t("topUpValue") }}
+										({{ $t("otherSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -234,27 +306,9 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
-												statisticsTopUpOverall.overallWithdrawalValue
-											)
-										}}
-									</v-card-title>
-									<v-card-text>
-										{{ $t("totalWithdrawal") }}
-										({{ $t("allSources") }})
-									</v-card-text>
-								</v-card>
-							</v-col>
-							<v-col cols="12" lg="3" md="3" sm="12">
-								<v-card
-									class="mx-auto"
-									outlined
-									:loading="overallLoading"
-								>
-									<v-card-title class="display-1">
-										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallWithdrawalCount
+												statisticsCashOverall.withdrawal
+													.overallTotalWithdrawalCount
 											)
 										}}
 									</v-card-title>
@@ -273,7 +327,28 @@
 									<v-card-title class="display-1">
 										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallWithdrawalCountFromDirectPlayers
+												statisticsCashOverall.withdrawal
+													.overallTotalWithdrawalValue
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalWithdrawalValue") }}
+										({{ $t("allSources") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullNumber(
+												statisticsCashOverall.withdrawal
+													.overallWithdrawalCountFromDirectPlayers
 											)
 										}}
 									</v-card-title>
@@ -292,7 +367,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullNumber(
-												statisticsTopUpOverall.overallWithdrawalCountFromAssociatedPlayers
+												statisticsCashOverall.withdrawal
+													.overallWithdrawalCountFromAssociatedPlayers
 											)
 										}}
 									</v-card-title>
@@ -311,7 +387,8 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallWithdrawalValueFromDirectPlayers
+												statisticsCashOverall.withdrawal
+													.overallWithdrawalValueFromDirectPlayers
 											)
 										}}
 									</v-card-title>
@@ -330,13 +407,114 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallWithdrawalValueFromAssociatedPlayers
+												statisticsCashOverall.withdrawal
+													.overallWithdrawalValueFromAssociatedPlayers
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
 										{{ $t("totalWithdrawalValue") }}
 										({{ $t("assPlayers") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullValue(
+												statisticsCashOverall.withdrawal
+													.totalOverallWithdrawalValueFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalWithdrawalValue") }}
+										({{ $t("fromBanners") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullNumber(
+												statisticsCashOverall.withdrawal
+													.totalOverallWithdrawalCountFromBanners
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("withdrawalCount") }}
+										({{ $t("fromBanners") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statisticsCashOverall.percentage
+													.percentageWithdrawalValueFromDirectPlayers
+											)
+										}}%
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalWithdrawal") }}
+										({{ $t("directPlayers") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statisticsCashOverall.percentage
+													.percentageWithdrawalValueFromAssociatedPlayer
+											)
+										}}%
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalWithdrawalValue") }}
+										({{ $t("assPlayers") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNull(
+												statisticsCashOverall.percentage
+													.percentageTotalWithdrawalValueFromBanners
+											)
+										}}%
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalWithdrawalValue") }}
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -351,7 +529,7 @@
 							</v-col>
 						</v-row>
 						<v-row class="">
-							<v-col cols="12" lg="12" md="12" sm="12">
+							<v-col cols="12" lg="3" md="3" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
@@ -360,13 +538,54 @@
 									<v-card-title class="display-1">
 										{{
 											isNullValue(
-												statisticsTopUpOverall.overallTotalTopupValue -
-													statisticsTopUpOverall.overallWithdrawalValue
+												statisticsCashOverall.profit
+													.overallProfitFromBanners
 											)
 										}}
 									</v-card-title>
 									<v-card-text>
 										{{ $t("totalProfit") }}
+										({{ $t("FromBanners") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullValue(
+												statisticsCashOverall.profit
+													.overallProfitFromOtherSources
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalProfit") }}
+										({{ $t("otherSources") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="3" md="3" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullValue(
+												statisticsCashOverall.profit
+													.overallProfitFromAllSources
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("totalProfit") }}
+										({{ $t("allSources") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -592,7 +811,7 @@
 		computed: {
 			...mapGetters({
 				statisticsCounter: "getStatisticsCounter",
-				statisticsTopUpOverall: "getStatisticsTopUpOverall",
+				statisticsCashOverall: "getStatisticsTopUpOverall",
 				getStatisticsBannerClicksOverall:
 					"getStatisticsBannerClicksOverall",
 				ipClients: "getIpClients",
@@ -605,7 +824,7 @@
 			statisticsCounter() {
 				this.$emit("update:statisticsLoading", false);
 			},
-			statisticsTopUpOverall() {
+			statisticsCashOverall() {
 				this.$emit("update:overallLoading", false);
 			},
 			ipClients() {
