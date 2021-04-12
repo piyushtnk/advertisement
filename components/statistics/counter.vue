@@ -326,7 +326,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullNumber(
+											isNullValue(
 												statisticsCashOverall.withdrawal
 													.overallTotalWithdrawalValue
 											)
@@ -426,7 +426,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNull(
 												statisticsCashOverall.withdrawal
 													.totalOverallWithdrawalValueFromBanners
 											)

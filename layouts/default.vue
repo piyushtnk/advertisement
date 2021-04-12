@@ -171,14 +171,7 @@
 				</template>
 				<v-list>
 					<v-list-item>
-						<v-list-item
-							>Welcome,
-							{{
-								$cookie.get("user").firstName +
-								" " +
-								$cookie.get("user").lastName
-							}}
-						</v-list-item>
+						<v-list-item>Welcome, {{ name }} </v-list-item>
 					</v-list-item>
 				</v-list>
 			</v-menu>
@@ -413,6 +406,17 @@
 			},
 			title() {
 				return this.$t("systemPanel");
+			},
+			name() {
+				if (this.$cookie.get("user")) {
+					return (
+						this.$cookie.get("user").firstName +
+						" " +
+						this.$cookie.get("user").lastName
+					);
+				} else {
+					return "";
+				}
 			},
 		},
 	};
