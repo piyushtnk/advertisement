@@ -30,7 +30,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.topup
 													.overallTotalTopupValue
 											)
@@ -110,7 +110,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.topup
 													.overallTotalTopupValueFromDirectPlayers
 											)
@@ -130,7 +130,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.topup
 													.overallTotalTopupValueFromAssociatedPlayers
 											)
@@ -232,7 +232,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.topup
 													.totalOverallTopupValueFromBanners
 											)
@@ -253,7 +253,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.topup
 													.totalOverallTopupValueFromOtherSources
 											)
@@ -326,7 +326,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.withdrawal
 													.overallTotalWithdrawalValue
 											)
@@ -386,7 +386,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.withdrawal
 													.overallWithdrawalValueFromDirectPlayers
 											)
@@ -406,7 +406,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.withdrawal
 													.overallWithdrawalValueFromAssociatedPlayers
 											)
@@ -537,7 +537,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.profit
 													.overallProfitFromBanners
 											)
@@ -545,7 +545,7 @@
 									</v-card-title>
 									<v-card-text>
 										{{ $t("totalProfit") }}
-										({{ $t("FromBanners") }})
+										({{ $t("fromBanners") }})
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -557,7 +557,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.profit
 													.overallProfitFromOtherSources
 											)
@@ -577,7 +577,7 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullValue(
+											isNullNumber(
 												statisticsCashOverall.profit
 													.overallProfitFromAllSources
 											)
