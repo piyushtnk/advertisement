@@ -63,8 +63,8 @@
 											:items="currency"
 											v-model="currencyCode"
 											:label="$t('currency')"
-											item-text="value"
-											item-value="value"
+											item-text="currencyCode"
+											item-value="currencyCode"
 										></v-select>
 									</v-col>
 

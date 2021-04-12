@@ -70,24 +70,36 @@ const actions = {
 
 	// Update banner
 	async updateBanner({ commit }, data) {
+		const $this = this;
 		let formData = new FormData();
 		if (data.bannerImage) {
 			formData.append("banner", data.bannerImage);
 		}
 		formData.append("redirectUrl", data.redirectUrl);
 		formData.append("comment", data.comment);
-		formData.append("cost", data.cost);
 
-		await this.$axios
+
+		await $this.$axios
 			.put("/banner/" + data.uniqueId, formData, {
 				headers: {
 					"Content-Type": "multipart/form-data"
 				}
 			})
-			.then(response => {
+			.then(async response => {
+				commit("UPDATE_BANNERS", { index: data.index, data: response.data.data });
 				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
 
-				commit("UPDATE_BANNERS", response.data.data);
+				await data.cost.forEach(element => {
+					if (element.id) {
+						$this.$axios
+							.put("/bannercost/" + element.id, element);
+					} else {
+						element.bannerId = data.id;
+						$this.$axios
+							.post("/bannercost/create/", element);
+					}
+
+				});
 				return true;
 			})
 			.catch(error => {
@@ -95,6 +107,14 @@ const actions = {
 
 				throw error.response ? error.response.data.error : error;
 			});
+	},
+
+	// Update banner cost
+	async deleteBannerCost({ commit }, bannerCostId) {
+		this.$axios
+			.delete("/bannercost/" + bannerCostId).then(response => {
+				return true;
+			})
 	},
 
 	// Delete banner
@@ -348,24 +368,17 @@ const actions = {
 	// Get all currency listing
 	// clicks from mobile
 	async currency({ commit }, data) {
-		commit("SET_CURRENCY", [{
-			id: 1,
-			value: 'VND'
-		}, {
-			id: 2,
-			value: 'INR'
-		}]);
-		// await this.$axios
-		// 	.get("/currency", {
-		// 		params: data
-		// 	})
-		// 	.then(response => {
-		// 		commit("SET_CURRENCY", response.data.data);
-		// 	})
-		// 	.catch(error => {
-		// 		commit("SET_SNACKBAR_TEXT", error, { root: true });
-		// 		throw error.response ? error.response.data.error : error;
-		// 	});
+		await this.$axios
+			.get("/currency/all", {
+				params: data
+			})
+			.then(response => {
+				commit("SET_CURRENCY", response.data.data);
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				throw error.response ? error.response.data.error : error;
+			});
 	},
 };
 
@@ -380,8 +393,9 @@ const mutations = {
 	PUSH_BANNERS(state, response) {
 		state.banners.data.unshift(response);
 	},
-	UPDATE_BANNERS(state, response) {
-		Object.assign(...state.banners.data, response)
+	UPDATE_BANNERS(state, banner) {
+		delete banner.data.id;
+		state.banners.data[banner.index] = banner.data;
 	},
 	SET_BANNER_DOMAIN(state, response) {
 		state.bannerDomains = response;

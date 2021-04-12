@@ -208,7 +208,7 @@ export default async (context, locale) => {
 		totalProfit: "Estimated Profit",
 
 		registerYourBanner: "Register Your Banner",
-		areYouSure: "Are you sure? you want to delete this item, This will permanently delete the banner and all related data all IP Viewers, and All clients.",
+		areYouSure: "Are you sure, you want to delete this item permanently?",
 		WindowsUNKNOWNVer: "Windows Unknown Ver.",
 		WindowsPhoneOS: "Windows Phone OS.",
 
@@ -427,5 +427,6 @@ export default async (context, locale) => {
 		totalTopUpValue: 'Total Top-Up Value',
 		startDate: 'Start Date',
 		endDate: 'End Date',
+		addNew: 'Add New'
 	};
 };

@@ -69,7 +69,7 @@
 							<a :href="findImage(item)" target="_blank">
 								<v-img
 									:src="findImage(item)"
-									height="100"
+									height="auto"
 									width="300"
 									class="grey lighten-2"
 								/>
@@ -192,6 +192,7 @@
 											</v-col>
 											<v-col cols="12" sm="12" md="12">
 												<v-text-field
+													disabled
 													v-model="
 														editedItem.redirectUrl
 													"
@@ -211,18 +212,37 @@
 												></v-text-field>
 											</v-col>
 											<v-col cols="12" sm="12" md="12">
-												<v-row>
+												<v-btn
+													outlined
+													color="green"
+													@click="costRow('add')"
+												>
+													<v-icon>mdi-plus</v-icon>
+													{{ $t("addNew") }}
+												</v-btn>
+											</v-col>
+											<v-col cols="12" sm="12" md="12">
+												<v-row
+													v-for="(
+														item, index
+													) in editedItem.cost"
+													v-bind:key="index"
+												>
 													<v-col cols="3">
 														<SingleDatePickerComponent
 															:date.sync="
-																bannerCost
+																editedItem.cost[
+																	index
+																].startDate
 															"
 														/>
 													</v-col>
 													<v-col cols="3">
 														<SingleDatePickerComponent
 															:date.sync="
-																bannerCost
+																editedItem.cost[
+																	index
+																].endDate
 															"
 														/>
 													</v-col>
@@ -230,19 +250,23 @@
 														<v-select
 															:items="currency"
 															v-model="
-																editedItem.cost
+																editedItem.cost[
+																	index
+																].currencyCode
 															"
 															:label="
 																$t('currency')
 															"
-															item-text="value"
-															item-value="id"
+															item-text="currencyCode"
+															item-value="currencyCode"
 														></v-select>
 													</v-col>
 													<v-col cols="2">
 														<v-text-field
 															v-model="
-																editedItem.cost
+																editedItem.cost[
+																	index
+																].cost
 															"
 															:label="$t('cost')"
 														>
@@ -252,12 +276,18 @@
 														<v-btn
 															class="ma-2"
 															outlined
+															x-small
 															fab
-															small
-															color="green"
+															color="red"
+															@click="
+																costRow(
+																	'remove',
+																	index
+																)
+															"
 														>
 															<v-icon
-																>mdi-plus</v-icon
+																>mdi-minus</v-icon
 															>
 														</v-btn>
 													</v-col>
@@ -541,11 +571,8 @@
 
 			save() {
 				this.loading = true;
+				this.editedItem.index = this.editedIndex;
 				if (this.editedIndex > -1) {
-					// Object.assign(
-					// 	this.banners.data[this.editedIndex],
-					// 	this.editedItem
-					// );
 					if (this.$store.dispatch("updateBanner", this.editedItem)) {
 						this.loading = false;
 					}
@@ -554,8 +581,26 @@
 				}
 				this.close();
 			},
-			addCostRow() {
-				console.log("added");
+			costRow(type, index) {
+				if (type == "add") {
+					this.editedItem.cost.push({
+						startDate: new Date().toISOString().substr(0, 10),
+						endDate: new Date().toISOString().substr(0, 10),
+						currencyCode: "",
+						cost: "",
+					});
+				} else {
+					if (confirm(this.$t("areYouSure"))) {
+						if (
+							this.$store.dispatch(
+								"deleteBannerCost",
+								this.editedItem.cost[index].id
+							)
+						) {
+							this.editedItem.cost.splice(index, 1);
+						}
+					}
+				}
 			},
 		},
 		watch: {
@@ -567,9 +612,6 @@
 			},
 			banners(value) {
 				this.loading = false;
-			},
-			bannerCost(value) {
-				console.log("value", value);
 			},
 		},
 	};

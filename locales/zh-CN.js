@@ -191,7 +191,7 @@ export default async (context, locale) => {
 		totalProfit: "总毛利",
 
 		registerYourBanner: "注册横幅广告",
-		areYouSure: "你确定吗？ 您要删除此项目，这将永久删除横幅和所有相关数据，所有IP查看器和所有客户端。",
+		areYouSure: "您确定要永久删除此项目吗？",
 
 		WindowsUNKNOWNVer: "Windows Unknown Ver.",
 		WindowsPhoneOS: "Windows Phone OS.",
@@ -422,5 +422,6 @@ export default async (context, locale) => {
 		totalTopUpValue: '总充值',
 		startDate: '开始日期',
 		endDate: '结束日期',
+		addNew: '添新'
 	};
 };
