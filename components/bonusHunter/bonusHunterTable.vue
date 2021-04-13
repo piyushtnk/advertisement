@@ -199,7 +199,6 @@
 		},
 		watch: {
 			bonusHunter(v) {
-				console.log(v);
 				this.loading = false;
 			},
 		},
