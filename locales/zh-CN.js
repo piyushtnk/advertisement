@@ -422,6 +422,8 @@ export default async (context, locale) => {
 		totalTopUpValue: '总充值',
 		startDate: '开始日期',
 		endDate: '结束日期',
-		addNew: '添新'
+		addNew: '添新',
+		costPerDay: '每日费用',
+		eachPlayerCost: '每个玩家的费用'
 	};
 };

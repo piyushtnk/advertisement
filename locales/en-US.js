@@ -427,6 +427,8 @@ export default async (context, locale) => {
 		totalTopUpValue: 'Total Top-Up Value',
 		startDate: 'Start Date',
 		endDate: 'End Date',
-		addNew: 'Add New'
+		addNew: 'Add New',
+		costPerDay: 'Cost Per Day',
+		eachPlayerCost: 'Each Player Cost'
 	};
 };

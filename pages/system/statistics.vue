@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<v-alert text type="info">
+		<v-alert text type="info" dense>
 			{{ $t("statsMessage") }}
 		</v-alert>
-		<v-alert text type="warning">
-			<v-row>
+		<v-alert prominent type="error">
+			<v-row align="center">
 				<v-col class="grow">
 					{{ $t("statsMessage2") }}
 				</v-col>
 				<v-col class="shrink">
-					<v-btn elevation="2" outlined depressed color="primary"
+					<v-btn
 						>{{ $t("statsMessage3") }}
 						{{ getUpdateIntervalTime }}</v-btn
 					>

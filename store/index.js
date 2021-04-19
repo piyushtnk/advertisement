@@ -12,6 +12,7 @@ import B91Charts from "./modules/b91/charts";
 import B91Players from "./modules/b91/players";
 import Options from "./modules/b91/options";
 import Stats from "./modules/b91/stats";
+import B91Banner from "./modules/b91/banner";
 
 
 const createStore = () => {
@@ -25,7 +26,8 @@ const createStore = () => {
 			Stats,
 			Options,
 			B91Charts,
-			B91Players
+			B91Players,
+			B91Banner
 		}
 	});
 };

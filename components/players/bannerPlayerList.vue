@@ -36,16 +36,6 @@
 					</v-card-text>
 				</v-card>
 			</v-col>
-			<v-col cols="12" lg="2" md="2" sm="12">
-				<v-card class="mx-auto" outlined>
-					<v-card-title class="h6">
-						{{ $t("banner") }} {{ $t("createdAt") }}
-					</v-card-title>
-					<v-card-text>
-						{{ players.banner.createdAt }}
-					</v-card-text>
-				</v-card>
-			</v-col>
 		</v-row>
 
 		<!-- Report section -->
@@ -193,123 +183,120 @@
 		<!-- Table Listing -->
 		<v-row>
 			<v-col cols="12">
-				<v-card outlined>
-					<v-card-text>
-						<v-data-table
-							:headers="headers"
-							item-key="id"
-							:options.sync="options"
-							:server-items-length="players.total"
-							:pageCount="players.totalPages"
-							:items="tableItems"
-							:loading="loading"
-							class="elevation-1"
-							:footer-props="footerProps"
-							show-expand
-							single-expand
-							item-expanded
-						>
-							<template v-slot:[`item.firstName`]="{ item }">
-								{{
-									isNull(item.firstname) +
-									" " +
-									isNull(item.lastname)
-								}}
-							</template>
+				<v-data-table
+					:headers="headers"
+					item-key="id"
+					:options.sync="options"
+					:server-items-length="players.total"
+					:pageCount="players.totalPages"
+					:items="tableItems"
+					:loading="loading"
+					class="elevation-1"
+					:footer-props="footerProps"
+					show-expand
+					single-expand
+					item-expanded
+				>
+					<template v-slot:[`item.firstName`]="{ item }">
+						{{
+							isNull(item.firstname) + " " + isNull(item.lastname)
+						}}
+					</template>
 
-							<template v-slot:expanded-item="{ headers, item }">
-								<td :colspan="headers.length">
-									<v-row no-gutters>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("agentBy")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.ulagentaccount
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("createdAt")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.createdAt
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("depositAvg")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.depositavg
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("createdAt")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.createdAt
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t(
-															"firstWithdrawalTime"
-														)
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.firstwithdrawtime
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-										<v-col lg="4" md="6" sm="12">
-											<v-list-item two-line>
-												<v-list-item-content>
-													<v-list-item-title>{{
-														$t("manualBonus")
-													}}</v-list-item-title>
-													<v-list-item-subtitle>{{
-														fixParameters(
-															item.manualbonus
-														)
-													}}</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-										</v-col>
-									</v-row>
-								</td>
-							</template>
-						</v-data-table>
+					<template v-slot:expanded-item="{ headers, item }">
+						<td :colspan="headers.length">
+							<v-row no-gutters>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("agentBy")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(
+													item.ulagentaccount
+												)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("createdAt")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(item.createdAt)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("depositAvg")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(item.depositavg)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("createdAt")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(item.createdAt)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("firstWithdrawalTime")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(
+													item.firstwithdrawtime
+												)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+								<v-col lg="4" md="6" sm="12">
+									<v-list-item two-line>
+										<v-list-item-content>
+											<v-list-item-title>{{
+												$t("manualBonus")
+											}}</v-list-item-title>
+											<v-list-item-subtitle>{{
+												fixParameters(item.manualbonus)
+											}}</v-list-item-subtitle>
+										</v-list-item-content>
+									</v-list-item>
+								</v-col>
+							</v-row>
+						</td>
+					</template>
+				</v-data-table>
+			</v-col>
+		</v-row>
+
+		<v-row class="my-2">
+			<v-col cols="12" lg="2" md="2" sm="12" offset-lg="10">
+				<v-card class="mx-auto" outlined>
+					<v-card-title class="h6">
+						{{ $t("banner") }} {{ $t("createdAt") }}
+					</v-card-title>
+					<v-card-text>
+						{{ players.banner.createdAt }}
 					</v-card-text>
 				</v-card>
 			</v-col>

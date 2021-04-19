@@ -152,7 +152,7 @@
 							<a :href="findImage(item)" target="_blank">
 								<v-img
 									:src="findImage(item)"
-									height="100"
+									height="auto"
 									width="300"
 									class="grey lighten-2"
 								/>
@@ -181,7 +181,7 @@
 					<template
 						v-slot:item.directRegisteredPlayersCount="{ item }"
 					>
-						<v-chip outlined color="yellow" class="ma-2">
+						<v-chip outlined color="secondary" class="ma-2">
 							{{
 								staticNumberFormat(
 									item.directRegisteredPlayersCount
@@ -192,7 +192,7 @@
 					<template
 						v-slot:item.firstDepositCountOfDirectPlayers="{ item }"
 					>
-						<v-chip outlined color="yellow" class="ma-2">
+						<v-chip outlined color="secondary" class="ma-2">
 							{{
 								staticNumberFormat(
 									item.firstDepositCountOfDirectPlayers
@@ -223,6 +223,49 @@
 						</v-chip>
 					</template>
 
+					<!-- Cost -->
+					<template v-slot:item.costEffectivenessResponse="{ item }">
+						<v-chip
+							outlined
+							class="ma-2"
+							color="secondary"
+							v-if="item.costEffectivenessResponse.costPerDay"
+						>
+							{{ $t("costPerDay") }}
+							{{
+								item.costEffectivenessResponse.costPerDay.toFixed(
+									3
+								)
+							}}
+							{{ item.costEffectivenessResponse.currency }}
+						</v-chip>
+
+						<v-chip
+							outlined
+							color="secondary"
+							class="ma-2"
+							v-if="item.costEffectivenessResponse"
+						>
+							{{ $t("eachPlayerCost") }}
+							{{
+								item.directRegisteredPlayersCount +
+								item.associatedPlayersCount
+									? (
+											item.costEffectivenessResponse
+												.costPerDay /
+											(item.directRegisteredPlayersCount +
+												item.associatedPlayersCount)
+									  ).toFixed(3)
+									: 0
+							}}
+							{{ item.costEffectivenessResponse.currency }}
+						</v-chip>
+						<v-chip outlined color="secondary" class="ma-2" v-else>
+							({{ item.costEffectivenessResponse.currency }})
+							{{ item.costEffectivenessResponse.costPerDay }}
+						</v-chip>
+					</template>
+
 					<!-- Actions -->
 					<template v-slot:[`item.actions`]="{ item }">
 						<div class="my-2">
@@ -240,7 +283,7 @@
 										fab
 										small
 									>
-										<v-icon color="yellow">
+										<v-icon color="secondary">
 											mdi-account-group
 										</v-icon>
 									</v-btn>
@@ -339,6 +382,11 @@
 					{
 						text: this.$t("firstDepositCountAP"),
 						value: "firstDepositCountOfAssociatedPlayers",
+						sortable: false,
+					},
+					{
+						text: this.$t("costPerDay"),
+						value: "costEffectivenessResponse",
 						sortable: false,
 					},
 					{ text: this.$t("createdAt"), value: "createdAt" },

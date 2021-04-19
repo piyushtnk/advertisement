@@ -151,7 +151,7 @@
 									{{ costItem.startDate }} -
 									{{ costItem.endDate }}
 								</v-chip>
-								<v-chip class="ma-2" color="yellow" outlined>
+								<v-chip class="ma-2" color="secondary" outlined>
 									({{ costItem.currencyCode }}
 									{{
 										staticNumberFormat(
@@ -230,6 +230,9 @@
 												>
 													<v-col cols="3">
 														<SingleDatePickerComponent
+															:label="
+																$t('startDate')
+															"
 															:date.sync="
 																editedItem.cost[
 																	index
@@ -239,6 +242,9 @@
 													</v-col>
 													<v-col cols="3">
 														<SingleDatePickerComponent
+															:label="
+																$t('endDate')
+															"
 															:date.sync="
 																editedItem.cost[
 																	index
@@ -319,7 +325,7 @@
 						</v-dialog>
 						<v-bottom-sheet
 							v-model="dialogDelete"
-							overlay-color="yellow"
+							overlay-color="secondary"
 							:overlay-opacity="0.5"
 						>
 							<v-sheet class="text-center pt-5" height="300px">
@@ -584,8 +590,10 @@
 			costRow(type, index) {
 				if (type == "add") {
 					this.editedItem.cost.push({
-						startDate: new Date().toISOString().substr(0, 10),
-						endDate: new Date().toISOString().substr(0, 10),
+						startDate: this.$moment()
+							.startOf("month")
+							.format("YYYY-MM-DD"),
+						endDate: this.$moment().format("YYYY-MM-DD"),
 						currencyCode: "",
 						cost: "",
 					});

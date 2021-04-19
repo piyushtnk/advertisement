@@ -1,10 +1,9 @@
 <template>
 	<div>
 		<v-menu
-			ref="menu"
 			v-model="menu"
 			:close-on-content-click="false"
-			:return-value.sync="currentDate"
+			:nudge-right="40"
 			transition="scale-transition"
 			offset-y
 			min-width="auto"
@@ -12,7 +11,8 @@
 			<template v-slot:activator="{ on, attrs }">
 				<v-text-field
 					v-model="currentDate"
-					:label="$t(label)"
+					:min="minimumDate"
+					:label="dateLabel"
 					prepend-icon="mdi-calendar"
 					readonly
 					v-bind="attrs"
@@ -21,23 +21,8 @@
 			</template>
 			<v-date-picker
 				v-model="currentDate"
-				:min="minimumDate"
-				:locale="$t('localeType')"
-				no-title
-				scrollable
-			>
-				<v-spacer></v-spacer>
-				<v-btn text color="primary" @click="menu = false">
-					{{ $t("cancel") }}
-				</v-btn>
-				<v-btn
-					text
-					color="primary"
-					@click="$refs.menu.save(currentDate)"
-				>
-					{{ $t("ok") }}
-				</v-btn>
-			</v-date-picker>
+				@input="menu = false"
+			></v-date-picker>
 		</v-menu>
 	</div>
 </template>
@@ -48,13 +33,32 @@
 		data() {
 			return {
 				menu: false,
+				dateLabel: this.label,
 				currentDate: this.date,
 				minimumDate: this.minDate,
 			};
 		},
-		props: ["date", "label", "minDate"],
+		props: {
+			date: {
+				type: String,
+				required: true,
+			},
+			min: {
+				type: String,
+			},
+			label: {
+				type: String,
+				default: () => {
+					return this.$t("date");
+				},
+			},
+		},
 		computed: {},
 		methods: {},
-		watch: {},
+		watch: {
+			currentDate(value) {
+				this.$emit("update:date", value);
+			},
+		},
 	};
 </script>
