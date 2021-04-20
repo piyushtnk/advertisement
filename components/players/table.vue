@@ -545,7 +545,7 @@
 			// On row click
 			handleClick(row) {
 				this.$router.push(
-					this.localePath(`/system/player/${row.playerid}`)
+					this.localePath(`/system/players/${row.playerid}`)
 				);
 			},
 		},

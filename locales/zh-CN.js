@@ -424,6 +424,8 @@ export default async (context, locale) => {
 		endDate: '结束日期',
 		addNew: '添新',
 		costPerDay: '每日费用',
-		eachPlayerCost: '每个玩家的费用'
+		eachPlayerCost: '每个玩家的费用',
+		playerProfile: '玩家资料',
+		loginIpPool: '登录IP池'
 	};
 };

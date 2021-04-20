@@ -20,7 +20,19 @@ const state = () => ({
 			id: '',
 		}
 	},
-	regularPlayers: []
+	regularPlayers: [],
+	playerInfo: {
+		loginip: {
+			loginIpPool: []
+		},
+		clicks: {
+			bannerClicks: [],
+		},
+		views: {
+			bannerViews: []
+		},
+		info: []
+	},
 });
 
 // Actions
@@ -154,6 +166,22 @@ const actions = {
 				throw error.response ? error.response.data.error : error;
 			});
 	},
+
+	// Get login Ip detail
+	async playerInfo({ commit }, data) {
+		await this.$axios
+			.get(`/player/${data.type}`, {
+				params: data.params
+			})
+			.then(response => {
+				commit("SET_PLAYER_INFO", { type: data.type, data: response.data.data });
+			})
+			.catch(error => {
+				commit("SET_SNACKBAR_TEXT", error, { root: true });
+
+				throw error.response ? error.response.data.error : error;
+			});
+	},
 };
 
 // Mutations
@@ -185,6 +213,9 @@ const mutations = {
 	SET_BANNER_REG_PLAYERS(state, response) { // Regular players
 		state.bannerRegPlayers = response;
 	},
+	SET_PLAYER_INFO(state, response) { // player info
+		state.playerInfo[response.type] = response.data;
+	},
 };
 
 // Getters
@@ -215,6 +246,9 @@ const getters = {
 	},
 	getRegularPlayers: state => {
 		return state.regularPlayers;
+	},
+	getPlayerInfo: state => {
+		return state.playerInfo;
 	},
 };
 

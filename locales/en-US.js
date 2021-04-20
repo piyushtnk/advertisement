@@ -429,6 +429,8 @@ export default async (context, locale) => {
 		endDate: 'End Date',
 		addNew: 'Add New',
 		costPerDay: 'Cost Per Day',
-		eachPlayerCost: 'Each Player Cost'
+		eachPlayerCost: 'Each Player Cost',
+		playerProfile: 'Player Profile',
+		loginIpPool: 'Login IP Pool'
 	};
 };
