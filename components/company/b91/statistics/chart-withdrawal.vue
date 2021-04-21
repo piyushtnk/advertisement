@@ -35,7 +35,6 @@
 			},
 		},
 		created() {
-			this.chartCore.am4core.useTheme(this.chartCore.am4themes_dataviz);
 			this.chartCore.am4core.useTheme(this.chartCore.am4themes_animated);
 		},
 		mounted() {

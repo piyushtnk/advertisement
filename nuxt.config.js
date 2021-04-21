@@ -151,6 +151,15 @@ export default {
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
-		analyze: true
+		extend(config, { isClient }) {
+			if (isClient) {
+				config.externals = function (context, request, callback) {
+					if (/xlsx|canvg|pdfmake/.test(request)) {
+						return callback(null, "commonjs " + request);
+					}
+					callback();
+				}
+			}
+		}
 	}
 };
