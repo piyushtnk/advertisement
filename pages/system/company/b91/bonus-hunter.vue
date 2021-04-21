@@ -6,28 +6,25 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
-
-	import TableComponent from "~/components/reports/tableReports";
+	import TableComponent from "~/components/company/b91/bonusHunter/bonusHunterTable";
 
 	export default {
+		name: "bonusHunter",
 		middleware: "authenticate",
 		components: {
 			TableComponent: TableComponent,
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ getPlayers: "getPlayers" }),
+			// ...mapActions({ getIpClients: "getIpClients" }),
 			filterForDate(value) {
-				this.$store.dispatch("getPlayers", {
-					duration: value.duration,
-					startDate: value.startDate,
-					endDate: value.endDate,
-					sortBy: value.sortBy,
+				this.$store.dispatch("bonusHunters", {
+					startDate: value.startDate ? value.startDate : null,
+					endDate: value.endDate ? value.endDate : null,
+					sort: value.sort,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
-					registerWithUs: value.registerWithUs,
 				});
 			},
 		},

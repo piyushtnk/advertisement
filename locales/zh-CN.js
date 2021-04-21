@@ -228,6 +228,7 @@ export default async (context, locale) => {
 
 		firstClickTime: "首次访问时间",
 		bannerId: "首次查看的横幅ID",
+		exactBannerId: "横幅ID",
 		supportedFormat: "支持格式",
 		auditTime: "审核时间",
 		depositId: "存款 ID",
@@ -426,6 +427,8 @@ export default async (context, locale) => {
 		costPerDay: '每日费用',
 		eachPlayerCost: '每个玩家的费用',
 		playerProfile: '玩家资料',
-		loginIpPool: '登录IP池'
+		loginIpPool: '登录IP池',
+		viewedBanners: '已查看的横幅',
+		clickedBanners: '点击的横幅',
 	};
 };

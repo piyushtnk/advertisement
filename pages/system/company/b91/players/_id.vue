@@ -9,7 +9,7 @@
 </template>
 
 <script>
-	import ProfileComponent from "~/components/players/profile";
+	import ProfileComponent from "~/components/company/b91/players/profile";
 
 	export default {
 		middleware: "authenticate",
@@ -19,28 +19,31 @@
 		data: () => ({}),
 		methods: {},
 		mounted() {
-			// LoginIps
+			// TODO: LoginIps
 			this.$store.dispatch("playerInfo", {
 				type: "loginip",
 				params: {
 					playerId: this.$route.params.id,
 				},
 			});
-			// // Clicks
-			// this.$store.dispatch("playerInfo", {
-			// 	type: "clicks",
-			// 	params: {
-			// 		playerId: this.$route.params.id,
-			// 	},
-			// });
-			// // Views
-			// this.$store.dispatch("playerInfo", {
-			// 	type: "views",
-			// 	params: {
-			// 		playerId: this.$route.params.id,
-			// 	},
-			// });
-			// Profile
+
+			// TODO: Clicks
+			this.$store.dispatch("playerInfo", {
+				type: "clicks",
+				params: {
+					playerId: this.$route.params.id,
+				},
+			});
+
+			// TODO: Views
+			this.$store.dispatch("playerInfo", {
+				type: "views",
+				params: {
+					playerId: this.$route.params.id,
+				},
+			});
+
+			// TODO: Profile
 			this.$store.dispatch("playerInfo", {
 				type: "info",
 				params: {

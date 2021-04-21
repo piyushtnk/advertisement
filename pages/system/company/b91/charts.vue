@@ -84,9 +84,9 @@
 
 <script>
 	// chart import
-	import ChartsComponent from "~/components/statistics/charts";
-	import ChartWithdrawalComponent from "~/components/statistics/chart-withdrawal";
-	import ChartDepositComponent from "~/components/statistics/chart-deposit";
+	import ChartsComponent from "~/components/company/b91/statistics/charts";
+	import ChartWithdrawalComponent from "~/components/company/b91/statistics/chart-withdrawal";
+	import ChartDepositComponent from "~/components/company/b91/statistics/chart-deposit";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {

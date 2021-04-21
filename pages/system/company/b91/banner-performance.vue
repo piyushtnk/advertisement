@@ -7,7 +7,7 @@
 
 <script>
 	import { mapActions } from "vuex";
-	import TableComponent from "~/components/banners/performance";
+	import TableComponent from "~/components/company/b91/banners/performance";
 
 	export default {
 		middleware: "authenticate",

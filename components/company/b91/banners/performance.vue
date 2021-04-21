@@ -277,7 +277,7 @@
 										target="_blank"
 										:href="
 											localePath(
-												`/system/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=directPlayers`
+												`/system/company/b91/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=directPlayers`
 											)
 										"
 										fab
@@ -301,7 +301,7 @@
 										target="_blank"
 										:href="
 											localePath(
-												`/system/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=assPlayers`
+												`/system/company/b91/banner-players-list?bannerId=${item.id}&startDate=${date[0]}&endDate=${date[1]}&type=assPlayers`
 											)
 										"
 										fab

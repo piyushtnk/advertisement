@@ -232,6 +232,7 @@ export default async (context, locale) => {
 		agentBy: "Source URL",
 		firstClickTime: "First Visit Time",
 		bannerId: "First Viewed Banner Id",
+		exactBannerId: "Banner Id",
 		supportedFormat: "Supported format",
 		auditTime: "Audit Time",
 		depositId: "Deposit Id",
@@ -431,6 +432,8 @@ export default async (context, locale) => {
 		costPerDay: 'Cost Per Day',
 		eachPlayerCost: 'Each Player Cost',
 		playerProfile: 'Player Profile',
-		loginIpPool: 'Login IP Pool'
+		loginIpPool: 'Login IP Pool',
+		viewedBanners: 'Viewed Banners',
+		clickedBanners: 'Clicked Banners',
 	};
 };

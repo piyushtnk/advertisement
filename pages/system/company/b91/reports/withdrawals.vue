@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import TableComponent from "~/components/withdrawals/withdrawalsTable";
+	import TableComponent from "~/components/company/b91/reports/withdrawalsTable";
 
 	export default {
 		middleware: "authenticate",

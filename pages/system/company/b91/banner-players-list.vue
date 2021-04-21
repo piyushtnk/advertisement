@@ -6,7 +6,7 @@
 </template>
 
 <script>
-	import TableComponent from "~/components/players/bannerPlayerList";
+	import TableComponent from "~/components/company/b91/players/bannerPlayerList";
 
 	export default {
 		name: "directPlayersList",

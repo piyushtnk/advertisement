@@ -95,8 +95,8 @@
 <script>
 	import { mapGetters } from "vuex";
 
-	import CounterComponent from "~/components/statistics/counter";
-	import RegularPlayersComponent from "~/components/statistics/regular-players";
+	import CounterComponent from "~/components/company/b91/statistics/counter";
+	import RegularPlayersComponent from "~/components/company/b91/statistics/regular-players";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {

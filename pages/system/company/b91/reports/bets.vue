@@ -6,35 +6,25 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
-
-	import TableComponent from "~/components/players/table";
+	import TableComponent from "~/components/company/b91/reports/betsTable";
 
 	export default {
-		name: "players",
 		middleware: "authenticate",
 		components: {
 			TableComponent: TableComponent,
 		},
 		data: () => ({}),
 		methods: {
-			...mapActions({ groupLevels: "groupLevels" }),
 			filterForDate(value) {
-				this.$store.dispatch("getPlayers", {
+				this.$store.dispatch("getBets", {
 					startDate: value.startDate ? value.startDate : null,
 					endDate: value.endDate ? value.endDate : null,
-					sort: value.sortBy,
+					sort: value.sort,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
-					registerus: value.registerWithUs,
-					topup: value.topUp,
-					vipid: value.vipId,
 				});
 			},
-		},
-		mounted() {
-			this.groupLevels();
 		},
 	};
 </script>

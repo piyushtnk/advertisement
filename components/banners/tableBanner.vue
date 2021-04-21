@@ -435,6 +435,7 @@
 			}),
 			headerSearch() {
 				return [
+					{ text: this.$t("exactBannerId"), value: "id" },
 					{ text: this.$t("bannerLink"), value: "uniqueId" },
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },

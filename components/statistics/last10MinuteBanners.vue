@@ -61,8 +61,8 @@
 														)
 													"
 													class="grey lighten-2"
-													width="200"
-													height="100"
+													width="400"
+													height="auto"
 												>
 													<template
 														v-slot:placeholder

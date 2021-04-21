@@ -169,7 +169,8 @@ const actions = {
 
 	// Get login Ip detail
 	async playerInfo({ commit }, data) {
-		await this.$axios
+		const $this = this;
+		await $this.$axios
 			.get(`/player/${data.type}`, {
 				params: data.params
 			})
