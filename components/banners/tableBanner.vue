@@ -117,6 +117,25 @@
 							</template>
 							<span>{{ getApiUrl(item) }}</span>
 						</v-tooltip>
+
+						<v-tooltip top color="orange">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="orange"
+									class="ma-2 white--text"
+									@click="copyApiUrlOfCurrentClient(item)"
+									small
+								>
+									{{ $t("copyYourDomain") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ getApiUrl(item) }}</span>
+						</v-tooltip>
 					</template>
 
 					<!-- Official way to edit column - as per documentation only -->
@@ -510,6 +529,10 @@
 
 			getApiUrl(item) {
 				return `${process.env.API_URL}image/banner/${item.uniqueId}`;
+			},
+
+			copyApiUrlOfCurrentClient(item) {
+				return `${window.location.origin}image/banner/${item.uniqueId}`;
 			},
 
 			copyApiUrl(item) {

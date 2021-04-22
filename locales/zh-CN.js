@@ -430,5 +430,6 @@ export default async (context, locale) => {
 		loginIpPool: '登录IP池',
 		viewedBanners: '已查看的横幅',
 		clickedBanners: '点击的横幅',
+		copyYourDomain: '复制您的网域',
 	};
 };

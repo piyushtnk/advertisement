@@ -435,5 +435,6 @@ export default async (context, locale) => {
 		loginIpPool: 'Login IP Pool',
 		viewedBanners: 'Viewed Banners',
 		clickedBanners: 'Clicked Banners',
+		copyYourDomain: 'Copy Your Domain',
 	};
 };
