@@ -69,7 +69,7 @@
 							<a :href="findImage(item)" target="_blank">
 								<v-img
 									:src="findImage(item)"
-									height="auto"
+									height="100"
 									width="300"
 									class="grey lighten-2"
 								/>
