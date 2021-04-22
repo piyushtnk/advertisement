@@ -144,6 +144,8 @@
 			headers() {
 				return [
 					// { text: "ASN", value: "asn" },
+					{ text: this.$t("exactBannerId"), value: "bannerid" },
+					{ text: this.$t("advertisementSource"), value: "bannerSource" },
 					{ text: this.$t("city"), value: "city" },
 					{ text: this.$t("continentCode"), value: "continent_code" },
 					{ text: this.$t("country"), value: "country" },
@@ -195,7 +197,8 @@
 			},
 		},
 		watch: {
-			ipClients() {
+			ipClients(value) {
+				console.log(value);
 				this.loading = false;
 			},
 		},
