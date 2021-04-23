@@ -70,7 +70,7 @@
 								<v-img
 									:src="findImage(item)"
 									height="100"
-									width="500"
+									width="300"
 									class="grey lighten-2"
 								/>
 							</a>
@@ -163,6 +163,28 @@
 							<span>{{
 								getThirdPartyUrl("/api/image/banner/", item)
 							}}</span>
+						</v-tooltip>
+					</template>
+
+					<!-- Official way to edit column - as per documentation only -->
+					<template v-slot:item.api="{ item }">
+						<v-tooltip top color="primary">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="blue"
+									class="ma-2 white--text"
+									@click="copyFindImage(item)"
+									small
+								>
+									{{ $t("copy") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ findImage(item) }}</span>
 						</v-tooltip>
 					</template>
 
@@ -487,6 +509,13 @@
 						text: this.$t("apiLink"),
 						value: "apiLink",
 						sortable: false,
+					},
+					{
+						text: this.$t("containerLink"),
+						value: "api",
+						sortable: false,
+						width: "10px",
+						fixed: true,
 					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
