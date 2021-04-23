@@ -151,7 +151,8 @@ export default {
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
-		extend(config, { isClient }) {
+		extend(config, { isClient, isDev }) {
+			// Client configuration 
 			if (isClient) {
 				config.externals = function (context, request, callback) {
 					if (/xlsx|canvg|pdfmake/.test(request)) {
@@ -160,6 +161,16 @@ export default {
 					callback();
 				}
 			}
+			// Development configuration
+			if (isDev) {
+				config.mode = 'development'
+			}
+
+			// Normal config
+			config.module.rules.push({
+				test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+				loader: 'file-loader'
+			})
 		}
 	}
 };
