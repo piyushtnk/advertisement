@@ -151,9 +151,9 @@ export default {
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
-		extend(config, { isClient, isDev }) {
+		extend(config, ctx) {
 			// Client configuration 
-			if (isClient) {
+			if (ctx.isClient) {
 				config.externals = function (context, request, callback) {
 					if (/xlsx|canvg|pdfmake/.test(request)) {
 						return callback(null, "commonjs " + request);
@@ -162,7 +162,7 @@ export default {
 				}
 			}
 			// Development configuration
-			if (isDev) {
+			if (ctx.isDev) {
 				config.mode = 'development'
 			}
 
@@ -171,6 +171,10 @@ export default {
 				test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
 				loader: 'file-loader'
 			})
+
+			if (ctx && ctx.isClient) {
+				config.optimization.splitChunks.maxSize = 51200
+			}
 		},
 	}
 };
