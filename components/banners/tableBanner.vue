@@ -532,11 +532,11 @@
 			},
 
 			getApiUrlOfCurrentClient(item) {
-				return `${window.location.origin}/image/banner/${item.uniqueId}`;
+				return `${window.location.origin}/api/image/banner/${item.uniqueId}`;
 			},
 
 			copyApiUrlOfCurrentClient(item) {
-				const text = `${window.location.origin}/image/banner/${item.uniqueId}`;
+				const text = `${window.location.origin}/api/image/banner/${item.uniqueId}`;
 				this.copyToClipboard(text);
 			},
 
