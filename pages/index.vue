@@ -31,7 +31,10 @@
 			// } else {
 			// 	this.$router.push(this.localePath("/auth"));
 			// }
-			if (window.location.host === "b91vip.com") {
+			if (
+				window.location.host === "b91vip.com" ||
+				window.location.host === "www.b91vip.com"
+			) {
 				return window.location.replace("http://www.b91.com");
 			}
 		},
