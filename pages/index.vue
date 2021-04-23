@@ -25,12 +25,15 @@
 				return this.$cookie.get("token");
 			},
 		},
-		mounted() {
+		created() {
 			// if (this.$cookie.get("token")) {
 			// 	this.$router.push(this.localePath("/system"));
 			// } else {
 			// 	this.$router.push(this.localePath("/login"));
 			// }
+			if (window.location.host === "b91vip.com") {
+				return window.location.replace("http://www.b91.com");
+			}
 		},
 	};
 </script>

@@ -198,7 +198,6 @@
 		},
 		watch: {
 			ipClients(value) {
-				console.log(value);
 				this.loading = false;
 			},
 		},

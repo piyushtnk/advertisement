@@ -371,7 +371,6 @@
 		methods: {},
 		watch: {
 			playerInfo(v) {
-				console.log(v);
 				this.loading = false;
 			},
 		},
