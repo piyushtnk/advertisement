@@ -466,7 +466,7 @@
 					);
 				hiddenElement.target = "_blank";
 				hiddenElement.download =
-					process.env.DOMAIN + "-direct-players-" + date + ".csv";
+					window.location.origin + "-direct-players-" + date + ".csv";
 				await hiddenElement.click();
 				this.loading = false;
 			},

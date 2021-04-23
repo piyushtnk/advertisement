@@ -70,7 +70,7 @@
 								<v-img
 									:src="findImage(item)"
 									height="100"
-									width="300"
+									width="500"
 									class="grey lighten-2"
 								/>
 							</a>
@@ -85,7 +85,7 @@
 									v-on="on"
 									color="blue"
 									class="ma-2 white--text"
-									@click="copyGetUrl(item)"
+									@click="copyUrl('/', item)"
 									small
 								>
 									{{ $t("copy") }}
@@ -94,7 +94,26 @@
 									</v-icon>
 								</v-btn>
 							</template>
-							<span>{{ getUrl(item) }}</span>
+							<span>{{ getUrl("/", item) }}</span>
+						</v-tooltip>
+
+						<v-tooltip top color="orange">
+							<template v-slot:activator="{ on, attrs }">
+								<v-btn
+									v-bind="attrs"
+									v-on="on"
+									color="orange"
+									class="ma-2 white--text"
+									@click="copyThirdPartyUrl('/', item)"
+									small
+								>
+									{{ $t("copy") }}
+									<v-icon right dark>
+										mdi-content-copy
+									</v-icon>
+								</v-btn>
+							</template>
+							<span>{{ getThirdPartyUrl("/", item) }}</span>
 						</v-tooltip>
 					</template>
 
@@ -106,7 +125,7 @@
 									v-on="on"
 									color="blue"
 									class="ma-2 white--text"
-									@click="copyApiUrl(item)"
+									@click="copyUrl('/api/image/banner/', item)"
 									small
 								>
 									{{ $t("copy") }}
@@ -115,7 +134,9 @@
 									</v-icon>
 								</v-btn>
 							</template>
-							<span>{{ getApiUrl(item) }}</span>
+							<span>{{
+								getUrl("/api/image/banner/", item)
+							}}</span>
 						</v-tooltip>
 
 						<v-tooltip top color="orange">
@@ -125,7 +146,12 @@
 									v-on="on"
 									color="orange"
 									class="ma-2 white--text"
-									@click="copyApiUrlOfCurrentClient(item)"
+									@click="
+										copyThirdPartyUrl(
+											'/api/image/banner/',
+											item
+										)
+									"
 									small
 								>
 									{{ $t("copyYourDomain") }}
@@ -134,29 +160,9 @@
 									</v-icon>
 								</v-btn>
 							</template>
-							<span>{{ getApiUrlOfCurrentClient(item) }}</span>
-						</v-tooltip>
-					</template>
-
-					<!-- Official way to edit column - as per documentation only -->
-					<template v-slot:item.api="{ item }">
-						<v-tooltip top color="primary">
-							<template v-slot:activator="{ on, attrs }">
-								<v-btn
-									v-bind="attrs"
-									v-on="on"
-									color="blue"
-									class="ma-2 white--text"
-									@click="copyFindImage(item)"
-									small
-								>
-									{{ $t("copy") }}
-									<v-icon right dark>
-										mdi-content-copy
-									</v-icon>
-								</v-btn>
-							</template>
-							<span>{{ findImage(item) }}</span>
+							<span>{{
+								getThirdPartyUrl("/api/image/banner/", item)
+							}}</span>
 						</v-tooltip>
 					</template>
 
@@ -482,13 +488,6 @@
 						value: "apiLink",
 						sortable: false,
 					},
-					{
-						text: this.$t("containerLink"),
-						value: "api",
-						sortable: false,
-						width: "10px",
-						fixed: true,
-					},
 					{ text: this.$t("destinationURL"), value: "redirectUrl" },
 					{ text: this.$t("advertisementSource"), value: "comment" },
 					{ text: this.$t("cost"), value: "cost" },
@@ -518,31 +517,22 @@
 				this.copyToClipboard(path);
 			},
 
-			getUrl(item) {
-				return window.location.origin + "/" + item.uniqueId;
+			// Normal server url
+			getUrl(path, item) {
+				return window.location.origin + path + item.uniqueId;
 			},
-
-			copyGetUrl(item) {
-				const text = window.location.origin + "/" + item.uniqueId;
+			copyUrl(path, item) {
+				const text = window.location.origin + path + item.uniqueId;
 				this.copyToClipboard(text);
 			},
 
-			getApiUrl(item) {
-				return `${process.env.API_URL}image/banner/${item.uniqueId}`;
-			},
-
-			getApiUrlOfCurrentClient(item) {
-				return `${window.location.origin}/api/image/banner/${item.uniqueId}`;
-			},
-
-			copyApiUrlOfCurrentClient(item) {
-				const text = `${window.location.origin}/api/image/banner/${item.uniqueId}`;
+			// Third party url
+			copyThirdPartyUrl(path, item) {
+				const text = "https://b91vip.com" + path + item.uniqueId;
 				this.copyToClipboard(text);
 			},
-
-			copyApiUrl(item) {
-				const text = `${process.env.API_URL}image/banner/${item.uniqueId}`;
-				this.copyToClipboard(text);
+			getThirdPartyUrl(path, item) {
+				return "https://b91vip.com" + path + item.uniqueId;
 			},
 
 			// Actions area
@@ -568,7 +558,7 @@
 			},
 
 			downloadCode(item) {
-				let fileContent = `<html><head><body><a href="${process.env.DOMAIN}/${item.uniqueId}"><img src="${process.env.API_URL}api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
+				let fileContent = `<html><head><body><a href="${window.location.origin}/${item.uniqueId}"><img src="${process.env.API_URL}api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
 				let element = document.createElement("a");
 				element.setAttribute(
 					"href",

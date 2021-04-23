@@ -456,7 +456,7 @@
 							);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
-							process.env.DOMAIN + "-reports-" + date + ".csv";
+							window.location.origin + "-reports-" + date + ".csv";
 						hiddenElement.click();
 						this.loading = false;
 					});
@@ -527,7 +527,7 @@
 							);
 						hiddenElement.target = "_blank";
 						hiddenElement.download =
-							process.env.DOMAIN +
+							window.location.origin +
 							"-associated-reports-" +
 							date[0] +
 							".csv";
