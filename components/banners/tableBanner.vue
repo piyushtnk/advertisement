@@ -532,8 +532,7 @@
 			},
 
 			copyApiUrlOfCurrentClient(item) {
-				console.log(window);
-				return `${window.location.origin}image/banner/${item.uniqueId}`;
+				return `${window.location.origin}/image/banner/${item.uniqueId}`;
 			},
 
 			copyApiUrl(item) {
