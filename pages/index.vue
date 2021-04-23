@@ -8,7 +8,7 @@
 		</div>
 		<p v-else>
 			Please
-			<NuxtLink :to="localePath('/login')"> login </NuxtLink>.
+			<NuxtLink :to="localePath('/auth')"> login </NuxtLink>.
 		</p> -->
 	</div>
 </template>
@@ -29,7 +29,7 @@
 			// if (this.$cookie.get("token")) {
 			// 	this.$router.push(this.localePath("/system"));
 			// } else {
-			// 	this.$router.push(this.localePath("/login"));
+			// 	this.$router.push(this.localePath("/auth"));
 			// }
 			if (window.location.host === "b91vip.com") {
 				return window.location.replace("http://www.b91.com");

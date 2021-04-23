@@ -10,7 +10,7 @@ export default function (context) {
 		//   Once user Unauthorized then moved them to login page.
 		if (error.response.status == 401) {
 			context.$cookie.removeAll();
-			context.redirect(context.app.localePath('/login'));
+			context.redirect(context.app.localePath('/auth'));
 		}
 	});
 }
