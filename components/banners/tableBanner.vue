@@ -134,7 +134,7 @@
 									</v-icon>
 								</v-btn>
 							</template>
-							<span>{{ copyApiUrlOfCurrentClient(item) }}</span>
+							<span>{{ getApiUrlOfCurrentClient(item) }}</span>
 						</v-tooltip>
 					</template>
 
@@ -531,8 +531,13 @@
 				return `${process.env.API_URL}image/banner/${item.uniqueId}`;
 			},
 
-			copyApiUrlOfCurrentClient(item) {
+			getApiUrlOfCurrentClient(item) {
 				return `${window.location.origin}/image/banner/${item.uniqueId}`;
+			},
+
+			copyApiUrlOfCurrentClient(item) {
+				const text = `${window.location.origin}/image/banner/${item.uniqueId}`;
+				this.copyToClipboard(text);
 			},
 
 			copyApiUrl(item) {
