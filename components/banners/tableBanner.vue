@@ -134,7 +134,7 @@
 									</v-icon>
 								</v-btn>
 							</template>
-							<span>{{ getApiUrl(item) }}</span>
+							<span>{{ copyApiUrlOfCurrentClient(item) }}</span>
 						</v-tooltip>
 					</template>
 
@@ -532,6 +532,7 @@
 			},
 
 			copyApiUrlOfCurrentClient(item) {
+				console.log(window);
 				return `${window.location.origin}image/banner/${item.uniqueId}`;
 			},
 
