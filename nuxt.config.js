@@ -117,9 +117,9 @@ export default {
 
 		// google tag manager
 		['@nuxtjs/gtm', {
-			id: process.env.GTM_ID || 'GTM-MLBJTTQ',
+			id: 'GTM-MLBJTTQ',
 			enabled: true, // debug-only version of $gtm during development
-			debug: false,
+			debug: true,
 
 			layer: 'dataLayer',
 			variables: {},
