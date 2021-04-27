@@ -41,6 +41,7 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: '~/plugins/amCharts.js', ssr: false },
+		{ src: '~/plugins/gtm.js', mode: 'client' },
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
