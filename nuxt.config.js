@@ -41,6 +41,7 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: '~/plugins/amCharts.js', ssr: false },
+		{ src: '~/plugins/gtm.js' }
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
@@ -113,6 +114,15 @@ export default {
 		['@nuxtjs/moment', {
 			defaultTimezone: 'Asia/Singapore'
 		}],
+
+		// Google Tag Manager
+		['@nuxtjs/gtm', {
+			id: process.env.GTM,
+			enabled: true,
+			scriptDefer: true,
+			debug: true,
+			pageTracking: true,
+		}]
 	],
 
 
