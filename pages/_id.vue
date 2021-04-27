@@ -84,41 +84,32 @@
 							} else if ($this.clientData.info.isFromTablet()) {
 								deviceName = "Tablet";
 							}
-							$this.$axios
-								.post("/client/" + $this.$route.params.id, {
-									cDeviceType: $this.isNull(
-										$this.clientData.info.deviceType()
-									),
-									cBrowser: $this.isNull(
-										$this.clientData.info.browser()
-									),
-									cBrowserDetail: $this.isNull(
-										$this.clientData.info.browserVersion()
-									),
-									cBrowserVendor: $this.isNull(
-										$this.clientData.info.browserVendor()
-									),
-									cDeviceName: deviceName,
-									cScreen: $this.isNull($this.screenSize),
-									cOriginalScreen: $this.isNull(
-										$this.screenSizeMax
-									),
-									cLanguage: $this.isNull($this.language),
-									cDeviceId: $this.isNull(
-										$this.clientData.deviceId
-									),
-									cOs: $this.isNull($this.clientData.info.os()),
-									cOrigin: "", // Decrypted with fingerprintJs@v2.0
-								})
-								.then(function (response) {
-									window.location.href =
-										response.data.data.redirectUrl;
-								})
-								.catch(function (error) {
-									throw error.response
-										? error.response.data.error
-										: error;
-								});
+
+							// Sending data to backend.
+							$this.$axios.post("/client/" + $this.$route.params.id, {
+								cDeviceType: $this.isNull(
+									$this.clientData.info.deviceType()
+								),
+								cBrowser: $this.isNull(
+									$this.clientData.info.browser()
+								),
+								cBrowserDetail: $this.isNull(
+									$this.clientData.info.browserVersion()
+								),
+								cBrowserVendor: $this.isNull(
+									$this.clientData.info.browserVendor()
+								),
+								cDeviceName: deviceName,
+								cScreen: $this.isNull($this.screenSize),
+								cOriginalScreen: $this.isNull($this.screenSizeMax),
+								cLanguage: $this.isNull($this.language),
+								cDeviceId: $this.isNull($this.clientData.deviceId),
+								cOs: $this.isNull($this.clientData.info.os()),
+								cOrigin: "", // Decrypted with fingerprintJs@v2.0
+							});
+
+							// Forwarding request.
+							window.location.href = response.data.data.redirectUrl;
 						}
 					})
 					.catch(function (error) {

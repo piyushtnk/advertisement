@@ -41,7 +41,6 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: '~/plugins/amCharts.js', ssr: false },
-		{ src: '~/plugins/gtm' }
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
@@ -114,31 +113,6 @@ export default {
 		['@nuxtjs/moment', {
 			defaultTimezone: 'Asia/Singapore'
 		}],
-
-		// google tag manager
-		['@nuxtjs/gtm', {
-			id: 'GTM-MLBJTTQ',
-			enabled: true, // debug-only version of $gtm during development
-			debug: true,
-
-			layer: 'dataLayer',
-			variables: {},
-
-			pageTracking: true,
-			pageViewEventName: 'nuxtRoute',
-
-			autoInit: true,
-			respectDoNotTrack: true,
-
-			scriptId: 'gtm-script',
-			scriptDefer: true,
-			scriptURL: 'https://www.googletagmanager.com/gtm.js',
-			crossOrigin: false,
-
-			noscript: true,
-			noscriptId: 'gtm-noscript',
-			noscriptURL: 'https://www.googletagmanager.com/ns.html'
-		}]
 	],
 
 
