@@ -7,13 +7,11 @@
 		data() {
 			return {};
 		},
-		middleware(ctx) {
-			ctx.$gtm.push({ event: "ssr" });
-		},
 		computed: {},
 		created() {
 			// Google Tag Manager push event
-			// this.$gtm.push({ event: "ssr" });
+			this.$gtm.init(process.env.GTM);
+			this.$gtm.push({ event: "ssr" });
 
 			// If b91.com comes in.
 			if (
