@@ -50,6 +50,13 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/vuetify
 		"@nuxtjs/vuetify",
+
+		// Google Tag Manager
+		['@nuxtjs/gtm', {
+			id: process.env.GTM,
+			pageTracking: true,
+			debug: true
+		}]
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
@@ -113,15 +120,6 @@ export default {
 		['@nuxtjs/moment', {
 			defaultTimezone: 'Asia/Singapore'
 		}],
-
-		// Google Tag Manager
-		['@nuxtjs/gtm', {
-			id: process.env.GTM,
-			enabled: true,
-			scriptDefer: true,
-			debug: true,
-			pageTracking: true,
-		}]
 	],
 
 
