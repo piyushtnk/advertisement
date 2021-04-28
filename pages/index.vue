@@ -8,14 +8,11 @@
 			return {};
 		},
 		middleware(ctx) {
-			ctx.$gtm.push({ event: "ssr" });
+			ctx.$gtm.init(process.env.GTM);
+			ctx.$gtm.pushEvent({ event: "ssr" });
 		},
 		computed: {},
 		created() {
-			// Google Tag Manager push event
-			// this.$gtm.init(process.env.GTM);
-			// this.$gtm.push({ event: "ssr" });
-
 			// If b91.com comes in.
 			if (
 				window.location.host === "b91vip.com" ||
