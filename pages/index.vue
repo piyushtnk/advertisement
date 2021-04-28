@@ -8,7 +8,6 @@
 			return {};
 		},
 		middleware(ctx) {
-			ctx.$gtm.init(process.env.GTM);
 			ctx.$gtm.pushEvent({ event: "ssr" });
 		},
 		computed: {},

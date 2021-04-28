@@ -123,12 +123,6 @@ export default {
 		}]
 	],
 
-	publicRuntimeConfig: {
-		gtm: {
-			id: process.env.GTM
-		}
-	},
-
 	// Content module configuration (https://go.nuxtjs.dev/config-content)
 	content: {},
 
