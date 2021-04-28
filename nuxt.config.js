@@ -41,7 +41,7 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: '~/plugins/amCharts.js', ssr: false },
-		{ src: '~/plugins/gtm.js', mode: 'client' },
+		{ src: '~/plugins/gtm.js' }
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)
@@ -51,13 +51,6 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/vuetify
 		"@nuxtjs/vuetify",
-
-		// Google Tag Manager
-		['@nuxtjs/gtm', {
-			id: process.env.GTM,
-			pageTracking: true,
-			debug: true
-		}]
 	],
 
 	// Modules (https://go.nuxtjs.dev/config-modules)
@@ -121,7 +114,22 @@ export default {
 		['@nuxtjs/moment', {
 			defaultTimezone: 'Asia/Singapore'
 		}],
+
+		// Google Tag Manager
+		['@nuxtjs/gtm', {
+			debug: process.env.NODE_ENV == "development" ? true : false,
+			enabled: true,
+			id: process.env.GTM,
+			pageTracking: true,
+		}]
 	],
+
+	// Public run time configuration
+	publicRuntimeConfig: {
+		gtm: {
+			id: process.env.GTM
+		}
+	},
 
 
 	// Content module configuration (https://go.nuxtjs.dev/config-content)
