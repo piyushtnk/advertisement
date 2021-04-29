@@ -31,7 +31,17 @@ export default {
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{ hid: "description", name: "description", content: "Analytics - Advertisement system panel" }
 		],
-		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+		link: [
+			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+			{
+				rel: 'stylesheet',
+				href: 'https://fonts.googleapis.com/css2?family=Anton&display=swap'
+			},
+			{
+				rel: 'stylesheet',
+				href: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'
+			}
+		]
 	},
 
 	// Global CSS (https://go.nuxtjs.dev/config-css)
@@ -139,7 +149,7 @@ export default {
 					info: colors.teal.lighten1,
 					warning: colors.amber.base,
 					error: colors.deepOrange.accent4,
-					success: colors.green.accent3
+					success: colors.green.accent3,
 				},
 				light: {
 					primary: colors.blue.darken2,
@@ -148,9 +158,15 @@ export default {
 					info: colors.teal.lighten1,
 					warning: colors.amber.base,
 					error: colors.deepOrange.accent4,
-					success: colors.green.accent3
+					success: colors.green.accent3,
 				},
-			}
+			},
+			options: {
+				themeCache: {
+					get: key => localStorage.getItem(key),
+					set: (key, value) => localStorage.setItem(key, value),
+				},
+			},
 		}
 	},
 

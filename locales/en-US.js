@@ -436,5 +436,21 @@ export default async (context, locale) => {
 		viewedBanners: 'Viewed Banners',
 		clickedBanners: 'Clicked Banners',
 		copyYourDomain: 'Copy Your Domain',
+
+		// Landing page
+		register: 'Register',
+		login: 'Login',
+		vipLink: 'Vip Link',
+		currentPromotions: 'Current Promotions',
+		viewAll: 'View All',
+		bonusOnEachDeposit: 'Bonus On Each Deposit',
+		customerSupport: '24/7 Customer Support',
+		customerService: 'Customer Service',
+		online: 'Online',
+		zalo: 'Zalo',
+		agent: 'Agent',
+		zaloB: 'Zalo B',
+		extraWeeklyBonus: 'Extra Weekly Bonus',
+		b91AnswerQuestion: 'B91 Answer Question',
 	};
 };
