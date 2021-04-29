@@ -190,14 +190,14 @@ export default {
 			}
 
 			// Normal config
-			config.module.rules.push({
-				test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-				loader: 'file-loader'
-			})
+			// config.module.rules.push({
+			// 	test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+			// 	loader: 'file-loader'
+			// })
 
-			if (ctx && ctx.isClient) {
-				config.optimization.splitChunks.maxSize = 51200
-			}
+			// if (ctx && ctx.isClient) {
+			// 	config.optimization.splitChunks.maxSize = 51200
+			// }
 		},
 	}
 };
