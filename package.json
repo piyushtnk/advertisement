@@ -1,6 +1,6 @@
 {
   "name": "advertisement",
-  "version": "2.11.8",
+  "version": "2.13.1",
   "private": true,
   "scripts": {
     "dev": "nuxt",
