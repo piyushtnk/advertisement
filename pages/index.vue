@@ -39,54 +39,15 @@
 
 			<!-- Links buttons -->
 			<v-row class="mt-10">
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 1
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 2
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 3
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 4
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 5
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 6
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 7
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 8
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 9
-					</v-btn>
-				</v-col>
-				<v-col>
-					<v-btn class="landing-btn-link" tile block x-large>
-						{{ $t("vipLink") }} 10
+				<v-col v-for="(n, i) in 10" :key="i">
+					<v-btn
+						class="landing-btn-link"
+						tile
+						block
+						x-large
+						:href="`http://www.b91vip${n}.com/`"
+					>
+						{{ $t("vipLink") }} {{ n }}
 					</v-btn>
 				</v-col>
 			</v-row>
