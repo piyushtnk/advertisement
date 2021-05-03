@@ -299,6 +299,47 @@
 						</v-card>
 					</v-col>
 
+					<!-- Unique login IP pool -->
+					<v-col cols="12">
+						<v-card outlined>
+							<v-card-title>
+								<v-row>
+									<v-col cols="4">
+										{{ $t("loginIpPool") }}
+									</v-col>
+									<v-col cols="4" offset-lg="4">
+										<v-text-field
+											v-model="searchIPPool"
+											append-icon="mdi-magnify"
+											label="Search"
+											single-line
+											hide-details
+										></v-text-field>
+									</v-col>
+								</v-row>
+							</v-card-title>
+							<v-card-text>
+								<v-data-table
+									dense
+									:headers="headersIPPool"
+									:items="uniqueIpPool"
+									:search="searchIPPool"
+									item-key="logintime"
+								>
+									<template
+										v-slot:[`item.logintime`]="{ item }"
+									>
+										{{
+											$moment(item.logintime).format(
+												"YYYY-MM-DD HH:mm:ss"
+											)
+										}}
+									</template>
+								</v-data-table>
+							</v-card-text>
+						</v-card>
+					</v-col>
+
 					<!-- Views -->
 					<v-col cols="12">
 						<SimpleDataTable
@@ -351,7 +392,7 @@
 			},
 			headersViews() {
 				return [
-					{ text: this.$t("exactBannerId"), value: "bannerid" },
+					{ text: this.$t("advertisementSource"), value: "bannerid" },
 					{ text: this.$t("ip"), value: "ip" },
 					{ text: this.$t("city"), value: "city" },
 					{ text: this.$t("country"), value: "country" },
@@ -360,12 +401,18 @@
 			},
 			headersClicks() {
 				return [
-					{ text: this.$t("exactBannerId"), value: "cBannerId" },
+					{ text: this.$t("advertisementSource"), value: "cBannerId" },
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("origin"), value: "cOrigin" },
 					{ text: this.$t("device"), value: "cOs" },
 					{ text: this.$t("createdAt"), value: "createdAt" },
 				];
+			},
+			uniqueIpPool() {
+				return this.findUniqueObjectFromArray(
+					this.playerInfo.loginip.loginIpPool,
+					"ip"
+				);
 			},
 		},
 		methods: {},

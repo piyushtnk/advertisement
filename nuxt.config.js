@@ -2,14 +2,12 @@ import colors from "vuetify/es5/util/colors";
 // require('dotenv').config();
 
 const env = {
-	API_URL: process.env.API_URL,
 	CLOUD_URL: process.env.CLOUD_URL
 };
 
 export default {
 	// Environment variable
 	env: {
-		API_URL: env.API_URL,
 		CONTACT_DEV: "Something went wrong, contact your developer.",
 		// IP_API: '48770181ed644728bb63657058b35289'
 	},
@@ -33,14 +31,7 @@ export default {
 		],
 		link: [
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-			{
-				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css2?family=Anton&display=swap'
-			},
-			{
-				rel: 'stylesheet',
-				href: 'https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap'
-			}
+
 		]
 	},
 
@@ -67,7 +58,7 @@ export default {
 		// https://go.nuxtjs.dev/axios
 		// Axios module configuration (https://go.nuxtjs.dev/config-axios)
 		["@nuxtjs/axios", {
-			baseURL: env.API_URL,
+			baseURL: process.env.API_URL,
 			debug: process.env.NODE_ENV == "development" ? true : false,
 			headers: {
 				Accept: "application/json",

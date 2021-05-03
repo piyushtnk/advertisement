@@ -117,6 +117,10 @@
 							:loading="loading"
 							:footer-props="footerProps"
 						>
+							<template v-slot:[`item.platform`]="{ item }">
+								{{ item.device_vendor }}
+								({{ item.platform }}/{{ item.os }})
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -146,6 +150,7 @@
 					// { text: "ASN", value: "asn" },
 					{ text: this.$t("exactBannerId"), value: "bannerid" },
 					{ text: this.$t("advertisementSource"), value: "bannerSource" },
+					{ text: this.$t("origin"), value: "origin" },
 					{ text: this.$t("city"), value: "city" },
 					{ text: this.$t("continentCode"), value: "continent_code" },
 					{ text: this.$t("country"), value: "country" },
@@ -154,7 +159,7 @@
 					{ text: this.$t("currencyName"), value: "currency_name" },
 					{ text: this.$t("europeanUnion"), value: "eu" },
 					{ text: this.$t("ip"), value: "ip" },
-					{ text: this.$t("languages"), value: "languages" },
+					{ text: this.$t("platform"), value: "platform" },
 					{ text: this.$t("latitude"), value: "latitude" },
 					{ text: this.$t("longitude"), value: "latitude" },
 					{ text: this.$t("organization"), value: "org" },
@@ -176,7 +181,6 @@
 					{ text: this.$t("currencyName"), value: "currency_name" },
 					{ text: this.$t("europeanUnion"), value: "eu" },
 					{ text: this.$t("ip"), value: "ip" },
-					{ text: this.$t("languages"), value: "languages" },
 					{ text: this.$t("latitude"), value: "latitude" },
 					{ text: this.$t("longitude"), value: "latitude" },
 					{ text: this.$t("organization"), value: "org" },

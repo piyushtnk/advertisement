@@ -75,6 +75,17 @@ export default {
 			}
 		},
 
+		// Unique Objects from array
+		findUniqueObjectFromArray(array, uniqueKey) {
+			const unique = array.filter(
+				(elem, index) =>
+					array.findIndex(
+						(obj) => obj[uniqueKey] === elem[uniqueKey]
+					) === index
+			);
+			return unique;
+		}
+
 	},
 	watch: {}
 }
