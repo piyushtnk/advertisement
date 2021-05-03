@@ -305,7 +305,7 @@
 							<v-card-title>
 								<v-row>
 									<v-col cols="4">
-										{{ $t("loginIpPool") }}
+										{{ $t("uniqueLoginIpPool") }}
 									</v-col>
 									<v-col cols="4" offset-lg="4">
 										<v-text-field

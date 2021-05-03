@@ -452,5 +452,8 @@ export default async (context, locale) => {
 		zaloB: 'Zalo B',
 		extraWeeklyBonus: 'Extra Weekly Bonus',
 		b91AnswerQuestion: 'B91 Answer Question',
+
+		uniqueLoginIpPool: 'Unique Login IP Pool',
+		platform: 'Platform'
 	};
 };

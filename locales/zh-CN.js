@@ -447,5 +447,8 @@ export default async (context, locale) => {
 		zaloB: 'Zalo B',
 		extraWeeklyBonus: '每周额外奖金',
 		b91AnswerQuestion: 'B91回答问题',
+
+		uniqueLoginIpPool: '唯一登录IP池',
+		platform: '平台'
 	};
 };
