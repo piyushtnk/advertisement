@@ -49,10 +49,8 @@ const mutations = {
 	},
 	SET_LAYOUT_SNACKBAR_TEXT(state, text) {
 		state.layout.snackbarText = text;
+		state.layout.snackbarVisible = true;
 	},
-	SET_LAYOUT_SNACKBAR_VISIBLE(state, type) {
-		state.layout.snackbarVisible = type;
-	}
 };
 
 // Getters
