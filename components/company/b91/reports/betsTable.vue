@@ -119,7 +119,7 @@
 					<v-card-text>
 						<div class="display-1">
 							{{ $t("totalRolling") }} ({{
-								staticNumberFormat(bets.total)
+								numberFormat(bets.total)
 							}})
 						</div>
 					</v-card-text>
@@ -132,7 +132,7 @@
 					<v-card-text>
 						<div class="display-1">
 							{{ $t("profitForecast") }} ({{
-								staticNumberFormat((bets.total / 100) * 5)
+								numberFormat((bets.total / 100) * 5)
 							}})
 						</div>
 					</v-card-text>
