@@ -228,8 +228,8 @@ export default {
 					this.date[0] = this.$moment().startOf('week').format('YYYY-MM-DD');
 					break;
 				case 4:
-					this.date[0] = this.$moment().subtract(1, 'weeks').startOf('week').format('YYYY-MM-DD');
-					this.date[0] = this.$moment().subtract(1, 'weeks').endOf('week').format('YYYY-MM-DD');
+					this.date[0] = this.$moment().subtract(7, 'days').startOf('week').format('YYYY-MM-DD');
+					this.date[0] = this.$moment().subtract(7, 'days').endOf('week').format('YYYY-MM-DD');
 					break;
 				case 5:
 					this.date[0] = this.$moment().startOf('month').format('YYYY-MM-DD');

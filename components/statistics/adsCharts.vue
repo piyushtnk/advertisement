@@ -7,7 +7,6 @@
 					class="mx-auto"
 					:loading="loading"
 					:loader-height="7"
-					shaped
 					outlined
 				>
 					<v-card-text style="background-color: #fdfdfd">
@@ -172,6 +171,6 @@
 	#chartdiv {
 		width: 100%;
 		height: 50vh;
-		background-color: "#FDFDFD";
+		/* background-color: "#FDFDFD"; */
 	}
 </style>

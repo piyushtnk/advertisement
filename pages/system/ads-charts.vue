@@ -36,18 +36,10 @@
 								:locale="$t('localeType')"
 							>
 								<v-spacer></v-spacer>
-								<v-btn
-									text
-									color="primary"
-									@click="modal = false"
-								>
+								<v-btn text @click="modal = false">
 									{{ $t("cancel") }}
 								</v-btn>
-								<v-btn
-									text
-									color="primary"
-									@click="$refs.dialog.save(date)"
-								>
+								<v-btn text @click="$refs.dialog.save(date)">
 									{{ $t("ok") }}
 								</v-btn>
 							</v-date-picker>

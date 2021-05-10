@@ -142,6 +142,10 @@
 								{{ numberFormat(parseInt(item.withdrawalamt)) }}
 							</template>
 
+							<template v-slot:[`item.bonus`]="{ item }">
+								{{ numberFormat(parseInt(item.bonus)) }}
+							</template>
+
 							<template
 								v-slot:[`item.actualwithdrawalamt`]="{ item }"
 							>
@@ -223,6 +227,7 @@
 					{ text: this.$t("name"), value: "firstname" },
 					{ text: this.$t("group"), value: "groupname" },
 					{ text: this.$t("withdrawalAmount"), value: "withdrawalamt" },
+					{ text: this.$t("bonus"), value: "bonus" },
 					{ text: this.$t("actualAmount"), value: "paidamt" },
 					{
 						text: this.$t("withdrawalChannel"),

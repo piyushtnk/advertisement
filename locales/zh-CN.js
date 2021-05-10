@@ -449,6 +449,10 @@ export default async (context, locale) => {
 		b91AnswerQuestion: 'B91回答问题',
 
 		uniqueLoginIpPool: '唯一登录IP池',
-		platform: '平台'
+		platform: '平台',
+		bonus: '奖金',
+		summary: '概括',
+		totalRolling: '总滚动',
+		profitForecast: '盈利预测'
 	};
 };

@@ -23,11 +23,11 @@ export default {
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		titleTemplate: "%s - System Panel",
-		title: "Advertisement",
+		title: "999.money",
 		meta: [
 			{ charset: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
-			{ hid: "description", name: "description", content: "Analytics - Advertisement system panel" }
+			{ hid: "description", name: "description", content: "999.money - Analytics custom advertisement system panel" }
 		],
 		link: [
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -121,7 +121,21 @@ export default {
 			enabled: true,
 			id: process.env.GTM,
 			pageTracking: true,
-		}]
+		}],
+
+		// Memory watch
+		['nuxt-memwatch', {
+			graph: true,
+			graphSetup(setup) {
+				setup.metrics.malloc = {
+					aggregator: 'avg',
+					color: 'cyan'
+				}
+			},
+			graphAddMetric(turtleGraph, stats) {
+				turtleGraph.metric('my metrics', 'malloc').push(stats.malloced_memory)
+			}
+		}],
 	],
 
 	// Content module configuration (https://go.nuxtjs.dev/config-content)

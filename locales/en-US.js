@@ -454,6 +454,10 @@ export default async (context, locale) => {
 		b91AnswerQuestion: 'B91 Answer Question',
 
 		uniqueLoginIpPool: 'Unique Login IP Pool',
-		platform: 'Platform'
+		platform: 'Platform',
+		bonus: 'Bonus',
+		summary: 'Summary',
+		totalRolling: 'Total Rolling',
+		profitForecast: 'Profit Forecast'
 	};
 };

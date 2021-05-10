@@ -30,6 +30,8 @@ const actions = {
 				}).then((playerCountResponse) => {
 					value.directRegisteredPlayersCount = playerCountResponse.data.data.allPlayersCount;
 					value.firstDepositCountOfDirectPlayers = playerCountResponse.data.data.firstDepositCount;
+					value.totalDepositCount = playerCountResponse.data.data.totalDepositCount;
+					value.totalDepositValue = playerCountResponse.data.data.totalDepositValue;
 				});
 
 				// For calculating associated registered players

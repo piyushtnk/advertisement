@@ -223,6 +223,19 @@
 						</v-chip>
 					</template>
 
+					<!-- Deposit Count -->
+					<template v-slot:item.totalDepositCount="{ item }">
+						<v-chip outlined class="ma-2" color="success">
+							{{ staticNumberFormat(item.totalDepositCount) }}
+						</v-chip>
+					</template>
+					<!-- Deposit Value -->
+					<template v-slot:item.totalDepositValue="{ item }">
+						<v-chip outlined class="ma-2" color="success">
+							{{ staticNumberFormat(item.totalDepositValue) }}
+						</v-chip>
+					</template>
+
 					<!-- Cost -->
 					<template v-slot:item.costEffectivenessResponse="{ item }">
 						<v-chip
@@ -382,6 +395,16 @@
 					{
 						text: this.$t("firstDepositCountAP"),
 						value: "firstDepositCountOfAssociatedPlayers",
+						sortable: false,
+					},
+					{
+						text: this.$t("totalDepositCount"),
+						value: "totalDepositCount",
+						sortable: false,
+					},
+					{
+						text: this.$t("totalDepositValue"),
+						value: "totalDepositValue",
 						sortable: false,
 					},
 					{
