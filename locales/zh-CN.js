@@ -453,6 +453,9 @@ export default async (context, locale) => {
 		bonus: '奖金',
 		summary: '概括',
 		totalRolling: '总滚动',
-		profitForecast: '盈利预测'
+		profitForecast: '盈利预测',
+		excludeZeroDeposits: '排除0笔存款',
+		balance: '平衡',
+
 	};
 };

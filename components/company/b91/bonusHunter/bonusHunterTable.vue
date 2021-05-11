@@ -117,6 +117,75 @@
 							:loading="loading"
 							:footer-props="footerProps"
 						>
+							<template v-slot:[`item.balance`]="{ item }">
+								{{ numberFormat(convertToVND(item.balance)) }}
+							</template>
+							<template v-slot:[`item.cashbackbonus`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.cashbackbonus)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.depositavg`]="{ item }">
+								{{
+									numberFormat(convertToVND(item.depositavg))
+								}}
+							</template>
+							<template v-slot:[`item.depositbonus`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.depositbonus)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.totalbetamount`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.totalbetamount)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.totalbonus`]="{ item }">
+								{{
+									numberFormat(convertToVND(item.totalbonus))
+								}}
+							</template>
+
+							<template v-slot:[`item.totaldeposit`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.totaldeposit)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.totalresult`]="{ item }">
+								{{
+									numberFormat(convertToVND(item.totalresult))
+								}}
+							</template>
+							<template v-slot:[`item.totalwinloss`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.totalwinloss)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.totalwithdraw`]="{ item }">
+								{{
+									numberFormat(
+										convertToVND(item.totalwithdraw)
+									)
+								}}
+							</template>
+							<template v-slot:[`item.validbet`]="{ item }">
+								{{ numberFormat(item.validbet) }}
+							</template>
+							<template v-slot:[`item.withdrawavg`]="{ item }">
+								{{
+									numberFormat(convertToVND(item.withdrawavg))
+								}}
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>
@@ -128,10 +197,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
+	import Global from "~/mixins/global";
 
 	export default {
 		name: "BonusHunterTable",
-		mixins: [Variables],
+		mixins: [Variables, Global],
 		data() {
 			return {
 				sortBy: "id|desc",

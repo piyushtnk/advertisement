@@ -162,6 +162,9 @@
 									isNull(item.lastname)
 								}}
 							</template>
+							<template v-slot:[`item.betamount`]="{ item }">
+								{{ numberFormat(convertToVND(item.betamount)) }}
+							</template>
 						</v-data-table>
 					</v-card-text>
 				</v-card>

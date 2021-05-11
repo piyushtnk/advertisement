@@ -139,11 +139,21 @@
 							</template>
 
 							<template v-slot:[`item.withdrawalamt`]="{ item }">
-								{{ numberFormat(parseInt(item.withdrawalamt)) }}
+								{{
+									numberFormat(
+										parseInt(
+											convertToVND(item.withdrawalamt)
+										)
+									)
+								}}
 							</template>
 
 							<template v-slot:[`item.bonus`]="{ item }">
-								{{ numberFormat(parseInt(item.bonus)) }}
+								{{
+									numberFormat(
+										convertToVND(parseInt(item.bonus))
+									)
+								}}
 							</template>
 
 							<template
@@ -151,7 +161,9 @@
 							>
 								{{
 									numberFormat(
-										parseInt(item.actualwithdrawalamt)
+										convertToVND(
+											parseInt(item.actualwithdrawalamt)
+										)
 									)
 								}}
 							</template>
@@ -178,14 +190,18 @@
 									<th>
 										{{
 											numberFormat(
-												withdrawals.totalWithdrawalAmount
+												convertToVND(
+													withdrawals.totalWithdrawalAmount
+												)
 											)
 										}}
 									</th>
 									<th>
 										{{
 											numberFormat(
-												withdrawals.actualWithdrawalAmount
+												convertToVND(
+													withdrawals.actualWithdrawalAmount
+												)
 											)
 										}}
 									</th>

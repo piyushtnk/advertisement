@@ -458,6 +458,8 @@ export default async (context, locale) => {
 		bonus: 'Bonus',
 		summary: 'Summary',
 		totalRolling: 'Total Rolling',
-		profitForecast: 'Profit Forecast'
+		profitForecast: 'Profit Forecast',
+		excludeZeroDeposits: 'Exclude 0 Deposits',
+		balance: 'Balance',
 	};
 };

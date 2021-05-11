@@ -168,7 +168,11 @@
 							</template>
 
 							<template v-slot:[`item.depositamt`]="{ item }">
-								{{ numberFormat(parseInt(item.depositamt)) }}
+								{{
+									numberFormat(
+										convertToVND(parseInt(item.depositamt))
+									)
+								}}
 							</template>
 
 							<template
@@ -176,7 +180,9 @@
 							>
 								{{
 									numberFormat(
-										parseInt(item.receiveddepositamt)
+										convertToVND(
+											parseInt(item.receiveddepositamt)
+										)
 									)
 								}}
 							</template>
@@ -215,14 +221,18 @@
 									<th>
 										{{
 											numberFormat(
-												deposit.totalDepositAmount
+												convertToVND(
+													deposit.totalDepositAmount
+												)
 											)
 										}}
 									</th>
 									<th>
 										{{
 											numberFormat(
-												deposit.receivedDepositAmount
+												convertToVND(
+													deposit.receivedDepositAmount
+												)
 											)
 										}}
 									</th>

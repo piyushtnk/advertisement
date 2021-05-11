@@ -82,10 +82,14 @@
 							required
 						></v-text-field>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+				</v-row>
+
+				<!-- filter buttons row -->
+				<v-row align="center">
+					<v-col lg="1" md="3" sm="12">
 						<v-btn
 							color="blue"
-							class="white--text mx-auto"
+							class="white--text"
 							@click="beforeSearchMiddleware"
 							block
 							:loading="loading"
@@ -94,7 +98,7 @@
 							<v-icon right dark> mdi-account-search </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col lg="1" md="3" sm="12">
 						<v-btn
 							color="red"
 							class="white--text"
@@ -106,7 +110,14 @@
 							<v-icon right dark> mdi-trash-can </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-spacer></v-spacer>
+					<v-col lg="1" md="3" sm="12">
+						<v-switch
+							v-model="totalDepositValueLimit"
+							:label="$t('excludeZeroDeposits')"
+						></v-switch>
+					</v-col>
+					<v-col lg="1" md="3" sm="12">
 						<v-btn
 							color="green"
 							class="white--text"
@@ -118,7 +129,7 @@
 							<v-icon right dark> mdi-file </v-icon>
 						</v-btn>
 					</v-col>
-					<v-col cols="12" lg="3" md="3" sm="12">
+					<v-col lg="2" md="3" sm="12">
 						<v-btn
 							color="purple"
 							class="white--text"
@@ -232,7 +243,11 @@
 					<!-- Deposit Value -->
 					<template v-slot:item.totalDepositValue="{ item }">
 						<v-chip outlined class="ma-2" color="success">
-							{{ staticNumberFormat(item.totalDepositValue) }}
+							{{
+								staticNumberFormat(
+									convertToVND(item.totalDepositValue)
+								)
+							}}
 						</v-chip>
 					</template>
 
@@ -246,9 +261,9 @@
 						>
 							{{ $t("costPerDay") }}
 							{{
-								item.costEffectivenessResponse.costPerDay.toFixed(
-									3
-								)
+								convertToVND(
+									item.costEffectivenessResponse.costPerDay
+								).toFixed(3)
 							}}
 							{{ item.costEffectivenessResponse.currency }}
 						</v-chip>
@@ -346,6 +361,7 @@
 			return {
 				defaultFilterDate: 1,
 				loading: false,
+				totalDepositValueLimit: false,
 				sortBy: "id|desc",
 			};
 		},
@@ -428,6 +444,14 @@
 				return path;
 			},
 
+			// Remove 0 entries of totalDepositValue
+			removeTotalDepositValueIsZero() {
+				if (this.totalDepositValueLimit) {
+					this.banners.data = this.banners.data.filter(
+						(item) => item.totalDepositValue > 0
+					);
+				}
+			},
 			// Generate report
 			generateReport() {
 				this.loading = true;
@@ -561,6 +585,7 @@
 		},
 		watch: {
 			banners(value) {
+				this.removeTotalDepositValueIsZero();
 				this.loading = false;
 			},
 			date(value) {
@@ -569,6 +594,9 @@
 				} else {
 					this.reportDisable = true;
 				}
+			},
+			totalDepositValueLimit(value) {
+				this.removeTotalDepositValueIsZero();
 			},
 		},
 	};
