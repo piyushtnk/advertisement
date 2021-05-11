@@ -450,6 +450,8 @@
 					this.banners.data = this.banners.data.filter(
 						(item) => item.totalDepositValue > 0
 					);
+				} else {
+					this.clearSearchFilter(7);
 				}
 			},
 			// Generate report
