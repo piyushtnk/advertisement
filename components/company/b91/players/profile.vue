@@ -392,7 +392,8 @@
 			},
 			headersViews() {
 				return [
-					{ text: this.$t("advertisementSource"), value: "bannerid" },
+					{ text: this.$t("bannerId"), value: "bannerid" },
+					{ text: this.$t("advertisementSource"), value: "bannerSource" },
 					{ text: this.$t("ip"), value: "ip" },
 					{ text: this.$t("city"), value: "city" },
 					{ text: this.$t("country"), value: "country" },
@@ -401,7 +402,8 @@
 			},
 			headersClicks() {
 				return [
-					{ text: this.$t("advertisementSource"), value: "cBannerId" },
+					{ text: this.$t("bannerId"), value: "cBannerId" },
+					{ text: this.$t("advertisementSource"), value: "bannerSource" },
 					{ text: this.$t("ip"), value: "cIp" },
 					{ text: this.$t("origin"), value: "cOrigin" },
 					{ text: this.$t("device"), value: "cOs" },

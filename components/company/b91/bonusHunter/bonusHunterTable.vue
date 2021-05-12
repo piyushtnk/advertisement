@@ -214,7 +214,7 @@
 					// { text: "ASN", value: "asn" },
 					{ text: this.$t("userId"), value: "playerid" },
 					{ text: this.$t("balance"), value: "balance" },
-					{ text: this.$t("bannerId"), value: "bannerid" },
+					{ text: this.$t("firstTimeViewedBannerId"), value: "bannerid" },
 					{ text: this.$t("cashbackBonus"), value: "cashbackbonus" },
 					{ text: this.$t("depositAvg"), value: "depositavg" },
 					{ text: this.$t("cashbackBonus"), value: "depositbonus" },

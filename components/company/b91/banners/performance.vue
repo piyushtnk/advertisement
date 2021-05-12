@@ -451,7 +451,7 @@
 						(item) => item.totalDepositValue > 0
 					);
 				} else {
-					this.clearSearchFilter(7);
+					this.clearSearchFilter(this.defaultFilterDate);
 				}
 			},
 			// Generate report

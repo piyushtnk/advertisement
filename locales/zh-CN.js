@@ -227,8 +227,8 @@ export default async (context, locale) => {
 		},
 
 		firstClickTime: "首次访问时间",
-		bannerId: "首次查看的横幅ID",
-		exactBannerId: "横幅ID",
+		bannerId: "横幅ID",
+		firstTimeViewedBannerId: "首次查看的横幅ID",
 		supportedFormat: "支持格式",
 		auditTime: "审核时间",
 		depositId: "存款 ID",

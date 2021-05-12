@@ -148,7 +148,7 @@
 			headers() {
 				return [
 					// { text: "ASN", value: "asn" },
-					{ text: this.$t("exactBannerId"), value: "bannerid" },
+					{ text: this.$t("firstTimeViewedBannerId"), value: "bannerid" },
 					{ text: this.$t("advertisementSource"), value: "bannerSource" },
 					{ text: this.$t("origin"), value: "origin" },
 					{ text: this.$t("city"), value: "city" },
