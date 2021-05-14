@@ -1,25 +1,15 @@
 import colors from "vuetify/es5/util/colors";
-// require('dotenv').config();
-
-const env = {
-	CLOUD_URL: process.env.CLOUD_URL
-};
 
 export default {
 	// Environment variable
 	env: {
 		CONTACT_DEV: "Something went wrong, contact your developer.",
-		// IP_API: '48770181ed644728bb63657058b35289'
 	},
-	// Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-	ssr: false,
+	ssr: false, // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
 	loading: { color: '#3B8070' },
 	components: true,
 	telemetry: false, // Are you interested in participating.
 
-	/* router: {
-		// middleware: ["authenticate", "notAuthenticate"]		
-	}, */
 	// Global page headers (https://go.nuxtjs.dev/config-head)
 	head: {
 		titleTemplate: "%s - System Panel",
@@ -193,16 +183,6 @@ export default {
 			if (ctx.isDev) {
 				config.mode = 'development'
 			}
-
-			// Normal config
-			// config.module.rules.push({
-			// 	test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-			// 	loader: 'file-loader'
-			// })
-
-			// if (ctx && ctx.isClient) {
-			// 	config.optimization.splitChunks.maxSize = 51200
-			// }
 		},
 	}
 };

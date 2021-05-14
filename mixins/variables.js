@@ -225,7 +225,7 @@ export default {
 					this.date[1] = this.$moment().subtract(1, 'days').format('YYYY-MM-DD');
 					break;
 				case 3:
-					this.date[0] = this.$moment().startOf('week').format('YYYY-MM-DD');
+					this.date[0] = this.$moment().startOf('isoWeek').format('YYYY-MM-DD');
 					break;
 				case 4:
 					this.date[0] = this.$moment().subtract(7, 'days').startOf('week').format('YYYY-MM-DD');
