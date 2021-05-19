@@ -444,7 +444,7 @@
 		mixins: [Variables, Global],
 		data() {
 			return {
-				sortBy: "id|desc",
+				sortBy: "createdate|desc",
 				playersType: 1, // 0 = Other Sources, 1 = Registered Through Banner, 2 = Registered IP viewers but not clicked on banner.
 				vipId: "",
 			};
