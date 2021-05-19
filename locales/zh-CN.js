@@ -431,23 +431,6 @@ export default async (context, locale) => {
 		viewedBanners: '已查看的横幅',
 		clickedBanners: '点击的横幅',
 		copyYourDomain: '复制您的网域',
-
-		// Landing page
-		register: '登记',
-		login: '登录',
-		vipLink: '贵宾链接',
-		currentPromotions: '最新促销',
-		viewAll: '查看全部',
-		bonusOnEachDeposit: '每次存款奖金',
-		customerSupport: '24/7客户支持',
-		customerService: '客户服务',
-		online: '在线的',
-		zalo: 'Zalo',
-		agent: '代理人',
-		zaloB: 'Zalo B',
-		extraWeeklyBonus: '每周额外奖金',
-		b91AnswerQuestion: 'B91回答问题',
-
 		uniqueLoginIpPool: '唯一登录IP池',
 		platform: '平台',
 		bonus: '奖金',
