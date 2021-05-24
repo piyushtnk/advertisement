@@ -782,11 +782,9 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "CounterComponent",
-		mixins: [Global],
 		data() {
 			return {};
 		},

@@ -1,27 +1,27 @@
 // State
 const state = () => ({
-	snackbarText: "Welcome!",
-	snackbarVisible: false,
+	toastContent: {
+		text: '',
+		color: ''
+	},
+	toastStatus: false,
 });
 
 // Actions
 const actions = {
-	setSnackbarText({ commit }, text) {
-		commit("SET_SNACKBAR_TEXT", text);
-		commit("SET_SNACKBAR_VISIBLE", true);
+	setToast({ commit }, obj) {
+		commit("SET_TOAST_CONTENT", { text: obj.text, color: obj.color });
+		commit("SET_TOAST_STATUS", true);
 	},
-	setSnackbarVisible({ commit }, type) {
-		commit("SET_SNACKBAR_VISIBLE", type);
-	}
 };
 
 // Mutations
 const mutations = {
-	SET_SNACKBAR_TEXT(state, text) {
-		state.snackbarText = text;
+	SET_TOAST_CONTENT(state, object) {
+		state.toastContent = object;
 	},
-	SET_SNACKBAR_VISIBLE(state, type) {
-		state.snackbarVisible = type;
+	SET_TOAST_STATUS(state, type) {
+		state.toastStatus = type;
 	},
 };
 

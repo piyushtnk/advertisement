@@ -130,11 +130,9 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "topClickWiseBannerComponent",
-		mixins: [Global],
 		data() {
 			return {};
 		},

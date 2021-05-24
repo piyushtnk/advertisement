@@ -366,12 +366,10 @@
 </template>
 
 <script>
-	import Global from "~/mixins/global";
 	import { mapGetters } from "vuex";
 
 	export default {
 		name: "ProfileComponent",
-		mixins: [Global],
 		data() {
 			return {
 				loading: false,

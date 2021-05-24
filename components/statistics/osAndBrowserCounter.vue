@@ -96,11 +96,9 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "osAndBrowserCounterComponent",
-		mixins: [Global],
 		data() {
 			return {};
 		},

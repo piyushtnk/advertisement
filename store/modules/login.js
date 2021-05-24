@@ -1,44 +1,45 @@
 // State
 const state = () => ({
-	layout: {
-		snackbarText: "Welcome!",
-		snackbarVisible: false
-	},
 	user: {}
 });
 
 // Actions
 const actions = {
-	async login({ commit }, userData) {
-		return await this.$axios
-			.post(`/user/login`, userData)
-			.then(response => {
-				let responseData = response.data.data;
-				responseData.token = response.headers.token;
-				commit("SET_LOGIN", responseData);
-				commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged In successfully.");
+	async login({ commit, dispatch }, userData) {
+		try {
+			return await this.$axios
+				.post(`/user/login`, userData)
+				.then(response => {
+					let responseData = response.data.data;
+					responseData.token = response.headers.token;
+					commit("SET_LOGIN", responseData);
+					dispatch('setToast', { text: 'Logged in successful.', color: 'primary' }, { root: true })
 
-				// Local storing
-				this.$cookie.set('token', responseData.token)
-				this.$cookie.set('user', responseData)
-				return true;
-			})
-			.catch(error => {
+					// Local storing
+					this.$cookie.set('token', responseData.token)
+					this.$cookie.set('user', responseData)
+					return true;
+				})
+				.catch(error => {
+					dispatch('setToast', { text: error.response ? error.response.data.error : error, color: 'red' }, { root: true })
+					return false;
+				});
+		} catch (error) {
+			dispatch('setToast', { text: error, color: 'red' }, { root: true })
 
-				if (error.response) {
-					commit("SET_LAYOUT_SNACKBAR_TEXT", error.response.data.error);
+		}
 
-				} else {
-					commit("SET_LAYOUT_SNACKBAR_TEXT", error);
-				}
-				return false;
-			});
 	},
-	logout({ commit }) {
-		this.$cookie.removeAll();
-		commit("SET_LAYOUT_SNACKBAR_TEXT", "Logged out successfully.");
 
-		return true;
+	async logout({ dispatch }) {
+		try {
+			this.$cookie.removeAll();
+			dispatch('setToast', { text: 'Logged out successfully.', color: 'primary' }, { root: true })
+			return true;
+
+		} catch (error) {
+			dispatch('setToast', { text: error, color: 'red' }, { root: true })
+		}
 	}
 };
 
@@ -46,10 +47,6 @@ const actions = {
 const mutations = {
 	SET_LOGIN(state, response) {
 		state.user = response;
-	},
-	SET_LAYOUT_SNACKBAR_TEXT(state, text) {
-		state.layout.snackbarText = text;
-		state.layout.snackbarVisible = true;
 	},
 };
 

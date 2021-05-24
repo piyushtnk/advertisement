@@ -1,51 +1,107 @@
 <template>
-	<div>
-		<v-container fill-height fluid>
-			<v-row align="center">
-				<v-col cols="12">
-					<v-card elevation="0">
-						<v-card-text>
-							<v-alert
-								text
-								prominent
-								color="deep-orange"
-								icon="mdi-fire"
+	<v-container fill-height fluid>
+		<v-row align="center" justify="center">
+			<v-col>
+				<v-card class="mx-auto px-5 py-5" max-width="500" flat>
+					<v-card-text>
+						<div class="text-center">
+							<v-icon size="100"
+								>mdi-account-arrow-right-outline</v-icon
 							>
-								<h3 class="headline">Welcome back,</h3>
-								<div class="mt-1">
-									We're coming soon, stay tuned for more
-									updates.
-								</div>
-							</v-alert>
-						</v-card-text>
-					</v-card>
-				</v-col>
-			</v-row>
-		</v-container>
-	</div>
+						</div>
+						<form v-on:submit.prevent="submit">
+							<v-text-field
+								v-model="email"
+								:error-messages="emailErrors"
+								:counter="20"
+								label="Email"
+								required
+								@input="$v.email.$touch()"
+								@blur="$v.email.$touch()"
+							></v-text-field>
+							<v-text-field
+								:append-icon="
+									showPassword ? 'mdi-eye' : 'mdi-eye-off'
+								"
+								v-model="password"
+								:error-messages="passwordErrors"
+								label="Password"
+								required
+								@click:append="showPassword = !showPassword"
+								:type="showPassword ? 'text' : 'password'"
+								@input="$v.password.$touch()"
+								@blur="$v.password.$touch()"
+							></v-text-field>
+
+							<v-btn
+								outlined
+								text
+								large
+								class="mt-5"
+								type="submit"
+							>
+								Login
+								<v-icon right> mdi-login </v-icon>
+							</v-btn>
+						</form>
+					</v-card-text>
+				</v-card>
+			</v-col>
+		</v-row>
+	</v-container>
 </template>
 
-<script>
-	export default {
-		layout: "landing",
-		data() {
-			return {};
-		},
-		components: {},
-		middleware() {},
-		computed: {},
-		created() {
-			// If b91.com comes in.
-			if (
-				window.location.host === "b91vip.com" ||
-				window.location.host === "www.b91vip.com"
-			) {
-				return window.location.replace("http://www.b91.com");
-			}
+<style scoped>
+</style>
 
-			// Other configuration
-			this.$vuetify.theme.dark = false;
+<script>
+	import { validationMixin } from "vuelidate";
+	import { required, minLength, email } from "vuelidate/lib/validators";
+	export default {
+		layout: "login",
+		middleware: "notAuthenticate",
+		mixins: [validationMixin],
+
+		validations: {
+			email: { required, email },
+			password: { required, minLength: minLength(4) },
 		},
-		methods: {},
+
+		data: () => ({
+			email: "",
+			password: "",
+			showPassword: false,
+		}),
+
+		computed: {
+			emailErrors() {
+				const errors = [];
+				if (!this.$v.email.$dirty) return errors;
+				!this.$v.email.email && errors.push("Email must be correct");
+				!this.$v.email.required && errors.push("Email is required.");
+				return errors;
+			},
+			passwordErrors() {
+				const errors = [];
+				if (!this.$v.password.$dirty) return errors;
+				!this.$v.password.minLength &&
+					errors.push("Password must be at minimum 4 characters long");
+				!this.$v.password.required && errors.push("Password is required.");
+				return errors;
+			},
+		},
+		methods: {
+			async submit(e) {
+				this.$v.$touch();
+				const formData = {
+					email: this.email,
+					password: this.password,
+				};
+				const success = await this.$store.dispatch("login", formData);
+				if (success) {
+					this.$router.push(this.localePath("/system"));
+				}
+			},
+		},
 	};
 </script>

@@ -1,21 +1,8 @@
 <template>
 	<v-app dark>
-		<!-- Snackbar -->
-		<v-snackbar v-model="snackbar" right top>
-			{{ snackbarText }}
+		<!-- Toast -->
+		<Toast />
 
-			<template v-slot:action="{ attrs }">
-				<v-btn
-					color="pink"
-					text
-					v-bind="attrs"
-					@click="snackbar = false"
-				>
-					Close
-				</v-btn>
-			</template>
-		</v-snackbar>
-		<v-btn dark @click="snackbar = true"> Open Snackbar </v-btn>
 		<!-- Navigation -->
 		<v-navigation-drawer
 			v-model="drawer"
@@ -353,7 +340,7 @@
 			logout() {
 				const success = this.$store.dispatch("logout");
 				if (success) {
-					this.$router.push(this.localePath("/auth"));
+					this.$router.push(this.localePath("/"));
 				}
 			},
 		},
@@ -365,17 +352,6 @@
 				set(value) {
 					this.$cookie.set("dark", value);
 					this.$vuetify.theme.dark = value;
-				},
-			},
-			snackbarText() {
-				return this.$store.state.Default.snackbarText;
-			},
-			snackbar: {
-				get: function () {
-					return this.$store.state.Default.snackbarVisible;
-				},
-				set: function (value) {
-					this.$store.dispatch("setSnackbarVisible", value);
 				},
 			},
 			breadcrumbsItems() {

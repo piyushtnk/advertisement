@@ -1,26 +1,13 @@
 <template>
-	<v-app dark>
+	<v-app>
 		<v-main>
-			<!-- Snackbar -->
-			<v-snackbar v-model="snackbar" center>
-				{{ snackbarText }}
+			<!-- Toast -->
+			<Toast />
+			<!-- Toast over -->
 
-				<template v-slot:action="{ attrs }">
-					<v-btn
-						color="pink"
-						text
-						v-bind="attrs"
-						@click="snackbar = false"
-					>
-						Close
-					</v-btn>
-				</template>
-			</v-snackbar>
-
-			<!-- Container -->
-			<v-container>
-				<nuxt />
-			</v-container>
+			<!-- Loading codding -->
+			<nuxt />
+			<!-- Loading codding over -->
 		</v-main>
 	</v-app>
 </template>
@@ -37,19 +24,6 @@
 				rightDrawer: false,
 				title: "Home",
 			};
-		},
-		computed: {
-			snackbarText() {
-				return this.$store.state.Login.layout.snackbarText;
-			},
-			snackbar: {
-				get: function () {
-					return this.$store.state.Login.layout.snackbarVisible;
-				},
-				set: function (value) {
-					this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", value);
-				},
-			},
 		},
 	};
 </script>

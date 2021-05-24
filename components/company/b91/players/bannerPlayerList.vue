@@ -307,11 +307,10 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
-	import GlobalMixin from "~/mixins/global";
 
 	export default {
 		name: "TableComponent",
-		mixins: [Variables, GlobalMixin],
+		mixins: [Variables],
 		data() {
 			return {
 				defaultFilterDate: 1,

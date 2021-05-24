@@ -20,7 +20,7 @@
 					color="deep-black lighten-2"
 					btn-
 					text
-					:to="localePath('/system')"
+					:to="localePath('/')"
 					block
 				>
 					Back Home

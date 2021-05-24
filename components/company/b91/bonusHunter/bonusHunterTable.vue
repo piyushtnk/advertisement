@@ -197,11 +197,10 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "BonusHunterTable",
-		mixins: [Variables, Global],
+		mixins: [Variables],
 		data() {
 			return {
 				sortBy: "id|desc",

@@ -146,15 +146,14 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import VariablesMixin from "~/mixins/variables";
-	import GlobalMixin from "~/mixins/global";
+	import Variables from "~/mixins/variables";
 
 	export default {
 		name: "CountersComponent",
 		data: () => ({
 			modal: false,
 		}),
-		mixins: [VariablesMixin, GlobalMixin],
+		mixins: [Variables],
 		computed: {
 			...mapGetters({
 				bannerCount: "getDashboardAllBannerCount",

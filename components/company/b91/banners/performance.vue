@@ -352,11 +352,10 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "PerformanceComponent",
-		mixins: [Variables, Global],
+		mixins: [Variables],
 		data() {
 			return {
 				defaultFilterDate: 1,

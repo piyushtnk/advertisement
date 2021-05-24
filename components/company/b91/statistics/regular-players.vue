@@ -125,11 +125,9 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import Global from "~/mixins/global";
 
 	export default {
 		name: "RegularPlayersComponent",
-		mixins: [Global],
 		data() {
 			return {
 				loading: false,

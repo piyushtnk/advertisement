@@ -1,21 +1,8 @@
 <template>
 	<v-app dark>
 		<v-main>
-			<!-- Snackbar -->
-			<v-snackbar v-model="snackbar" center>
-				{{ snackbarText }}
-
-				<template v-slot:action="{ attrs }">
-					<v-btn
-						color="pink"
-						text
-						v-bind="attrs"
-						@click="snackbar = false"
-					>
-						Close
-					</v-btn>
-				</template>
-			</v-snackbar>
+			<!-- Toast -->
+			<Toast />
 
 			<!-- Container -->
 			<v-container>
@@ -30,18 +17,6 @@
 		data() {
 			return {};
 		},
-		computed: {
-			snackbarText() {
-				return this.$store.state.Login.layout.snackbarText;
-			},
-			snackbar: {
-				get: function () {
-					return this.$store.state.Login.layout.snackbarVisible;
-				},
-				set: function (value) {
-					this.$store.commit("SET_LAYOUT_SNACKBAR_VISIBLE", value);
-				},
-			},
-		},
+		computed: {},
 	};
 </script>

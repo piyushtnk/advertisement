@@ -128,12 +128,10 @@
 </template>
 
 <script>
-	import Global from "~/mixins/global";
 	import { mapGetters } from "vuex";
 
 	export default {
 		name: "TopViewedBannersComponent",
-		mixins: [Global],
 		data() {
 			return {
 				date: [],

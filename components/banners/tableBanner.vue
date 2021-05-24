@@ -440,12 +440,11 @@
 <script>
 	import { mapGetters } from "vuex";
 	import Variables from "~/mixins/variables";
-	import Global from "~/mixins/global";
 	import SingleDatePickerComponent from "~/components/SingleDatePicker";
 
 	export default {
 		name: "TableBannerComponent",
-		mixins: [Variables, Global],
+		mixins: [Variables],
 		components: { SingleDatePickerComponent: SingleDatePickerComponent },
 		data() {
 			return {
