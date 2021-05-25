@@ -475,9 +475,9 @@
 		},
 		computed: {
 			...mapGetters({
-				banners: "system/banner/getBanners",
+				banners: "getBanners",
 				getViewsStore: "getViews",
-				currency: "system/banner/getCurrency",
+				currency: "getCurrency",
 			}),
 			headerSearch() {
 				return [
@@ -578,12 +578,7 @@
 
 			deleteItemConfirm() {
 				this.loading = true;
-				if (
-					this.$store.dispatch(
-						"system/banner/deleteBanner",
-						this.editedItem
-					)
-				) {
+				if (this.$store.dispatch("deleteBanner", this.editedItem)) {
 					this.banners.data.splice(this.editedIndex, 1);
 					this.loading = false;
 				}
@@ -631,12 +626,7 @@
 				this.loading = true;
 				this.editedItem.index = this.editedIndex;
 				if (this.editedIndex > -1) {
-					if (
-						this.$store.dispatch(
-							"system/banner/updateBanner",
-							this.editedItem
-						)
-					) {
+					if (this.$store.dispatch("updateBanner", this.editedItem)) {
 						this.loading = false;
 					}
 				} else {
@@ -658,7 +648,7 @@
 					if (confirm(this.$t("areYouSure"))) {
 						if (
 							this.$store.dispatch(
-								"system/banner/deleteBannerCost",
+								"deleteBannerCost",
 								this.editedItem.cost[index].id
 							)
 						) {
