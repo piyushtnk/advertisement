@@ -125,7 +125,7 @@
 
 			<template v-slot:append>
 				<div class="pa-2">
-					<v-btn block v-on:click="logout" color="error">
+					<v-btn block v-on:click="logout">
 						<v-icon>mdi-logout</v-icon> {{ $t("logout") }}
 					</v-btn>
 				</div>
