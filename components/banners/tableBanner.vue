@@ -475,9 +475,9 @@
 		},
 		computed: {
 			...mapGetters({
-				banners: "getBanners",
+				banners: "system/banner/getBanners",
 				getViewsStore: "getViews",
-				currency: "getCurrency",
+				currency: "system/banner/getCurrency",
 			}),
 			headerSearch() {
 				return [
@@ -547,10 +547,10 @@
 
 			// Normal server url
 			getUrl(path, item) {
-				return window.location.origin + path + item.uniqueId;
+				return process.env.DOMAIN + path + item.uniqueId;
 			},
 			copyUrl(path, item) {
-				const text = window.location.origin + path + item.uniqueId;
+				const text = process.env.DOMAIN + path + item.uniqueId;
 				this.copyToClipboard(text);
 			},
 
@@ -578,7 +578,12 @@
 
 			deleteItemConfirm() {
 				this.loading = true;
-				if (this.$store.dispatch("deleteBanner", this.editedItem)) {
+				if (
+					this.$store.dispatch(
+						"system/banner/deleteBanner",
+						this.editedItem
+					)
+				) {
 					this.banners.data.splice(this.editedIndex, 1);
 					this.loading = false;
 				}
@@ -626,7 +631,12 @@
 				this.loading = true;
 				this.editedItem.index = this.editedIndex;
 				if (this.editedIndex > -1) {
-					if (this.$store.dispatch("updateBanner", this.editedItem)) {
+					if (
+						this.$store.dispatch(
+							"system/banner/updateBanner",
+							this.editedItem
+						)
+					) {
 						this.loading = false;
 					}
 				} else {
@@ -648,7 +658,7 @@
 					if (confirm(this.$t("areYouSure"))) {
 						if (
 							this.$store.dispatch(
-								"deleteBannerCost",
+								"system/banner/deleteBannerCost",
 								this.editedItem.cost[index].id
 							)
 						) {
