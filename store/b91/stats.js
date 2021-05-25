@@ -1,5 +1,5 @@
 // State
-const state = () => ({
+export const state = () => ({
 	graph: [
 		{
 			id: "LA",
@@ -18,7 +18,7 @@ const state = () => ({
 });
 
 // Actions
-const actions = {
+export const actions = {
 	// Get win loss
 	async getWinLoss({ commit }, data) {
 		await this.$axios
@@ -97,7 +97,7 @@ const actions = {
 };
 
 // Mutations
-const mutations = {
+export const mutations = {
 	SET_STATISTICS_COUNTER: (state, response) => {
 		state.statsInfoCounter = response;
 	},
@@ -116,7 +116,7 @@ const mutations = {
 };
 
 // Getters
-const getters = {
+export const getters = {
 	getStatisticsCounter: state => {
 		return state.statsInfoCounter;
 	},
@@ -132,12 +132,4 @@ const getters = {
 	getBonusHunters: state => {
 		return state.bonusHunters;
 	},
-};
-
-// Default export
-export default {
-	state,
-	mutations,
-	actions,
-	getters
 };

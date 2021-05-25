@@ -36,7 +36,7 @@
 
 <script>
 	export default {
-		layout: "login",
+		layout: "auth",
 		props: {
 			error: {
 				type: Object,

@@ -1,11 +1,11 @@
 // State
-const state = () => ({
+export const state = () => ({
 	chartWithdrawal: [0, 1],
 	chartDeposit: [0, 1],
 });
 
 // Actions
-const actions = {
+export const actions = {
 	async getChartWithdrawal({ commit }, data) {
 		await this.$axios
 			.get("/withdrawal/chart", {
@@ -41,7 +41,7 @@ const actions = {
 };
 
 // Mutations
-const mutations = {
+export const mutations = {
 	SET_CHART_WITHDRAWAL(state, response) {
 		state.chartWithdrawal = response;
 	},
@@ -51,7 +51,7 @@ const mutations = {
 };
 
 // Getters
-const getters = {
+export const getters = {
 	getChartWithdrawal: state => {
 		return state.chartWithdrawal;
 	},
@@ -60,10 +60,3 @@ const getters = {
 	}
 };
 
-// Default export
-export default {
-	state,
-	mutations,
-	actions,
-	getters
-};

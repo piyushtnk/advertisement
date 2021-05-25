@@ -147,7 +147,7 @@
 		mounted() {},
 		computed: {
 			...mapGetters({
-				last10MinuteBanners: "getLast10MinuteBanners",
+				last10MinuteBanners: "system/banner/getLast10MinuteBanners",
 			}),
 		},
 		watch: {

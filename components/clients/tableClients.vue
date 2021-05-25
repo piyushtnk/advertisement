@@ -367,7 +367,7 @@
 		},
 		computed: {
 			...mapGetters({
-				clients: "getClients",
+				clients: "system/clients/getClients",
 			}),
 			headerSearch() {
 				return [

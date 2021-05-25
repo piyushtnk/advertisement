@@ -1,10 +1,10 @@
 // State
-const state = () => ({
+export const state = () => ({
 	groupLevels: [],
 });
 
 // Actions
-const actions = {
+export const actions = {
 	async groupLevels({ commit }, data) {
 		await this.$axios
 			.get("/levels/all", {
@@ -21,23 +21,15 @@ const actions = {
 };
 
 // Mutations
-const mutations = {
+export const mutations = {
 	SET_GROUP_LEVEL(state, response) {
 		state.groupLevels = response;
 	},
 };
 
 // Getters
-const getters = {
+export const getters = {
 	getGroupLevels: state => {
 		return state.groupLevels;
 	},
-};
-
-// Default export
-export default {
-	state,
-	mutations,
-	actions,
-	getters
 };

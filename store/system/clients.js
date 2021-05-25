@@ -1,11 +1,11 @@
 // State
-const state = () => ({
+export const state = () => ({
 	clients: [],
 	ipClients: [],
 });
 
 // Actions
-const actions = {
+export const actions = {
 	// Fetching clients only.
 	async getClients({ commit }, data) {
 		await this.$axios
@@ -38,7 +38,7 @@ const actions = {
 };
 
 // Mutations
-const mutations = {
+export const mutations = {
 	SET_CLIENTS(state, response) {
 		state.clients = response;
 	},
@@ -48,19 +48,11 @@ const mutations = {
 };
 
 // Getters
-const getters = {
+export const getters = {
 	getClients: state => {
 		return state.clients;
 	},
 	getIpClients: state => {
 		return state.ipClients;
 	},
-};
-
-// Default export
-export default {
-	state,
-	mutations,
-	actions,
-	getters
 };

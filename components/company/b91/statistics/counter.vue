@@ -811,11 +811,11 @@
 				statisticsCounter: "getStatisticsCounter",
 				statisticsCashOverall: "getStatisticsTopUpOverall",
 				getStatisticsBannerClicksOverall:
-					"getStatisticsBannerClicksOverall",
-				ipClients: "getIpClients",
+					"system/banner/getStatisticsBannerClicksOverall",
+				ipClients: "system/clients/getIpClients",
 				winLoss: "getWinLoss",
-				clicksCountFromPC: "getClicksCountFromPC",
-				clicksCountFromMobile: "getClicksCountFromMobile",
+				clicksCountFromPC: "system/banner/getClicksCountFromPC",
+				clicksCountFromMobile: "system/banner/getClicksCountFromMobile",
 			}),
 		},
 		watch: {

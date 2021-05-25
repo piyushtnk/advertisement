@@ -157,7 +157,7 @@
 		},
 		computed: {
 			...mapGetters({
-				chartHeatMap: "getGraph",
+				chartHeatMap: "b91/stats/getGraph",
 			}),
 
 			chartCore() {
@@ -167,7 +167,7 @@
 		watch: {
 			chartHeatMap(value) {
 				this.loading = false;
-				this.polygonSeries.data = value;
+				this.polygonSeries.data = [...value];
 			},
 			chartFilterValueChildren(value) {
 				this.loading = true;

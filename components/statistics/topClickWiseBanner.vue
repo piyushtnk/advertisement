@@ -148,7 +148,7 @@
 		mounted() {},
 		computed: {
 			...mapGetters({
-				topClickWiseBanners: "getTopClickWiseBanners",
+				topClickWiseBanners: "system/banner/getTopClickWiseBanners",
 			}),
 		},
 		watch: {

@@ -20,7 +20,7 @@
 		computed: {},
 		methods: {
 			...mapActions({
-				getBannerDomains: "getBannerDomains",
+				getBannerDomains: "system/banner/getBannerDomains",
 			}),
 			filterForDate(value) {
 				this.$store.dispatch("getBannersPerf", {

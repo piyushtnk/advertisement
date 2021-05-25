@@ -18,7 +18,7 @@
 		methods: {
 			// ...mapActions({ getClients: "getClients" }),
 			filterForDate(value) {
-				this.$store.dispatch("getClients", {
+				this.$store.dispatch("system/clients/getClients", {
 					startDate: value.startDate ? value.startDate : null,
 					endDate: value.endDate ? value.endDate : null,
 					sort: value.sortBy,

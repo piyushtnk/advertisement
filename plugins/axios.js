@@ -4,7 +4,7 @@ export default function (context) {
 	});
 	context.$axios.onError(error => {
 		//   Sending the toast messages.
-		context.store.dispatch("setToast", { text: error, color: 'red' });
+		context.store.dispatch("system/default/setToast", { text: error, color: 'red' });
 
 		//   Once user Unauthorized then moved them to login page.
 		if (error.response.status == 401) {

@@ -24,7 +24,7 @@
 		},
 		computed: {},
 		methods: {
-			...mapActions({ getBannerDomains: "getBannerDomains" }),
+			...mapActions({ getBannerDomains: "system/banner/getBannerDomains" }),
 		},
 		mounted() {
 			this.getBannerDomains();

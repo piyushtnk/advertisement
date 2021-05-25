@@ -145,14 +145,20 @@
 				this.optionsParam.endDate = this.date[1];
 
 				// Graph
-				this.$store.dispatch("getGraph", {
+				this.$store.dispatch("b91/stats/getGraph", {
 					...this.optionsParam,
 					endpoint: value,
 				});
 
 				// chart withdrawal
-				this.$store.dispatch("getChartWithdrawal", this.optionsParam);
-				this.$store.dispatch("getChartDeposit", this.optionsParam);
+				this.$store.dispatch(
+					"b91/charts/getChartWithdrawal",
+					this.optionsParam
+				);
+				this.$store.dispatch(
+					"b91/charts/getChartDeposit",
+					this.optionsParam
+				);
 			},
 		},
 		watch: {

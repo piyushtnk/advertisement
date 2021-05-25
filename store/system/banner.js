@@ -1,5 +1,5 @@
 // State
-const state = () => ({
+export const state = () => ({
 	banners: [],
 	tempBanners: [],
 	bannerDomains: [],
@@ -15,15 +15,12 @@ const state = () => ({
 	clicksMobile: 0,
 	clicksBrowser: [],
 	clicksOS: [],
-	worldChart: [{
-		id: "LA",
-		value: 0
-	}],
+	worldChart: [],
 	currency: []
 });
 
 // Actions
-const actions = {
+export const actions = {
 	// upload banner
 	async uploadBanner({ commit }, data) {
 		let formData = new FormData();
@@ -59,7 +56,7 @@ const actions = {
 	},
 
 	// get graph of clicks
-	async worldChart({ commit }, data) {
+	async worldChart({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/heatmap/clicks", {
 				params: data
@@ -68,7 +65,7 @@ const actions = {
 				commit("SET_WORLD_CHART", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch("system/default/setToast", { text: error, color: 'error' }, { root: true });
 				throw error.response ? error.response.data.error : error;
 			});
 	},
@@ -342,7 +339,7 @@ const actions = {
 };
 
 // Mutations
-const mutations = {
+export const mutations = {
 	SET_BANNERS(state, response) {
 		state.banners = response;
 	},
@@ -392,7 +389,7 @@ const mutations = {
 };
 
 // Getters
-const getters = {
+export const getters = {
 	getBanners: state => {
 		return state.banners;
 	},
@@ -432,12 +429,4 @@ const getters = {
 	getCurrency: state => {
 		return state.currency;
 	}
-};
-
-// Default export
-export default {
-	state,
-	mutations,
-	actions,
-	getters
 };

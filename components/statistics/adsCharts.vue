@@ -109,7 +109,7 @@
 			$this.chart.zoomControl.valign = "top";
 
 			// World chartHeatMap data from api.
-			$this.polygonSeries.data = $this.chartHeatMap;
+			//$this.polygonSeries.data = $this.chartHeatMap;
 
 			// excludes Antarctica
 			$this.polygonSeries.exclude = ["AQ"];
@@ -141,7 +141,7 @@
 		},
 		computed: {
 			...mapGetters({
-				chartHeatMap: "getWorldChart",
+				chartHeatMap: "system/banner/getWorldChart",
 			}),
 
 			chartCore() {
@@ -151,7 +151,7 @@
 		watch: {
 			chartHeatMap(value) {
 				this.loading = false;
-				this.polygonSeries.data = value;
+				this.polygonSeries.data = [...value];
 			},
 		},
 		beforeDestroy() {

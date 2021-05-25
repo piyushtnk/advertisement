@@ -25,17 +25,17 @@
 		computed: {},
 		methods: {
 			...mapActions({
-				getBannerDomains: "getBannerDomains",
+				getBannerDomains: "system/banner/getBannerDomains",
 			}),
 			filterForDate(value) {
-				this.$store.dispatch("getBanners", {
+				this.$store.dispatch("system/banner/getBanners", {
 					sort: value.sort,
 					limit: value.limit,
 					page: value.page,
 					search: value.search,
 					isActive: 1,
 				});
-				this.$store.dispatch("currency");
+				this.$store.dispatch("system/banner/currency");
 			},
 		},
 		mounted() {

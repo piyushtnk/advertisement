@@ -144,8 +144,8 @@
 		computed: {
 			...mapGetters({
 				dashboard: "getDashboard",
-				bannerDomains: "getBannerDomains",
-				currency: "getCurrency",
+				bannerDomains: "system/banner/getBannerDomains",
+				currency: "system/banner/getCurrency",
 			}),
 			bannerImageErrors() {
 				const errors = [];
@@ -190,7 +190,12 @@
 						endDate: $this.endDate,
 						cost: $this.cost,
 					};
-					if ($this.$store.dispatch("uploadBanner", editedObject)) {
+					if (
+						$this.$store.dispatch(
+							"system/banner/uploadBanner",
+							editedObject
+						)
+					) {
 						$this.loading = false;
 					}
 				}
