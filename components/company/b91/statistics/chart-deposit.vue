@@ -28,7 +28,7 @@
 		}),
 		computed: {
 			...mapGetters({
-				chartDeposit: "b91/charts/getChartDeposit",
+				chartDeposit: "getChartDeposit",
 			}),
 			chartCore() {
 				return this.$am4core();
@@ -93,7 +93,7 @@
 		},
 		watch: {
 			chartDeposit(value) {
-				this.chart.data = [...value.graph];
+				this.chart.data = value.graph;
 			},
 		},
 	};

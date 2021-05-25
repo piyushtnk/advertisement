@@ -143,7 +143,7 @@
 		mounted() {},
 		computed: {
 			...mapGetters({
-				topViewedBanners: "system/banner/getTopViewedBanners",
+				topViewedBanners: "getTopViewedBanners",
 			}),
 		},
 		watch: {

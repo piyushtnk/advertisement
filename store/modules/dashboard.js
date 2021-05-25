@@ -1,5 +1,5 @@
 // State
-export const state = () => ({
+const state = () => ({
 	dashboardGraph: [0, 1],
 	dashboardAllBannerCount: 0,
 	updateIntervalTime: '',
@@ -7,7 +7,7 @@ export const state = () => ({
 });
 
 // Actions
-export const actions = {
+const actions = {
 
 	// Get dashboard graph
 	async dashboardGraph({ commit }) {
@@ -78,7 +78,7 @@ export const actions = {
 };
 
 // Mutations
-export const mutations = {
+const mutations = {
 	SET_DASHBOARD_GRAPH(state, response) {
 		state.dashboardGraph = response;
 	},
@@ -94,7 +94,7 @@ export const mutations = {
 };
 
 // Getters
-export const getters = {
+const getters = {
 	getDashboardGraph: state => {
 		return state.dashboardGraph;
 	},
@@ -107,4 +107,12 @@ export const getters = {
 	getUpdateIntervalTime: state => {
 		return state.updateIntervalTime;
 	},
+};
+
+// Default export
+export default {
+	state,
+	mutations,
+	actions,
+	getters
 };

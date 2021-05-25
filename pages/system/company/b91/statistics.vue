@@ -117,13 +117,13 @@
 		mounted() {
 			let $this = this;
 			setInterval(function () {
-				$this.$store.dispatch("system/dashboard/getUpdateIntervalTime");
+				$this.$store.dispatch("getUpdateIntervalTime");
 			}, 1000);
 			this.filterValueForStatistics();
 		},
 		computed: {
 			...mapGetters({
-				getUpdateIntervalTime: "system/dashboard/getUpdateIntervalTime",
+				getUpdateIntervalTime: "getUpdateIntervalTime",
 			}),
 		},
 		components: {
@@ -161,17 +161,11 @@
 				);
 
 				this.$store.dispatch(
-					"system/banner/getStatisticsBannerClicksOverall",
+					"getStatisticsBannerClicksOverall",
 					this.optionsParam
 				);
-				this.$store.dispatch(
-					"system/banner/clicksCountFromPC",
-					this.optionsParam
-				);
-				this.$store.dispatch(
-					"system/banner/clicksCountFromMobile",
-					this.optionsParam
-				);
+				this.$store.dispatch("clicksCountFromPC", this.optionsParam);
+				this.$store.dispatch("clicksCountFromMobile", this.optionsParam);
 				// Regular players
 				this.$store.dispatch("getRegularPlayers", this.optionsParam);
 
@@ -180,10 +174,7 @@
 				this.optionsParam.limit = 1;
 				this.optionsParam.page = 1;
 				this.optionsParam.search = "";
-				this.$store.dispatch(
-					"system/clients/getIpClients",
-					this.optionsParam
-				);
+				this.$store.dispatch("getIpClients", this.optionsParam);
 			},
 		},
 		watch: {

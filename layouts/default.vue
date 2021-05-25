@@ -338,7 +338,7 @@
 		},
 		methods: {
 			logout() {
-				const success = this.$store.dispatch("auth/logout");
+				const success = this.$store.dispatch("logout");
 				if (success) {
 					this.$router.push(this.localePath("/"));
 				}

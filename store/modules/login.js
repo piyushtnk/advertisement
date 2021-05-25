@@ -1,10 +1,10 @@
 // State
-export const state = () => ({
+const state = () => ({
 	user: {}
 });
 
 // Actions
-export const actions = {
+const actions = {
 	async login({ commit, dispatch }, userData) {
 		try {
 			return await this.$axios
@@ -13,7 +13,7 @@ export const actions = {
 					let responseData = response.data.data;
 					responseData.token = response.headers.token;
 					commit("SET_LOGIN", responseData);
-					dispatch('system/default/setToast', { text: 'Logged in successful.', color: 'primary' }, { root: true })
+					dispatch('setToast', { text: 'Logged in successful.', color: 'primary' }, { root: true })
 
 					// Local storing
 					this.$cookie.set('token', responseData.token)
@@ -21,11 +21,11 @@ export const actions = {
 					return true;
 				})
 				.catch(error => {
-					dispatch('system/default/setToast', { text: error.response ? error.response.data.error : error, color: 'red' }, { root: true })
+					dispatch('setToast', { text: error.response ? error.response.data.error : error, color: 'red' }, { root: true })
 					return false;
 				});
 		} catch (error) {
-			dispatch('system/default/setToast', { text: error, color: 'red' }, { root: true })
+			dispatch('setToast', { text: error, color: 'red' }, { root: true })
 
 		}
 
@@ -34,25 +34,33 @@ export const actions = {
 	async logout({ dispatch }) {
 		try {
 			this.$cookie.removeAll();
-			dispatch('system/default/setToast', { text: 'Logged out successfully.', color: 'primary' }, { root: true })
+			dispatch('setToast', { text: 'Logged out successfully.', color: 'primary' }, { root: true })
 			return true;
 
 		} catch (error) {
-			dispatch('system/default/setToast', { text: error, color: 'red' }, { root: true })
+			dispatch('setToast', { text: error, color: 'red' }, { root: true })
 		}
 	}
 };
 
 // Mutations
-export const mutations = {
+const mutations = {
 	SET_LOGIN(state, response) {
 		state.user = response;
 	},
 };
 
 // Getters
-export const getters = {
+const getters = {
 	isLoggedIn: state => {
 		return state.user;
 	}
+};
+
+// Default export
+export default {
+	state,
+	mutations,
+	actions,
+	getters
 };

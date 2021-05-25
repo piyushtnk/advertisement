@@ -16,8 +16,9 @@
 		},
 		data: () => ({}),
 		methods: {
+			// ...mapActions({ getIpClients: "getIpClients" }),
 			filterForDate(value) {
-				this.$store.dispatch("system/clients/bonusHunters", {
+				this.$store.dispatch("bonusHunters", {
 					startDate: value.startDate ? value.startDate : null,
 					endDate: value.endDate ? value.endDate : null,
 					sort: value.sort,

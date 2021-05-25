@@ -1,5 +1,5 @@
 // State
-export const state = () => ({
+const state = () => ({
 	toastContent: {
 		text: '',
 		color: ''
@@ -8,7 +8,7 @@ export const state = () => ({
 });
 
 // Actions
-export const actions = {
+const actions = {
 	setToast({ commit }, obj) {
 		commit("SET_TOAST_CONTENT", { text: obj.text, color: obj.color });
 		commit("SET_TOAST_STATUS", true);
@@ -16,7 +16,7 @@ export const actions = {
 };
 
 // Mutations
-export const mutations = {
+const mutations = {
 	SET_TOAST_CONTENT(state, object) {
 		state.toastContent = object;
 	},
@@ -26,4 +26,12 @@ export const mutations = {
 };
 
 // Getters
-export const getters = {};
+const getters = {};
+
+// Default export
+export default {
+	state,
+	mutations,
+	actions,
+	getters
+};

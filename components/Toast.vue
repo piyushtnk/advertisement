@@ -3,8 +3,8 @@
 		v-model="toastStatus"
 		:color="toastContent.color"
 		text
-		bottom
-		left
+		top
+		right
 	>
 		{{ toastContent.text }}
 
@@ -21,14 +21,14 @@
 		name: "Toast",
 		computed: {
 			toastContent() {
-				return this.$store.state.system.default.toastContent;
+				return this.$store.state.Default.toastContent;
 			},
 			toastStatus: {
 				get: function () {
-					return this.$store.state.system.default.toastStatus;
+					return this.$store.state.Default.toastStatus;
 				},
 				set: function (value) {
-					this.$store.commit("system/default/SET_TOAST_STATUS", value);
+					this.$store.commit("SET_TOAST_STATUS", value);
 				},
 			},
 		},

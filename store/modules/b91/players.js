@@ -1,5 +1,5 @@
 // State
-export const state = () => ({
+const state = () => ({
 	players: [],
 	otherPlayers: [],
 	deposit: [],
@@ -36,7 +36,7 @@ export const state = () => ({
 });
 
 // Actions
-export const actions = {
+const actions = {
 	// Fetching players only.
 	async getPlayers({ commit }, data) {
 		await this.$axios
@@ -186,7 +186,7 @@ export const actions = {
 };
 
 // Mutations
-export const mutations = {
+const mutations = {
 	SET_PLAYERS(state, response) {
 		state.players = response;
 	},
@@ -220,7 +220,7 @@ export const mutations = {
 };
 
 // Getters
-export const getters = {
+const getters = {
 	getPlayers: state => {
 		return state.players;
 	},
@@ -251,4 +251,12 @@ export const getters = {
 	getPlayerInfo: state => {
 		return state.playerInfo;
 	},
+};
+
+// Default export
+export default {
+	state,
+	mutations,
+	actions,
+	getters
 };

@@ -59,7 +59,7 @@
 		</v-card>
 
 		<!-- World map -->
-		<ChartsComponent />
+		<ChartsComponent :date.sync="date" />
 	</div>
 </template>
 
@@ -100,7 +100,7 @@
 				this.optionsParam.endDate = this.date[1];
 
 				// Graph
-				this.$store.dispatch("system/banner/worldChart", this.optionsParam);
+				this.$store.dispatch("worldChart", this.optionsParam);
 			},
 		},
 		watch: {

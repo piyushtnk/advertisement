@@ -143,7 +143,7 @@
 		},
 		computed: {
 			...mapGetters({
-				ipClients: "system/clients/getIpClients",
+				ipClients: "getIpClients",
 			}),
 			headers() {
 				return [

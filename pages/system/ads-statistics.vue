@@ -139,26 +139,17 @@
 				this.optionsParam.endDate = this.date[1];
 
 				// top viewed banners
-				this.$store.dispatch(
-					"system/banner/getTopViewedBanners",
-					this.optionsParam
-				);
+				this.$store.dispatch("getTopViewedBanners", this.optionsParam);
 
 				// top viewed banners
-				this.$store.dispatch("system/banner/getLast10MinuteBanners");
+				this.$store.dispatch("getLast10MinuteBanners");
 
 				// Top click wise banner
-				this.$store.dispatch(
-					"system/banner/topClickWiseBanners",
-					this.optionsParam
-				);
+				this.$store.dispatch("topClickWiseBanners", this.optionsParam);
 
 				// Click wise browser and os
-				this.$store.dispatch(
-					"system/banner/clicksByBrowser",
-					this.optionsParam
-				);
-				this.$store.dispatch("system/banner/clicksByOS", this.optionsParam);
+				this.$store.dispatch("clicksByBrowser", this.optionsParam);
+				this.$store.dispatch("clicksByOS", this.optionsParam);
 			},
 		},
 		watch: {

@@ -30,7 +30,7 @@
 		}),
 		computed: {
 			...mapGetters({
-				dashboard: "system/dashboard/getDashboardGraph",
+				dashboard: "getDashboardGraph",
 			}),
 			chartCore() {
 				return this.$am4core();

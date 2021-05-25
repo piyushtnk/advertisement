@@ -28,7 +28,7 @@
 		}),
 		computed: {
 			...mapGetters({
-				chartWithdrawal: "b91/charts/getChartWithdrawal",
+				chartWithdrawal: "getChartWithdrawal",
 			}),
 			chartCore() {
 				return this.$am4core();
@@ -93,7 +93,7 @@
 		},
 		watch: {
 			chartWithdrawal(value) {
-				this.chart.data = [...value.graph];
+				this.chart.data = value.graph;
 			},
 		},
 	};

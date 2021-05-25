@@ -57,7 +57,7 @@
 		},
 		computed: {
 			...mapGetters({
-				bannerDomains: "system/banner/getBannerDomains",
+				bannerDomains: "getBannerDomains",
 			}),
 			urlErrors() {
 				const errors = [];
@@ -76,7 +76,7 @@
 					return false;
 				} else {
 					if (
-						$this.$store.dispatch("system/banner/addDomainName", {
+						$this.$store.dispatch("addDomainName", {
 							domainName: $this.url,
 						})
 					) {

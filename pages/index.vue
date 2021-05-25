@@ -58,7 +58,7 @@
 	import { validationMixin } from "vuelidate";
 	import { required, minLength, email } from "vuelidate/lib/validators";
 	export default {
-		layout: "auth",
+		layout: "login",
 		middleware: "notAuthenticate",
 		mixins: [validationMixin],
 
@@ -97,7 +97,7 @@
 					email: this.email,
 					password: this.password,
 				};
-				const success = await this.$store.dispatch("auth/login", formData);
+				const success = await this.$store.dispatch("login", formData);
 				if (success) {
 					this.$router.push(this.localePath("/system"));
 				}

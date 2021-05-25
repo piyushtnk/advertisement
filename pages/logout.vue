@@ -11,11 +11,11 @@
 <script>
 	export default {
 		name: "logout",
-		layout: "auth",
+		layout: "login",
 		data: () => ({}),
 		computed: {},
 		mounted() {
-			const success = this.$store.dispatch("auth/logout");
+			const success = this.$store.dispatch("logout");
 			if (success) {
 				this.$router.push(this.localePath("/"));
 			}

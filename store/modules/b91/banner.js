@@ -1,10 +1,11 @@
 // State
-export const state = () => ({
+const state = () => ({
 	bannersPerf: [],
 });
 
 // Actions
-export const actions = {
+const actions = {
+
 	// Get all banners performance
 	async getBannersPerf({ commit }, data) {
 		const $this = this;
@@ -65,15 +66,23 @@ export const actions = {
 };
 
 // Mutations
-export const mutations = {
+const mutations = {
 	SET_BANNERS_PERF(state, response) {
 		state.bannersPerf = response;
 	},
 };
 
 // Getters
-export const getters = {
+const getters = {
 	getBannersPerf: state => {
 		return state.bannersPerf;
 	},
+};
+
+// Default export
+export default {
+	state,
+	mutations,
+	actions,
+	getters
 };

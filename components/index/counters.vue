@@ -156,11 +156,9 @@
 		mixins: [Variables],
 		computed: {
 			...mapGetters({
-				bannerCount: "system/dashboard/getDashboardAllBannerCount",
-				bannerClickOverall:
-					"system/banner/getStatisticsBannerClicksOverall",
-				dashboardAllAdminCount:
-					"system/dashboard/getDashboardAllAdminCount",
+				bannerCount: "getDashboardAllBannerCount",
+				bannerClickOverall: "getStatisticsBannerClicksOverall",
+				dashboardAllAdminCount: "getDashboardAllAdminCount",
 			}),
 		},
 		mounted() {

@@ -130,7 +130,7 @@
 		},
 		computed: {
 			...mapGetters({
-				bannerDomains: "system/banner/getBannerDomains",
+				bannerDomains: "getBannerDomains",
 			}),
 			headers() {
 				return [
@@ -156,12 +156,7 @@
 
 			deleteItemConfirm() {
 				this.loading = true;
-				if (
-					this.$store.dispatch(
-						"system/banner/deleteBannerDomain",
-						this.editedItem
-					)
-				) {
+				if (this.$store.dispatch("deleteBannerDomain", this.editedItem)) {
 					this.bannerDomains.splice(this.editedIndex, 1);
 					this.loading = false;
 				}
@@ -191,12 +186,7 @@
 						this.bannerDomains[this.editedIndex],
 						this.editedItem
 					);
-					if (
-						this.$store.dispatch(
-							"system/banner/addDomainName",
-							this.editedItem
-						)
-					) {
+					if (this.$store.dispatch("addDomainName", this.editedItem)) {
 						this.loading = false;
 					}
 				} else {

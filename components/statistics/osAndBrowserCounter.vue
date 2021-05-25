@@ -114,8 +114,8 @@
 		mounted() {},
 		computed: {
 			...mapGetters({
-				clicksByBrowser: "system/banner/getClicksByBrowser",
-				clicksByOS: "system/banner/getClicksByOS",
+				clicksByBrowser: "getClicksByBrowser",
+				clicksByOS: "getClicksByOS",
 			}),
 		},
 		watch: {
