@@ -589,7 +589,7 @@
 									</v-card-text>
 								</v-card>
 							</v-col>
-							<v-col cols="12" lg="2" md="2" sm="12">
+							<!-- <v-col cols="12" lg="2" md="2" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
@@ -627,7 +627,7 @@
 										bet)
 									</v-card-text>
 								</v-card>
-							</v-col>
+							</v-col> -->
 						</v-row>
 					</v-card-text>
 				</v-card>
