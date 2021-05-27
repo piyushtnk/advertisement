@@ -603,7 +603,8 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("ggr") }}
+										{{ $t("ggr") }} (Total valid bet - Total
+										win loss)
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -622,7 +623,8 @@
 										}}
 									</v-card-title>
 									<v-card-text>
-										{{ $t("houseEdge") }}
+										{{ $t("houseEdge") }} (GGR/Total valid
+										bet)
 									</v-card-text>
 								</v-card>
 							</v-col>
