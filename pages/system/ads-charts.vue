@@ -59,13 +59,13 @@
 		</v-card>
 
 		<!-- World map -->
-		<ChartsComponent :date.sync="date" />
+		<WorldChart />
 	</div>
 </template>
 
 <script>
 	// chart import
-	import ChartsComponent from "~/components/statistics/adsCharts";
+	import WorldChart from "~/components/statistics/worldCharts";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {
@@ -84,7 +84,7 @@
 		},
 		computed: {},
 		components: {
-			ChartsComponent: ChartsComponent,
+			WorldChart: WorldChart,
 		},
 		methods: {
 			whenDialogClosed() {

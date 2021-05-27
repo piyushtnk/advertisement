@@ -439,6 +439,10 @@ export default async (context, locale) => {
 		profitForecast: '盈利预测',
 		excludeZeroDeposits: '排除0笔存款',
 		balance: '平衡',
+		worldMap: '世界地图',
+		worldMapSubtitle: '查看广告查看者的国家/地区详细计数'
+
+
 
 	};
 };

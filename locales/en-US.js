@@ -444,5 +444,7 @@ export default async (context, locale) => {
 		profitForecast: 'Profit Forecast',
 		excludeZeroDeposits: 'Exclude 0 Deposits',
 		balance: 'Balance',
+		worldMap: 'World Map',
+		worldMapSubtitle: 'See detailed count country wise of your ads viewers'
 	};
 };

@@ -11,12 +11,12 @@
 <script>
 	import { mapActions } from "vuex";
 
-	import CountersComponent from "~/components/index/counters";
-	import ChartComponent from "~/components/index/chart";
+	import CountersComponent from "~/components/dashboard/counters";
+	import ChartComponent from "~/components/dashboard/chart";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {
-		name: "Index",
+		name: "Dashboard",
 		middleware: "authenticate",
 		mixins: [VariablesMixin],
 		components: {

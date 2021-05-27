@@ -78,7 +78,6 @@ export default {
 	// Modules (https://go.nuxtjs.dev/config-modules)
 	modules: [
 		// https://go.nuxtjs.dev/axios
-		// Axios module configuration (https://go.nuxtjs.dev/config-axios)
 		["@nuxtjs/axios", {
 			baseURL: process.env.API_URL,
 			debug: process.env.NODE_ENV == "development" ? true : false,
@@ -123,6 +122,10 @@ export default {
 				fallbackLocale: 'en',
 			},
 		}],
+
+		// High chart - https://github.com/richardeschloss/nuxt-highcharts
+		['nuxt-highcharts', { /* module options */ }],
+
 		// https://www.npmjs.com/package/nuxt-user-agent
 		"nuxt-user-agent",
 

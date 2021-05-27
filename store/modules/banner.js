@@ -375,7 +375,11 @@ const mutations = {
 		state.statisticsBannerClicksOverall = response;
 	},
 	SET_WORLD_CHART: (state, response) => {
-		state.worldChart = response;
+		let array = [];
+		response.filter((element, index) => {
+			element.id ? array.push([element.id.toLowerCase(), element.value]) : delete element[index]
+		})
+		state.worldChart = array;
 	},
 	SET_BROWSER_CLICKS: (state, response) => {
 		state.clicksBrowser = response.clicksCountByBrowserType;
