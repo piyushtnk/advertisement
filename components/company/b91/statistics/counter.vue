@@ -619,7 +619,7 @@
 												(validBet - winLoss) /
 												validBet
 											).toFixed(2)
-										}}%
+										}}
 									</v-card-title>
 									<v-card-text>
 										{{ $t("houseEdge") }}
