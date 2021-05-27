@@ -445,6 +445,8 @@ export default async (context, locale) => {
 		excludeZeroDeposits: 'Exclude 0 Deposits',
 		balance: 'Balance',
 		worldMap: 'World Map',
-		worldMapSubtitle: 'See detailed count country wise of your ads viewers'
+		worldMapSubtitle: 'See detailed count country wise of your ads viewers',
+		ggr: 'GGR',
+		houseEdge: 'House Edge'
 	};
 };

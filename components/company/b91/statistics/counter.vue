@@ -529,7 +529,7 @@
 							</v-col>
 						</v-row>
 						<v-row class="">
-							<v-col cols="12" lg="3" md="3" sm="12">
+							<v-col cols="12" lg="2" md="2" sm="12">
 								<v-card
 									class="mx-auto"
 									outlined
@@ -586,6 +586,38 @@
 									<v-card-text>
 										{{ $t("totalProfit") }}
 										({{ $t("allSources") }})
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="2" md="2" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{ isNullNumber(validBet - winLoss) }}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("ggr") }}
+									</v-card-text>
+								</v-card>
+							</v-col>
+							<v-col cols="12" lg="2" md="2" sm="12">
+								<v-card
+									class="mx-auto"
+									outlined
+									:loading="overallLoading"
+								>
+									<v-card-title class="display-1">
+										{{
+											isNullNumber(
+												(validBet - winLoss) / validBet
+											)
+										}}
+									</v-card-title>
+									<v-card-text>
+										{{ $t("houseEdge") }}
 									</v-card-text>
 								</v-card>
 							</v-col>
@@ -816,6 +848,7 @@
 				winLoss: "getWinLoss",
 				clicksCountFromPC: "getClicksCountFromPC",
 				clicksCountFromMobile: "getClicksCountFromMobile",
+				validBet: "getValidBet",
 			}),
 		},
 		watch: {

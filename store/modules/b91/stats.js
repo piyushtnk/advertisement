@@ -15,6 +15,7 @@ const state = () => ({
 		percentage: {}
 	},
 	bonusHunters: [],
+	validBet: 0,
 });
 
 // Actions
@@ -94,6 +95,24 @@ const actions = {
 				throw error.response ? error.response.data.error : error;
 			});
 	},
+
+	// Valid bet
+	async validBet({ commit }, data) {
+		try {
+			await this.$axios
+				.get("/stats/validbet", {
+					params: data
+				})
+				.then(response => {
+					commit("SET_VALID_BET", response.data.data.totalValidBetAmount);
+				})
+				.catch(error => {
+					throw error.response ? error.response.data.error : error;
+				});
+		} catch (error) {
+			console.warn('store', error);
+		}
+	}
 };
 
 // Mutations
@@ -112,6 +131,9 @@ const mutations = {
 	},
 	SET_BONUS_HUNTERS: (state, response) => {
 		state.bonusHunters = response;
+	},
+	SET_VALID_BET: (state, response) => {
+		state.validBet = response;
 	},
 };
 
@@ -132,6 +154,9 @@ const getters = {
 	getBonusHunters: state => {
 		return state.bonusHunters;
 	},
+	getValidBet: state => {
+		return state.validBet;
+	}
 };
 
 // Default export

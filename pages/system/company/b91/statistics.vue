@@ -1,21 +1,29 @@
 <template>
 	<div>
-		<v-alert text type="info" dense>
-			{{ $t("statsMessage") }}
-		</v-alert>
-		<v-alert prominent type="error">
-			<v-row align="center">
-				<v-col class="grow">
-					{{ $t("statsMessage2") }}
-				</v-col>
-				<v-col class="shrink">
-					<v-btn
-						>{{ $t("statsMessage3") }}
-						{{ getUpdateIntervalTime }}</v-btn
-					>
-				</v-col>
-			</v-row>
-		</v-alert>
+		<v-row>
+			<v-col>
+				<v-alert text type="info" dense>
+					{{ $t("statsMessage") }}
+				</v-alert>
+			</v-col>
+		</v-row>
+		<v-row>
+			<v-col>
+				<v-alert prominent type="error">
+					<v-row align="center">
+						<v-col class="grow">
+							{{ $t("statsMessage2") }}
+						</v-col>
+						<v-col class="shrink">
+							<v-btn
+								>{{ $t("statsMessage3") }}
+								{{ getUpdateIntervalTime }}</v-btn
+							>
+						</v-col>
+					</v-row>
+				</v-alert>
+			</v-col>
+		</v-row>
 
 		<!-- Filter section -->
 		<v-card class="my-5" outlined>
@@ -152,6 +160,9 @@
 
 				// Win Loss
 				this.$store.dispatch("getWinLoss", this.optionsParam);
+
+				// Valid bet
+				this.$store.dispatch("validBet", this.optionsParam);
 
 				// chart withdrawal
 				this.$store.dispatch("getStatisticsCounter", this.optionsParam);
