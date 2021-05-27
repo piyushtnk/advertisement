@@ -596,7 +596,11 @@
 									:loading="overallLoading"
 								>
 									<v-card-title class="display-1">
-										{{ isNullNumber(validBet - winLoss) }}
+										{{
+											isNullNumber(
+												convertToVND(validBet - winLoss)
+											)
+										}}
 									</v-card-title>
 									<v-card-text>
 										{{ $t("ggr") }}
@@ -611,10 +615,11 @@
 								>
 									<v-card-title class="display-1">
 										{{
-											isNullNumber(
-												(validBet - winLoss) / validBet
-											)
-										}}
+											(
+												(validBet - winLoss) /
+												validBet
+											).toFixed(2)
+										}}%
 									</v-card-title>
 									<v-card-text>
 										{{ $t("houseEdge") }}
