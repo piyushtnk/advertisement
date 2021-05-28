@@ -34,7 +34,6 @@ export default {
 	plugins: [
 		{ src: "~/plugins/axios.js" },
 		{ src: "~/plugins/global-mixin.js" },
-		{ src: '~/plugins/amCharts.js', ssr: false },
 	],
 
 	// Auto import components (https://go.nuxtjs.dev/config-components)

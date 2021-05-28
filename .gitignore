@@ -92,3 +92,5 @@ sw.*
 # GCP Json file
 whitelabel-laos-advertisement.json
 .vscode/settings.json
+
+package-lock.json
