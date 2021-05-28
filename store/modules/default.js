@@ -1,7 +1,7 @@
 // State
 const state = () => ({
 	toastContent: {
-		text: '',
+		message: '',
 		color: ''
 	},
 	toastStatus: false,
@@ -10,7 +10,7 @@ const state = () => ({
 // Actions
 const actions = {
 	setToast({ commit }, obj) {
-		commit("SET_TOAST_CONTENT", { text: obj.text, color: obj.color });
+		commit("SET_TOAST_CONTENT", { message: obj.message, color: obj.color });
 		commit("SET_TOAST_STATUS", true);
 	},
 };

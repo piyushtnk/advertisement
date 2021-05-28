@@ -74,17 +74,23 @@
 			@childFilterForCounter="filterValueForStatistics"
 		/>
 
-		<!-- Chart withdrawal -->
-		<ChartWithdrawalComponent />
+		<v-row>
+			<v-col lg="6" md="6" sm="12">
+				<!-- Chart withdrawal -->
+				<ChartWithdrawalComponent />
+			</v-col>
 
-		<!-- Chart deposit -->
-		<ChartDepositComponent />
+			<v-col lg="6" md="6" sm="12">
+				<!-- Chart deposit -->
+				<ChartDepositComponent />
+			</v-col>
+		</v-row>
 	</div>
 </template>
 
 <script>
 	// chart import
-	import ChartsComponent from "~/components/company/b91/statistics/charts";
+	import ChartsComponent from "~/components/company/b91/statistics/worldChart";
 	import ChartWithdrawalComponent from "~/components/company/b91/statistics/chart-withdrawal";
 	import ChartDepositComponent from "~/components/company/b91/statistics/chart-deposit";
 	import VariablesMixin from "~/mixins/variables";
@@ -145,7 +151,7 @@
 				this.optionsParam.endDate = this.date[1];
 
 				// Graph
-				this.$store.dispatch("getGraph", {
+				this.$store.dispatch("b91WorldChart", {
 					...this.optionsParam,
 					endpoint: value,
 				});

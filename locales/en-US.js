@@ -447,6 +447,11 @@ export default async (context, locale) => {
 		worldMap: 'World Map',
 		worldMapSubtitle: 'See detailed count country wise of your ads viewers',
 		ggr: 'GGR',
-		houseEdge: 'House Edge'
+		houseEdge: 'House Edge',
+		ofEachDay: 'of each day',
+		dates: 'Dates',
+		deposits: 'Deposits',
+		withdrawal: 'Withdrawal',
+		viewers: 'Viewers',
 	};
 };

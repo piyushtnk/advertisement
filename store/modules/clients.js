@@ -7,7 +7,7 @@ const state = () => ({
 // Actions
 const actions = {
 	// Fetching clients only.
-	async getClients({ commit }, data) {
+	async getClients({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/clients", {
 				params: data
@@ -16,13 +16,14 @@ const actions = {
 				commit("SET_CLIENTS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Fetching IP Clients
-	async getIpClients({ commit }, data) {
+	async getIpClients({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/ip/views", {
 				params: data
@@ -31,7 +32,8 @@ const actions = {
 				commit("SET_IP_CLIENTS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},

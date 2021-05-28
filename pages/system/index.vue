@@ -1,7 +1,11 @@
 <template>
 	<div>
-		<!-- Chart -->
-		<ChartComponent />
+		<v-row>
+			<v-col>
+				<!-- Chart -->
+				<ChartComponent />
+			</v-col>
+		</v-row>
 
 		<!-- Counters area -->
 		<CountersComponent @childFilterForDate="filterForCounter" />

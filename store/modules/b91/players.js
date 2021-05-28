@@ -38,7 +38,7 @@ const state = () => ({
 // Actions
 const actions = {
 	// Fetching players only.
-	async getPlayers({ commit }, data) {
+	async getPlayers({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/players", {
 				params: data
@@ -47,13 +47,14 @@ const actions = {
 				commit("SET_PLAYERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Fetching other players only
-	async getOtherPlayers({ commit }, data) {
+	async getOtherPlayers({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/otherplayers", {
 				params: {
@@ -70,7 +71,8 @@ const actions = {
 				commit("SET_OTHER_PLAYERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
@@ -78,7 +80,7 @@ const actions = {
 
 
 	// Getting deposit details
-	async getDeposit({ commit }, data) {
+	async getDeposit({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/deposits/all", {
 				params: data
@@ -87,13 +89,14 @@ const actions = {
 				commit("SET_DEPOSIT", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Getting withdrawal details
-	async getWithdrawals({ commit }, data) {
+	async getWithdrawals({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/withdrawals/all", {
 				params: data
@@ -102,14 +105,15 @@ const actions = {
 				commit("SET_WITHDRAWALS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Getting bets details
-	async getBets({ commit }, data) {
+	async getBets({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/bets/all", {
 				params: data
@@ -118,7 +122,8 @@ const actions = {
 				commit("SET_BETS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -152,7 +157,7 @@ const actions = {
 	},
 
 	// Regular Players
-	async getRegularPlayers({ commit }, data) {
+	async getRegularPlayers({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/regular/players", {
 				params: data
@@ -161,14 +166,15 @@ const actions = {
 				commit("SET_REGULAR_PLAYERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get login Ip detail
-	async playerInfo({ commit }, data) {
+	async playerInfo({ commit, dispatch }, data) {
 		const $this = this;
 		await $this.$axios
 			.get(`/player/${data.type}`, {
@@ -178,7 +184,8 @@ const actions = {
 				commit("SET_PLAYER_INFO", { type: data.type, data: response.data.data });
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});

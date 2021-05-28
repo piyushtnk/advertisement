@@ -10,23 +10,22 @@ const state = () => ({
 const actions = {
 
 	// Get dashboard graph
-	async dashboardGraph({ commit }) {
+	async dashboardGraph({ commit, dispatch }) {
 		await this.$axios
 			.get("/stats/clicks/lastweek")
 			.then(response => {
 				commit("SET_DASHBOARD_GRAPH", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get dashboard graph
-	async dashboardAllBannerCount({ commit }, data) {
+	async dashboardAllBannerCount({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/banners/count", {
 				params: data
@@ -35,9 +34,8 @@ const actions = {
 				commit("SET_DASHBOARD_ALL_BANNER_COUNT", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -58,7 +56,7 @@ const actions = {
 	},
 
 	// Statistics admin count
-	async dashboardAllAdminCount({ commit }, data) {
+	async dashboardAllAdminCount({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/admins/count/all", {
 				params: data
@@ -67,9 +65,8 @@ const actions = {
 				commit("SET_DASHBOARD_ALL_ADMIN_COUNT", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -80,7 +77,12 @@ const actions = {
 // Mutations
 const mutations = {
 	SET_DASHBOARD_GRAPH(state, response) {
-		state.dashboardGraph = response;
+		response.graph.reverse()
+		let array = [];
+		response.graph.map(element => {
+			array.push([element.date, element.value])
+		})
+		state.dashboardGraph = array;
 	},
 	SET_DASHBOARD_ALL_BANNER_COUNT(state, response) {
 		state.dashboardAllBannerCount = response;

@@ -6,7 +6,9 @@ export default {
 		CONTACT_DEV: "Something went wrong, contact your developer.",
 	},
 	ssr: false, // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
-	loading: { color: '#3B8070' },
+	loading: {
+		color: 'red',
+	},
 	components: true,
 	telemetry: false, // Are you interested in participating.
 

@@ -1,11 +1,6 @@
 // State
 const state = () => ({
-	graph: [
-		{
-			id: "LA",
-			value: 0
-		}
-	],
+	b91WorldChart: [["LA", 0]],
 	winLoss: 0,
 	statsInfoCounter: {},
 	statisticsCashOverall: {
@@ -21,7 +16,7 @@ const state = () => ({
 // Actions
 const actions = {
 	// Get win loss
-	async getWinLoss({ commit }, data) {
+	async getWinLoss({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/winloss", {
 				params: data
@@ -30,29 +25,29 @@ const actions = {
 				commit("SET_WIN_LOSS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// get graph
-	async getGraph({ commit }, data) {
+	async b91WorldChart({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/heatmap/" + data.endpoint, {
 				params: data
 			})
 			.then(response => {
-				commit("SET_GRAPH", response.data.data);
+				commit("SET_B91_WORLD_CHART", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 
 	// Get all stats - 1 
-	async getStatisticsCounter({ commit }, data) {
+	async getStatisticsCounter({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/players/overall", {
 				params: data
@@ -61,13 +56,13 @@ const actions = {
 				commit("SET_STATISTICS_COUNTER", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get all stats - 2
-	async getStatisticsTopUpOverall({ commit }, data) {
+	async getStatisticsTopUpOverall({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/topup/overall", {
 				params: data
@@ -76,13 +71,13 @@ const actions = {
 				commit("SET_STATISTICS_TOP_UP_OVERALL", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// bonus hunters
-	async bonusHunters({ commit }, data) {
+	async bonusHunters({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/bonushunters", {
 				params: data
@@ -91,7 +86,7 @@ const actions = {
 				commit("SET_BONUS_HUNTERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
@@ -123,8 +118,12 @@ const mutations = {
 	SET_STATISTICS_TOP_UP_OVERALL: (state, response) => {
 		state.statisticsCashOverall = response;
 	},
-	SET_GRAPH: (state, response) => {
-		state.graph = response;
+	SET_B91_WORLD_CHART: (state, response) => {
+		let array = [];
+		response.map(element => {
+			element.id ? array.push([element.id.toLowerCase(), element.value]) : '';
+		})
+		state.b91WorldChart = array;
 	},
 	SET_WIN_LOSS: (state, response) => {
 		state.winLoss = response.winloss;
@@ -145,8 +144,8 @@ const getters = {
 	getStatisticsTopUpOverall: state => {
 		return state.statisticsCashOverall;
 	},
-	getGraph: state => {
-		return state.graph;
+	getB91WorldChart: state => {
+		return state.b91WorldChart;
 	},
 	getWinLoss: state => {
 		return state.winLoss;

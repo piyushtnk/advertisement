@@ -13,7 +13,7 @@ const actions = {
 					let responseData = response.data.data;
 					responseData.token = response.headers.token;
 					commit("SET_LOGIN", responseData);
-					dispatch('setToast', { text: 'Logged in successful.', color: 'primary' }, { root: true })
+					dispatch('setToast', { message: 'Logged in successful.', color: 'primary' }, { root: true })
 
 					// Local storing
 					this.$cookie.set('token', responseData.token)
@@ -21,11 +21,11 @@ const actions = {
 					return true;
 				})
 				.catch(error => {
-					dispatch('setToast', { text: error.response ? error.response.data.error : error, color: 'red' }, { root: true })
+					dispatch('setToast', { message: error.response ? error.response.data.error : error, color: 'red' }, { root: true })
 					return false;
 				});
 		} catch (error) {
-			dispatch('setToast', { text: error, color: 'red' }, { root: true })
+			dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 		}
 
@@ -34,11 +34,11 @@ const actions = {
 	async logout({ dispatch }) {
 		try {
 			this.$cookie.removeAll();
-			dispatch('setToast', { text: 'Logged out successfully.', color: 'primary' }, { root: true })
+			dispatch('setToast', { message: 'Logged out successfully.', color: 'primary' }, { root: true })
 			return true;
 
 		} catch (error) {
-			dispatch('setToast', { text: error, color: 'red' }, { root: true })
+			dispatch('setToast', { message: error, color: 'red' }, { root: true })
 		}
 	}
 };

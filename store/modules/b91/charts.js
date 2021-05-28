@@ -1,12 +1,12 @@
 // State
 const state = () => ({
-	chartWithdrawal: [0, 1],
-	chartDeposit: [0, 1],
+	chartWithdrawal: [[0, 1]],
+	chartDeposit: [[0, 1]],
 });
 
 // Actions
 const actions = {
-	async getChartWithdrawal({ commit }, data) {
+	async getChartWithdrawal({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/withdrawal/chart", {
 				params: data
@@ -15,14 +15,11 @@ const actions = {
 				commit("SET_CHART_WITHDRAWAL", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
-
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
-	async getChartDeposit({ commit }, data) {
+	async getChartDeposit({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/deposits/chart", {
 				params: data
@@ -31,10 +28,7 @@ const actions = {
 				commit("SET_CHART_DEPOSIT", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, {
-					root: true
-				});
-
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
@@ -43,10 +37,19 @@ const actions = {
 // Mutations
 const mutations = {
 	SET_CHART_WITHDRAWAL(state, response) {
-		state.chartWithdrawal = response;
+		let array = [];
+		response.graph.map(element => {
+			array.push([element.date, element.value])
+		})
+		state.chartDeposit = array;
+		state.chartWithdrawal = array;
 	},
 	SET_CHART_DEPOSIT(state, response) {
-		state.chartDeposit = response;
+		let array = [];
+		response.graph.map(element => {
+			array.push([element.date, element.value])
+		})
+		state.chartDeposit = array;
 	}
 };
 

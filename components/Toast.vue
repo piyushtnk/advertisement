@@ -6,7 +6,7 @@
 		top
 		right
 	>
-		{{ toastContent.text }}
+		{{ toastContent.message }}
 
 		<template v-slot:action="{ attrs }">
 			<v-btn text v-bind="attrs" @click="toastStatus = false">

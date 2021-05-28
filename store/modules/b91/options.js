@@ -5,7 +5,7 @@ const state = () => ({
 
 // Actions
 const actions = {
-	async groupLevels({ commit }, data) {
+	async groupLevels({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/levels/all", {
 				params: data
@@ -14,7 +14,8 @@ const actions = {
 				commit("SET_GROUP_LEVEL", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},

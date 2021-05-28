@@ -15,17 +15,14 @@ const state = () => ({
 	clicksMobile: 0,
 	clicksBrowser: [],
 	clicksOS: [],
-	worldChart: [{
-		id: "LA",
-		value: 0
-	}],
+	worldChart: [['la', 0]],
 	currency: []
 });
 
 // Actions
 const actions = {
 	// upload banner
-	async uploadBanner({ commit }, data) {
+	async uploadBanner({ commit, dispatch }, data) {
 		let formData = new FormData();
 		for (var key in data) {
 			formData.append(key, data[key]);
@@ -38,10 +35,7 @@ const actions = {
 				}
 			})
 			.then(response => {
-				commit("SET_SNACKBAR_TEXT", "Your banner successfully uploaded.", {
-					root: true
-				});
-
+				dispatch('setToast', { message: 'Your banner successfully uploaded.', color: 'primary' }, { root: true })
 				response.data.data.cost = [{
 					startDate: response.data.data.startDate,
 					endDate: response.data.data.endDate,
@@ -53,8 +47,7 @@ const actions = {
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error.response.data.error, { root: true });
-
+				dispatch('setToast', { message: error.response.data.error, color: 'red' }, { root: true })
 			});
 	},
 
@@ -68,13 +61,13 @@ const actions = {
 				commit("SET_WORLD_CHART", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Update banner
-	async updateBanner({ commit }, data) {
+	async updateBanner({ commit, dispatch }, data) {
 		const $this = this;
 		let formData = new FormData();
 		if (data.bannerImage) {
@@ -92,7 +85,7 @@ const actions = {
 			})
 			.then(async response => {
 				commit("UPDATE_BANNERS", { index: data.index, data: response.data.data });
-				commit("SET_SNACKBAR_TEXT", 'Banner updated successfully', { root: true });
+				dispatch('setToast', { message: 'Banner updated successfully', color: 'success' }, { root: true })
 
 				await data.cost.forEach(element => {
 					if (element.id) {
@@ -108,7 +101,7 @@ const actions = {
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -123,16 +116,16 @@ const actions = {
 	},
 
 	// Delete banner
-	async deleteBanner({ commit }, data) {
+	async deleteBanner({ dispatch }, data) {
 		await this.$axios
 			.delete("/banner/" + data.uniqueId)
 			.then(response => {
-				commit("SET_SNACKBAR_TEXT", 'Banner deleted successfully', { root: true });
+				dispatch('setToast', { message: 'Banner deleted successfully', color: 'success' }, { root: true })
 
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -160,7 +153,7 @@ const actions = {
 	},
 
 	// Get Top 10 Viewed Banners
-	async getTopViewedBanners({ commit }, data) {
+	async getTopViewedBanners({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/topviewbanners", {
 				params: data
@@ -169,40 +162,38 @@ const actions = {
 				commit("SET_TOP_ViEWED_BANNERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Last 10 Minutes Active Banners
-	async getLast10MinuteBanners({ commit }, data) {
+	async getLast10MinuteBanners({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/activebanners")
 			.then(response => {
 				commit("SET_10_MINUTE_BANNERS", response.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Add Domain name
-	async addDomainName({ commit }, data) {
+	async addDomainName({ commit, dispatch }, data) {
 		await this.$axios
 			.post("/domain/create", data)
 			.then(response => {
-				commit("SET_SNACKBAR_TEXT", "Your domain name registered successfully.", {
-					root: true
-				});
+				dispatch('setToast', { message: 'Your domain name registered successfully.', color: 'success' }, { root: true })
 
 				commit("UPDATE_BANNER_DOMAIN", response.data.data);
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 
 				throw error.response ? error.response.data.error : error;
 			});
@@ -219,23 +210,22 @@ const actions = {
 			});
 	},
 
-	async deleteBannerDomain({ commit }, data) {
+	async deleteBannerDomain({ dispatch }, data) {
 		await this.$axios
 			.delete("/domain/" + data.id)
 			.then(response => {
-				commit("SET_SNACKBAR_TEXT", 'Banner domain deleted successfully', { root: true });
+				dispatch('setToast', { message: 'Banner domain deleted successfully.', color: 'success' }, { root: true })
 
 				return true;
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
-
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get all stats - 3
-	async getStatisticsBannerClicksOverall({ commit }, data) {
+	async getStatisticsBannerClicksOverall({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/bannerclick/overall", {
 				params: data
@@ -244,13 +234,14 @@ const actions = {
 				commit("SET_STATISTICS_BANNER_CLICKS_OVERALL", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// clicks browser
-	async clicksByBrowser({ commit }, data) {
+	async clicksByBrowser({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/clicks/browsertype", {
 				params: data
@@ -259,13 +250,14 @@ const actions = {
 				commit("SET_BROWSER_CLICKS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// clicks os
-	async clicksByOS({ commit }, data) {
+	async clicksByOS({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/clicks/ostype", {
 				params: data
@@ -274,13 +266,14 @@ const actions = {
 				commit("SET_OS_CLICKS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// top clicks wise banner
-	async topClickWiseBanners({ commit }, data) {
+	async topClickWiseBanners({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/topbanners", {
 				params: data
@@ -289,13 +282,14 @@ const actions = {
 				commit("SET_TOP_CLICK_WISE_BANNERS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// clicks from pc
-	async clicksCountFromPC({ commit }, data) {
+	async clicksCountFromPC({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/clicks/pc", {
 				params: data
@@ -304,13 +298,14 @@ const actions = {
 				commit("SET_PC_CLICKS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// clicks from mobile
-	async clicksCountFromMobile({ commit }, data) {
+	async clicksCountFromMobile({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/stats/clicks/mobile", {
 				params: data
@@ -319,14 +314,15 @@ const actions = {
 				commit("SET_MOBILE_CLICKS", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
 
 	// Get all currency listing
 	// clicks from mobile
-	async currency({ commit }, data) {
+	async currency({ commit, dispatch }, data) {
 		await this.$axios
 			.get("/currency/all", {
 				params: data
@@ -335,7 +331,8 @@ const actions = {
 				commit("SET_CURRENCY", response.data.data);
 			})
 			.catch(error => {
-				commit("SET_SNACKBAR_TEXT", error, { root: true });
+				dispatch('setToast', { message: error, color: 'red' }, { root: true })
+
 				throw error.response ? error.response.data.error : error;
 			});
 	},
