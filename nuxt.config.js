@@ -148,20 +148,6 @@ export default {
 			id: process.env.GTM,
 			pageTracking: true,
 		}],
-
-		// Memory watch
-		['nuxt-memwatch', {
-			graph: true,
-			graphSetup(setup) {
-				setup.metrics.malloc = {
-					aggregator: 'avg',
-					color: 'cyan'
-				}
-			},
-			graphAddMetric(turtleGraph, stats) {
-				turtleGraph.metric('my metrics', 'malloc').push(stats.malloced_memory)
-			}
-		}],
 	],
 
 	// Content module configuration (https://go.nuxtjs.dev/config-content)
