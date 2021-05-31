@@ -9,113 +9,66 @@
 					:loader-height="7"
 					outlined
 				>
-					<v-card-text class="headline d-flex">
-						<div class="">
-							{{ $t("regularPlayers") }} ({{
-								regularPlayers.playerCount
-							}})
+					<v-card-text class="headline">
+						<div class="d-flex mx-3">
+							<div class="">
+								{{ $t("regularPlayers") }} ({{
+									regularPlayers.playerCount
+								}})
+							</div>
+							<div class="ml-auto">
+								{{ $t("averageTopupCount") }} ({{
+									regularPlayers.averageTopupCount
+								}})
+							</div>
 						</div>
-						<div class="ml-auto">
-							{{ $t("averageTopupCount") }} ({{
-								regularPlayers.averageTopupCount
-							}})
-						</div>
-					</v-card-text>
 
-					<v-card-text>
-						<v-simple-table>
-							<template v-slot:default>
-								<thead>
-									<tr>
-										<th>{{ $t("userId") }}</th>
-										<th class="text-left">
-											{{ $t("name") }}
-										</th>
-										<th class="text-left">
-											{{ $t("depositAvg") }}
-										</th>
-										<th class="text-left">
-											{{ $t("loginCount") }}
-										</th>
-										<th>{{ $t("loginPlatform") }}</th>
-										<th>{{ $t("cashbackBonus") }}</th>
-										<th>{{ $t("topUpCount") }}</th>
-										<th>{{ $t("totalBetAmount") }}</th>
-										<th>{{ $t("totalBonus") }}</th>
-										<th>{{ $t("totalDeposit") }}</th>
-										<th>{{ $t("totalDepositCount") }}</th>
-										<th>{{ $t("totalResult") }}</th>
-										<th>{{ $t("totalWinLoss") }}</th>
-										<th>{{ $t("totalWithdraw") }}</th>
-										<th>{{ $t("totalWithdrawCount") }}</th>
-										<th>{{ $t("validBet") }}</th>
-										<th>{{ $t("withdrawAvg") }}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr
-										v-for="item in regularPlayers.regularPlayers"
-										:key="item.id"
-									>
-										<td>{{ item.playerid }}</td>
-										<td>
-											{{
-												item.firstname +
-												" " +
-												item.lastname
-											}}
-										</td>
-										<td>
-											{{ numberFormat(item.depositavg) }}
-										</td>
-										<td>{{ item.logincount }}</td>
-										<td>{{ item.loginplatform }}</td>
-										<td>
-											{{
-												numberFormat(item.cashbackbonus)
-											}}
-										</td>
-										<td>{{ item.topupCount }}</td>
-										<td>
-											{{
-												numberFormat(
-													item.totalbetamount
-												)
-											}}
-										</td>
-										<td>
-											{{ numberFormat(item.totalbonus) }}
-										</td>
-										<td>
-											{{
-												numberFormat(item.totaldeposit)
-											}}
-										</td>
-										<td>{{ item.totaldepositcount }}</td>
-										<td>
-											{{ numberFormat(item.totalresult) }}
-										</td>
-										<td>
-											{{
-												numberFormat(item.totalwinloss)
-											}}
-										</td>
-										<td>
-											{{
-												numberFormat(item.totalwithdraw)
-											}}
-										</td>
-										<td>{{ item.totalwithdrawcount }}</td>
-										<td>
-											{{ numberFormat(item.validbet) }}
-										</td>
-										<td>
-											{{ numberFormat(item.withdrawavg) }}
-										</td>
-									</tr>
-								</tbody>
+						<!-- Table -->
+						<v-data-table
+							:headers="headers"
+							item-key="id"
+							:items="regularPlayers.regularPlayers"
+							class="elevation-1 mt-5"
+							@click:row="handleClick"
+						>
+							<template v-slot:[`item.firstName`]="{ item }">
+								{{
+									isNull(item.firstname) +
+									" " +
+									isNull(item.lastname)
+								}}
 							</template>
-						</v-simple-table>
+							<template v-slot:[`item.depositavg`]="{ item }">
+								{{ numberFormat(item.depositavg) }}
+							</template>
+							<template v-slot:[`item.cashbackbonus`]="{ item }">
+								{{ numberFormat(item.cashbackbonus) }}
+							</template>
+							<template v-slot:[`item.totalbetamount`]="{ item }">
+								{{ numberFormat(item.totalbetamount) }}
+							</template>
+							<template v-slot:[`item.totalbonus`]="{ item }">
+								{{ numberFormat(item.totalbonus) }}
+							</template>
+							<template v-slot:[`item.totaldeposit`]="{ item }">
+								{{ numberFormat(item.totaldeposit) }}
+							</template>
+							<template v-slot:[`item.totalresult`]="{ item }">
+								{{ numberFormat(item.totalresult) }}
+							</template>
+							<template v-slot:[`item.totalwinloss`]="{ item }">
+								{{ numberFormat(item.totalwinloss) }}
+							</template>
+							<template v-slot:[`item.totalwithdraw`]="{ item }">
+								{{ numberFormat(item.totalwithdraw) }}
+							</template>
+							<template v-slot:[`item.validbet`]="{ item }">
+								{{ numberFormat(item.validbet) }}
+							</template>
+							<template v-slot:[`item.withdrawavg`]="{ item }">
+								{{ numberFormat(item.withdrawavg) }}
+							</template>
+						</v-data-table>
 					</v-card-text>
 				</v-card>
 			</v-col>
@@ -138,13 +91,90 @@
 				type: Array,
 			},
 		},
-		created() {},
-		mounted() {},
-		methods: {},
+		methods: {
+			// On row click
+			handleClick(row) {
+				this.$router.push(
+					this.localePath(`/system/company/b91/players/${row.playerid}`)
+				);
+			},
+		},
 		computed: {
 			...mapGetters({
 				regularPlayers: "getRegularPlayers",
 			}),
+			headers() {
+				return [
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
+					{ text: this.$t("depositAvg"), value: "depositavg" },
+					{
+						text: this.$t("loginCount"),
+						value: "logincount",
+					},
+					{ text: this.$t("loginPlatform"), value: "loginplatform" },
+					{ text: this.$t("cashbackBonus"), value: "cashbackbonus" },
+					{
+						text: this.$t("topUpCount"),
+						value: "topupCount",
+					},
+					{ text: this.$t("totalBetAmount"), value: "totalbetamount" },
+					{
+						text: this.$t("totalBonus"),
+						value: "totalbonus",
+					},
+					{ text: this.$t("totalDeposit"), value: "totaldeposit" },
+					{
+						text: this.$t("totalDepositCount"),
+						value: "totaldepositcount",
+					},
+					{ text: this.$t("totalResult"), value: "totalresult" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalWithdraw"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawCount"),
+						value: "totalwithdrawcount",
+					},
+					{ text: this.$t("validBet"), value: "validbet" },
+					{ text: this.$t("withdrawAvg"), value: "withdrawavg" },
+				];
+			},
+			headerSearch() {
+				return [
+					{ text: this.$t("userId"), value: "playerid" },
+					{ text: this.$t("name"), value: "firstname" },
+					{ text: this.$t("depositAvg"), value: "depositavg" },
+					{
+						text: this.$t("loginCount"),
+						value: "logincount",
+					},
+					{ text: this.$t("loginPlatform"), value: "loginplatform" },
+					{ text: this.$t("cashbackBonus"), value: "cashbackbonus" },
+					{
+						text: this.$t("topUpCount"),
+						value: "topupCount",
+					},
+					{ text: this.$t("totalBetAmount"), value: "totalbetamount" },
+					{
+						text: this.$t("totalBonus"),
+						value: "totalbonus",
+					},
+					{ text: this.$t("totalDeposit"), value: "totaldeposit" },
+					{
+						text: this.$t("totalDepositCount"),
+						value: "totaldepositcount",
+					},
+					{ text: this.$t("totalResult"), value: "totalresult" },
+					{ text: this.$t("totalWinLoss"), value: "totalwinloss" },
+					{ text: this.$t("totalWithdraw"), value: "totalwithdraw" },
+					{
+						text: this.$t("totalWithdrawCount"),
+						value: "totalwithdrawcount",
+					},
+					{ text: this.$t("validBet"), value: "validbet" },
+					{ text: this.$t("withdrawAvg"), value: "withdrawavg" },
+				];
+			},
 		},
 		watch: {},
 	};

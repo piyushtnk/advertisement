@@ -1,10 +1,6 @@
 <template>
 	<div>
-		<v-row>
-			<v-col cols="12">
-				<ProfileComponent />
-			</v-col>
-		</v-row>
+		<ProfileComponent />
 	</div>
 </template>
 
