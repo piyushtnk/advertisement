@@ -6,7 +6,6 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
 	import TableComponent from "~/components/company/b91/banners/performance";
 
 	export default {
@@ -17,11 +16,7 @@
 		components: {
 			TableComponent: TableComponent,
 		},
-		computed: {},
 		methods: {
-			...mapActions({
-				getBannerDomains: "getBannerDomains",
-			}),
 			filterForDate(value) {
 				this.$store.dispatch("getBannersPerf", {
 					startDate: value.startDate,
@@ -32,9 +27,6 @@
 					search: value.search,
 				});
 			},
-		},
-		mounted() {
-			this.getBannerDomains();
 		},
 	};
 </script>
