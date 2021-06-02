@@ -96,7 +96,7 @@
 		/>
 
 		<!-- Regular users -->
-		<RegularPlayersComponent />
+		<!-- <RegularPlayersComponent /> -->
 	</div>
 </template>
 
@@ -104,7 +104,7 @@
 	import { mapGetters } from "vuex";
 
 	import CounterComponent from "~/components/company/b91/statistics/counter";
-	import RegularPlayersComponent from "~/components/company/b91/statistics/regular-players";
+	// import RegularPlayersComponent from "~/components/company/b91/statistics/regular-players";
 	import VariablesMixin from "~/mixins/variables";
 
 	export default {
@@ -136,7 +136,7 @@
 		},
 		components: {
 			CounterComponent: CounterComponent,
-			RegularPlayersComponent: RegularPlayersComponent,
+			// RegularPlayersComponent: RegularPlayersComponent,
 		},
 		methods: {
 			whenDialogClosed() {
@@ -177,8 +177,9 @@
 				);
 				this.$store.dispatch("clicksCountFromPC", this.optionsParam);
 				this.$store.dispatch("clicksCountFromMobile", this.optionsParam);
+
 				// Regular players
-				this.$store.dispatch("getRegularPlayers", this.optionsParam);
+				// this.$store.dispatch("getRegularPlayers", this.optionsParam);
 
 				// top viewed banners
 				this.optionsParam.sort = "id|desc";
