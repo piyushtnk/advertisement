@@ -3,6 +3,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 COPY . ./
+RUN echo “Building $git_branch”
 RUN npm install
 
 EXPOSE 80
