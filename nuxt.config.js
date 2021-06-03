@@ -2,13 +2,7 @@ import colors from "vuetify/es5/util/colors";
 
 export default {
 	// Environment variable
-	env: {
-		CONTACT_DEV: "Something went wrong, contact your developer.",
-		DOMAIN: 'http://999.money/',
-		API_URL: 'https://app.999.money/api/',
-		CLOUD_URL: 'https://storage.googleapis.com/advertisement_storage',
-		GTM: 'GTM-KNQPBBT'
-	},
+	env: {},
 	ssr: false, // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
 	loading: {
 		color: 'red',
