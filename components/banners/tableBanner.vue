@@ -528,7 +528,7 @@
 			findImage(item) {
 				let path = null;
 				try {
-					path = `${process.env.CLOUD_URL}/banner/${item.uniqueId}.${item.imageType}`;
+					path = `${process.env.BUCKET_URL}/banner/${item.uniqueId}.${item.imageType}`;
 				} catch (e) {
 					path = require("~/assets/banner/default.jpg");
 				}
@@ -538,7 +538,7 @@
 			copyFindImage(item) {
 				let path = "";
 				try {
-					path = `${process.env.CLOUD_URL}/banner/${item.uniqueId}.${item.imageType}`;
+					path = `${process.env.BUCKET_URL}/banner/${item.uniqueId}.${item.imageType}`;
 				} catch (e) {
 					path = require("~/assets/banner/default.jpg");
 				}
@@ -547,10 +547,10 @@
 
 			// Normal server url
 			getUrl(path, item) {
-				return process.env.DOMAIN + path + item.uniqueId;
+				return process.env.BASE_URL + path + item.uniqueId;
 			},
 			copyUrl(path, item) {
-				const text = process.env.DOMAIN + path + item.uniqueId;
+				const text = process.env.BASE_URL + path + item.uniqueId;
 				this.copyToClipboard(text);
 			},
 
@@ -586,7 +586,7 @@
 			},
 
 			downloadCode(item) {
-				let fileContent = `<html><head><body><a href="${window.location.origin}/${item.uniqueId}"><img src="${process.env.API_URL}api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
+				let fileContent = `<html><head><body><a href="${window.location.origin}/${item.uniqueId}"><img src="${process.env.BASE_URL}/api/image/banner/${item.uniqueId}" onload="document.cookie='prebpcb91=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/'" /></a></body></head></html>`;
 				let element = document.createElement("a");
 				element.setAttribute(
 					"href",

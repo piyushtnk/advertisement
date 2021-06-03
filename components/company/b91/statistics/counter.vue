@@ -875,7 +875,7 @@
 				return Number.parseFloat(number).toPrecision(2) + "%";
 			},
 			getImage(imageName, imageType) {
-				return `${process.env.CLOUD_URL}/banner/${imageName}.${imageType}`;
+				return `${process.env.BUCKET_URL}/banner/${imageName}.${imageType}`;
 			},
 		},
 	};

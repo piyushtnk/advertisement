@@ -2,7 +2,9 @@ import colors from "vuetify/es5/util/colors";
 
 export default {
 	// Environment variable
-	env: {},
+	env: {
+		BUCKET_URL: 'https://storage.googleapis.com/advertisement_storage',
+	},
 	ssr: false, // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
 	loading: {
 		color: 'red',
@@ -78,7 +80,7 @@ export default {
 	modules: [
 		// https://go.nuxtjs.dev/axios
 		["@nuxtjs/axios", {
-			baseURL: process.env.API_URL,
+			baseURL: `${process.env.BASE_URL}/api/`,
 			debug: process.env.NODE_ENV == "development" ? true : false,
 			headers: {
 				Accept: "application/json",
@@ -140,7 +142,7 @@ export default {
 		['@nuxtjs/google-tag-manager', {
 			debug: process.env.NODE_ENV == "development" ? true : false,
 			enabled: true,
-			id: process.env.GTM,
+			id: 'GTM-KNQPBBT',
 			pageTracking: true,
 		}],
 	],
