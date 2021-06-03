@@ -3,6 +3,7 @@ import colors from "vuetify/es5/util/colors";
 export default {
 	// Environment variable
 	env: {
+		BASE_URL: 'https://app.999.money',
 		BUCKET_URL: 'https://storage.googleapis.com/advertisement_storage',
 	},
 	ssr: false, // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -80,7 +81,6 @@ export default {
 	modules: [
 		// https://go.nuxtjs.dev/axios
 		["@nuxtjs/axios", {
-			baseURL: `${process.env.BASE_URL}/api/`,
 			debug: process.env.NODE_ENV == "development" ? true : false,
 			headers: {
 				Accept: "application/json",
