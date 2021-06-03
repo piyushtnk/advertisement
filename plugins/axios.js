@@ -1,5 +1,6 @@
 export default function (context) {
 	context.$axios.onRequest(config => {
+		config.baseURL = process.env.BASE_URL + '/api';
 		config.headers.common["Authorization"] = `Bearer ${context.$cookie.get('token')}`;
 	});
 	context.$axios.onError(error => {
