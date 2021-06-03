@@ -113,7 +113,7 @@
 					<v-spacer></v-spacer>
 					<v-col lg="1" md="3" sm="12">
 						<v-switch
-							v-model="totalDepositValueLimit"
+							v-model="excludeZeroDeposit"
 							:label="$t('excludeZeroDeposits')"
 						></v-switch>
 					</v-col>
@@ -155,6 +155,7 @@
 					:server-items-length="banners.total"
 					:pageCount="banners.totalPages"
 					:items="banners.data"
+					:items-per-page="itemPerPage"
 					:loading="loading"
 					:footer-props="footerProps"
 				>
@@ -360,7 +361,8 @@
 			return {
 				defaultFilterDate: 1,
 				loading: false,
-				totalDepositValueLimit: false,
+				excludeZeroDeposit: true,
+				itemPerPage: 50,
 				sortBy: "id|desc",
 			};
 		},
@@ -445,7 +447,7 @@
 
 			// Remove 0 entries of totalDepositValue
 			removeTotalDepositValueIsZero() {
-				if (this.totalDepositValueLimit) {
+				if (this.excludeZeroDeposit) {
 					this.banners.data = this.banners.data.filter(
 						(item) => item.totalDepositValue > 0
 					);
@@ -596,7 +598,7 @@
 					this.reportDisable = true;
 				}
 			},
-			totalDepositValueLimit(value) {
+			excludeZeroDeposit(value) {
 				this.removeTotalDepositValueIsZero();
 			},
 		},
