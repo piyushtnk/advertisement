@@ -77,8 +77,6 @@ const actions = {
 // Mutations
 const mutations = {
 	SET_DASHBOARD_GRAPH(state, response) {
-		console.log(response);
-
 		response.graph.reverse()
 		let array = [];
 		response.graph.map(element => {
